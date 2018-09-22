@@ -6,22 +6,20 @@ public class EnemyController : MonoBehaviour {
 
 	[SerializeField] private GameObject bulletPrefab;
 	[SerializeField] private GameObject player;
-	[SerializeField] int frequency;
-	[SerializeField] int frequencyRange;
+	[SerializeField] float frequency;
+	[SerializeField] float frequencyRange;
 	[SerializeField] float bulletSpeed;
 	[SerializeField] int bulletDamage;
-	private int nextFire;
+	private float nextFire;
 	//private Projectile bulletScript;
 	private Vector3 direction;
-	private int timer;
-	private Quaternion bulletRotation;
+	private float timer;
 
 	// Use this for initialization
 	void Start () {
 		direction = player.transform.position - this.transform.position; 
 		//bulletScript = bullet.GetComponent<Projectile> ();
 		timer = 0;
-		bulletRotation = new Quaternion (0f, -1.52f, -1.52f, 0f);
 		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
 	}
 	
@@ -38,7 +36,7 @@ public class EnemyController : MonoBehaviour {
 			this.Fire ();
 		}
 		else {
-			timer++;
+			timer+= Time.fixedDeltaTime;
 		}
 
 		transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);

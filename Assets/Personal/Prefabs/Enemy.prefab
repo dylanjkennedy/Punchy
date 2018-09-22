@@ -115,8 +115,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1260433506269500, guid: 94c31c315b8315b4a8259ddf55b6ad2e,
     type: 2}
   player: {fileID: 0}
-  frequency: 60
-  frequencyRange: 30
+  frequency: 2
+  frequencyRange: 1
   bulletSpeed: 15
   bulletDamage: 2
 --- !u!136 &136140121553254746

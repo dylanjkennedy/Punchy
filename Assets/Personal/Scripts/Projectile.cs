@@ -6,12 +6,12 @@ public class Projectile : MonoBehaviour {
 	
 	private int Damage;
 	private Rigidbody rb;
-	private int Duration = 360;
-	private int Time;
+	private int Duration = 6;
+	private float Timer;
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
-		Time = 0;
+		Timer = 0;
 	}
 	
 	// Update is called once per frame
@@ -20,20 +20,22 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Time >= Duration) {
+		if (Timer >= Duration) {
 			Destroy (this.gameObject);
 		}
-		Time++;
+		Timer+= Time.fixedDeltaTime;
 	}
 
 	public void Fire (Vector3 position, Vector3 direction, float speed, int damage){
-		//this.transform.position = position;
 		rb.velocity = direction * speed;
 		Damage = damage;
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Hitbox") {
+			if (other.gameObject.tag == "Player") {
+				other.gameObject.GetComponent<PlayerHealth> ().TakeDamage (Damage);
+			}
 			Destroy (this.gameObject);
 		}
 	}
