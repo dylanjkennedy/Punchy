@@ -6,9 +6,12 @@ public class Projectile : MonoBehaviour {
 	
 	private int Damage;
 	private Rigidbody rb;
+	private int Duration = 300;
+	private int Time;
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
+		Time = 0;
 	}
 	
 	// Update is called once per frame
@@ -16,12 +19,22 @@ public class Projectile : MonoBehaviour {
 		
 	}
 
+	void FixedUpdate(){
+		if (Time >= Duration) {
+			Destroy (this);
+		}
+		Time++;
+	}
+
 	public void Fire (Vector3 position, Vector3 direction, float speed, int damage){
 		//this.transform.position = position;
 		rb.velocity = direction * speed;
 		Damage = damage;
+	}
 
-		Debug.Log ("Position is" + this.transform.position);
-		Debug.Log ("position should be: " + position);
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Hitbox") {
+			Destroy (this.gameObject);
+		}
 	}
 }

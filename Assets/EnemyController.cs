@@ -33,10 +33,14 @@ public class EnemyController : MonoBehaviour {
 		else {
 			timer++;
 		}
+
+		transform.LookAt (player.transform);
 	}
 
 	void Fire () {
-		GameObject bullet = Instantiate (bulletPrefab, this.transform.position, bulletRotation);
+		//GameObject bullet = Instantiate (bulletPrefab, this.transform.position, bulletRotation);
+		GameObject bullet = Instantiate (bulletPrefab, this.transform);
+
 		bullet.GetComponent<Projectile> ().Fire (this.transform.position, this.transform.forward, 10f, 2);
 	}
 }
