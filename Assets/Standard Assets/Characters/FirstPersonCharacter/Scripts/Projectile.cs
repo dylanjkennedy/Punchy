@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 	
 	private int Damage;
 	private Rigidbody rb;
-	private int Duration = 300;
+	private int Duration = 360;
 	private int Time;
 	// Use this for initialization
 	void Awake () {
@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (Time >= Duration) {
-			Destroy (this);
+			Destroy (this.gameObject);
 		}
 		Time++;
 	}
