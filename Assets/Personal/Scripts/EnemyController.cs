@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
@@ -15,17 +16,19 @@ public class EnemyController : MonoBehaviour {
 	private Vector3 direction;
 	private float timer;
 
+	NavMeshAgent nav;
+
 	// Use this for initialization
 	void Start () {
 		direction = player.transform.position - this.transform.position; 
 		//bulletScript = bullet.GetComponent<Projectile> ();
 		timer = 0;
 		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
+		nav = GetComponent<NavMeshAgent> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 	}
 
 	void FixedUpdate() {
@@ -40,6 +43,8 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);
+
+		nav.SetDestination (player.transform.position);
 	}
 
 	void Fire () {
