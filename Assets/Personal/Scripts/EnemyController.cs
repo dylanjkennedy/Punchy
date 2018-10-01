@@ -15,8 +15,10 @@ public class EnemyController : MonoBehaviour {
 	//private Projectile bulletScript;
 	private Vector3 direction;
 	private float timer;
+	bool dead;
 
 	NavMeshAgent nav;
+	Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,8 @@ public class EnemyController : MonoBehaviour {
 		timer = 0;
 		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
 		nav = GetComponent<NavMeshAgent> ();
+		dead = false;
+		rb = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -32,19 +36,21 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		transform.LookAt (player.transform);
+		if (!dead) {
+			
+			transform.LookAt (player.transform);
 
 
-		if (timer >= nextFire && CheckLineOfSight()) {
-			this.Fire ();
+			if (timer >= nextFire && CheckLineOfSight ()) {
+				this.Fire ();
+			} else {
+				timer += Time.fixedDeltaTime;
+			}
+
+			transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);
+
+			nav.SetDestination (player.transform.position);
 		}
-		else {
-			timer+= Time.fixedDeltaTime;
-		}
-
-		transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);
-
-		nav.SetDestination (player.transform.position);
 	}
 
 	void Fire () {
@@ -65,5 +71,13 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	public void takeDamage(){
+		dead = true;
+		rb.isKinematic = false;
+		rb.useGravity = true;
+		nav.enabled = false;
+		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, rb.transform.position + new Vector3 (Random.Range(-1,-1), Random.Range(-1,-1), Random.Range(-1,-1)), ForceMode.Impulse);
 	}
 }

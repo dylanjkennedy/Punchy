@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -27,6 +28,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+		[SerializeField] private Image chargeWheel;
+		[SerializeField] private float attackRange;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -44,6 +47,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 		//private CapsuleCollider melee;
 
+		private bool charging;
+		private bool chargeCooling;
+		private float currentCharge;
+		private bool charged;
+		private float chargedTime;
+		[SerializeField] private float slowmoTimescale;
+		private float fullspeedTimescale = 1f;
+		[SerializeField] private float chargeTimeout;
+		[SerializeField] private float timeToCharge;
+		[SerializeField] private float chargeCooldownTime;
+
+
+		Ray attackRay;
+		RaycastHit attackHit;
+		int attackableMask;
+
         // Use this for initialization
         private void Start()
         {
@@ -57,6 +76,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+			currentCharge = 0;
+			charging = false;
+			chargedTime = 0;
+			chargeWheel.type = Image.Type.Filled;
+			chargeWheel.fillMethod = Image.FillMethod.Radial360;
+			chargeWheel.fillAmount = 0f;
+
 			//melee = GetComponent<CapsuleCollider> ();
         }
 
@@ -71,7 +97,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jump = Input.GetButtonDown("Jump");
             }
 				
-			//m_Melee = Input.GetButton ("Fire1");
+			charging = Input.GetButton ("Fire1");
 
 
 
@@ -108,6 +134,59 @@ namespace UnityStandardAssets.Characters.FirstPerson
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+
+			if (!charging && !charged && !chargeCooling && currentCharge > 0) {
+				currentCharge -= Time.fixedDeltaTime * 2;
+			}
+
+			if (chargeCooling) {
+				chargedTime += Time.deltaTime;
+				if (chargedTime >= chargeCooldownTime) {
+					chargeCooling = false;
+					chargedTime = 0;
+					chargeWheel.color = Color.white;
+				}
+			}
+
+			if (charging && !charged && !chargeCooling) {
+				currentCharge += Time.fixedDeltaTime;
+				if (currentCharge >= timeToCharge) {
+					charged = true;
+					changeTimeScale (slowmoTimescale);
+					currentCharge = 0;
+				}
+			}
+
+
+			if (charged) {
+				chargedTime += Time.fixedUnscaledDeltaTime;
+				if (chargedTime >= chargeTimeout) {
+					changeTimeScale (fullspeedTimescale);
+					chargedTime = 0;
+					charged = false;
+					chargeCooling = true;
+					chargeWheel.color = Color.red;
+				}
+
+				if (!charging){
+					if (tryAttack ()) {
+						
+					} else {
+						chargeCooling = true;
+						chargeWheel.color = Color.red;
+					}
+					changeTimeScale (fullspeedTimescale);
+					chargedTime = 0;
+					charged = false;
+				}
+			}
+
+			if (!chargeCooling) {
+				chargeWheel.fillAmount = currentCharge / timeToCharge;
+			}
+			else {
+				chargeWheel.fillAmount = 1-(chargedTime / chargeCooldownTime);
+			}
 
             // get a normal for the surface that is being touched to move along it
             RaycastHit hitInfo;
@@ -150,6 +229,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_MouseLook.UpdateCursorLock();
         }
+
+		private void changeTimeScale(float newTime){
+			Time.timeScale = newTime;
+			Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
+		}
+
+		private void fillWheel(){
+			chargeWheel.fillAmount = currentCharge/timeToCharge;
+		}
+
+
+		private bool tryAttack(){
+			attackRay.origin = transform.position;
+			attackRay.direction = this.GetComponentInChildren<Camera>().transform.forward;
+
+			if (Physics.Raycast (attackRay, out attackHit, attackRange)) {
+				if (attackHit.collider.gameObject.tag == "Enemy") {
+					GameObject enemy = attackHit.collider.gameObject;
+					enemy.GetComponent<EnemyController>().takeDamage();
+
+					transform.position = enemy.transform.position - Vector3.Normalize (enemy.transform.position - transform.position);
+					return true;
+				}
+			}
+			return false;
+		}
 
 
         private void PlayJumpSound()
