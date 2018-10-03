@@ -78,6 +78,6 @@ public class EnemyController : MonoBehaviour {
 		rb.isKinematic = false;
 		rb.useGravity = true;
 		nav.enabled = false;
-		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, rb.transform.position + new Vector3 (Random.Range(-1,-1), Random.Range(-1,-1), Random.Range(-1,-1)), ForceMode.Impulse);
+		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, rb.transform.position + new Vector3 (Random.Range(-1,1), Random.Range(-1,1), Random.Range(-1,1)), ForceMode.Impulse);
 	}
 }

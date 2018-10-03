@@ -249,6 +249,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					GameObject enemy = attackHit.collider.gameObject;
 					enemy.GetComponent<EnemyController>().takeDamage();
 
+					// puts the player one unit away from the enemy along the vector between them
 					transform.position = enemy.transform.position - Vector3.Normalize (enemy.transform.position - transform.position);
 					return true;
 				}
