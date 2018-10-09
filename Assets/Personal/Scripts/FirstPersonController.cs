@@ -181,7 +181,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				}
 			}
 
-			if (!chargeCooling) {
+			if (charged) {
+				chargeWheel.fillAmount = 1;
+			}
+			else if (!chargeCooling) {
 				chargeWheel.fillAmount = currentCharge / timeToCharge;
 			}
 			else {
@@ -241,8 +244,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
 		private bool tryAttack(){
-			attackRay.origin = transform.position;
-			attackRay.direction = this.GetComponentInChildren<Camera>().transform.forward;
+			attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
 			if (Physics.Raycast (attackRay, out attackHit, attackRange)) {
 				if (attackHit.collider.gameObject.tag == "Enemy") {
