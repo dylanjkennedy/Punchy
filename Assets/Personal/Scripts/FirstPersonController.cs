@@ -45,6 +45,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		[SerializeField] private float chargeTimeout;
 		[SerializeField] private float timeToCharge;
 		[SerializeField] private float chargeCooldownTime;
+        private LayerMask enemyMask;
 
 
         // Use this for initialization
@@ -61,6 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			chargeWheel.type = Image.Type.Filled;
 			chargeWheel.fillMethod = Image.FillMethod.Radial360;
 			chargeWheel.fillAmount = 0f;
+            enemyMask = LayerMask.GetMask("Enemy");
         }
 
 
@@ -146,7 +148,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
                 else
                 {
-                    if (checkAttack())
+                    if (checkAttack().collider.gameObject)
                     {
                         chargeWheel.color = Color.green;
                     }
@@ -220,38 +222,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			chargeWheel.fillAmount = currentCharge/timeToCharge;
 		}
 
-        private GameObject checkAttack()
+        private RaycastHit checkAttack()
         {
             Ray attackRay;
             RaycastHit attackHit;
             attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
-            if (Physics.Raycast(attackRay, out attackHit, attackRange))
+            if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyMask))
             {
                 if (attackHit.collider.gameObject.tag == "Enemy")
                 {
-                    return attackHit.collider.gameObject;
+                    return attackHit;
                 }
             }
-            return null;
+            
+            return attackHit;
         }
 
 		private bool tryAttack(){
-            Ray attackRay;
-            RaycastHit attackHit;
-            attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-
-            GameObject enemy = checkAttack();
-
-            if (enemy != null)
+            RaycastHit hit = checkAttack();
+            if (hit.collider == null)
             {
-                enemy.GetComponent<EnemyController>().takeDamage();
-
-                // puts the player one unit away from the enemy along the vector between them
-                transform.position = enemy.transform.position - Vector3.Normalize(enemy.transform.position - transform.position);
-                return true;
+                return false;
             }
-			return false;
+            GameObject enemy = hit.collider.gameObject;
+            enemy.GetComponent<EnemyController>().takeDamage(hit.point);
+
+            // puts the player one unit away from the enemy along the vector between them
+            transform.position = enemy.transform.position - Vector3.Normalize(enemy.transform.position - transform.position);
+            return true;
 		}
 
 

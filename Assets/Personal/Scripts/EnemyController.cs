@@ -11,11 +11,16 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField] float frequencyRange;
 	[SerializeField] float bulletSpeed;
 	[SerializeField] int bulletDamage;
+    [SerializeField] float minPlayerDistance;
+    [SerializeField] float runAwayDistance;
+    [SerializeField] float maxRunAwayDistance;
+    
 	private float nextFire;
 	//private Projectile bulletScript;
 	private Vector3 direction;
 	private float timer;
 	bool dead;
+    [SerializeField] bool runningAway;
 
 	NavMeshAgent nav;
 	Rigidbody rb;
@@ -28,6 +33,7 @@ public class EnemyController : MonoBehaviour {
 		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
 		nav = GetComponent<NavMeshAgent> ();
 		dead = false;
+        runningAway = false;
 		rb = GetComponent<Rigidbody> ();
 	}
 	
@@ -49,8 +55,30 @@ public class EnemyController : MonoBehaviour {
 
 			transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);
 
-			nav.SetDestination (player.transform.position);
-		}
+            float distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+
+            if (distance < runAwayDistance)
+            {
+                runningAway = true;
+            }
+            if (distance >= maxRunAwayDistance)
+            {
+                runningAway = false;
+            }
+
+            if (runningAway)
+            {
+                nav.SetDestination(gameObject.transform.position + Vector3.Normalize(gameObject.transform.position - player.transform.position)*2);
+            }
+            else if ( distance > minPlayerDistance)
+            {
+                nav.SetDestination(player.transform.position);
+            }
+            else
+            {
+                nav.SetDestination(gameObject.transform.position);
+            }
+        }
 	}
 
 	void Fire () {
@@ -73,11 +101,11 @@ public class EnemyController : MonoBehaviour {
 		return false;
 	}
 
-	public void takeDamage(){
+	public void takeDamage(Vector3 point){
 		dead = true;
 		rb.isKinematic = false;
 		rb.useGravity = true;
 		nav.enabled = false;
-		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, rb.transform.position + new Vector3 (Random.Range(-1,1), Random.Range(-1,1), Random.Range(-1,1)), ForceMode.Impulse);
+		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
 	}
 }
