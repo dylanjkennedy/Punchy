@@ -148,7 +148,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
                 else
                 {
-                    if (checkAttack().collider.gameObject)
+                    if (checkAttack().collider != null)
                     {
                         chargeWheel.color = Color.green;
                     }
