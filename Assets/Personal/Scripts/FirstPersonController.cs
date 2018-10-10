@@ -19,13 +19,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
         [SerializeField] private MouseLook m_MouseLook;
-        [SerializeField] private bool m_UseFovKick;
-        [SerializeField] private FOVKick m_FovKick = new FOVKick();
-        [SerializeField] private bool m_UseHeadBob;
-        [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob();
-        [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
-        [SerializeField] private float m_StepInterval;
-        [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 		[SerializeField] private Image chargeWheel;
@@ -39,13 +32,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private CharacterController m_CharacterController;
         private CollisionFlags m_CollisionFlags;
         private bool m_PreviouslyGrounded;
-        private Vector3 m_OriginalCameraPosition;
-        private float m_StepCycle;
-        private float m_NextStep;
         private bool m_Jumping;
-		//private bool m_Melee;
         private AudioSource m_AudioSource;
-		//private CapsuleCollider melee;
 
 		private bool charging;
 		private bool chargeCooling;
@@ -59,20 +47,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		[SerializeField] private float chargeCooldownTime;
 
 
-		Ray attackRay;
-		RaycastHit attackHit;
-		int attackableMask;
-
         // Use this for initialization
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_FovKick.Setup(m_Camera);
-            m_HeadBob.Setup(m_Camera, m_StepInterval);
-            m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
@@ -82,8 +61,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			chargeWheel.type = Image.Type.Filled;
 			chargeWheel.fillMethod = Image.FillMethod.Radial360;
 			chargeWheel.fillAmount = 0f;
-
-			//melee = GetComponent<CapsuleCollider> ();
         }
 
 
@@ -105,10 +82,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
-                StartCoroutine(m_JumpBob.DoBobCycle());
-                PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
+                PlayLandSound();
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
@@ -117,16 +93,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
-
-
-
-        private void PlayLandingSound()
-        {
-            m_AudioSource.clip = m_LandSound;
-            m_AudioSource.Play();
-            m_NextStep = m_StepCycle + .5f;
-        }
-
 
         private void FixedUpdate()
         {
@@ -160,26 +126,47 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			if (charged) {
 				chargedTime += Time.fixedUnscaledDeltaTime;
-				if (chargedTime >= chargeTimeout) {
-					changeTimeScale (fullspeedTimescale);
-					chargedTime = 0;
-					charged = false;
-					chargeCooling = true;
-					chargeWheel.color = Color.red;
-				}
 
-				if (!charging){
-					if (tryAttack ()) {
-						
-					} else {
-						chargeCooling = true;
-						chargeWheel.color = Color.red;
-					}
-					changeTimeScale (fullspeedTimescale);
-					chargedTime = 0;
-					charged = false;
-				}
-			}
+                
+
+                if (!charging)
+                {
+                    if (tryAttack())
+                    {
+                        chargeWheel.color = Color.white;
+                    }
+                    else
+                    {
+                        chargeCooling = true;
+                        chargeWheel.color = Color.red;
+                    }
+                    changeTimeScale(fullspeedTimescale);
+                    chargedTime = 0;
+                    charged = false;
+                }
+                else
+                {
+                    if (checkAttack())
+                    {
+                        chargeWheel.color = Color.green;
+                    }
+                    else
+                    {
+                        chargeWheel.color = Color.white;
+                    }
+
+                    if (chargedTime >= chargeTimeout)
+                    {
+                        changeTimeScale(fullspeedTimescale);
+                        chargedTime = 0;
+                        charged = false;
+                        chargeCooling = true;
+                        chargeWheel.color = Color.red;
+                    }
+                }
+
+                
+            }
 
 			if (charged) {
 				chargeWheel.fillAmount = 1;
@@ -200,13 +187,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
-			/*
-			if (m_Melee) {
-				melee.enabled = true;
-			} else {
-				melee.enabled = false;
-			}
-			*/
 
 
             if (m_CharacterController.isGrounded)
@@ -227,8 +207,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
-            ProgressStepCycle(speed);
-            UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
         }
@@ -242,20 +220,37 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			chargeWheel.fillAmount = currentCharge/timeToCharge;
 		}
 
+        private GameObject checkAttack()
+        {
+            Ray attackRay;
+            RaycastHit attackHit;
+            attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+
+            if (Physics.Raycast(attackRay, out attackHit, attackRange))
+            {
+                if (attackHit.collider.gameObject.tag == "Enemy")
+                {
+                    return attackHit.collider.gameObject;
+                }
+            }
+            return null;
+        }
 
 		private bool tryAttack(){
-			attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+            Ray attackRay;
+            RaycastHit attackHit;
+            attackRay = m_Camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
-			if (Physics.Raycast (attackRay, out attackHit, attackRange)) {
-				if (attackHit.collider.gameObject.tag == "Enemy") {
-					GameObject enemy = attackHit.collider.gameObject;
-					enemy.GetComponent<EnemyController>().takeDamage();
+            GameObject enemy = checkAttack();
 
-					// puts the player one unit away from the enemy along the vector between them
-					transform.position = enemy.transform.position - Vector3.Normalize (enemy.transform.position - transform.position);
-					return true;
-				}
-			}
+            if (enemy != null)
+            {
+                enemy.GetComponent<EnemyController>().takeDamage();
+
+                // puts the player one unit away from the enemy along the vector between them
+                transform.position = enemy.transform.position - Vector3.Normalize(enemy.transform.position - transform.position);
+                return true;
+            }
 			return false;
 		}
 
@@ -266,64 +261,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.Play();
         }
 
-
-        private void ProgressStepCycle(float speed)
+        private void PlayLandSound()
         {
-            if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
-            {
-                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
-                             Time.fixedDeltaTime;
-            }
-
-            if (!(m_StepCycle > m_NextStep))
-            {
-                return;
-            }
-
-            m_NextStep = m_StepCycle + m_StepInterval;
-
-            PlayFootStepAudio();
-        }
-
-
-        private void PlayFootStepAudio()
-        {
-            if (!m_CharacterController.isGrounded)
-            {
-                return;
-            }
-            // pick & play a random footstep sound from the array,
-            // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
-            m_AudioSource.clip = m_FootstepSounds[n];
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            // move picked sound to index 0 so it's not picked next time
-            m_FootstepSounds[n] = m_FootstepSounds[0];
-            m_FootstepSounds[0] = m_AudioSource.clip;
-        }
-
-
-        private void UpdateCameraPosition(float speed)
-        {
-            Vector3 newCameraPosition;
-            if (!m_UseHeadBob)
-            {
-                return;
-            }
-            if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
-            {
-                m_Camera.transform.localPosition =
-                    m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
-                                      (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
-            }
-            else
-            {
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
-            }
-            m_Camera.transform.localPosition = newCameraPosition;
+            m_AudioSource.clip = m_LandSound;
+            m_AudioSource.Play();
         }
 
 
@@ -350,13 +291,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Input.Normalize();
             }
 
-            // handle speed change to give an fov kick
-            // only if the player is going to a run, is running and the fovkick is to be used
-            if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
-            {
-                StopAllCoroutines();
-                StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
-            }
         }
 
 
