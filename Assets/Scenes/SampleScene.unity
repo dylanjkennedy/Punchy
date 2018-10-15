@@ -350,7 +350,8 @@ Prefab:
       propertyPath: field of view
       value: 75
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &127507321
@@ -1131,6 +1132,23 @@ MonoBehaviour:
     smooth: 0
     smoothTime: 5
     lockCursor: 1
+--- !u!114 &744898447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744898439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a3bcad78e5df7409a5199bd20453e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeTimeout: 1
+  timeToCharge: 0.5
+  chargeCooldownTime: 1
+  slowmoTimescale: 0.25
+  chargeWheel: {fileID: 382839813}
+  attackRange: 10
 --- !u!4 &774621567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 90d8e09703679534295bd2cacb73d6de,

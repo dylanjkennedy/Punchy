@@ -12,17 +12,20 @@ public class AirState : PlayerState {
 	float gravityMultiplier = 2;
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
+	private ChargeController chargeController;
 
 	public AirState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
 		initialVerticalSpeed = 0;
+		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
 	}
 
 	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
 	{
 		playerMover = pm;
 		initialVerticalSpeed = verticalSpeed;
+		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
 	}
 
 	public override PlayerState FixedUpdate()
@@ -37,6 +40,7 @@ public class AirState : PlayerState {
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
 		move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
 
+		chargeController.Charge (charging);
 		playerMover.Move (move);
 
 		MouseLookFixedUpdate ();
@@ -46,6 +50,7 @@ public class AirState : PlayerState {
 
 	public override void Update()
 	{
+		charging = Input.GetButton ("Fire1");
 		grounded = playerMover.isGrounded ();
 		MouseLookUpdate ();
 	}

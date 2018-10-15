@@ -10,10 +10,13 @@ public class GroundState : PlayerState {
 	bool jumping;
 	bool charging;
 	bool grounded;
+	private ChargeController chargeController;
 
 	public GroundState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
+		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
+
 	}
 
 	public override PlayerState FixedUpdate()
@@ -31,7 +34,7 @@ public class GroundState : PlayerState {
 			return new AirState (playerMover, 0);
 		}
 
-
+		chargeController.Charge (charging);
 		playerMover.Move (move);
 		MouseLookFixedUpdate ();
 		return null;
