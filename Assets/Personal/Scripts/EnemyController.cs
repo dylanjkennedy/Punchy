@@ -128,7 +128,6 @@ public class EnemyController : MonoBehaviour {
 
 			if (rb != null)
 			{
-				Debug.Log ("something got sploded");
 				rb.AddExplosionForce (explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
 			}
 		}
