@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityScript.Steps;
 
 public class EnemyController : MonoBehaviour {
 
@@ -14,6 +15,11 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] float minPlayerDistance;
     [SerializeField] float runAwayDistance;
     [SerializeField] float maxRunAwayDistance;
+	[SerializeField] GameObject cylinder;
+	[SerializeField] GameObject fractures;
+
+	[SerializeField] float explodeRadius;
+	[SerializeField] float explodePower;
     
 	private float nextFire;
 	//private Projectile bulletScript;
@@ -106,6 +112,25 @@ public class EnemyController : MonoBehaviour {
 		rb.isKinematic = false;
 		rb.useGravity = true;
 		nav.enabled = false;
-		rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
+		cylinder.SetActive (false);
+		GameObject fracts = Instantiate (fractures, transform.position, transform.rotation);
+		explode (point);
+
+		//rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
+	}
+
+	private void explode(Vector3 position)
+	{
+		Collider[] colliders = Physics.OverlapSphere (position, explodeRadius);
+		foreach (Collider hit in colliders)
+		{
+			Rigidbody rb = hit.GetComponent<Rigidbody> ();
+
+			if (rb != null)
+			{
+				Debug.Log ("something got sploded");
+				rb.AddExplosionForce (explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
+			}
+		}
 	}
 }
