@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
 		damaged = false;
 	}
 
-	public void TakeDamage(int damage){
+	public void TakeDamage(int damage, Vector3 direction){
 		health -= damage;
 		damaged = true;
 		healthBar.fillAmount = health/maxHealth;

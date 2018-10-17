@@ -67,6 +67,7 @@ public class ChargeAttackState : PlayerState
         else
         {
             currentTimeScale = Mathf.Lerp(currentTimeScale, 1f, slowmoLerpFactor);
+            MouseLookFixedUpdate();
 
             playerMover.changeTimeScale(currentTimeScale);
             timer += Time.fixedUnscaledDeltaTime;
@@ -94,6 +95,9 @@ public class ChargeAttackState : PlayerState
 
     public override void Update()
     {
-
+        if (attacked)
+        {
+            MouseLookUpdate();
+        }
     }
 }

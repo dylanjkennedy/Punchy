@@ -18,7 +18,8 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField] GameObject cylinder;
 	[SerializeField] GameObject fractures;
     [SerializeField] int scoreValue;
-
+    [SerializeField] float bulletForce;
+    [SerializeField] ParticleSystem explosion;
 	[SerializeField] float explodeRadius;
 	[SerializeField] float explodePower;
     
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour {
 	private float timer;
 	bool dead;
     [SerializeField] bool runningAway;
+
 
 	NavMeshAgent nav;
 	Rigidbody rb;
@@ -91,7 +93,7 @@ public class EnemyController : MonoBehaviour {
 	void Fire () {
 		GameObject bullet = Instantiate (bulletPrefab, this.transform.position, this.transform.rotation);
 
-		bullet.GetComponent<Projectile> ().Fire (this.transform.position, this.transform.forward, bulletSpeed, bulletDamage);
+		bullet.GetComponent<Projectile> ().Fire (this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
 		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
 		timer = 0;
 	}
@@ -130,6 +132,7 @@ public class EnemyController : MonoBehaviour {
 			if (rb != null)
 			{
 				rb.AddExplosionForce (explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
+                explosion.Play();
 			}
 		}
 	}

@@ -61,7 +61,7 @@ public class PlayerMover : MonoBehaviour
         {
             if (Input.GetButtonDown("Submit"))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
             }
         }
     }

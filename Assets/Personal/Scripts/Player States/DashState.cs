@@ -49,6 +49,7 @@ public class DashState : PlayerState
 
     public override void Enter()
     {
+        charging = Input.GetButton("Fire1");
         movement = getStandardDesiredMove(dashSpeed);
         if (movement == new Vector3(0,0,0))
         {

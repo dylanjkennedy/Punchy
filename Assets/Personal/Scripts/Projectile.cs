@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour {
 	private Rigidbody rb;
 	private int Duration = 6;
 	private float Timer;
+    private float Force;
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
@@ -26,15 +27,17 @@ public class Projectile : MonoBehaviour {
 		Timer+= Time.fixedDeltaTime;
 	}
 
-	public void Fire (Vector3 position, Vector3 direction, float speed, int damage){
+	public void Fire (Vector3 position, Vector3 direction, float speed, int damage, float force){
 		rb.velocity = direction * speed;
 		Damage = damage;
+        Force = force;
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Hitbox") {
 			if (other.gameObject.tag == "Player") {
-				other.gameObject.GetComponent<PlayerHealth> ().TakeDamage (Damage);
+				other.gameObject.GetComponent<PlayerHealth> ().TakeDamage (Damage, rb.velocity.normalized);
+                other.gameObject.GetComponent<ImpactReceiver>().AddImpact(rb.velocity.normalized, Force);
 			}
 			Destroy (this.gameObject);
 		}
