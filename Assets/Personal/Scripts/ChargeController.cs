@@ -18,6 +18,7 @@ public class ChargeController : MonoBehaviour {
 	[SerializeField] private float attackRange;
 	private float fullspeedTimescale = 1f;
 	private LayerMask enemyMask;
+    private LayerMask emptyMask;
 	private PlayerMover playerMover;
 	Camera camera;
 
@@ -30,6 +31,7 @@ public class ChargeController : MonoBehaviour {
 		chargeWheel.fillMethod = Image.FillMethod.Radial360;
 		chargeWheel.fillAmount = 0f;
 		enemyMask = LayerMask.GetMask("Enemy");
+        emptyMask = LayerMask.GetMask();
 		playerMover = gameObject.GetComponent<PlayerMover> ();
 		camera = Camera.main;
 	}
@@ -48,12 +50,13 @@ public class ChargeController : MonoBehaviour {
 
 
 	//returns true if we should attack
-	public bool Charge(bool charging)
+	public RaycastHit Charge(bool charging)
 	{
+        RaycastHit hit = getNullHit();
 		if (!charging && !charged && !chargeCooling && currentCharge > 0) {
 			currentCharge -= Time.fixedDeltaTime * 2;
 			UpdateChargeWheel ();
-			return false;
+			return hit;
 		}
 
 		if (chargeCooling) {
@@ -64,7 +67,7 @@ public class ChargeController : MonoBehaviour {
 				chargeWheel.color = Color.white;
 			}
 			UpdateChargeWheel ();
-			return false;
+			return hit;
 		}
 
 		if (charging && !charged && !chargeCooling) {
@@ -72,13 +75,13 @@ public class ChargeController : MonoBehaviour {
 			if (currentCharge >= timeToCharge)
 			{
 				charged = true;
-				changeTimeScale (slowmoTimescale);
+				playerMover.changeTimeScale (slowmoTimescale);
 				currentCharge = 0;
 			} 
 			else
 			{
 				UpdateChargeWheel ();
-				return false;
+				return hit;
 			}
 		}
 			
@@ -89,18 +92,20 @@ public class ChargeController : MonoBehaviour {
 			//if we're charge and fire button released, check if we can successfully attack
 			if (!charging)
 			{
-				bool hit = false;
-				if (tryAttack())
+                hit = checkAttack();
+                //bool hit = false;
+				if (hit.collider != null)
 				{
 					chargeWheel.color = Color.white;
-					hit = true;
+					//hit = true;
 				}
 				else
 				{
 					chargeCooling = true;
 					chargeWheel.color = Color.red;
+                    hit = getNullHit();
 				}
-				changeTimeScale(fullspeedTimescale);
+				playerMover.changeTimeScale(fullspeedTimescale);
 				chargedTime = 0;
 				charged = false;
 				UpdateChargeWheel ();
@@ -110,28 +115,37 @@ public class ChargeController : MonoBehaviour {
 			//if we're charged too long, initiate cooldown
 			if (chargedTime >= chargeTimeout)
 			{
-				changeTimeScale (fullspeedTimescale);
+				playerMover.changeTimeScale (fullspeedTimescale);
 				chargedTime = 0;
 				charged = false;
 				chargeCooling = true;
 				chargeWheel.color = Color.red;
 				UpdateChargeWheel ();
-				return false;
+				return hit;
 			}
 
 			//while charged, reticle is green while enemy in range and in sights
-			if (checkAttack ().collider != null)
+			if (checkAttack().collider != null)
 			{
 				chargeWheel.color = Color.green;
-				return false;
+				return hit;
 			} 
 			else
 			{
 				chargeWheel.color = Color.white;
 			}
 		}
-		return false;
+		return hit;
 	}
+
+    private RaycastHit getNullHit()
+    {
+        Ray attackRay = new Ray();
+        RaycastHit attackHit;
+
+        Physics.Raycast(attackRay, out attackHit, attackRange, emptyMask);
+        return attackHit;
+    }
 
 
 	private RaycastHit checkAttack()
@@ -147,7 +161,7 @@ public class ChargeController : MonoBehaviour {
 				return attackHit;
 			}
 		}
-		return attackHit;
+		return getNullHit();
 	}
 
 	//should be deprecated soon
@@ -163,11 +177,5 @@ public class ChargeController : MonoBehaviour {
 		// puts the player one unit away from the enemy along the vector between them
 		transform.position = enemy.transform.position - Vector3.Normalize(enemy.transform.position - transform.position);
 		return true;
-	}
-
-
-	private void changeTimeScale(float newTime){
-		Time.timeScale = newTime;
-		Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
 	}
 }

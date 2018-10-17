@@ -13,6 +13,7 @@ public class AirState : PlayerState {
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
 	private ChargeController chargeController;
+    RaycastHit hit;
 
 	public AirState(PlayerMover pm) : base(pm)
 	{
@@ -40,7 +41,11 @@ public class AirState : PlayerState {
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
 		move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
 
-		chargeController.Charge (charging);
+		hit = chargeController.Charge (charging);
+        if (hit.collider != null)
+        {
+            return new ChargeAttackState(playerMover, hit);
+        }
 		playerMover.Move (move);
 
 		MouseLookFixedUpdate ();
@@ -60,5 +65,6 @@ public class AirState : PlayerState {
 		Vector3 desiredMove = getStandardDesiredMove (playerMover.speed);
 		move = new Vector3 (desiredMove.x, move.y+ initialVerticalSpeed, desiredMove.z);
 		playerMover.Move (move);
-	}
+        charging = Input.GetButton("Fire1");
+    }
 }

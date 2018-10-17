@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson; //FirstPersonController made this the namespace
-
+using UnityEngine.SceneManagement;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class PlayerMover : MonoBehaviour
         get { return _mouseLook; }
     }
     private Camera m_Camera;
+    bool dead;
 
 
 
@@ -28,6 +29,7 @@ public class PlayerMover : MonoBehaviour
 		characterController = GetComponent<CharacterController>();
         mouseLook.Init(transform, m_Camera.transform);
         currentState = new GroundState(this);
+        dead = false;
     }
 
 
@@ -35,20 +37,33 @@ public class PlayerMover : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-	    PlayerState newState = currentState.FixedUpdate();
-	    if (newState != null)
-	    {
-	        currentState.Exit();
-	        newState.Enter();
-	        currentState = newState;
-	    }
+        if (!dead)
+        {
+            PlayerState newState = currentState.FixedUpdate();
+            if (newState != null)
+            {
+                currentState.Exit();
+                newState.Enter();
+                currentState = newState;
+            }
+        }
 	}
 
 
 
     void Update()
     {
-        currentState.Update();
+        if (!dead)
+        {
+            currentState.Update();
+        }
+        else
+        {
+            if (Input.GetButtonDown("Submit"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
     }
 
 
@@ -96,6 +111,17 @@ public class PlayerMover : MonoBehaviour
 
 	public bool isGrounded(){
 		return characterController.isGrounded;
-	}
+    }
+
+    public void changeTimeScale(float newTime)
+    {
+        Time.timeScale = newTime;
+        Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
+    }
+
+    public void death()
+    {
+        dead = true;
+    }
 
 }

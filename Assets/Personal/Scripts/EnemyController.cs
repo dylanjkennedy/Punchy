@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] float maxRunAwayDistance;
 	[SerializeField] GameObject cylinder;
 	[SerializeField] GameObject fractures;
+    [SerializeField] int scoreValue;
 
 	[SerializeField] float explodeRadius;
 	[SerializeField] float explodePower;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (!dead) {
+		if (!dead && nav.enabled) {
 			
 			transform.LookAt (player.transform);
 
@@ -108,12 +109,12 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void takeDamage(Vector3 point){
+        Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
 		dead = true;
 		rb.isKinematic = false;
 		rb.useGravity = true;
-		nav.enabled = false;
 		cylinder.SetActive (false);
-		GameObject fracts = Instantiate (fractures, transform.position, transform.rotation);
+		Instantiate (fractures, transform.position, transform.rotation);
 		explode (point);
 
 		//rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
@@ -132,4 +133,9 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 	}
+
+    public void freeze()
+    {
+        nav.enabled = false;
+    }
 }

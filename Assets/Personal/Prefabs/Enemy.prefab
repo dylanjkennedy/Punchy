@@ -192,12 +192,13 @@ MonoBehaviour:
   frequency: 2
   frequencyRange: 1
   bulletSpeed: 15
-  bulletDamage: 2
+  bulletDamage: 5
   minPlayerDistance: 5
   runAwayDistance: 3
   maxRunAwayDistance: 4
   cylinder: {fileID: 1273696377677722}
   fractures: {fileID: 1267450237954100, guid: e2c63e136a79c3a48aebb5041d7b4774, type: 2}
+  scoreValue: 10
   explodeRadius: 1
   explodePower: 50
   runningAway: 0

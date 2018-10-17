@@ -10,9 +10,11 @@ public class GroundState : PlayerState {
 	bool jumping;
 	bool charging;
 	bool grounded;
+    bool dashing;
 	private ChargeController chargeController;
+    RaycastHit hit;
 
-	public GroundState(PlayerMover pm) : base(pm)
+    public GroundState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
@@ -33,9 +35,18 @@ public class GroundState : PlayerState {
 		{
 			return new AirState (playerMover, 0);
 		}
+        if (dashing)
+        {
+            return new DashState(playerMover);
+        }
 
-		chargeController.Charge (charging);
-		playerMover.Move (move);
+        hit = chargeController.Charge(charging);
+        if (hit.collider != null)
+        {
+            return new ChargeAttackState(playerMover, hit);
+        }
+
+        playerMover.Move (move);
 		MouseLookFixedUpdate ();
 		return null;
 	}
@@ -49,7 +60,7 @@ public class GroundState : PlayerState {
 		{
 			jumping = Input.GetButtonDown ("Jump");
 		}
-
+        dashing = Input.GetButtonDown("Dash");
 		charging = Input.GetButton ("Fire1");
 		grounded = playerMover.isGrounded ();
 
@@ -60,7 +71,8 @@ public class GroundState : PlayerState {
 		move.y = 0f;
 		jumping = false;
 		playerMover.PlayLandSound();
-	}
+        charging = Input.GetButton("Fire1");
+    }
 
-		
+
 }

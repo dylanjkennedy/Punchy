@@ -4,16 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-	public Slider healthSlider;
-	public Image damageImage;
-	public float flashSpeed = 5f;
-	public Color flashColor = new Color (1f, 0f, 0f, 0.1f);
-	[SerializeField] private int MaxHealth;
-	private int Health;
+	[SerializeField] Image healthBar;
+	[SerializeField] Image damageImage;
+    [SerializeField] Text gameOverText;
+	[SerializeField] float flashSpeed = 5f;
+	[SerializeField] Color flashColor = new Color (1f, 0f, 0f, 0.1f);
+	[SerializeField] private int maxHealth;
+	private float health;
 	private bool damaged;
 	// Use this for initialization
-	void Awake () {
-		Health = MaxHealth;
+	void Start () {
+		health = maxHealth;
+        healthBar.type = Image.Type.Filled;
+        //healthBar.fillMethod = Image.fillMethod.Horizontal;
+        healthBar.fillMethod = Image.FillMethod.Horizontal;
+        healthBar.fillAmount = 1f;
 	}
 	
 	// Update is called once per frame
@@ -27,8 +32,18 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage){
-		Health -= damage;
+		health -= damage;
 		damaged = true;
-		healthSlider.value = Health;
+		healthBar.fillAmount = health/maxHealth;
+        if (health <= 0)
+        {
+            gameOver();
+        }
 	}
+
+    private void gameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        this.gameObject.GetComponent<PlayerMover>().death();
+    }
 }
