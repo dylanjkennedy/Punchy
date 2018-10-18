@@ -199,6 +199,9 @@ MonoBehaviour:
   cylinder: {fileID: 1273696377677722}
   fractures: {fileID: 1267450237954100, guid: e2c63e136a79c3a48aebb5041d7b4774, type: 2}
   scoreValue: 10
+  bulletForce: 5
+  explosion: {fileID: 198411194026252318, guid: 73fff5a3acbe2c44e8ff90616f0bdc9f,
+    type: 2}
   explodeRadius: 1
   explodePower: 50
   runningAway: 0

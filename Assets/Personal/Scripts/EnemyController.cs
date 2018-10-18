@@ -28,6 +28,7 @@ public class EnemyController : MonoBehaviour {
 	private Vector3 direction;
 	private float timer;
 	bool dead;
+    float maxDeadTime = 3;
     [SerializeField] bool runningAway;
 
 
@@ -88,6 +89,15 @@ public class EnemyController : MonoBehaviour {
                 nav.SetDestination(gameObject.transform.position);
             }
         }
+
+        if (dead)
+        {
+            timer += Time.unscaledDeltaTime;
+            if (timer >= maxDeadTime)
+            {
+                Destroy(this.gameObject);
+            }
+        }
 	}
 
 	void Fire () {
@@ -113,12 +123,16 @@ public class EnemyController : MonoBehaviour {
 	public void takeDamage(Vector3 point){
         Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
 		dead = true;
-		rb.isKinematic = false;
-		rb.useGravity = true;
+        timer = 0;
+		//rb.isKinematic = false;
+		//rb.useGravity = true;
 		cylinder.SetActive (false);
 		Instantiate (fractures, transform.position, transform.rotation);
+        Instantiate(explosion, point, transform.rotation);
+        explosion.Play();
 		explode (point);
 
+        Destroy(this.gameObject);
 		//rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
 	}
 

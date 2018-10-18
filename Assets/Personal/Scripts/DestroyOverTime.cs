@@ -15,9 +15,12 @@ public class DestroyOverTime : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timeAlive = 0;
-		material = this.gameObject.GetComponent <MeshRenderer> ().material;
-		fadeColor = material.color;
-		timeFading = 0f;
+        if (fadeTime > 0)
+        {
+            material = this.gameObject.GetComponent<MeshRenderer>().material;
+            fadeColor = material.color;
+        }
+        timeFading = 0f;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +31,7 @@ public class DestroyOverTime : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
-		if (disappearTime - timeAlive <= fadeTime)
+		if (disappearTime - timeAlive <= fadeTime && fadeTime > 0)
 		{
 			timeFading += Time.deltaTime;
 			currentAlpha = 1 - (timeFading / fadeTime);
