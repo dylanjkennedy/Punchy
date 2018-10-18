@@ -9,6 +9,7 @@ public class PlayerState
     private PlayerMover playerMover;
     private MouseLook mouseLook;
     private Camera cam;
+    public bool vulnerable = true;
 
     public PlayerState(PlayerMover pm)
     {
@@ -81,5 +82,4 @@ public class PlayerState
 		move.z = desiredMove.z * speed;
 		return move;
 	}
-
 }

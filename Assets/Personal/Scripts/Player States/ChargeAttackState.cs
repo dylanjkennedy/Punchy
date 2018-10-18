@@ -18,6 +18,8 @@ public class ChargeAttackState : PlayerState
     private float slowmoLerpFactor = 0.01f;
     bool dashing;
     bool attacked;
+    public bool vulnerable = false;
+
     Vector3 initialPosition;
 
     public ChargeAttackState(PlayerMover pm, RaycastHit target) : base(pm)

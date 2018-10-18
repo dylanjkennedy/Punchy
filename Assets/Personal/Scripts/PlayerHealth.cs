@@ -12,14 +12,19 @@ public class PlayerHealth : MonoBehaviour {
 	[SerializeField] private int maxHealth;
 	private float health;
 	private bool damaged;
+    private ImpactReceiver impactReceiver;
+    PlayerMover playerMover; 
+
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
         healthBar.type = Image.Type.Filled;
-        //healthBar.fillMethod = Image.fillMethod.Horizontal;
         healthBar.fillMethod = Image.FillMethod.Horizontal;
         healthBar.fillAmount = 1f;
-	}
+        impactReceiver = gameObject.GetComponent<ImpactReceiver>();
+        playerMover = gameObject.GetComponent<PlayerMover>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,19 +36,23 @@ public class PlayerHealth : MonoBehaviour {
 		damaged = false;
 	}
 
-	public void TakeDamage(int damage, Vector3 direction){
-		health -= damage;
-		damaged = true;
-		healthBar.fillAmount = health/maxHealth;
-        if (health <= 0)
+	public void TakeDamage(int damage, Vector3 direction, float force){
+        if (playerMover.isVulnerable())
         {
-            gameOver();
+            health -= damage;
+            damaged = true;
+            healthBar.fillAmount = health / maxHealth;
+            if (health <= 0)
+            {
+                gameOver();
+            }
+            impactReceiver.AddImpact(direction.normalized, force);
         }
-	}
+    }
 
     private void gameOver()
     {
         gameOverText.gameObject.SetActive(true);
-        this.gameObject.GetComponent<PlayerMover>().death();
+        playerMover.death();
     }
 }

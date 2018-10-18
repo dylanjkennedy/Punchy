@@ -36,8 +36,7 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag != "Enemy" && other.gameObject.tag != "Hitbox") {
 			if (other.gameObject.tag == "Player") {
-				other.gameObject.GetComponent<PlayerHealth> ().TakeDamage (Damage, rb.velocity.normalized);
-                other.gameObject.GetComponent<ImpactReceiver>().AddImpact(rb.velocity.normalized, Force);
+				other.gameObject.GetComponent<PlayerHealth> ().TakeDamage (Damage, rb.velocity.normalized, Force);
 			}
 			Destroy (this.gameObject);
 		}

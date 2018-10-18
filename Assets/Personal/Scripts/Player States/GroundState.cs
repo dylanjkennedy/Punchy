@@ -11,7 +11,9 @@ public class GroundState : PlayerState {
 	bool charging;
 	bool grounded;
     bool dashing;
-	private ChargeController chargeController;
+    public bool vulnerable = true;
+
+    private ChargeController chargeController;
     RaycastHit hit;
 
     public GroundState(PlayerMover pm) : base(pm)

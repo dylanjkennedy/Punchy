@@ -124,4 +124,9 @@ public class PlayerMover : MonoBehaviour
         dead = true;
     }
 
+    public bool isVulnerable()
+    {
+        return currentState.vulnerable;
+    }
+
 }

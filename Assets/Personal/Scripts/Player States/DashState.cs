@@ -10,6 +10,8 @@ public class DashState : PlayerState
     PlayerMover playerMover;
     float dashSpeed = 50f;
     bool charging;
+    public bool vulnerable = false;
+
     private ChargeController chargeController;
 
 

@@ -13,6 +13,7 @@ public class AirState : PlayerState {
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
 	private ChargeController chargeController;
+    public bool vulnerable = true;
     RaycastHit hit;
 
 	public AirState(PlayerMover pm) : base(pm)

@@ -146,7 +146,6 @@ public class EnemyController : MonoBehaviour {
 			if (rb != null)
 			{
 				rb.AddExplosionForce (explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
-                explosion.Play();
 			}
 		}
 	}
