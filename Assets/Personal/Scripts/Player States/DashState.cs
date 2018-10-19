@@ -10,7 +10,6 @@ public class DashState : PlayerState
     PlayerMover playerMover;
     float dashSpeed = 50f;
     bool charging;
-    public bool vulnerable = false;
 
     private ChargeController chargeController;
 
@@ -20,6 +19,7 @@ public class DashState : PlayerState
         playerMover = pm;
         chargeController = playerMover.gameObject.GetComponent<ChargeController>();
         timer = 0;
+        vulnerable = false;
     }
 
     public override PlayerState FixedUpdate()

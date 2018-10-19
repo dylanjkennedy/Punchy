@@ -18,7 +18,9 @@ public class ChargeAttackState : PlayerState
     private float slowmoLerpFactor = 0.01f;
     bool dashing;
     bool attacked;
-    public bool vulnerable = false;
+
+    float explodeRadius = 1;
+    float explodePower = 50;
 
     Vector3 initialPosition;
 
@@ -28,6 +30,7 @@ public class ChargeAttackState : PlayerState
         attackTarget = target;
         timer = 0;
         attacked = false;
+        vulnerable = false;
     }
 
     public override void Enter()
@@ -64,6 +67,7 @@ public class ChargeAttackState : PlayerState
         {
             attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
             attacked = true;
+            AddExplosion(attackTarget.point);
             timer += Time.fixedDeltaTime;
         }
         else
@@ -100,6 +104,20 @@ public class ChargeAttackState : PlayerState
         if (attacked)
         {
             MouseLookUpdate();
+        }
+    }
+
+    void AddExplosion(Vector3 position)
+    {
+        Collider[] colliders = Physics.OverlapSphere(position, explodeRadius, LayerMask.GetMask("Debris"));
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
+            }
         }
     }
 }

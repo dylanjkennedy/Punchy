@@ -221,5 +221,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 			}
 		}
+
+        public void Freeze()
+        {
+            m_Animator.speed = 0;
+        }
 	}
 }

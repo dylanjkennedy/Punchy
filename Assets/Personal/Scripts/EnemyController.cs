@@ -4,153 +4,51 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityScript.Steps;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
+    public GameObject player;
+    public NavMeshAgent nav;
+    public Rigidbody rb;
 
-	[SerializeField] private GameObject bulletPrefab;
-	[SerializeField] private GameObject player;
-	[SerializeField] float frequency;
-	[SerializeField] float frequencyRange;
-	[SerializeField] float bulletSpeed;
-	[SerializeField] int bulletDamage;
-    [SerializeField] float minPlayerDistance;
-    [SerializeField] float runAwayDistance;
-    [SerializeField] float maxRunAwayDistance;
-	[SerializeField] GameObject cylinder;
-	[SerializeField] GameObject fractures;
-    [SerializeField] int scoreValue;
-    [SerializeField] float bulletForce;
-    [SerializeField] ParticleSystem explosion;
-	[SerializeField] float explodeRadius;
-	[SerializeField] float explodePower;
-    
-	private float nextFire;
-	//private Projectile bulletScript;
-	private Vector3 direction;
-	private float timer;
-	bool dead;
-    float maxDeadTime = 3;
-    [SerializeField] bool runningAway;
+    // Use this for initialization
+    public virtual void Start()
+    {
+        player = GameObject.Find("Player");
+        nav = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+    }
 
+    // Update is called once per frame
+    public virtual void Update()
+    {
+    }
 
-	NavMeshAgent nav;
-	Rigidbody rb;
+    public virtual void FixedUpdate()
+    {
+        
+    }
 
-	// Use this for initialization
-	void Start () {
-		direction = player.transform.position - this.transform.position; 
-		//bulletScript = bullet.GetComponent<Projectile> ();
-		timer = 0;
-		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
-		nav = GetComponent<NavMeshAgent> ();
-		dead = false;
-        runningAway = false;
-		rb = GetComponent<Rigidbody> ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+    public virtual bool CheckLineOfSight()
+    {
+        RaycastHit seePlayer;
+        Ray ray = new Ray(transform.position, player.transform.position - transform.position);
 
-	void FixedUpdate() {
-		if (!dead && nav.enabled) {
-			
-			transform.LookAt (player.transform);
-
-
-			if (timer >= nextFire && CheckLineOfSight ()) {
-				this.Fire ();
-			} else {
-				timer += Time.fixedDeltaTime;
-			}
-
-			transform.rotation = new Quaternion (0, transform.rotation.y, 0, transform.rotation.w);
-
-            float distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-
-            if (distance < runAwayDistance)
-            {
-                runningAway = true;
-            }
-            if (distance >= maxRunAwayDistance)
-            {
-                runningAway = false;
-            }
-
-            if (runningAway)
-            {
-                nav.SetDestination(gameObject.transform.position + Vector3.Normalize(gameObject.transform.position - player.transform.position)*2);
-            }
-            else if ( distance > minPlayerDistance)
-            {
-                nav.SetDestination(player.transform.position);
-            }
-            else
-            {
-                nav.SetDestination(gameObject.transform.position);
-            }
-        }
-
-        if (dead)
+        if (Physics.Raycast(ray, out seePlayer, Mathf.Infinity))
         {
-            timer += Time.unscaledDeltaTime;
-            if (timer >= maxDeadTime)
+            if (seePlayer.collider.gameObject.CompareTag("Player"))
             {
-                Destroy(this.gameObject);
+                return true;
             }
         }
-	}
+        return false;
+    }
 
-	void Fire () {
-		GameObject bullet = Instantiate (bulletPrefab, this.transform.position, this.transform.rotation);
-
-		bullet.GetComponent<Projectile> ().Fire (this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
-		nextFire = frequency + Random.Range (-frequencyRange, frequencyRange);
-		timer = 0;
-	}
-
-	bool CheckLineOfSight() {
-		RaycastHit seePlayer;
-		Ray ray = new Ray(transform.position, player.transform.position - transform.position);
-
-		if (Physics.Raycast (ray, out seePlayer, Mathf.Infinity)) {
-			if (seePlayer.collider.gameObject.CompareTag ("Player")) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public void takeDamage(Vector3 point){
-        Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
-		dead = true;
-        timer = 0;
-		//rb.isKinematic = false;
-		//rb.useGravity = true;
-		cylinder.SetActive (false);
-		Instantiate (fractures, transform.position, transform.rotation);
-        Instantiate(explosion, point, transform.rotation);
-        explosion.Play();
-		explode (point);
-
+    public virtual void takeDamage(Vector3 point)
+    {
         Destroy(this.gameObject);
-		//rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
-	}
+    }
 
-	private void explode(Vector3 position)
-	{
-		Collider[] colliders = Physics.OverlapSphere (position, explodeRadius);
-		foreach (Collider hit in colliders)
-		{
-			Rigidbody rb = hit.GetComponent<Rigidbody> ();
-
-			if (rb != null)
-			{
-				rb.AddExplosionForce (explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
-			}
-		}
-	}
-
-    public void freeze()
+    public virtual void freeze()
     {
         nav.enabled = false;
     }

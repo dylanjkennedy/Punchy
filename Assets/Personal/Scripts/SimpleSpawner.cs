@@ -25,7 +25,7 @@ public class SimpleSpawner : MonoBehaviour {
 
     void spawn()
     {
-        GameObject spawnedEnemy = Instantiate(enemy, gameObject.transform);
+        GameObject spawnedEnemy = Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
         spawnedEnemy.SetActive(true);
         timeSinceSpawn = 0;
         timeToSpawn = spawnTime + Random.Range(-spawnTimeRange, spawnTimeRange);

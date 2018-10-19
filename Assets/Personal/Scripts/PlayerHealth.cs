@@ -47,6 +47,8 @@ public class PlayerHealth : MonoBehaviour {
                 gameOver();
             }
             impactReceiver.AddImpact(direction.normalized, force);
+
+            //moveDamageIndicator(direction);
         }
     }
 
@@ -54,5 +56,11 @@ public class PlayerHealth : MonoBehaviour {
     {
         gameOverText.gameObject.SetActive(true);
         playerMover.death();
+    }
+
+    //to be implemented
+    private void moveDamageIndicator(Vector3 direction)
+    {
+
     }
 }
