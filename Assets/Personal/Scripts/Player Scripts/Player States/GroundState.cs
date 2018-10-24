@@ -12,6 +12,7 @@ public class GroundState : PlayerState {
 	bool grounded;
     bool dashing;
     public bool vulnerable = true;
+    readonly float staminaCost = 25f;
 
     private ChargeController chargeController;
     RaycastHit hit;
@@ -39,14 +40,24 @@ public class GroundState : PlayerState {
 		}
         if (dashing)
         {
-            return new DashState(playerMover);
+            if (playerMover.UseStamina(staminaCost))
+            {
+                return new DashState(playerMover);
+            }
         }
-
-        hit = chargeController.Charge(charging);
-        if (hit.collider != null)
+        if (charging)
         {
-            return new ChargeAttackState(playerMover, hit);
+            hit = chargeController.checkAttack();
+            if (hit.collider != null)
+            {
+                if (playerMover.UseStamina(10f))
+                {
+                    return new ChargeAttackState(playerMover, hit);
+
+                }
+            }
         }
+        
 
         playerMover.Move (move);
 		MouseLookFixedUpdate ();
@@ -63,7 +74,7 @@ public class GroundState : PlayerState {
 			jumping = Input.GetButtonDown ("Jump");
 		}
         dashing = Input.GetButtonDown("Dash");
-		charging = Input.GetButton ("Fire1");
+		charging = Input.GetButtonDown ("Fire1");
 		grounded = playerMover.isGrounded ();
 
 	}

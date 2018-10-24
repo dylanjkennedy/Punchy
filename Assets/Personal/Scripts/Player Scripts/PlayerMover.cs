@@ -10,6 +10,7 @@ public class PlayerMover : MonoBehaviour
 	[SerializeField] public float speed;
 	[SerializeField] public float stickToGroundForce;
 	private CharacterController characterController;
+    private PlayerStamina playerStamina;
 	private CollisionFlags collisionFlags;
     public PlayerState currentState;
 	[SerializeField] public float jumpSpeed;
@@ -27,6 +28,7 @@ public class PlayerMover : MonoBehaviour
     void Start () {
         m_Camera = Camera.main;
 		characterController = GetComponent<CharacterController>();
+        playerStamina = GetComponent<PlayerStamina>();
         mouseLook.Init(transform, m_Camera.transform);
         currentState = new GroundState(this);
         dead = false;
@@ -85,13 +87,6 @@ public class PlayerMover : MonoBehaviour
 		body.AddForceAtPosition(characterController.velocity*0.1f, hit.point, ForceMode.Impulse);
 	}
 
-
-
-
-
-
-
-
 	public void Move(Vector3 movement){
 		collisionFlags = characterController.Move(movement*Time.fixedDeltaTime);
 	}
@@ -121,6 +116,11 @@ public class PlayerMover : MonoBehaviour
     public bool isVulnerable()
     {
         return currentState.vulnerable;
+    }
+
+    public bool UseStamina(float stamina)
+    {
+        return playerStamina.UseStamina(stamina);
     }
 
 }

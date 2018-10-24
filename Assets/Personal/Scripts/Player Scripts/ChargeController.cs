@@ -30,7 +30,7 @@ public class ChargeController : MonoBehaviour {
 		chargedTime = 0;
 		chargeWheel.type = Image.Type.Filled;
 		chargeWheel.fillMethod = Image.FillMethod.Radial360;
-		chargeWheel.fillAmount = 0f;
+		chargeWheel.fillAmount = 1f;
 		enemyMask = LayerMask.GetMask("Enemy");
         emptyMask = LayerMask.GetMask();
 		playerMover = gameObject.GetComponent<PlayerMover> ();
@@ -40,6 +40,7 @@ public class ChargeController : MonoBehaviour {
 
 	private void UpdateChargeWheel()
 	{
+        /*
 		if (chargeCooling)
 		{
 			chargeWheel.fillAmount = 1 - (chargedTime / chargeCooldownTime);
@@ -48,6 +49,7 @@ public class ChargeController : MonoBehaviour {
 		{
 			chargeWheel.fillAmount = currentCharge / timeToCharge;
 		}
+        */
 	}
 
 
@@ -147,7 +149,7 @@ public class ChargeController : MonoBehaviour {
     }
 
 
-	private RaycastHit checkAttack()
+	public RaycastHit checkAttack()
 	{
 		Ray attackRay;
 		RaycastHit attackHit;
