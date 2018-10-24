@@ -20,6 +20,7 @@ public class ChargeController : MonoBehaviour {
 	private LayerMask enemyMask;
     private LayerMask emptyMask;
 	private PlayerMover playerMover;
+    TimeScaleManager timeScaleManager;
 	Camera camera;
 
 	// Use this for initialization
@@ -34,6 +35,7 @@ public class ChargeController : MonoBehaviour {
         emptyMask = LayerMask.GetMask();
 		playerMover = gameObject.GetComponent<PlayerMover> ();
 		camera = Camera.main;
+        timeScaleManager = camera.GetComponent<TimeScaleManager>();
 	}
 
 	private void UpdateChargeWheel()
@@ -75,7 +77,7 @@ public class ChargeController : MonoBehaviour {
 			if (currentCharge >= timeToCharge)
 			{
 				charged = true;
-				playerMover.changeTimeScale (slowmoTimescale);
+                timeScaleManager.changeTimeScale(slowmoTimescale, chargeTimeout, 0f);
 				currentCharge = 0;
 			} 
 			else
@@ -93,11 +95,9 @@ public class ChargeController : MonoBehaviour {
 			if (!charging)
 			{
                 hit = checkAttack();
-                //bool hit = false;
 				if (hit.collider != null)
 				{
 					chargeWheel.color = Color.white;
-					//hit = true;
 				}
 				else
 				{
@@ -105,7 +105,7 @@ public class ChargeController : MonoBehaviour {
 					chargeWheel.color = Color.red;
                     hit = getNullHit();
 				}
-				playerMover.changeTimeScale(fullspeedTimescale);
+				timeScaleManager.fullspeedTimeScale();
 				chargedTime = 0;
 				charged = false;
 				UpdateChargeWheel ();
@@ -115,7 +115,6 @@ public class ChargeController : MonoBehaviour {
 			//if we're charged too long, initiate cooldown
 			if (chargedTime >= chargeTimeout)
 			{
-				playerMover.changeTimeScale (fullspeedTimescale);
 				chargedTime = 0;
 				charged = false;
 				chargeCooling = true;
@@ -162,20 +161,5 @@ public class ChargeController : MonoBehaviour {
 			}
 		}
 		return getNullHit();
-	}
-
-	//should be deprecated soon
-	private bool tryAttack(){
-		RaycastHit hit = checkAttack();
-		if (hit.collider == null)
-		{
-			return false;
-		}
-		GameObject enemy = hit.collider.gameObject;
-		enemy.GetComponent<EnemyController>().takeDamage(hit.point);
-
-		// puts the player one unit away from the enemy along the vector between them
-		transform.position = enemy.transform.position - Vector3.Normalize(enemy.transform.position - transform.position);
-		return true;
 	}
 }

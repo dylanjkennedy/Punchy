@@ -13,11 +13,13 @@ public class ChargeAttackState : PlayerState
     private float dashTime = 0.16666667f;
     private float timer;
     private float postHitTime = 30f/60;
-    private float currentTimeScale;
+    //private float currentTimeScale;
     private float slowestTimeScale = 0.05f;
     private float slowmoLerpFactor = 0.01f;
     bool dashing;
     bool attacked;
+    TimeScaleManager timeScaleManager;
+    
 
     float explodeRadius = 1;
     float explodePower = 50;
@@ -31,6 +33,7 @@ public class ChargeAttackState : PlayerState
         timer = 0;
         attacked = false;
         vulnerable = false;
+        timeScaleManager = Camera.main.GetComponent<TimeScaleManager>();
     }
 
     public override void Enter()
@@ -39,32 +42,36 @@ public class ChargeAttackState : PlayerState
         Vector3 attackTargetPosition = attackTarget.collider.gameObject.transform.position;
         initialPosition = playerMover.transform.position;
         moveTarget = attackTargetPosition - Vector3.Normalize(attackTargetPosition - initialPosition)*endingDistance;
+        if (Vector3.Distance(moveTarget,attackTargetPosition) > Vector3.Distance(initialPosition, attackTargetPosition))
+        {
+            moveTarget = initialPosition;
+        }
         dashing = true;
     }
 
     public override void Exit()
     {
-        playerMover.changeTimeScale(1f);
+
     }
 
     public override PlayerState FixedUpdate()
     {
         if (timer < dashTime)
         {
-            playerMover.Move((moveTarget - initialPosition) / (dashTime - timer));
+            playerMover.Move((moveTarget - playerMover.gameObject.transform.position) / (dashTime - timer));
             timer += Time.fixedDeltaTime;
         }
         else if (dashing)
         {
             playerMover.Move(moveTarget - playerMover.transform.position);
             dashing = false;
-            //adjust timescale
-            playerMover.changeTimeScale(slowestTimeScale);
-            currentTimeScale = slowestTimeScale;
+            timeScaleManager.changeTimeScale(slowestTimeScale, postHitTime, slowmoLerpFactor);
             timer += Time.fixedUnscaledDeltaTime;
         }
         else if (!attacked)
         {
+            playerMover.Move(Vector3.zero);
+
             attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
             attacked = true;
             AddExplosion(attackTarget.point);
@@ -72,16 +79,12 @@ public class ChargeAttackState : PlayerState
         }
         else
         {
-            currentTimeScale = Mathf.Lerp(currentTimeScale, 1f, slowmoLerpFactor);
             MouseLookFixedUpdate();
-
-            playerMover.changeTimeScale(currentTimeScale);
             timer += Time.fixedUnscaledDeltaTime;
         }
 
         if (timer >= dashTime + postHitTime)
         {
-            playerMover.changeTimeScale(1f);
             if (playerMover.isGrounded())
             {
                 if (Input.GetButton("Jump"))

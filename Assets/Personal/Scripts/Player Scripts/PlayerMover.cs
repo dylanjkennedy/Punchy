@@ -113,12 +113,6 @@ public class PlayerMover : MonoBehaviour
 		return characterController.isGrounded;
     }
 
-    public void changeTimeScale(float newTime)
-    {
-        Time.timeScale = newTime;
-        Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
-    }
-
     public void death()
     {
         dead = true;
