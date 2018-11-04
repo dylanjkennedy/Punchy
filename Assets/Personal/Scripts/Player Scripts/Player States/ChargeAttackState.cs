@@ -54,7 +54,6 @@ public class ChargeAttackState : PlayerState
 
     public override void Exit()
     {
-        stamina.RegainStamina(staminaRegain);
     }
 
     public override PlayerState FixedUpdate()
@@ -78,6 +77,7 @@ public class ChargeAttackState : PlayerState
             attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
             attacked = true;
             AddExplosion(attackTarget.point);
+            stamina.RegainStamina(staminaRegain);
             timer += Time.fixedDeltaTime;
         }
         else
