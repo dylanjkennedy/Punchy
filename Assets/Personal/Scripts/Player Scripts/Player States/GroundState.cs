@@ -12,15 +12,17 @@ public class GroundState : PlayerState {
 	bool grounded;
     bool dashing;
     public bool vulnerable = true;
+    float dashCost = 20;
 
     private ChargeController chargeController;
+    private PlayerStamina stamina;
     RaycastHit hit;
 
     public GroundState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-
+        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
 	}
 
 	public override PlayerState FixedUpdate()
@@ -39,7 +41,10 @@ public class GroundState : PlayerState {
 		}
         if (dashing)
         {
-            return new DashState(playerMover);
+            if (stamina.UseStamina(dashCost))
+            {
+                return new DashState(playerMover);
+            }
         }
 
         hit = chargeController.Charge(charging);
