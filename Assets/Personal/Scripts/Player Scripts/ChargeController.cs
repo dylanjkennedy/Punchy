@@ -15,6 +15,7 @@ public class ChargeController : MonoBehaviour {
 	[SerializeField] private float chargeCooldownTime;
 	[SerializeField] private float slowmoTimescale;
 	[SerializeField] private Image chargeWheel;
+    [SerializeField] private Image slowmoWheel;
 	[SerializeField] private float attackRange;
 	private float fullspeedTimescale = 1f;
 	private LayerMask enemyMask;
@@ -31,14 +32,29 @@ public class ChargeController : MonoBehaviour {
 		chargeWheel.type = Image.Type.Filled;
 		chargeWheel.fillMethod = Image.FillMethod.Radial360;
 		chargeWheel.fillAmount = 0f;
-		enemyMask = LayerMask.GetMask("Enemy");
+        slowmoWheel.type = Image.Type.Filled;
+        slowmoWheel.fillMethod = Image.FillMethod.Radial360;
+        slowmoWheel.fillAmount = 0f;
+        enemyMask = LayerMask.GetMask("Enemy");
         emptyMask = LayerMask.GetMask();
 		playerMover = gameObject.GetComponent<PlayerMover> ();
 		camera = Camera.main;
         timeScaleManager = camera.GetComponent<TimeScaleManager>();
 	}
 
-	private void UpdateChargeWheel()
+    private void UpdateSlowmoWheel()
+    {
+       if (charged)
+        {
+            slowmoWheel.fillAmount = 1 - (chargedTime / chargeTimeout);
+        }
+       else
+        {
+            slowmoWheel.fillAmount = 0;
+        }
+    }
+
+    private void UpdateChargeWheel()
 	{
 		if (chargeCooling)
 		{
@@ -90,7 +106,7 @@ public class ChargeController : MonoBehaviour {
 		if (charged) {
 			chargedTime += Time.fixedUnscaledDeltaTime;
 			chargeWheel.fillAmount = 1;
-
+            UpdateSlowmoWheel();
 			//if we're charge and fire button released, check if we can successfully attack
 			if (!charging)
 			{
@@ -109,6 +125,7 @@ public class ChargeController : MonoBehaviour {
 				chargedTime = 0;
 				charged = false;
 				UpdateChargeWheel ();
+                UpdateSlowmoWheel();
 				return hit;
 			}
 
@@ -120,6 +137,7 @@ public class ChargeController : MonoBehaviour {
 				chargeCooling = true;
 				chargeWheel.color = Color.red;
 				UpdateChargeWheel ();
+                UpdateSlowmoWheel();
 				return hit;
 			}
 
