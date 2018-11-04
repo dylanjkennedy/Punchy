@@ -58,4 +58,20 @@ public class PlayerStamina : MonoBehaviour {
             return true;
         }
     }
+
+    public void RegainStamina(float staminaGained)
+    {
+        stamina += staminaGained;
+        if (stamina >= maxStamina)
+        {
+            stamina = maxStamina;
+            regenerating = false;
+        }
+        else
+        {
+            regenerating = true;
+        }
+
+
+    }
 }

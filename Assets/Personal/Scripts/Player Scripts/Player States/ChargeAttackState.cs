@@ -16,9 +16,11 @@ public class ChargeAttackState : PlayerState
     //private float currentTimeScale;
     private float slowestTimeScale = 0.05f;
     private float slowmoLerpFactor = 0.01f;
+    float staminaRegain = 5f;
     bool dashing;
     bool attacked;
     TimeScaleManager timeScaleManager;
+    PlayerStamina stamina;
     
 
     float explodeRadius = 1;
@@ -34,6 +36,7 @@ public class ChargeAttackState : PlayerState
         attacked = false;
         vulnerable = false;
         timeScaleManager = Camera.main.GetComponent<TimeScaleManager>();
+        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
     }
 
     public override void Enter()
@@ -51,7 +54,7 @@ public class ChargeAttackState : PlayerState
 
     public override void Exit()
     {
-
+        stamina.RegainStamina(staminaRegain);
     }
 
     public override PlayerState FixedUpdate()
