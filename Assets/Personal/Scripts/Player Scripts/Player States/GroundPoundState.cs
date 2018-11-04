@@ -6,26 +6,31 @@ public class GroundPoundState : PlayerState
 {
     PlayerMover playerMover;
     Vector3 move;
-    private float groundPoundSpeed = 50f;
+    private float groundPoundSpeed = 30f;
     bool grounded = false;
     float gravityMultiplier = 10;
+    float speedMaximum = 50f;
+    float physicsMaxForce = 40f;
     //float airSpeedMultiplier = 1;
     public bool vulnerable = true;
+    bool charging;
     RaycastHit hit;
-    private float heightValue;
     private LayerMask enemyMask;
+    ChargeController chargeController;
 
     public GroundPoundState(PlayerMover pm) : base(pm)
     {
         playerMover = pm;
         vulnerable = false;
-        heightValue = 0;
+        chargeController = playerMover.gameObject.GetComponent<ChargeController>();
         //enemyMask = LayerMask.GetMask("Enemy");
     }
 
 
     public override PlayerState FixedUpdate()
     {
+        chargeController.Charge(charging);
+
         if (grounded)
         {
             return new GroundState(playerMover);
@@ -33,35 +38,61 @@ public class GroundPoundState : PlayerState
 
         //move = new Vector3(desiredMove.x, move.y * -groundPoundSpeed, desiredMove.z);
         move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
+        if (-move.y > speedMaximum)
+        {
+            move = new Vector3(move.x, -speedMaximum, move.z);
+        }
         playerMover.Move(move);
 
         MouseLookFixedUpdate();
-        heightValue += Time.fixedDeltaTime;
         return null;
     }
 
     public override void Update()
     {
         grounded = playerMover.isGrounded();
+        charging = Input.GetButton("Fire1");
         MouseLookUpdate();
     }
 
     public override void Enter()
     {
-        move = getStandardDesiredMove(groundPoundSpeed);
-        move.y = move.y * -groundPoundSpeed;
+        move = new Vector3(0, -groundPoundSpeed, 0);
+        charging = Input.GetButton("Fire1");
     }
 
     public override void Exit()
     {
-        dealPoundDamage();
-        dealPoundPhysics();
+
+        float speed = -move.y;
+        if (speed > 35)
+        {
+            float damageRange = (speed - 30)/5;
+            float physicsRange = (speed - 30)/3;
+            dealPoundDamage(damageRange);
+            dealPoundImpacts(physicsRange);
+            dealPoundPhysics(physicsRange);
+        }
     }
 
-    public void dealPoundDamage()
+    private void dealPoundPhysics(float range)
     {
+        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Debris"));
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, heightValue/2, LayerMask.GetMask("Enemy"));
+            if (rb != null)
+            {
+                rb.AddExplosionForce(physicsMaxForce * (1 - (Vector3.Distance(hit.gameObject.transform.position, 
+                    playerMover.transform.position) / range)), playerMover.transform.position, range, 0F, ForceMode.Impulse);
+            }
+        }
+    }
+
+    public void dealPoundDamage(float range)
+    {
+        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -71,13 +102,16 @@ public class GroundPoundState : PlayerState
         }
     }
 
-    public void dealPoundPhysics()
+    public void dealPoundImpacts(float range)
     {
-        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, heightValue/2, LayerMask.GetMask("Enemy"));
+        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
+                //adds an impulse relative to how close they are to the center of the impact
+                hit.gameObject.GetComponent<ImpactReceiver>().AddImpact(hit.gameObject.transform.position - playerMover.transform.position, 
+                    physicsMaxForce * (1-(Vector3.Distance(hit.gameObject.transform.position, playerMover.transform.position)/range)));
                 // add an impulse instead of doing damage
                 //hit.gameObject.GetComponent<EnemyController>().takeDamage(hit.gameObject.transform.position);
             }

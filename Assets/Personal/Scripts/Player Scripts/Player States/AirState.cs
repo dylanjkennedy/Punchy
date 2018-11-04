@@ -13,7 +13,9 @@ public class AirState : PlayerState {
     float gravityMultiplier = 2;
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
+    float groundPoundCost = 25f;
 	private ChargeController chargeController;
+    private PlayerStamina stamina;
     public bool vulnerable = true;
     RaycastHit hit;
 
@@ -22,7 +24,8 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = 0;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-	    groundPound = false;
+        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+        groundPound = false;
 	}
 
 	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
@@ -30,7 +33,8 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = verticalSpeed;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-	    groundPound = false;
+        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+        groundPound = false;
 	}
 
 	public override PlayerState FixedUpdate()
@@ -41,7 +45,10 @@ public class AirState : PlayerState {
 		}
         else if (groundPound)
 		{
-		    return new GroundPoundState (playerMover);
+            if (stamina.UseStamina(groundPoundCost))
+            {
+                return new GroundPoundState(playerMover);
+            }
 		}
 
 		Vector3 desiredMove = getStandardDesiredMove (playerMover.speed * airSpeedMultiplier);

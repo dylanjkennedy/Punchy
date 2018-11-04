@@ -21,7 +21,8 @@ public class ImpactReceiver : MonoBehaviour {
         direction.Normalize();
         if (direction.y < 0 && character.isGrounded)
         {
-            direction.y = -direction.y; // reflect down force on the ground
+            //direction.y = -direction.y; // reflect down force on the ground
+            direction.y = 0; //prevents player from being launched into the air and unable to jump?
         }
         impact += direction.normalized * force / mass;
     }
