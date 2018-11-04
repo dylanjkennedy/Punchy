@@ -396,12 +396,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4880389587487652}
   - component: {fileID: 95568346650328672}
-  - component: {fileID: 54178818585289472}
   - component: {fileID: 136577180064445036}
   - component: {fileID: 195734965169488068}
   - component: {fileID: 114713262047289118}
   - component: {fileID: 114103795422478108}
   - component: {fileID: 114248733243452112}
+  - component: {fileID: 143711379090747842}
   m_Layer: 9
   m_Name: humanoidEnemy
   m_TagString: Enemy
@@ -879,7 +879,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1890200285836438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.12, y: 0, z: 15.07}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454601988031216}
@@ -947,21 +947,6 @@ Transform:
   m_Father: {fileID: 4840545309918620}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54178818585289472
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1890200285836438}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!95 &95568346650328672
 Animator:
   serializedVersion: 3
@@ -1061,7 +1046,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1890200285836438}
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
   m_Height: 2.2
   m_Direction: 1
@@ -1141,6 +1126,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000050753355, y: -0.11353779, z: 0.059281282}
     m_Extent: {x: 0.8932843, y: 0.93164253, z: 0.17578909}
   m_DirtyAABB: 0
+--- !u!143 &143711379090747842
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890200285836438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.2
+  m_Radius: 0.4
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!195 &195734965169488068
 NavMeshAgent:
   m_ObjectHideFlags: 1
