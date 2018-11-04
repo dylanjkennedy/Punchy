@@ -9,7 +9,8 @@ public class AirState : PlayerState {
 	Vector3 move;
 	bool charging;
 	bool grounded;
-	float gravityMultiplier = 2;
+    bool groundPound;
+    float gravityMultiplier = 2;
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
 	private ChargeController chargeController;
@@ -21,6 +22,7 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = 0;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
+	    groundPound = false;
 	}
 
 	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
@@ -28,6 +30,7 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = verticalSpeed;
 		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
+	    groundPound = false;
 	}
 
 	public override PlayerState FixedUpdate()
@@ -35,6 +38,10 @@ public class AirState : PlayerState {
 		if (grounded)
 		{
 			return new GroundState (playerMover);
+		}
+        else if (groundPound)
+		{
+		    return new GroundPoundState (playerMover);
 		}
 
 		Vector3 desiredMove = getStandardDesiredMove (playerMover.speed * airSpeedMultiplier);
@@ -59,6 +66,10 @@ public class AirState : PlayerState {
 		charging = Input.GetButton ("Fire1");
 		grounded = playerMover.isGrounded ();
 		MouseLookUpdate ();
+	    if (Input.GetButton("Crouch"))
+	    {
+	        groundPound = true;
+	    }
 	}
 
 	public override void Enter ()
