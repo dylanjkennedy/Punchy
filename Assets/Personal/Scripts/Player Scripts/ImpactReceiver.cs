@@ -7,19 +7,19 @@ public class ImpactReceiver : MonoBehaviour {
     [SerializeField] float mass;
     Vector3 impact = Vector3.zero;
     private CharacterController character;
-    PlayerMover playerMover;
+    //PlayerMover playerMover;
  
     void Start()
     {
         character = GetComponent<CharacterController>();
-        playerMover = gameObject.GetComponent<PlayerMover>();
+        //playerMover = gameObject.GetComponent<PlayerMover>();
     }
 
     // call this function to add an impact force:
     public void AddImpact(Vector3 direction, float force)
     {
         direction.Normalize();
-        if (direction.y < 0 && playerMover.isGrounded())
+        if (direction.y < 0 && character.isGrounded)
         {
             direction.y = -direction.y; // reflect down force on the ground
         }

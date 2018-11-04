@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 114103795422478108}
   - component: {fileID: 114248733243452112}
   - component: {fileID: 143711379090747842}
+  - component: {fileID: 114434377343338508}
   m_Layer: 9
   m_Name: humanoidEnemy
   m_TagString: Enemy
@@ -1026,6 +1027,18 @@ MonoBehaviour:
   minExplosionForce: 10
   explodeDamage: 25
   minExplosionDamage: 5
+--- !u!114 &114434377343338508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890200285836438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71c9a605b5e1a94c9074326c3c3a830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1
 --- !u!114 &114713262047289118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1152,7 +1165,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
