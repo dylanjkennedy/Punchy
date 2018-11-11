@@ -167,17 +167,53 @@ public class ChargeController : MonoBehaviour {
 
 	private RaycastHit checkAttack()
 	{
+        
 		Ray attackRay;
 		RaycastHit attackHit;
 		attackRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        //Vector3 startSpherePoint = camera.transform.position;
+        //Vector3 endSpherePoint = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 2f));
+        float radius = 1f;
 
-		if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyMask))
-		{
-			if (attackHit.collider.gameObject.tag == "Enemy")
-			{
-				return attackHit;
-			}
-		}
-		return getNullHit();
+        if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyMask))
+        {
+            return attackHit;
+        }
+        else
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(attackRay, radius, attackRange, enemyMask);
+
+            if (hits.Length > 0)
+            {
+                RaycastHit closestHit = hits[0];
+                float distance = 1000000000;
+                float tempDistance = 0;
+                foreach (RaycastHit hit in hits)
+                {
+                    //if hit is closest to attackRay and tagged as enemy
+                    tempDistance = DistanceToNearestPointOnLine(attackRay, hit);
+                    if (tempDistance < distance)
+                        closestHit = hit;                                      
+                }
+                return closestHit;
+            }
+            return getNullHit();
+        
+        }                   
 	}
+
+    public float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
+    {
+        Vector3 direction = hit.point - camera.transform.position;
+        float angle = Vector3.Angle(direction, line.direction);
+        return hit.distance * Mathf.Sin(angle);
+        /*
+        Vector3 lineDir = line.direction;
+        Vector3 linePoint = li
+        lineDir.Normalize();//this needs to be a unit vector
+        var v = point - linePoint;
+        var d = Vector3.Dot(v, lineDir);
+        return d;
+        */
+    }
 }
