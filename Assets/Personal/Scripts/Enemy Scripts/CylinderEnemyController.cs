@@ -37,6 +37,7 @@ public class CylinderEnemyController : EnemyController
         player = GameObject.Find("Player");
         direction = player.transform.position - this.transform.position;
         //bulletScript = bullet.GetComponent<Projectile> ();
+        type = SpawnManager.EnemyType.Cylinder;
         timer = 0;
         nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
         nav = GetComponent<NavMeshAgent>();

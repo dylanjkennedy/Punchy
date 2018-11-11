@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public NavMeshAgent nav;
     public Rigidbody rb;
+    public SpawnManager.EnemyType type;
 
     // Use this for initialization
     public virtual void Start()
