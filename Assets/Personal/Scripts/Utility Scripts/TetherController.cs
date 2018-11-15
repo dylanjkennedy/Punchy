@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TetherController : MonoBehaviour {
 
-    Vector3[] tracePositions = { new Vector3 (0,0,0), new Vector3(1, 0, 0), new Vector3(1, 0, 1), new Vector3(1, 0, -1),
-        new Vector3(2, 0, 0), new Vector3(0, 0, -2), new Vector3(0, 0, -1), new Vector3(0, 0, 1), new Vector3(0, 0, 2),
-        new Vector3(-1, 0, -1), new Vector3(-1, 0, 0), new Vector3(-1, 0, 1), new Vector3(-2, 0, 0) };
+    Transform[] traces;
 
-    bool[] traceCanSeePlayer = new bool[13];
+    bool[] traceCanSeePlayer;
 
     LayerMask mask;
 
@@ -23,6 +21,8 @@ public class TetherController : MonoBehaviour {
 
         player = GameObject.Find("Player");
 
+        traces = this.gameObject.GetComponentsInChildren<Transform>();
+        traceCanSeePlayer = new bool[traces.Length];
 
         //create mask to ignore these layers, as player visibility should not be affected by these factors
         mask = LayerMask.GetMask("Projectiles","Debris","TransparentFX","UI");
@@ -36,7 +36,19 @@ public class TetherController : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < traceCanSeePlayer.Length; i++)
+        if (!Application.isPlaying)
+        {
+            traces = this.gameObject.GetComponentsInChildren<Transform>();
+            Gizmos.color = Color.cyan;
+
+            for (int i = 0; i < traces.Length; i++)
+            {
+                Gizmos.DrawWireSphere(traces[i].position - new Vector3(0, 2, 0), 0.1f);
+            }
+            return;
+        }
+
+        for (int i = 0; i < traces.Length; i++)
         {
             if (traceCanSeePlayer[i])
             {
@@ -46,7 +58,7 @@ public class TetherController : MonoBehaviour {
             {
                 Gizmos.color = Color.red;
             }
-            Gizmos.DrawWireSphere(gameObject.transform.position + tracePositions[i] - new Vector3(0, 2, 0), 0.1f);
+            Gizmos.DrawWireSphere(traces[i].position - new Vector3(0, 2, 0), 0.1f);
         }
     }
 
@@ -59,7 +71,7 @@ public class TetherController : MonoBehaviour {
     bool CheckLineOfSight(int traceNum)
     {
         RaycastHit seePlayer;
-        Ray ray = new Ray(transform.position + tracePositions[traceNum], player.transform.position - (transform.position + tracePositions[traceNum]));
+        Ray ray = new Ray(traces[traceNum].position, player.transform.position - (traces[traceNum].position));
 
         if (Physics.Raycast(ray, out seePlayer, Mathf.Infinity, mask))
         {
@@ -69,5 +81,13 @@ public class TetherController : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public int numTraces
+    {
+        get
+        {
+            return traces.Length;
+        }
     }
 }

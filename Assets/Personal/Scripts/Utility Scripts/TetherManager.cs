@@ -25,15 +25,15 @@ public class TetherManager : MonoBehaviour {
 		while (traceUpdatesPerFrame > tracesThisFrame)
         {
             tethers[currentTether].updateTrace(currentTrace);
-            currentTether++;
+            currentTrace++;
 
-            if (currentTether >= tethers.Count)
+            if (currentTrace >= tethers[currentTether].numTraces)
             {
-                currentTether = 0;
-                currentTrace++;
-                if (currentTrace >= 13)
+                currentTrace = 0;
+                currentTether++;
+                if (currentTether >= tethers.Count)
                 {
-                    currentTrace = 0;
+                    currentTether = 0;
                 }
             }
 
