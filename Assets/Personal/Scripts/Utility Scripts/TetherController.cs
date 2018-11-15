@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TetherController : MonoBehaviour {
 
+    [SerializeField] float radius;
+
     Transform[] traces;
 
     bool[] traceCanSeePlayer;
@@ -24,9 +26,7 @@ public class TetherController : MonoBehaviour {
         traces = this.gameObject.GetComponentsInChildren<Transform>();
         traceCanSeePlayer = new bool[traces.Length];
 
-        //create mask to ignore these layers, as player visibility should not be affected by these factors
-        mask = LayerMask.GetMask("Projectiles","Debris","TransparentFX","UI");
-        mask = ~mask;
+        mask = LayerMask.GetMask("Default", "Player", "Enemy");
 	}
 	
 	// Update is called once per frame
@@ -88,6 +88,14 @@ public class TetherController : MonoBehaviour {
         get
         {
             return traces.Length;
+        }
+    }
+
+    public float Radius
+    {
+        get
+        {
+            return radius;
         }
     }
 }
