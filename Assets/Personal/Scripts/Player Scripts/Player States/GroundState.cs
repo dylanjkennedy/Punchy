@@ -67,8 +67,11 @@ public class GroundState : PlayerState {
 		{
 			jumping = Input.GetButtonDown ("Jump");
 		}
-        dashing = Input.GetButtonDown("Dash");
-		charging = Input.GetButton ("Fire1");
+        if (!dashing)
+        {
+            dashing = Input.GetButtonDown("Dash");
+        }
+        charging = Input.GetButton ("Fire1");
 		grounded = playerMover.isGrounded ();
 
 	}
