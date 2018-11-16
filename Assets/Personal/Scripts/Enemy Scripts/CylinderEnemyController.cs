@@ -27,12 +27,13 @@ public class CylinderEnemyController : EnemyController
     //private Projectile bulletScript;
     private Vector3 direction;
     private float timer;
+    private GameObject tether;
     bool dead;
     float maxDeadTime = 3;
     [SerializeField] bool runningAway;
 
     // Use this for initialization
-    public override void Start()
+    protected override void Start()
     {
         player = GameObject.Find("Player");
         direction = player.transform.position - this.transform.position;
@@ -47,11 +48,11 @@ public class CylinderEnemyController : EnemyController
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
     }
 
-    public override void FixedUpdate()
+    protected override void FixedUpdate()
     {
         if (!dead && nav.enabled)
         {
@@ -105,7 +106,7 @@ public class CylinderEnemyController : EnemyController
         }
     }
 
-    public virtual void Fire()
+    protected virtual void Fire()
     {
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
 
@@ -114,7 +115,7 @@ public class CylinderEnemyController : EnemyController
         timer = 0;
     }
 
-    public override bool CheckLineOfSight()
+    protected override bool CheckLineOfSight()
     {
         RaycastHit seePlayer;
         Ray ray = new Ray(transform.position, player.transform.position - transform.position);
@@ -136,34 +137,14 @@ public class CylinderEnemyController : EnemyController
             Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
             dead = true;
             timer = 0;
-            //rb.isKinematic = false;
-            //rb.useGravity = true;
             cylinder.SetActive(false);
             Instantiate(fractures, transform.position, transform.rotation);
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
-            //explode(point);
 
             Destroy(this.gameObject);
-            //rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
         }
     }
-
-    /*
-    void explode(Vector3 position)
-    {
-        Collider[] colliders = Physics.OverlapSphere(position, explodeRadius);
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                rb.AddExplosionForce(explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
-            }
-        }
-    }
-    */
 
     public override void freeze()
     {

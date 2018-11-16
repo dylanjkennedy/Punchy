@@ -33,7 +33,7 @@ public class HumanoidEnemyController : EnemyController {
     
 
 	// Use this for initialization
-	public override void Start () {
+	protected override void Start () {
         player = GameObject.Find("Player");
         character = gameObject.GetComponent<ThirdPersonCharacter>();
         material = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
@@ -50,11 +50,11 @@ public class HumanoidEnemyController : EnemyController {
 	}
 	
 	// Update is called once per frame
-	public override void Update () {
+	protected override void Update () {
 
 	}
 
-	public override void FixedUpdate() {
+	protected override void FixedUpdate() {
 		if (!dead && nav.enabled) {
             if (Vector3.Distance(player.transform.position, gameObject.transform.position) > chaseDistance && !exploding)
             {

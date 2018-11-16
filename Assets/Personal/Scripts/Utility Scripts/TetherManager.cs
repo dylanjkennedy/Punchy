@@ -6,6 +6,7 @@ public class TetherManager : MonoBehaviour {
     [SerializeField] int traceUpdatesPerFrame;
 
     List<TetherController> tethers = new List<TetherController>();
+    List<float> tetherTraceRatios = new List<float>();
     int currentTether = 0;
     int currentTrace = 0;
     int tracesThisFrame;
@@ -41,8 +42,30 @@ public class TetherManager : MonoBehaviour {
         }
 	}
 
+    public float[] TraceRatios
+    {
+        get
+        {
+            return tetherTraceRatios.ToArray();
+        }
+    }
+
+    /*
+    public GameObject FindBestTether(GameObject Enemy)
+    {
+        float[] weights = new float[tethers.Count];
+        int max = 0;
+        for (int i = 0; i < tethers.Count; i++)
+        {
+
+        }
+        return tethers[max].gameObject;
+    }
+    */
+
     public void addTether(TetherController tether)
     {
         tethers.Add(tether);
+        tetherTraceRatios.Add(tether.TraceRatio);
     }
 }

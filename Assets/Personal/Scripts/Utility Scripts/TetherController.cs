@@ -10,6 +10,12 @@ public class TetherController : MonoBehaviour {
 
     bool[] traceCanSeePlayer;
 
+    int occupants;
+
+    float seenRatio = 0f;
+
+    float ratioDiff;
+
     LayerMask mask;
 
     TetherManager tetherManager;
@@ -25,6 +31,7 @@ public class TetherController : MonoBehaviour {
 
         traces = this.gameObject.GetComponentsInChildren<Transform>();
         traceCanSeePlayer = new bool[traces.Length];
+        ratioDiff = 1 / traces.Length;
 
         mask = LayerMask.GetMask("Default", "Player", "Enemy");
 	}
@@ -64,8 +71,23 @@ public class TetherController : MonoBehaviour {
 
     public float updateTrace(int traceNum)
     {
+        bool previousStatus = traceCanSeePlayer[traceNum];
         traceCanSeePlayer[traceNum] = CheckLineOfSight(traceNum);
-        return 0;
+
+        if (traceCanSeePlayer[traceNum] == previousStatus)
+        {
+            return seenRatio;
+        }
+        else if (traceCanSeePlayer[traceNum])
+        {
+            seenRatio += 1 / ratioDiff;
+        }
+        else
+        {
+            seenRatio -= 1 / ratioDiff;
+        }
+
+        return seenRatio;
     }
 
     bool CheckLineOfSight(int traceNum)
@@ -96,6 +118,27 @@ public class TetherController : MonoBehaviour {
         get
         {
             return radius;
+        }
+    }
+
+    public int Occupants
+    {
+        get
+        {
+            return occupants;
+        }
+    }
+
+    public void changeOccupants(int Count)
+    {
+        occupants += Count;
+    }
+
+    public float TraceRatio
+    {
+        get
+        {
+            return seenRatio;
         }
     }
 }
