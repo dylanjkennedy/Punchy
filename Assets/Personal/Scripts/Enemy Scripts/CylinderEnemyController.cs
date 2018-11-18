@@ -28,10 +28,14 @@ public class CylinderEnemyController : EnemyController
     private Vector3 direction;
     private float timer;
     private GameObject tether;
+    private float tetherRadius;
     bool dead;
     float maxDeadTime = 3;
     private TetherManager tetherManager;
     [SerializeField] bool runningAway;
+
+    private enum enemyState { movingState, tetheredState, attackingState };
+    private enemyState state;
 
     // Use this for initialization
     protected override void Start()
@@ -47,6 +51,9 @@ public class CylinderEnemyController : EnemyController
         dead = false;
         runningAway = false;
         rb = GetComponent<Rigidbody>();
+
+        tether = this.findBestTether();
+        state = enemyState.movingState;
     }
 
     // Update is called once per frame
@@ -56,6 +63,33 @@ public class CylinderEnemyController : EnemyController
 
     protected override void FixedUpdate()
     {
+        // state machine/swiiitch
+        // need enumerable
+        // moving to tether
+        // in tether
+        // attacking
+        // escape! ?
+
+        // move to the best tether you can
+        // attack the player while your in a tether
+        // reevaluate your tether (every once in a while and when player too close)
+
+        
+        
+        switch (state) {
+            case enemyState.movingState:
+                state = MoveToTether();
+                return;
+            case enemyState.tetheredState:
+                state = tetheredBehavior();
+                return;
+            case enemyState.attackingState:
+                state = attackBehavior();
+                return;
+        }
+
+     
+        /*
         if (!dead && nav.enabled)
         {
 
@@ -106,6 +140,62 @@ public class CylinderEnemyController : EnemyController
                 Destroy(this.gameObject);
             }
         }
+        */
+    }
+
+    private enemyState MoveToTether()
+    {
+        //PROBLEM: tether = this.findBestTether();
+        // check if position is in radius of tether
+        tetherRadius = tether.GetComponent<TetherController>().Radius;
+        if (Vector3.Distance(tether.transform.position, this.transform.position) < tetherRadius)
+        {
+            return enemyState.tetheredState;
+        }
+        else
+        {
+            nav.SetDestination(tether.transform.position);
+            return enemyState.movingState;        
+        }      
+    }
+
+    private enemyState tetheredBehavior()
+    {
+        // if player gets too close re-evaluate
+        if (Vector3.Distance(player.transform.position, this.transform.position) < runAwayDistance)
+        {
+            tether = this.findBestTether();
+            return enemyState.movingState;
+        }
+
+        // wait the appropriate amount of time to attack
+        if (timer >= nextFire && CheckLineOfSight())
+        {
+            return enemyState.attackingState;
+        }
+        else
+        {
+            timer += Time.fixedDeltaTime;
+            return enemyState.tetheredState;
+        }
+        
+    }
+
+    private enemyState attackBehavior()
+    {
+        this.Fire();
+        // JIGGLE
+        //nav.SetDestination(this.findNewPositionInTether());
+        // reconsider current tether
+        tether = this.findBestTether();
+        return enemyState.movingState;
+    }
+
+    private Vector3 findNewPositionInTether()
+    {
+        float x = Random.Range(tether.transform.position.x - tetherRadius, tether.transform.position.x + tetherRadius);
+        float z = Random.Range(tether.transform.position.z - tetherRadius, tether.transform.position.z + tetherRadius);
+        return new Vector3(x, tether.transform.position.y, z);
     }
 
     protected virtual void Fire()
