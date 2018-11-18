@@ -6,13 +6,13 @@ using UnityScript.Steps;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject player;
-    public NavMeshAgent nav;
-    public Rigidbody rb;
-    public SpawnManager.EnemyType type;
+    protected GameObject player;
+    protected NavMeshAgent nav;
+    protected Rigidbody rb;
+    protected SpawnManager.EnemyType type;
 
     // Use this for initialization
-    public virtual void Start()
+    protected virtual void Start()
     {
         player = GameObject.Find("Player");
         nav = GetComponent<NavMeshAgent>();
@@ -20,16 +20,16 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
     }
 
-    public virtual void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         
     }
 
-    public virtual bool CheckLineOfSight()
+    protected virtual bool CheckLineOfSight()
     {
         RaycastHit seePlayer;
         Ray ray = new Ray(transform.position, player.transform.position - transform.position);
@@ -52,5 +52,13 @@ public class EnemyController : MonoBehaviour
     public virtual void freeze()
     {
         nav.enabled = false;
+    }
+
+    public SpawnManager.EnemyType Type
+    {
+        get
+        {
+            return type;
+        }
     }
 }

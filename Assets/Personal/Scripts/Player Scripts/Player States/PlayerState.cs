@@ -39,12 +39,12 @@ public class PlayerState
 
     }
 
-    public virtual void MouseLookFixedUpdate()
+    protected virtual void MouseLookFixedUpdate()
     {
         mouseLook.UpdateCursorLock();
     }
 
-    public virtual void MouseLookUpdate()
+    protected virtual void MouseLookUpdate()
     {
         RotateView();
     }
@@ -54,7 +54,7 @@ public class PlayerState
         mouseLook.LookRotation(playerMover.transform, cam.transform);
     }
 
-	public virtual Vector2 GetInput()
+	protected virtual Vector2 GetInput()
 	{
 		float horizontal = CrossPlatformInputManager.GetAxisRaw ("Horizontal");
 		float vertical = CrossPlatformInputManager.GetAxisRaw ("Vertical");

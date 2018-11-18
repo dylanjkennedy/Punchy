@@ -27,15 +27,18 @@ public class CylinderEnemyController : EnemyController
     //private Projectile bulletScript;
     private Vector3 direction;
     private float timer;
+    private GameObject tether;
     bool dead;
     float maxDeadTime = 3;
+    private TetherManager tetherManager;
     [SerializeField] bool runningAway;
 
     // Use this for initialization
-    public override void Start()
+    protected override void Start()
     {
         player = GameObject.Find("Player");
         direction = player.transform.position - this.transform.position;
+        tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
         //bulletScript = bullet.GetComponent<Projectile> ();
         type = SpawnManager.EnemyType.Cylinder;
         timer = 0;
@@ -47,11 +50,11 @@ public class CylinderEnemyController : EnemyController
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
     }
 
-    public override void FixedUpdate()
+    protected override void FixedUpdate()
     {
         if (!dead && nav.enabled)
         {
@@ -105,7 +108,7 @@ public class CylinderEnemyController : EnemyController
         }
     }
 
-    public virtual void Fire()
+    protected virtual void Fire()
     {
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
 
@@ -114,7 +117,7 @@ public class CylinderEnemyController : EnemyController
         timer = 0;
     }
 
-    public override bool CheckLineOfSight()
+    protected override bool CheckLineOfSight()
     {
         RaycastHit seePlayer;
         Ray ray = new Ray(transform.position, player.transform.position - transform.position);
@@ -136,37 +139,53 @@ public class CylinderEnemyController : EnemyController
             Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
             dead = true;
             timer = 0;
-            //rb.isKinematic = false;
-            //rb.useGravity = true;
             cylinder.SetActive(false);
             Instantiate(fractures, transform.position, transform.rotation);
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
-            //explode(point);
 
             Destroy(this.gameObject);
-            //rb.AddForceAtPosition (Vector3.Normalize (transform.position - player.transform.position)*50, point, ForceMode.Impulse);
         }
     }
-
-    /*
-    void explode(Vector3 position)
-    {
-        Collider[] colliders = Physics.OverlapSphere(position, explodeRadius);
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                rb.AddExplosionForce(explodePower, position, explodeRadius, 0F, ForceMode.Impulse);
-            }
-        }
-    }
-    */
 
     public override void freeze()
     {
         nav.enabled = false;
+    }
+
+    private GameObject findBestTether()
+    {
+        //4 data points to weigh
+        //Sight Ratio (visibility)
+        //Distance from player - probably want around 20 units of distance
+        //Distance from tether
+        //Current occupants of tether
+
+        TetherController[] tethers = tetherManager.Tethers;
+        int[] weights = new int[tethers.Length];
+        int minWeightIndex = -1;
+        int minWeight = int.MaxValue;
+
+        for (int i = 0; i < tethers.Length; i++)
+        {
+            weights[i] += 10*tethers[i].Occupants^2;
+            //weight distance from tether to AI as distance/4
+            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position)/4);
+
+            //We want distance from tether to player to be 20, so weight the difference of actual distance from that by difference*2
+            weights[i] += (int)(Mathf.Abs(
+                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20))*2;
+
+            //Weight inverse of trace ratio at inverseRatio*50. Perfect visibility weights 0, no visibility weights 50;
+            weights[i] += (int)((1 - tethers[i].TraceRatio) * 50);
+
+            if (weights[i] < minWeight)
+            {
+                minWeightIndex = i;
+                minWeight = weights[i];
+            }
+        }
+
+        return tethers[minWeightIndex].gameObject;
     }
 }

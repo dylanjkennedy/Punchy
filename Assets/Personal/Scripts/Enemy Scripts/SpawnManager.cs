@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour {
     void Start () {
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("enemy"))
         {
-            enemies[(int)enemy.GetComponent<EnemyController>().type].Add(enemy);
+            enemies[(int)enemy.GetComponent<EnemyController>().Type].Add(enemy);
         }
 
         for (int i = 0; i < spawnTimers.Length; i++)
@@ -53,12 +53,12 @@ public class SpawnManager : MonoBehaviour {
 
     void SpawnedEnemy(GameObject enemy)
     {
-        enemies[(int)enemy.GetComponent<EnemyController>().type].Add(enemy);
+        enemies[(int)enemy.GetComponent<EnemyController>().Type].Add(enemy);
     }
 
     void DestroyEnemy(GameObject enemy)
     {
-        enemies[(int)enemy.GetComponent<EnemyController>().type].Remove(enemy);
+        enemies[(int)enemy.GetComponent<EnemyController>().Type].Remove(enemy);
         Destroy(enemy);
     }
 }

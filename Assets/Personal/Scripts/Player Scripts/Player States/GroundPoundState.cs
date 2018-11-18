@@ -90,7 +90,7 @@ public class GroundPoundState : PlayerState
         }
     }
 
-    public void dealPoundDamage(float range)
+    private void dealPoundDamage(float range)
     {
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
@@ -102,7 +102,7 @@ public class GroundPoundState : PlayerState
         }
     }
 
-    public void dealPoundImpacts(float range)
+    private void dealPoundImpacts(float range)
     {
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
