@@ -112,8 +112,6 @@ public class GroundPoundState : PlayerState
                 //adds an impulse relative to how close they are to the center of the impact
                 hit.gameObject.GetComponent<ImpactReceiver>().AddImpact(hit.gameObject.transform.position - playerMover.transform.position, 
                     physicsMaxForce * (1-(Vector3.Distance(hit.gameObject.transform.position, playerMover.transform.position)/range)));
-                // add an impulse instead of doing damage
-                //hit.gameObject.GetComponent<EnemyController>().takeDamage(hit.gameObject.transform.position);
             }
         }
     }
