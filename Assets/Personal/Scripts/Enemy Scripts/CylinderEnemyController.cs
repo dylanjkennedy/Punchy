@@ -74,21 +74,32 @@ public class CylinderEnemyController : EnemyController
         // attack the player while your in a tether
         // reevaluate your tether (every once in a while and when player too close)
 
-        
-        
-        switch (state) {
-            case enemyState.movingState:
-                state = MoveToTether();
-                return;
-            case enemyState.tetheredState:
-                state = tetheredBehavior();
-                return;
-            case enemyState.attackingState:
-                state = attackBehavior();
-                return;
+        if (dead)
+        {
+            timer += Time.unscaledDeltaTime;
+            if (timer >= maxDeadTime)
+            {
+                Destroy(this.gameObject);
+            }
         }
+        if (!dead && nav.enabled)
+        {
+            switch (state)
+            {
+                case enemyState.movingState:
+                    state = MoveToTether();
+                    return;
+                case enemyState.tetheredState:
+                    state = tetheredBehavior();
+                    return;
+                case enemyState.attackingState:
+                    state = attackBehavior();
+                    return;
+            }
+        }
+        
 
-     
+
         /*
         if (!dead && nav.enabled)
         {
@@ -183,12 +194,24 @@ public class CylinderEnemyController : EnemyController
 
     private enemyState attackBehavior()
     {
+        //temporary
+        transform.LookAt(player.transform);
         this.Fire();
         // JIGGLE
         //nav.SetDestination(this.findNewPositionInTether());
         // reconsider current tether
-        tether = this.findBestTether();
-        return enemyState.movingState;
+        GameObject newTether = this.findBestTether();
+        if (newTether == tether)
+        {
+            nav.SetDestination(this.findNewPositionInTether());
+            return enemyState.tetheredState;
+        }
+        else
+        {
+            tether = newTether;
+            return enemyState.movingState;
+        }
+        
     }
 
     private Vector3 findNewPositionInTether()
@@ -200,6 +223,7 @@ public class CylinderEnemyController : EnemyController
 
     protected virtual void Fire()
     {
+        
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
 
         bullet.GetComponent<Projectile>().Fire(this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
