@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75338877cd39342489d44d4d8299a603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceUpdatesPerFrame: 30
+  traceUpdatesPerFrame: 60
 --- !u!1 &359136094
 GameObject:
   m_ObjectHideFlags: 0

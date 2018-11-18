@@ -80,14 +80,19 @@ public class TetherController : MonoBehaviour {
         }
         else if (traceCanSeePlayer[traceNum])
         {
-            seenRatio += 1 / ratioDiff;
+            seenRatio += ratioDiff;
         }
         else
         {
-            seenRatio -= 1 / ratioDiff;
+            seenRatio -= ratioDiff;
         }
 
         return seenRatio;
+    }
+
+    public void addOccupant(int addition)
+    {
+        occupants += addition;
     }
 
     bool CheckLineOfSight(int traceNum)

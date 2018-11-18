@@ -50,6 +50,14 @@ public class TetherManager : MonoBehaviour {
         }
     }
 
+    public TetherController[] Tethers
+    {
+        get
+        {
+            return tethers.ToArray();
+        }
+    }
+
     /*
     public GameObject FindBestTether(GameObject Enemy)
     {

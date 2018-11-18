@@ -30,6 +30,7 @@ public class CylinderEnemyController : EnemyController
     private GameObject tether;
     bool dead;
     float maxDeadTime = 3;
+    private TetherManager tetherManager;
     [SerializeField] bool runningAway;
 
     // Use this for initialization
@@ -37,6 +38,7 @@ public class CylinderEnemyController : EnemyController
     {
         player = GameObject.Find("Player");
         direction = player.transform.position - this.transform.position;
+        tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
         //bulletScript = bullet.GetComponent<Projectile> ();
         type = SpawnManager.EnemyType.Cylinder;
         timer = 0;
@@ -149,5 +151,41 @@ public class CylinderEnemyController : EnemyController
     public override void freeze()
     {
         nav.enabled = false;
+    }
+
+    private GameObject findBestTether()
+    {
+        //4 data points to weigh
+        //Sight Ratio (visibility)
+        //Distance from player - probably want around 20 units of distance
+        //Distance from tether
+        //Current occupants of tether
+
+        TetherController[] tethers = tetherManager.Tethers;
+        int[] weights = new int[tethers.Length];
+        int minWeightIndex = -1;
+        int minWeight = int.MaxValue;
+
+        for (int i = 0; i < tethers.Length; i++)
+        {
+            weights[i] += 10*tethers[i].Occupants^2;
+            //weight distance from tether to AI as distance/4
+            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position)/4);
+
+            //We want distance from tether to player to be 20, so weight the difference of actual distance from that by difference*2
+            weights[i] += (int)(Mathf.Abs(
+                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20))*2;
+
+            //Weight inverse of trace ratio at inverseRatio*50. Perfect visibility weights 0, no visibility weights 50;
+            weights[i] += (int)((1 - tethers[i].TraceRatio) * 50);
+
+            if (weights[i] < minWeight)
+            {
+                minWeightIndex = i;
+                minWeight = weights[i];
+            }
+        }
+
+        return tethers[minWeightIndex].gameObject;
     }
 }
