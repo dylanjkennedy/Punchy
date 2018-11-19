@@ -36,6 +36,7 @@ public class HumanoidEnemyController : EnemyController {
 	protected override void Start () {
         player = GameObject.Find("Player");
         character = gameObject.GetComponent<ThirdPersonCharacter>();
+        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         material = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
         type = SpawnManager.EnemyType.Humanoid;
         //direction = player.transform.position - this.transform.position;

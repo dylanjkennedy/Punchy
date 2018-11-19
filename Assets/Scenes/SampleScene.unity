@@ -2007,6 +2007,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1185202431875136, guid: 24702d2c502ac224ca4a638da8a5acdc,
     type: 2}
   m_PrefabInternal: {fileID: 101684628}
+--- !u!114 &342674582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342674581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483023ec57476834d95fce9a7259cb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - enemyType: 0
+    maxTokensPerAttackType: 05000000
+  - enemyType: 1
+    maxTokensPerAttackType: 64000000
 --- !u!114 &342674588
 MonoBehaviour:
   m_ObjectHideFlags: 0

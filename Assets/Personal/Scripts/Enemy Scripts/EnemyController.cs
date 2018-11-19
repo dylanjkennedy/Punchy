@@ -6,6 +6,7 @@ using UnityScript.Steps;
 
 public class EnemyController : MonoBehaviour
 {
+    protected EnemyAttacksManager enemyAttacksManager;
     protected GameObject player;
     protected NavMeshAgent nav;
     protected Rigidbody rb;
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
     protected virtual void Start()
     {
         player = GameObject.Find("Player");
+        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         nav = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
     }

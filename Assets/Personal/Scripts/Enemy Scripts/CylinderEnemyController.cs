@@ -12,21 +12,25 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float frequencyRange;
     [SerializeField] float bulletSpeed;
     [SerializeField] int bulletDamage;
-    [SerializeField] float minPlayerDistance;
     [SerializeField] float runAwayDistance;
-    [SerializeField] float maxRunAwayDistance;
     [SerializeField] GameObject cylinder;
     [SerializeField] GameObject fractures;
     [SerializeField] int scoreValue;
     [SerializeField] float bulletForce;
     [SerializeField] ParticleSystem explosion;
-    [SerializeField] float explodeRadius;
-    [SerializeField] float explodePower;
+    [SerializeField] float fireTime;
+    [SerializeField] float reevaluateTetherTime;
+    //[SerializeField] float explodeRadius;
+    //[SerializeField] float explodePower;
+    //[SerializeField] float minPlayerDistance;
+    //[SerializeField] float maxRunAwayDistance;
 
+    private bool firing;
     private float nextFire;
     //private Projectile bulletScript;
     private Vector3 direction;
-    private float timer;
+    private float stateTimer;
+    private float fireTimer;
     private GameObject tether;
     private float tetherRadius;
     bool dead;
@@ -34,22 +38,25 @@ public class CylinderEnemyController : EnemyController
     private TetherManager tetherManager;
     [SerializeField] bool runningAway;
 
-    private enum enemyState { movingState, tetheredState, attackingState };
+    private enum enemyState { movingState, tetheredState };
     private enemyState state;
 
     // Use this for initialization
     protected override void Start()
     {
         player = GameObject.Find("Player");
+        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         direction = player.transform.position - this.transform.position;
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
         //bulletScript = bullet.GetComponent<Projectile> ();
         type = SpawnManager.EnemyType.Cylinder;
-        timer = 0;
+        stateTimer = 0;
         nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
         nav = GetComponent<NavMeshAgent>();
         dead = false;
         runningAway = false;
+        firing = false;
+        fireTimer = 0;
         rb = GetComponent<Rigidbody>();
 
         tether = this.findBestTether();
@@ -76,8 +83,8 @@ public class CylinderEnemyController : EnemyController
 
         if (dead)
         {
-            timer += Time.unscaledDeltaTime;
-            if (timer >= maxDeadTime)
+            stateTimer += Time.unscaledDeltaTime;
+            if (stateTimer >= maxDeadTime)
             {
                 Destroy(this.gameObject);
             }
@@ -92,9 +99,14 @@ public class CylinderEnemyController : EnemyController
                 case enemyState.tetheredState:
                     state = tetheredBehavior();
                     return;
-                case enemyState.attackingState:
-                    state = attackBehavior();
-                    return;
+                //case enemyState.attackingState:
+                //    state = attackBehavior();
+                //    return;
+            }
+            fireTimer += Time.fixedDeltaTime;
+            if (fireTimer >= nextFire && CheckLineOfSight())
+            {
+
             }
         }
         
@@ -107,13 +119,13 @@ public class CylinderEnemyController : EnemyController
             transform.LookAt(player.transform);
 
 
-            if (timer >= nextFire && CheckLineOfSight())
+            if (stateTimer >= nextFire && CheckLineOfSight())
             {
                 this.Fire();
             }
             else
             {
-                timer += Time.fixedDeltaTime;
+                stateTimer += Time.fixedDeltaTime;
             }
 
             transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
@@ -145,8 +157,8 @@ public class CylinderEnemyController : EnemyController
 
         if (dead)
         {
-            timer += Time.unscaledDeltaTime;
-            if (timer >= maxDeadTime)
+            stateTimer += Time.unscaledDeltaTime;
+            if (stateTimer >= maxDeadTime)
             {
                 Destroy(this.gameObject);
             }
@@ -161,6 +173,7 @@ public class CylinderEnemyController : EnemyController
         tetherRadius = tether.GetComponent<TetherController>().Radius;
         if (Vector3.Distance(tether.transform.position, this.transform.position) < tetherRadius)
         {
+            stateTimer = 0;
             return enemyState.tetheredState;
         }
         else
@@ -172,26 +185,19 @@ public class CylinderEnemyController : EnemyController
 
     private enemyState tetheredBehavior()
     {
-        // if player gets too close re-evaluate
-        if (Vector3.Distance(player.transform.position, this.transform.position) < runAwayDistance)
+        // if player gets too close re-evaluate or wait the appropriate amount of time to evaluate next tether
+        if (playerTooClose || stateTimer >= reevaluateTetherTime)
         {
             tether = this.findBestTether();
             return enemyState.movingState;
         }
 
-        // wait the appropriate amount of time to attack
-        if (timer >= nextFire && CheckLineOfSight())
-        {
-            return enemyState.attackingState;
-        }
-        else
-        {
-            timer += Time.fixedDeltaTime;
-            return enemyState.tetheredState;
-        }
-        
+        // advance timer
+        stateTimer += Time.fixedDeltaTime;
+        return enemyState.tetheredState;
     }
 
+    /*
     private enemyState attackBehavior()
     {
         //temporary
@@ -213,6 +219,7 @@ public class CylinderEnemyController : EnemyController
         }
         
     }
+    */
 
     private Vector3 findNewPositionInTether()
     {
@@ -221,14 +228,19 @@ public class CylinderEnemyController : EnemyController
         return new Vector3(x, tether.transform.position.y, z);
     }
 
-    protected virtual void Fire()
+    private bool tryAttack()
+    {
+        return false;
+    }
+
+    private void Fire()
     {
         
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
 
         bullet.GetComponent<Projectile>().Fire(this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
         nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
-        timer = 0;
+        fireTimer = 0;
     }
 
     protected override bool CheckLineOfSight()
@@ -252,13 +264,21 @@ public class CylinderEnemyController : EnemyController
         {
             Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
             dead = true;
-            timer = 0;
+            stateTimer = 0;
             cylinder.SetActive(false);
             Instantiate(fractures, transform.position, transform.rotation);
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
 
             Destroy(this.gameObject);
+        }
+    }
+
+    private bool playerTooClose
+    {
+        get
+        {
+            return (Vector3.Distance(player.transform.position, this.transform.position) < runAwayDistance);
         }
     }
 
