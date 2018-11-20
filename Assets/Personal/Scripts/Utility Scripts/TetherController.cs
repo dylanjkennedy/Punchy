@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TetherController : MonoBehaviour {
 
@@ -8,11 +9,11 @@ public class TetherController : MonoBehaviour {
 
     Transform[] traces;
 
-    bool[] traceCanSeePlayer;
+    [SerializeField] bool[] traceCanSeePlayer;
 
     int occupants;
 
-    float seenRatio = 0f;
+    [SerializeField] float seenRatio = 0f;
 
     float ratioDiff;
 
@@ -74,6 +75,7 @@ public class TetherController : MonoBehaviour {
         bool previousStatus = traceCanSeePlayer[traceNum];
         traceCanSeePlayer[traceNum] = CheckLineOfSight(traceNum);
 
+        /*
         if (traceCanSeePlayer[traceNum] == previousStatus)
         {
             return seenRatio;
@@ -86,6 +88,9 @@ public class TetherController : MonoBehaviour {
         {
             seenRatio -= ratioDiff;
         }
+        */
+
+        seenRatio = (float)(traceCanSeePlayer.Count(c => c)) / traceCanSeePlayer.Count();
 
         return seenRatio;
     }

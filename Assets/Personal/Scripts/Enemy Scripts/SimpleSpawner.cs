@@ -6,6 +6,7 @@ public class SimpleSpawner : MonoBehaviour {
     [SerializeField] float spawnTime;
     [SerializeField] float spawnTimeRange;
     [SerializeField] GameObject enemy;
+    [SerializeField] float activationTime;
     float timeToSpawn;
     float timeSinceSpawn;
 	// Use this for initialization
@@ -27,6 +28,7 @@ public class SimpleSpawner : MonoBehaviour {
     {
         GameObject spawnedEnemy = Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
         spawnedEnemy.SetActive(true);
+        spawnedEnemy.layer = 9;
         timeSinceSpawn = 0;
         timeToSpawn = spawnTime + Random.Range(-spawnTimeRange, spawnTimeRange);
     }

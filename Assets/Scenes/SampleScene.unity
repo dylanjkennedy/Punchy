@@ -157,6 +157,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -615,6 +619,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -664,6 +672,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -814,7 +826,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &173095899
 GameObject:
@@ -824,7 +836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 173095900}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,6 +909,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -946,6 +962,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -1025,6 +1045,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -1037,7 +1061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203569618}
   - component: {fileID: 203569619}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,6 +1095,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!1001 &209220356
 Prefab:
   m_ObjectHideFlags: 0
@@ -1117,6 +1142,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -1168,6 +1197,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -1217,6 +1250,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -1271,34 +1308,6 @@ OffMeshLink:
   m_BiDirectional: 1
   m_Activated: 1
   m_AutoUpdatePositions: 0
---- !u!1 &234101722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234101723}
-  m_Layer: 2
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &234101723
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 234101722}
-  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 15, y: 2, z: -25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &234366069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 66a13889798137c498eae4b3acdafe19,
@@ -1370,6 +1379,134 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1890200285836438, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061741758993724, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384650279761946, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330151228208250, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492046413008934, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363727220997748, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401879001178676, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306854593677880, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383219415848560, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731654332561110, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186019625346282, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683307553677894, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391027645481440, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096663353852076, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970811425823736, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974194063637012, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507284894797874, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056865359688772, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940637879500056, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616504766442034, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413808971746558, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241787175829738, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764552995749186, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130107946626284, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654870435991492, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919580943243380, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952570579935842, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399648943285802, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355705091608954, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742143244000502, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940831965524100, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159246044432362, guid: 02cda2056326e704cbb694a193919a19, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02cda2056326e704cbb694a193919a19, type: 2}
   m_IsPrefabAsset: 0
@@ -1382,7 +1519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 280990483}
   - component: {fileID: 280990484}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1416,6 +1553,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!1 &294805719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 584a8ef4749c89745b7ae07f3ba7617f,
@@ -1581,11 +1719,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4406372592076846, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_Name
       value: Enemy (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
@@ -1686,6 +1828,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -1802,7 +1948,7 @@ Transform:
   - {fileID: 1044458065}
   - {fileID: 963781490}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &326669014
 Prefab:
@@ -1850,6 +1996,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -2019,10 +2169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypes:
-  - enemyType: 0
-    maxTokensPerAttackType: 05000000
-  - enemyType: 1
-    maxTokensPerAttackType: 64000000
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &342674588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,7 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75338877cd39342489d44d4d8299a603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceUpdatesPerFrame: 100
+  traceUpdatesPerFrame: 900
 --- !u!1 &359136094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2322,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -2279,6 +2431,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -2468,7 +2624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400737058}
   - component: {fileID: 400737057}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,6 +2645,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &400737058
 Transform:
   m_ObjectHideFlags: 0
@@ -2618,7 +2775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 432772989}
   - component: {fileID: 432772990}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,6 +2809,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!1001 &441149095
 Prefab:
   m_ObjectHideFlags: 0
@@ -2698,6 +2856,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -2764,7 +2926,7 @@ Transform:
   - {fileID: 1960569884}
   - {fileID: 303242629}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449652889
 GameObject:
@@ -2902,6 +3064,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -3082,6 +3248,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -3131,6 +3301,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -3196,6 +3370,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -3297,6 +3475,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -3375,6 +3557,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -3424,6 +3610,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -3536,6 +3726,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -3615,6 +3809,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -3669,6 +3867,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -3757,6 +3959,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -4025,6 +4231,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -4069,7 +4279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706134766}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4140,6 +4350,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -4189,6 +4403,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -4342,6 +4560,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -4401,6 +4623,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -4507,6 +4733,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -4567,6 +4797,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -4616,6 +4850,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -4709,6 +4947,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -5012,6 +5254,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -5202,6 +5448,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -5252,37 +5502,13 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &932209189
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 932209190}
-  m_Layer: 2
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &932209190
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 932209189}
-  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -45, y: 2, z: 65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &950725852
 Prefab:
   m_ObjectHideFlags: 0
@@ -5329,6 +5555,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -5439,6 +5669,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -5544,6 +5778,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -5613,6 +5851,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -5754,6 +5996,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -5831,6 +6077,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -5989,6 +6239,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -6067,6 +6321,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -6122,6 +6380,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -6171,6 +6433,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -6228,6 +6494,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 744898439}
+    - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
   m_IsPrefabAsset: 0
@@ -6282,6 +6552,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -6339,7 +6613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -6429,6 +6703,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -6478,6 +6756,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -6539,6 +6821,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -6593,6 +6879,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -6671,6 +6961,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -6881,6 +7175,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -7008,7 +7306,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -7065,6 +7363,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -7114,6 +7416,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -7201,7 +7507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1377258780}
   - component: {fileID: 1377258779}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7222,6 +7528,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &1377258780
 Transform:
   m_ObjectHideFlags: 0
@@ -7281,6 +7588,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -7415,6 +7726,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -7511,7 +7826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1435141647}
   - component: {fileID: 1435141648}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7545,6 +7860,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!4 &1437005043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4809465267089172, guid: b560005a623bea04b866f56a522278a0,
@@ -7670,6 +7986,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -7846,7 +8166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1454697392}
   - component: {fileID: 1454697391}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7867,6 +8187,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &1454697392
 Transform:
   m_ObjectHideFlags: 0
@@ -8055,6 +8376,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8133,6 +8458,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8203,6 +8532,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8258,6 +8591,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8307,6 +8644,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -8408,6 +8749,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8505,6 +8850,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8588,6 +8937,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8642,6 +8995,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -8699,7 +9056,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -8784,6 +9141,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -8840,7 +9201,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -9015,6 +9376,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -9076,13 +9441,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1712984842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Humanoids
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1712984842
 Transform:
   m_ObjectHideFlags: 0
@@ -9172,6 +9537,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -9280,7 +9649,7 @@ RectTransform:
   - {fileID: 1002424337}
   - {fileID: 359136095}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9361,6 +9730,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -9500,7 +9873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798827514}
   - component: {fileID: 1798827513}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9521,6 +9894,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &1798827514
 Transform:
   m_ObjectHideFlags: 0
@@ -9693,6 +10067,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -9705,7 +10083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817310779}
   - component: {fileID: 1817310778}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9726,6 +10104,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &1817310779
 Transform:
   m_ObjectHideFlags: 0
@@ -9872,6 +10251,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -9955,6 +10338,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10032,6 +10419,14 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 744898439}
+    - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273696377677722, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
   m_IsPrefabAsset: 0
@@ -10102,7 +10497,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -10180,7 +10575,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 23708129213229988, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 2}
@@ -10242,6 +10637,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10297,6 +10696,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10347,6 +10750,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10359,7 +10766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1950316604}
   - component: {fileID: 1950316603}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10380,6 +10787,7 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
+  activationTime: 4
 --- !u!4 &1950316604
 Transform:
   m_ObjectHideFlags: 0
@@ -10503,6 +10911,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10557,6 +10969,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -10681,6 +11097,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -10780,7 +11200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2015025850}
   - component: {fileID: 2015025851}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10814,6 +11234,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!1001 &2020532635
 Prefab:
   m_ObjectHideFlags: 0
@@ -10860,6 +11281,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -11168,6 +11593,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -11185,7 +11614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079015189}
   - component: {fileID: 2079015190}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spawner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11219,6 +11648,7 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
+  activationTime: 0
 --- !u!1 &2092215768
 GameObject:
   m_ObjectHideFlags: 0
@@ -11293,6 +11723,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
@@ -11372,6 +11806,10 @@ Prefab:
       propertyPath: m_Name
       value: LargeTether (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
   m_IsPrefabAsset: 0
@@ -11421,6 +11859,10 @@ Prefab:
     - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
       propertyPath: m_Name
       value: LargeTether (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054593038283062, guid: b560005a623bea04b866f56a522278a0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b560005a623bea04b866f56a522278a0, type: 2}
