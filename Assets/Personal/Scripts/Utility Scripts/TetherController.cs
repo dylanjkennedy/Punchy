@@ -95,11 +95,6 @@ public class TetherController : MonoBehaviour {
         return seenRatio;
     }
 
-    public void addOccupant(int addition)
-    {
-        occupants += addition;
-    }
-
     bool CheckLineOfSight(int traceNum)
     {
         RaycastHit seePlayer;

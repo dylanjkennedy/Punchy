@@ -30,6 +30,7 @@ public class CylinderEnemyController : EnemyController
     Material material;
     private bool firing;
     private float nextFire;
+    Vector3 destination;
     //private Projectile bulletScript;
     private Vector3 direction;
     private float stateTimer;
@@ -66,6 +67,7 @@ public class CylinderEnemyController : EnemyController
         rb = GetComponent<Rigidbody>();
 
         tether = this.findBestTether();
+        destination = findNewPositionInTether();
         state = enemyState.movingState;
     }
 
@@ -97,6 +99,7 @@ public class CylinderEnemyController : EnemyController
         }
         if (!dead && nav.enabled)
         {
+            stateTimer += Time.unscaledDeltaTime;
             switch (state)
             {
                 case enemyState.movingState:
@@ -135,15 +138,16 @@ public class CylinderEnemyController : EnemyController
     {
         //PROBLEM: tether = this.findBestTether();
         // check if position is in radius of tether
+
         tetherRadius = tether.GetComponent<TetherController>().Radius;
-        if (Vector3.Distance(tether.transform.position, this.transform.position) < tetherRadius)
+        if (Vector3.Distance(tether.transform.position, this.transform.position) <= tetherRadius)
         {
             stateTimer = 0;
             return enemyState.tetheredState;
         }
         else
         {
-            nav.SetDestination(tether.transform.position);
+            nav.SetDestination(destination);
             return enemyState.movingState;        
         }      
     }
@@ -153,12 +157,19 @@ public class CylinderEnemyController : EnemyController
         // if player gets too close re-evaluate or wait the appropriate amount of time to evaluate next tether
         if (playerTooClose || stateTimer >= reevaluateTetherTime)
         {
-            tether = this.findBestTether();
-            return enemyState.movingState;
+            GameObject newTether = this.findBestTether();
+            if (newTether == tether)
+            {
+                nav.SetDestination(this.findNewPositionInTether());
+                return enemyState.tetheredState;
+            }
+            else
+            {
+                tether = newTether;
+                destination = findNewPositionInTether();
+                return enemyState.movingState;
+            }
         }
-
-        // advance timer
-        stateTimer += Time.fixedDeltaTime;
         return enemyState.tetheredState;
     }
 
@@ -188,9 +199,13 @@ public class CylinderEnemyController : EnemyController
 
     private Vector3 findNewPositionInTether()
     {
+        return tether.transform.position + (Vector3)Random.insideUnitCircle * tetherRadius;
+
+        /*
         float x = Random.Range(tether.transform.position.x - tetherRadius, tether.transform.position.x + tetherRadius);
         float z = Random.Range(tether.transform.position.z - tetherRadius, tether.transform.position.z + tetherRadius);
         return new Vector3(x, tether.transform.position.y, z);
+        */
     }
 
     private bool tryAttack(int attackType)
@@ -238,6 +253,10 @@ public class CylinderEnemyController : EnemyController
     {
         if (!dead)
         {
+            if (token != null)
+            {
+                enemyAttacksManager.ReturnToken(type, token);
+            }
             Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
             dead = true;
             stateTimer = 0;
@@ -295,6 +314,12 @@ public class CylinderEnemyController : EnemyController
                 minWeight = weights[i];
             }
         }
+
+        if (tether != null)
+        {
+            tether.GetComponent<TetherController>().changeOccupants(-1);
+        }
+        tethers[minWeightIndex].changeOccupants(1);
 
         return tethers[minWeightIndex].gameObject;
     }
