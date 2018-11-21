@@ -25,6 +25,9 @@ public class CylinderEnemyController : EnemyController
     //[SerializeField] float minPlayerDistance;
     //[SerializeField] float maxRunAwayDistance;
 
+    Color defaultColor;
+    Color fireColor = Color.magenta;
+    Material material;
     private bool firing;
     private float nextFire;
     //private Projectile bulletScript;
@@ -36,6 +39,7 @@ public class CylinderEnemyController : EnemyController
     bool dead;
     float maxDeadTime = 3;
     private TetherManager tetherManager;
+    EnemyAttacksManager.Token token;
     [SerializeField] bool runningAway;
 
     private enum enemyState { movingState, tetheredState };
@@ -45,6 +49,8 @@ public class CylinderEnemyController : EnemyController
     protected override void Start()
     {
         player = GameObject.Find("Player");
+        material = gameObject.GetComponent<MeshRenderer>().material;
+        defaultColor = material.color;
         enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         direction = player.transform.position - this.transform.position;
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
@@ -95,75 +101,34 @@ public class CylinderEnemyController : EnemyController
             {
                 case enemyState.movingState:
                     state = MoveToTether();
-                    return;
+                    break;
                 case enemyState.tetheredState:
                     state = tetheredBehavior();
-                    return;
+                    break;
                 //case enemyState.attackingState:
                 //    state = attackBehavior();
-                //    return;
+                //    break;
             }
             fireTimer += Time.fixedDeltaTime;
-            if (fireTimer >= nextFire && CheckLineOfSight())
+            if (!firing && fireTimer >= nextFire && CheckLineOfSight())
             {
+                //only called with 0 for now, since only one attack type exists
+                if (tryAttack(0))
+                {
+                    firing = true;
+                    fireTimer = 0;
+                }
+            }
 
+            if (firing)
+            {
+                material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireTime);
+                if(fireTimer >= fireTime)
+                {
+                    Fire();
+                }
             }
         }
-        
-
-
-        /*
-        if (!dead && nav.enabled)
-        {
-
-            transform.LookAt(player.transform);
-
-
-            if (stateTimer >= nextFire && CheckLineOfSight())
-            {
-                this.Fire();
-            }
-            else
-            {
-                stateTimer += Time.fixedDeltaTime;
-            }
-
-            transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
-
-            float distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-
-            if (distance < runAwayDistance)
-            {
-                runningAway = true;
-            }
-            if (distance >= maxRunAwayDistance)
-            {
-                runningAway = false;
-            }
-
-            if (runningAway)
-            {
-                nav.SetDestination(gameObject.transform.position + Vector3.Normalize(gameObject.transform.position - player.transform.position) * 2);
-            }
-            else if (distance > minPlayerDistance)
-            {
-                nav.SetDestination(player.transform.position);
-            }
-            else
-            {
-                nav.SetDestination(gameObject.transform.position);
-            }
-        }
-
-        if (dead)
-        {
-            stateTimer += Time.unscaledDeltaTime;
-            if (stateTimer >= maxDeadTime)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-        */
     }
 
     private enemyState MoveToTether()
@@ -228,19 +193,30 @@ public class CylinderEnemyController : EnemyController
         return new Vector3(x, tether.transform.position.y, z);
     }
 
-    private bool tryAttack()
+    private bool tryAttack(int attackType)
     {
-        return false;
+        //since there's only one attack type for now, this can only really be called with attackType = 0
+        token = enemyAttacksManager.RequestToken(this.gameObject, attackType);
+        return (token != null);
+    }
+
+    private void endAttack()
+    {
+        enemyAttacksManager.ReturnToken(this.type, token);
+        token = null;
+        firing = false;
+        material.color = defaultColor;
+        nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
+        fireTimer = 0;
     }
 
     private void Fire()
     {
-        
+        transform.LookAt(player.gameObject.transform.position);
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
-
         bullet.GetComponent<Projectile>().Fire(this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
-        nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
-        fireTimer = 0;
+
+        endAttack();
     }
 
     protected override bool CheckLineOfSight()

@@ -118,7 +118,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851941712340838}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -185,8 +185,8 @@ MonoBehaviour:
   bulletForce: 5
   explosion: {fileID: 198411194026252318, guid: 73fff5a3acbe2c44e8ff90616f0bdc9f,
     type: 2}
-  fireTime: 0
-  reevaluateTetherTime: 0
+  fireTime: 1
+  reevaluateTetherTime: 1.5
   runningAway: 0
 --- !u!114 &114980296366610330
 MonoBehaviour:

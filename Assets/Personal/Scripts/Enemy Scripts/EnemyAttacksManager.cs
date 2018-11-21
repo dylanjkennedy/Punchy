@@ -10,23 +10,35 @@ public class EnemyAttacksManager : MonoBehaviour {
     void Start()
     {
         spawnManager = gameObject.GetComponent<SpawnManager>();
+        foreach (EnemyTypeTokens EnemyType in enemyTypes)
+        {
+            EnemyType.Start();
+        }
     }
 
-    //Request a token for a specific attack type from a specific enemy type, remove token from pool if available
-    public bool RequestToken(SpawnManager.EnemyType type, int attackType)
+    private void Update()
     {
-        if (enemyTypes[(int)type].attackAvailable(attackType))
+        foreach (EnemyTypeTokens EnemyType in enemyTypes)
         {
-            enemyTypes[(int)type].removeToken(attackType);
-            return true;
+            EnemyType.Update();
         }
-        return false;
+    }
+
+    //Request a token for a specific attack type from a enemy, remove token from pool if available
+    public Token RequestToken(GameObject enemy, int attackType)
+    {
+        int enemyType = (int)enemy.GetComponent<EnemyController>().Type;
+        if (enemyTypes[enemyType].attackAvailable(attackType))
+        {
+            return enemyTypes[enemyType].removeToken(enemy, attackType);
+        }
+        return null;
     }
 
     //Return a token for a specific attack type for a specific enemy type to the pool
-    public void ReturnToken(SpawnManager.EnemyType type, int attackType)
+    public void ReturnToken(SpawnManager.EnemyType type, Token token)
     {
-        enemyTypes[(int)type].returnToken(attackType);
+        enemyTypes[(int)type].returnToken(token);
     }
 
 
@@ -36,28 +48,31 @@ public class EnemyAttacksManager : MonoBehaviour {
 
         //Should this be implemented as an array of lists?
     [System.Serializable]
-    class EnemyTypeTokens : MonoBehaviour
+    class EnemyTypeTokens : object
     {
         [SerializeField] SpawnManager.EnemyType enemyType;
         [SerializeField] int[] maxTokensPerAttackType;
         [SerializeField] float[] attackTypeCooldowns;
 
-        Token[][] tokens;
-        private int[] tokensPerAttackType;
+        //Token[][] tokens;
+        //private int[] tokensPerAttackType;
         List<Token>[] availableTokens;
         List<Token>[] coolingTokens;
         List<Token>[] takenTokens;
 
-        private void Start()
+        public void Start()
         {
             availableTokens = new List<Token>[maxTokensPerAttackType.Length];
             coolingTokens = new List<Token>[maxTokensPerAttackType.Length];
             takenTokens = new List<Token>[maxTokensPerAttackType.Length];
             for (int i = 0; i < maxTokensPerAttackType.Length; i++)
             {
+                availableTokens[i] = new List<Token>();
+                coolingTokens[i] = new List<Token>();
+                takenTokens[i] = new List<Token>();
                 while (availableTokens[i].Count < maxTokensPerAttackType[i])
                 {
-                    availableTokens[i].Add(new Token(attackTypeCooldowns[i]));
+                    availableTokens[i].Add(new Token(attackTypeCooldowns[i], i));
                 }
             }
 
@@ -76,12 +91,13 @@ public class EnemyAttacksManager : MonoBehaviour {
             */
         }
 
-        private void Update()
+        public void Update()
         {
             List<Token>[] cooledTokens = new List<Token>[maxTokensPerAttackType.Length];
             float deltaTime = Time.deltaTime;
             for (int i = 0; i < coolingTokens.Length; i++)
             {
+                cooledTokens[i] = new List<Token>();
                 foreach(Token token in coolingTokens[i])
                 {
                     if (token.updateCooldown(deltaTime))
@@ -106,27 +122,34 @@ public class EnemyAttacksManager : MonoBehaviour {
             return (availableTokens[attackType].Count > 0);
         }
 
-        public void returnToken(int attackType)
+        public void returnToken(Token token)
         {
-
+            takenTokens[token.Type].Remove(token);
+            coolingTokens[token.Type].Add(token);
+            token.returnToken();
         }
 
-        public void removeToken(int attackType)
+        public Token removeToken(GameObject taker, int attackType)
         {
-            
+            Token token = availableTokens[attackType][0];
+            availableTokens[attackType].Remove(token);
+            token.takeToken(taker);
+            return token;
         }
     }
 
-    class Token : object
+    public class Token : object
     {
         GameObject owner;
         float attackCooldown;
         float currentCooldown;
+        int type;
         bool available;
-        public Token(float cooldown)
+        public Token(float cooldown, int tokenType)
         {
             attackCooldown = cooldown;
             currentCooldown = attackCooldown;
+            type = tokenType;
             available = true;
         }
 
@@ -158,6 +181,14 @@ public class EnemyAttacksManager : MonoBehaviour {
             get
             {
                 return available;
+            }
+        }
+
+        public int Type
+        {
+            get
+            {
+                return type;
             }
         }
 
