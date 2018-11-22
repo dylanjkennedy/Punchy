@@ -20,7 +20,9 @@ public class ChargeController : MonoBehaviour {
 	private float fullspeedTimescale = 1f;
 	private LayerMask enemyMask;
     private LayerMask emptyMask;
-	private PlayerMover playerMover;
+    private LayerMask enemyAndDefaultMask;
+
+    private PlayerMover playerMover;
     TimeScaleManager timeScaleManager;
 	Camera camera;
 
@@ -36,6 +38,7 @@ public class ChargeController : MonoBehaviour {
         slowmoWheel.fillMethod = Image.FillMethod.Radial360;
         slowmoWheel.fillAmount = 0f;
         enemyMask = LayerMask.GetMask("Enemy");
+        enemyAndDefaultMask = LayerMask.GetMask("Enemy", "Default");
         emptyMask = LayerMask.GetMask();
 		playerMover = gameObject.GetComponent<PlayerMover> ();
 		camera = Camera.main;
@@ -165,42 +168,50 @@ public class ChargeController : MonoBehaviour {
     }
 
 
-	private RaycastHit checkAttack()
-	{
-        
-		Ray attackRay;
-		RaycastHit attackHit;
-		attackRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+    private RaycastHit checkAttack()
+    {
+
+        Ray attackRay;
+        RaycastHit attackHit;
+        RaycastHit nullHit = getNullHit();
+        attackRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         //Vector3 startSpherePoint = camera.transform.position;
         //Vector3 endSpherePoint = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 2f));
         float radius = 1f;
 
-        if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyMask))
+        if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyAndDefaultMask))
         {
-            return attackHit;
-        }
-        else
-        {
-            RaycastHit[] hits = Physics.SphereCastAll(attackRay, radius, attackRange, enemyMask);
-
-            if (hits.Length > 0)
+            if (attackHit.transform.gameObject.tag == "Enemy")
             {
-                RaycastHit closestHit = hits[0];
-                float distance = 1000000000;
-                float tempDistance = 0;
-                foreach (RaycastHit hit in hits)
-                {
-                    //if hit is closest to attackRay and tagged as enemy
-                    tempDistance = DistanceToNearestPointOnLine(attackRay, hit);
-                    if (tempDistance < distance)
-                        closestHit = hit;                                      
-                }
-                return closestHit;
+                return attackHit;
             }
-            return getNullHit();
-        
-        }                   
-	}
+        }
+
+        RaycastHit[] hits = Physics.SphereCastAll(attackRay, radius, attackRange, enemyMask);
+
+        if (hits.Length > 0)
+        {
+            RaycastHit closestHit = nullHit;
+            float distance = Mathf.Infinity;
+            float tempDistance = 0;
+            foreach (RaycastHit hit in hits)
+            {
+                //if hit is closest to attackRay and tagged as enemy
+                tempDistance = DistanceToNearestPointOnLine(attackRay, hit);
+                if (tempDistance < distance)
+                    attackRay = new Ray(gameObject.transform.position, (hit.point - gameObject.transform.position).normalized);
+                if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyAndDefaultMask))
+                {
+                    if (attackHit.transform.gameObject.tag == "Enemy")
+                    {
+                        closestHit = hit;
+                    }
+                }
+            }
+            return closestHit;
+        }
+        return getNullHit();
+    }
 
     public float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
     {

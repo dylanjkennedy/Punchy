@@ -176,7 +176,7 @@ MonoBehaviour:
     type: 2}
   frequency: 2
   frequencyRange: 1
-  bulletSpeed: 15
+  bulletSpeed: 30
   bulletDamage: 5
   runAwayDistance: 6
   cylinder: {fileID: 1273696377677722}

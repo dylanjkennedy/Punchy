@@ -28,6 +28,7 @@ public class CylinderEnemyController : EnemyController
     Color defaultColor;
     Color fireColor = Color.magenta;
     Material material;
+    MeshRenderer renderer;
     private bool firing;
     private float nextFire;
     Vector3 destination;
@@ -50,7 +51,8 @@ public class CylinderEnemyController : EnemyController
     protected override void Start()
     {
         player = GameObject.Find("Player");
-        material = gameObject.GetComponent<MeshRenderer>().material;
+        renderer = gameObject.GetComponent<MeshRenderer>();
+        material = renderer.material;
         defaultColor = material.color;
         enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         direction = player.transform.position - this.transform.position;
