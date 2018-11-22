@@ -213,7 +213,14 @@ public class ChargeController : MonoBehaviour {
         return getNullHit();
     }
 
-    public float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
+    //not yet implemented
+    private RaycastHit RayFromNearestPointOnLine(Ray line, RaycastHit hit)
+    {
+        Vector3 targetPosition = hit.collider.gameObject.transform.position;
+        return getNullHit();
+    }
+
+    private float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
     {
         Vector3 direction = hit.point - camera.transform.position;
         float angle = Vector3.Angle(direction, line.direction);
