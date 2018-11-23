@@ -73,8 +73,11 @@ public class ChargeAttackState : PlayerState
         else if (!attacked)
         {
             playerMover.Move(Vector3.zero);
-
-            attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
+            if (attackTarget.collider != null)
+            {
+                attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
+            }
+            
             attacked = true;
             AddExplosion(attackTarget.point);
             stamina.RegainStamina(staminaRegain);

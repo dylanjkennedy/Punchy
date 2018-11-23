@@ -34,7 +34,7 @@ public class TetherController : MonoBehaviour {
         traceCanSeePlayer = new bool[traces.Length];
         ratioDiff = 1 / traces.Length;
 
-        mask = LayerMask.GetMask("Default", "Player", "Enemy");
+        mask = LayerMask.GetMask("Default", "Player");
 	}
 	
 	// Update is called once per frame
