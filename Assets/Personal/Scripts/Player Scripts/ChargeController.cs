@@ -26,19 +26,21 @@ public class ChargeController : MonoBehaviour {
     TimeScaleManager timeScaleManager;
 	Camera camera;
 
-    //TEMPORARY
-    Ray ray;
+#if UNITY_EDITOR
+    //For gizmos/debugging purposes
+    Ray debugCheckRay;
     Ray debugLine;
     Ray playerRay;
     Vector3 point;
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(ray.origin, ray.direction*10);
-        Gizmos.DrawRay(debugLine.origin, debugLine.direction * 2);
+        Gizmos.DrawRay(debugCheckRay.origin, debugCheckRay.direction*10);
+        Gizmos.DrawRay(debugLine.origin, debugLine.direction);
         Gizmos.DrawRay(playerRay.origin, playerRay.direction * 10);
 
         Gizmos.DrawWireSphere(point, 0.1f);
     }
+#endif
 
     // Use this for initialization
     void Start () {
@@ -189,8 +191,10 @@ public class ChargeController : MonoBehaviour {
         RaycastHit attackHit;
         RaycastHit nullHit = getNullHit();
         attackRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        //TEMP FOR DEBUGGING;
+#if UNITY_EDITOR
+        //For gizmos/debugging targeting;
         playerRay = attackRay;
+#endif
         Ray checkRay;
         //Vector3 startSpherePoint = camera.transform.position;
         //Vector3 endSpherePoint = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 2f));
@@ -209,20 +213,26 @@ public class ChargeController : MonoBehaviour {
         if (hits.Length > 0)
         {
             RaycastHit closestHit = nullHit;
-            float distance = Mathf.Infinity;
-            float tempDistance = 0;
+            float distance = Mathf.Infinity;float tempDistance = 0;
             foreach (RaycastHit hit in hits)
             {
                 //if hit is closest to attackRay and tagged as enemy
-                //tempDistance = DistanceToNearestPointOnLine(attackRay, hit);
-                //if (tempDistance < distance)
                 checkRay = new Ray(camera.transform.position, (RayFromNearestPointOnLine(attackRay, hit).point - camera.transform.position).normalized);
-                ray = checkRay;
+#if UNITY_EDITOR
+                //for debug
+                debugCheckRay = checkRay;
+#endif
+
+
                 if (Physics.Raycast(checkRay, out attackHit, attackRange, enemyAndDefaultMask))
                 {
                     if (attackHit.transform.gameObject.tag == "Enemy")
                     {
-                        closestHit = hit;
+                        if (attackHit.distance < distance)
+                        {
+                            closestHit = hit;
+                            distance = attackHit.distance;
+                        }
                     }
                 }
             }
@@ -240,26 +250,25 @@ public class ChargeController : MonoBehaviour {
         RaycastHit rayHit;
         Ray ray = new Ray(origin, (targetPosition - origin).normalized);
         Physics.Raycast(ray, out rayHit, enemyAndDefaultMask);
-
-        //TEMP for debugging
+#if UNITY_EDITOR
+        //for debugging
         debugLine = ray;
         point = rayHit.point;
-
+#endif
         return rayHit;
     }
-
+    /*
     private float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
     {
         Vector3 direction = hit.point - camera.transform.position;
         float angle = Vector3.Angle(direction, line.direction);
         return hit.distance * Mathf.Sin(angle);
-        /*
-        Vector3 lineDir = line.direction;
-        Vector3 linePoint = li
-        lineDir.Normalize();//this needs to be a unit vector
-        var v = point - linePoint;
-        var d = Vector3.Dot(v, lineDir);
-        return d;
-        */
-    }
+        
+        //Vector3 lineDir = line.direction;
+        //Vector3 linePoint = li
+        //lineDir.Normalize();//this needs to be a unit vector
+        //var v = point - linePoint;
+        //var d = Vector3.Dot(v, lineDir);
+        //return d;
+    }*/
 }
