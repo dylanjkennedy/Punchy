@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disappearTime: 2
   fadeTime: 2
-  sinkRate: 0.01
+  sinkRate: -0.01
 --- !u!222 &222290676685764906
 CanvasRenderer:
   m_ObjectHideFlags: 1
