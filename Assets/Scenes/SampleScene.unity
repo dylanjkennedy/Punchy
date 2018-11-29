@@ -383,6 +383,12 @@ Prefab:
       propertyPath: chargeTimeout
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 2}
+      propertyPath: scoreCanvas
+      value: 
+      objectReference: {fileID: 1153371129242632, guid: 54fa9fa6505d82e4a9c72c662c907596,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 2}
   m_IsPrefabAsset: 0

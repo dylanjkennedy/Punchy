@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour {
     [SerializeField] float comboTimeout;
     [SerializeField] Text scoreText;
     [SerializeField] Text comboText;
+    [SerializeField] GameObject scoreCanvas;
     float timer;
     int combo;
 	// Use this for initialization
@@ -27,12 +28,23 @@ public class ScoreManager : MonoBehaviour {
         }
 	}
 
-    public void changeScore(int change)
+    public void changeScore(int change, Vector3 position)
     {
         combo++;
         timer = 0;
-        score += change*combo;
+        int scoreChange = change * combo;
+        score += scoreChange;
         scoreText.text = score.ToString();
         comboText.text = combo.ToString();
+        createScoreInWorld(scoreChange, position);
+    }
+
+    public void createScoreInWorld(int score, Vector3 position)
+    {
+        GameObject newScoreCanvas = Instantiate(scoreCanvas);
+        newScoreCanvas.GetComponentInChildren<Text>().text = score.ToString();
+        newScoreCanvas.transform.position = position + new Vector3(0,1.5f,0);
+        newScoreCanvas.transform.LookAt(Camera.main.transform.position);
+        newScoreCanvas.transform.rotation = new Quaternion(0, newScoreCanvas.transform.rotation.y, 0, newScoreCanvas.transform.rotation.w);
     }
 }

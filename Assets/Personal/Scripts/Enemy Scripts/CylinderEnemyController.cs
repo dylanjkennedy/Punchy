@@ -259,7 +259,7 @@ public class CylinderEnemyController : EnemyController
             {
                 enemyAttacksManager.ReturnToken(type, token);
             }
-            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
+            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
             cylinder.SetActive(false);

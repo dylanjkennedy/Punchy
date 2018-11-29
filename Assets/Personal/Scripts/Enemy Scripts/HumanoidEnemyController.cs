@@ -105,7 +105,7 @@ public class HumanoidEnemyController : EnemyController {
 	public override void takeDamage(Vector3 point){
         if (!dead)
         {
-            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue);
+            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position + new Vector3(0,1,0));
             Explode();
         }
 	}
