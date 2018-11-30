@@ -43,6 +43,7 @@ public class CylinderEnemyController : EnemyController
     private TetherManager tetherManager;
     EnemyAttacksManager.Token token;
     [SerializeField] bool runningAway;
+    float defaultSpeed;
 
     private enum enemyState { movingState, tetheredState };
     private enemyState state;
@@ -62,6 +63,7 @@ public class CylinderEnemyController : EnemyController
         stateTimer = 0;
         nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
         nav = GetComponent<NavMeshAgent>();
+        defaultSpeed = nav.speed;
         dead = false;
         runningAway = false;
         firing = false;
@@ -76,6 +78,14 @@ public class CylinderEnemyController : EnemyController
     // Update is called once per frame
     protected override void Update()
     {
+        if (isVisible())
+        {
+            nav.speed = defaultSpeed / 2;
+        }
+        else
+        {
+            nav.speed = defaultSpeed;
+        }
     }
 
     protected override void FixedUpdate()
