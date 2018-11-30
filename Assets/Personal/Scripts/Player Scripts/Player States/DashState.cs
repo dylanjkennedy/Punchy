@@ -10,6 +10,7 @@ public class DashState : PlayerState
     PlayerMover playerMover;
     float dashSpeed = 50f;
     bool charging;
+    RaycastHit hit;
 
     private ChargeController chargeController;
 
@@ -24,7 +25,11 @@ public class DashState : PlayerState
 
     public override PlayerState FixedUpdate()
     {
-        chargeController.Charge(charging);
+        hit = chargeController.Charge(charging);
+        if (hit.collider != null)
+        {
+            return new ChargeAttackState(playerMover, hit);
+        }
         timer += Time.fixedDeltaTime;
         if (timer >= dashTime)
         {

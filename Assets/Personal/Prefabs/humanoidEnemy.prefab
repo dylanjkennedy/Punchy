@@ -1014,9 +1014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f4cb3266b70a249851564fcc623954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  nav: {fileID: 0}
-  rb: {fileID: 0}
   scoreValue: 10
   explosion: {fileID: 198287054347171484, guid: 6f80f9ee45d6f3145957d7e82774c065,
     type: 2}
@@ -1059,7 +1056,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1890200285836438}
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.4
   m_Height: 2.2
   m_Direction: 1

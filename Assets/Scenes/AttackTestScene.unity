@@ -6486,49 +6486,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 744898439}
-    - target: {fileID: 0}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 198411194026252318, guid: 73fff5a3acbe2c44e8ff90616f0bdc9f,
-        type: 2}
-    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 744898439}
-    - target: {fileID: 1851941712340838, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23708129213229988, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195437385035327378, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 136140121553254746, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 136140121553254746, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 136140121553254746, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 2}
-      propertyPath: m_Height
-      value: 2.32
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 2}
   m_IsPrefabAsset: 0

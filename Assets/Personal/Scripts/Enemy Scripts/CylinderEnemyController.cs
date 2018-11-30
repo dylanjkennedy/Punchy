@@ -262,7 +262,6 @@ public class CylinderEnemyController : EnemyController
             Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
-            cylinder.SetActive(false);
             Instantiate(fractures, transform.position, transform.rotation);
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
