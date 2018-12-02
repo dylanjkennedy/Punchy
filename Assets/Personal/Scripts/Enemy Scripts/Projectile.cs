@@ -31,6 +31,8 @@ public class Projectile : MonoBehaviour {
 		rb.velocity = direction * speed;
 		Damage = damage;
         Force = force;
+        //bit of a stopgap cuz I don't really know how shaders work yet
+        this.transform.Rotate(0,90,0);
 	}
 
 	void OnTriggerEnter(Collider other){
