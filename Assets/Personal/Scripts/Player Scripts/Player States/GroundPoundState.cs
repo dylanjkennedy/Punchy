@@ -7,9 +7,10 @@ public class GroundPoundState : PlayerState
     PlayerMover playerMover;
     Vector3 move;
     private float groundPoundSpeed = 30f;
+    private float groundPoundHopSpeed = 20f;
     bool grounded = false;
     float gravityMultiplier = 10;
-    float speedMaximum = 50f;
+    float speedMaximum = 35f;
     float physicsMaxForce = 40f;
     //float airSpeedMultiplier = 1;
     public bool vulnerable = true;
@@ -33,6 +34,7 @@ public class GroundPoundState : PlayerState
 
         if (grounded)
         {
+            Pound();
             return new GroundState(playerMover);
         }
 
@@ -57,18 +59,18 @@ public class GroundPoundState : PlayerState
 
     public override void Enter()
     {
-        move = new Vector3(0, -groundPoundSpeed, 0);
+        move = new Vector3(0, groundPoundHopSpeed, 0);
         charging = Input.GetButton("Fire1");
     }
 
-    public override void Exit()
+    private void Pound()
     {
 
         float speed = -move.y;
-        if (speed > 35)
+        if (speed > 25)
         {
-            float damageRange = (speed - 30)/5;
-            float physicsRange = (speed - 30)/3;
+            float damageRange = (speed - 20)/5;
+            float physicsRange = (speed - 20)/3;
             dealPoundDamage(damageRange);
             dealPoundImpacts(physicsRange);
             dealPoundPhysics(physicsRange);
@@ -91,7 +93,7 @@ public class GroundPoundState : PlayerState
     }
 
     private void dealPoundDamage(float range)
-    {
+    { 
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
         {

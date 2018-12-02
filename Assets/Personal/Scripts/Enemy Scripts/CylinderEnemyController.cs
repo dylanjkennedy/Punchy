@@ -80,11 +80,11 @@ public class CylinderEnemyController : EnemyController
     {
         if (isVisible())
         {
-            nav.speed = defaultSpeed / 2;
+            nav.speed = defaultSpeed;
         }
         else
         {
-            nav.speed = defaultSpeed;
+            nav.speed = defaultSpeed*2;
         }
     }
 
