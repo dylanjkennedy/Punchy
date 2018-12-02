@@ -43,6 +43,15 @@ public class ScoreManager : MonoBehaviour {
     {
         GameObject newScoreCanvas = Instantiate(scoreCanvas);
         newScoreCanvas.GetComponentInChildren<Text>().text = score.ToString();
+        if (score <= 50)
+        {
+            newScoreCanvas.GetComponentInChildren<Text>().color = Color.Lerp(Color.white, Color.blue, (float)score / 50f);
+        }
+        else
+        {
+            newScoreCanvas.GetComponentInChildren<Text>().color = Color.Lerp(Color.blue, Color.red, (float)(score-50) / 50f);
+        }
+        newScoreCanvas.transform.position = position + new Vector3(0, 1f, 0);
         newScoreCanvas.transform.position = position + new Vector3(0,1f,0);
         newScoreCanvas.transform.LookAt(Camera.main.transform.position);
         newScoreCanvas.transform.rotation = new Quaternion(0, newScoreCanvas.transform.rotation.y, 0, newScoreCanvas.transform.rotation.w);
