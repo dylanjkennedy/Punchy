@@ -26,6 +26,7 @@ public class HumanoidEnemyController : EnemyController {
 	bool dead;
     bool exploding;
     float maxDeadTime = 3;
+    float defaultSpeed;
     bool runningAway;
     bool frozen;
 
@@ -43,6 +44,7 @@ public class HumanoidEnemyController : EnemyController {
         //bulletScript = bullet.GetComponent<Projectile> ();
         timer = 0;
         nav = GetComponent<NavMeshAgent>();
+        defaultSpeed = nav.speed;
         dead = false;
         rb = GetComponent<Rigidbody>();
         frozen = false;
@@ -52,7 +54,14 @@ public class HumanoidEnemyController : EnemyController {
 	
 	// Update is called once per frame
 	protected override void Update () {
-
+        if (isVisible())
+        {
+            nav.speed = defaultSpeed;
+        }
+        else
+        {
+            nav.speed = defaultSpeed/2;
+        }
 	}
 
 	protected override void FixedUpdate() {
@@ -160,5 +169,10 @@ public class HumanoidEnemyController : EnemyController {
                 rb.AddExplosionForce(explodePower, transform.position, explodeRadius, 0F, ForceMode.Impulse);
             }
         }
+    }
+
+    protected override bool isVisible()
+    {
+        return this.GetComponentInChildren<SkinnedMeshRenderer>().IsVisibleFrom(Camera.main);
     }
 }

@@ -63,4 +63,9 @@ public class EnemyController : MonoBehaviour
             return type;
         }
     }
+
+    protected virtual bool isVisible()
+    {
+        return this.GetComponent<MeshRenderer>().IsVisibleFrom(Camera.main);
+    }
 }
