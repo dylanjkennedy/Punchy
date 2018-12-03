@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4406372592076846}
   - component: {fileID: 33731480981578860}
   - component: {fileID: 23708129213229988}
-  - component: {fileID: 136140121553254746}
   - component: {fileID: 195437385035327378}
   - component: {fileID: 114540523667167472}
   - component: {fileID: 143794598952234358}
@@ -127,19 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 1
---- !u!136 &136140121553254746
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851941712340838}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2.32
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!143 &143794598952234358
 CharacterController:
   m_ObjectHideFlags: 1
@@ -150,7 +136,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 2.3
   m_Radius: 0.5000001
   m_SlopeLimit: 45
   m_StepOffset: 0.3
