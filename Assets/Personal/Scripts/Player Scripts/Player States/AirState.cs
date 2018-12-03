@@ -23,8 +23,8 @@ public class AirState : PlayerState {
 	{
 		playerMover = pm;
 		initialVerticalSpeed = 0;
-		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+        chargeController = playerMover.ChargeController;
+        stamina = playerMover.PlayerStamina;
         groundPound = false;
 	}
 
@@ -32,8 +32,8 @@ public class AirState : PlayerState {
 	{
 		playerMover = pm;
 		initialVerticalSpeed = verticalSpeed;
-		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+        chargeController = playerMover.ChargeController;
+        stamina = playerMover.PlayerStamina;
         groundPound = false;
 	}
 

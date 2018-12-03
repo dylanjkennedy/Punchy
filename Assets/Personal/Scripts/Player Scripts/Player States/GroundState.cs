@@ -21,8 +21,8 @@ public class GroundState : PlayerState {
     public GroundState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
-		chargeController = playerMover.gameObject.GetComponent<ChargeController> ();
-        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+		chargeController = playerMover.ChargeController;
+        stamina = playerMover.PlayerStamina;
 	}
 
 	public override PlayerState FixedUpdate()

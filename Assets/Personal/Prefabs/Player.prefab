@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 124701142065360458}
   - component: {fileID: 114800909922622860}
   - component: {fileID: 114601830658752590}
+  - component: {fileID: 114207197334668020}
+  - component: {fileID: 114852793992819660}
+  - component: {fileID: 114526422660771746}
   m_Layer: 11
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -46,6 +49,7 @@ GameObject:
   - component: {fileID: 114772176358725348}
   - component: {fileID: 114997014630704868}
   - component: {fileID: 114189614645218814}
+  - component: {fileID: 114812462051641692}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -265,12 +269,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a3bcad78e5df7409a5199bd20453e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeTimeout: 1
+  chargeTimeout: 1.5
   timeToCharge: 0.5
   chargeCooldownTime: 1
   slowmoTimescale: 0.25
   chargeWheel: {fileID: 0}
+  slowmoWheel: {fileID: 0}
   attackRange: 10
+--- !u!114 &114207197334668020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185202431875136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483023ec57476834d95fce9a7259cb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - enemyType: 0
+    maxTokensPerAttackType: 05000000
+    attackTypeCooldowns:
+    - 0.5
+  - enemyType: 1
+    maxTokensPerAttackType: 64000000
+    attackTypeCooldowns:
+    - 0
+--- !u!114 &114526422660771746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185202431875136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75338877cd39342489d44d4d8299a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traceUpdatesPerFrame: 900
 --- !u!114 &114601830658752590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,6 +345,34 @@ MonoBehaviour:
   comboTimeout: 2
   scoreText: {fileID: 0}
   comboText: {fileID: 0}
+  scoreCanvas: {fileID: 1153371129242632, guid: 54fa9fa6505d82e4a9c72c662c907596,
+    type: 2}
+--- !u!114 &114812462051641692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355902032486888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94086094e1997dd4fa88b62805599509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaBar: {fileID: 0}
+  maxStamina: 100
+  staminaRegen: 10
+  regenDelay: 2
+--- !u!114 &114852793992819660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185202431875136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06cb0e4a30d6824ba2b0396c7bd7e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114997014630704868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,7 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   stickToGroundForce: 10
-  jumpSpeed: 10
+  jumpSpeed: 12
   _mouseLook:
     XSensitivity: 2
     YSensitivity: 2

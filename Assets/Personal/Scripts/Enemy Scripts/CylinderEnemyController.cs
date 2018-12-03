@@ -13,22 +13,17 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float bulletSpeed;
     [SerializeField] int bulletDamage;
     [SerializeField] float runAwayDistance;
-    [SerializeField] GameObject cylinder;
     [SerializeField] GameObject fractures;
     [SerializeField] int scoreValue;
     [SerializeField] float bulletForce;
     [SerializeField] ParticleSystem explosion;
     [SerializeField] float fireTime;
     [SerializeField] float reevaluateTetherTime;
-    //[SerializeField] float explodeRadius;
-    //[SerializeField] float explodePower;
-    //[SerializeField] float minPlayerDistance;
-    //[SerializeField] float maxRunAwayDistance;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
     Material material;
-    MeshRenderer renderer;
+    MeshRenderer cachedRenderer;
     private bool firing;
     private float nextFire;
     Vector3 destination;
@@ -51,14 +46,12 @@ public class CylinderEnemyController : EnemyController
     // Use this for initialization
     protected override void Start()
     {
-        player = GameObject.Find("Player");
-        renderer = gameObject.GetComponent<MeshRenderer>();
-        material = renderer.material;
+        cachedRenderer = gameObject.GetComponent<MeshRenderer>();
+        material = cachedRenderer.material;
         defaultColor = material.color;
         enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
         direction = player.transform.position - this.transform.position;
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
-        //bulletScript = bullet.GetComponent<Projectile> ();
         type = SpawnManager.EnemyType.Cylinder;
         stateTimer = 0;
         nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
@@ -68,7 +61,6 @@ public class CylinderEnemyController : EnemyController
         runningAway = false;
         firing = false;
         fireTimer = 0;
-        rb = GetComponent<Rigidbody>();
 
         tether = this.findBestTether();
         destination = findNewPositionInTether();
@@ -333,5 +325,10 @@ public class CylinderEnemyController : EnemyController
         tethers[minWeightIndex].changeOccupants(1);
 
         return tethers[minWeightIndex].gameObject;
+    }
+
+    protected override bool isVisible()
+    {
+        return cachedRenderer.IsVisibleFrom(playerCamera);
     }
 }

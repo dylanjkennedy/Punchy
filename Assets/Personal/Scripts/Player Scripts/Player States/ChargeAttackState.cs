@@ -36,7 +36,7 @@ public class ChargeAttackState : PlayerState
         attacked = false;
         vulnerable = false;
         timeScaleManager = Camera.main.GetComponent<TimeScaleManager>();
-        stamina = playerMover.gameObject.gameObject.GetComponent<PlayerStamina>();
+        stamina = playerMover.PlayerStamina;
     }
 
     public override void Enter()

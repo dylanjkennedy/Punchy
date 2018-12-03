@@ -29,27 +29,23 @@ public class HumanoidEnemyController : EnemyController {
     float defaultSpeed;
     bool runningAway;
     bool frozen;
+    private SkinnedMeshRenderer cachedRenderer;
 
     Material material;
     
 
 	// Use this for initialization
 	protected override void Start () {
-        player = GameObject.Find("Player");
         character = gameObject.GetComponent<ThirdPersonCharacter>();
         enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
-        material = gameObject.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        cachedRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        material = cachedRenderer.material;
         type = SpawnManager.EnemyType.Humanoid;
-        //direction = player.transform.position - this.transform.position;
-        //bulletScript = bullet.GetComponent<Projectile> ();
         timer = 0;
         nav = GetComponent<NavMeshAgent>();
         defaultSpeed = nav.speed;
         dead = false;
-        rb = GetComponent<Rigidbody>();
         frozen = false;
-
-        //base.Start();
 	}
 	
 	// Update is called once per frame
@@ -87,13 +83,6 @@ public class HumanoidEnemyController : EnemyController {
                     Explode();
                 }
             }
-            /*
-            if (nav.remainingDistance > nav.stoppingDistance)
-                character.Move(nav.desiredVelocity, false, false);
-            else
-                character.Move(Vector3.zero, false, false);
-                */
-
         }
 
         if (frozen)
@@ -123,7 +112,6 @@ public class HumanoidEnemyController : EnemyController {
 	{
         dead = true;
         timer = 0;
-        //Instantiate(fractures, transform.position, transform.rotation);
         DealExplosionDamage();
         DealExplosionPhysics();
 
@@ -173,6 +161,6 @@ public class HumanoidEnemyController : EnemyController {
 
     protected override bool isVisible()
     {
-        return this.GetComponentInChildren<SkinnedMeshRenderer>().IsVisibleFrom(Camera.main);
+        return cachedRenderer.IsVisibleFrom(playerCamera);
     }
 }

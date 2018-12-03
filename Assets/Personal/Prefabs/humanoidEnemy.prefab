@@ -1014,6 +1014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f4cb3266b70a249851564fcc623954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAttacksManager: {fileID: 0}
+  player: {fileID: 0}
+  nav: {fileID: 195734965169488068}
+  playerCamera: {fileID: 0}
   scoreValue: 10
   explosion: {fileID: 198287054347171484, guid: 6f80f9ee45d6f3145957d7e82774c065,
     type: 2}

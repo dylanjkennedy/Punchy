@@ -18,7 +18,7 @@ public class DashState : PlayerState
     public DashState(PlayerMover pm) : base(pm)
     {
         playerMover = pm;
-        chargeController = playerMover.gameObject.GetComponent<ChargeController>();
+        chargeController = playerMover.ChargeController;
         timer = 0;
         vulnerable = false;
     }
@@ -39,8 +39,6 @@ public class DashState : PlayerState
             }
             return new AirState(playerMover);
         }
-        //Debug.Log((destination - playerMover.transform.position) / (dashTime / Time.fixedDeltaTime));
-        //playerMover.Move((destination - playerMover.transform.position)/(dashTime/Time.fixedDeltaTime));
 
         playerMover.Move(movement);
         MouseLookFixedUpdate();
@@ -67,9 +65,6 @@ public class DashState : PlayerState
             movement.z *= dashSpeed;
         }
         movement.y =  0;
-        
-        
-        //destination = playerMover.transform.position + desiredMove * dashLength;
     }
 }
 

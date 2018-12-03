@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e2d072e434d30459d5ab706366eddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAttacksManager: {fileID: 0}
+  player: {fileID: 0}
+  nav: {fileID: 195437385035327378}
+  playerCamera: {fileID: 0}
   bulletPrefab: {fileID: 1260433506269500, guid: 94c31c315b8315b4a8259ddf55b6ad2e,
     type: 2}
   frequency: 2
@@ -105,7 +109,6 @@ MonoBehaviour:
   bulletSpeed: 30
   bulletDamage: 5
   runAwayDistance: 6
-  cylinder: {fileID: 0}
   fractures: {fileID: 1267450237954100, guid: e2c63e136a79c3a48aebb5041d7b4774, type: 2}
   scoreValue: 10
   bulletForce: 5

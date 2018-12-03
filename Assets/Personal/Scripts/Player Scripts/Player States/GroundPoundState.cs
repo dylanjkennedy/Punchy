@@ -23,7 +23,7 @@ public class GroundPoundState : PlayerState
     {
         playerMover = pm;
         vulnerable = false;
-        chargeController = playerMover.gameObject.GetComponent<ChargeController>();
+        chargeController = playerMover.ChargeController;
         //enemyMask = LayerMask.GetMask("Enemy");
     }
 
@@ -69,8 +69,8 @@ public class GroundPoundState : PlayerState
         float speed = -move.y;
         if (speed > 25)
         {
-            float damageRange = (speed - 20)/5;
-            float physicsRange = (speed - 20)/3;
+            float damageRange = (speed - 20)/3;
+            float physicsRange = (speed - 20)/2;
             dealPoundDamage(damageRange);
             dealPoundImpacts(physicsRange);
             dealPoundPhysics(physicsRange);
@@ -83,11 +83,11 @@ public class GroundPoundState : PlayerState
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-
+            float forceMultiplier = physicsMaxForce / range;
             if (rb != null)
             {
-                rb.AddExplosionForce(physicsMaxForce * (1 - (Vector3.Distance(hit.gameObject.transform.position, 
-                    playerMover.transform.position) / range)), playerMover.transform.position, range, 0F, ForceMode.Impulse);
+                rb.AddExplosionForce(forceMultiplier*(Vector3.Distance(hit.gameObject.transform.position, 
+                    playerMover.transform.position)), playerMover.transform.position, range, 0F, ForceMode.Impulse);
             }
         }
     }
@@ -109,11 +109,11 @@ public class GroundPoundState : PlayerState
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
         foreach (Collider hit in colliders)
         {
+            float forceMultiplier = physicsMaxForce / range;
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 //adds an impulse relative to how close they are to the center of the impact
-                hit.gameObject.GetComponent<ImpactReceiver>().AddImpact(hit.gameObject.transform.position - playerMover.transform.position, 
-                    physicsMaxForce * (1-(Vector3.Distance(hit.gameObject.transform.position, playerMover.transform.position)/range)));
+                hit.gameObject.GetComponent<ImpactReceiver>().AddImpact(hit.gameObject.transform.position - playerMover.transform.position, forceMultiplier*(Vector3.Distance(hit.gameObject.transform.position, playerMover.transform.position)));
             }
         }
     }

@@ -10,6 +10,16 @@ public class PlayerMover : MonoBehaviour
 	[SerializeField] public float speed;
 	[SerializeField] public float stickToGroundForce;
 	private CharacterController characterController;
+    private ChargeController chargeController;
+    public ChargeController ChargeController
+    {
+        get { return chargeController; }
+    }
+    private PlayerStamina playerStamina;
+    public PlayerStamina PlayerStamina
+    {
+        get { return playerStamina; }
+    }
 	private CollisionFlags collisionFlags;
     public PlayerState currentState;
 	[SerializeField] public float jumpSpeed;
@@ -30,6 +40,8 @@ public class PlayerMover : MonoBehaviour
         mouseLook.Init(transform, m_Camera.transform);
         currentState = new GroundState(this);
         dead = false;
+        chargeController = GetComponent<ChargeController>();
+        playerStamina = GetComponent<PlayerStamina>();
     }
 
 

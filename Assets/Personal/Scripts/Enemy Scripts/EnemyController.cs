@@ -6,19 +6,15 @@ using UnityScript.Steps;
 
 public class EnemyController : MonoBehaviour
 {
-    protected EnemyAttacksManager enemyAttacksManager;
-    protected GameObject player;
-    protected NavMeshAgent nav;
-    protected Rigidbody rb;
+    [SerializeField] protected EnemyAttacksManager enemyAttacksManager;
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected NavMeshAgent nav;
     protected SpawnManager.EnemyType type;
+    [SerializeField] protected Camera playerCamera;
 
     // Use this for initialization
     protected virtual void Start()
     {
-        player = GameObject.Find("Player");
-        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
-        nav = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
