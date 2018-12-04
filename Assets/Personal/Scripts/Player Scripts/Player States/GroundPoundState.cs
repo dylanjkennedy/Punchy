@@ -6,14 +6,12 @@ public class GroundPoundState : PlayerState
 {
     PlayerMover playerMover;
     Vector3 move;
-    private float groundPoundSpeed = 30f;
     private float groundPoundHopSpeed = 20f;
     bool grounded = false;
     float gravityMultiplier = 10;
     float speedMaximum = 35f;
     float physicsMaxForce = 40f;
     //float airSpeedMultiplier = 1;
-    public bool vulnerable = true;
     bool charging;
     RaycastHit hit;
     private LayerMask enemyMask;
@@ -24,7 +22,8 @@ public class GroundPoundState : PlayerState
         playerMover = pm;
         vulnerable = false;
         chargeController = playerMover.ChargeController;
-        //enemyMask = LayerMask.GetMask("Enemy");
+        vulnerable = true;
+    //enemyMask = LayerMask.GetMask("Enemy");
     }
 
 
@@ -82,7 +81,7 @@ public class GroundPoundState : PlayerState
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Debris"));
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            Rigidbody rb = hit.attachedRigidbody;
             float forceMultiplier = physicsMaxForce / range;
             if (rb != null)
             {

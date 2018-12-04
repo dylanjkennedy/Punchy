@@ -199,5 +199,13 @@ public class EnemyAttacksManager : MonoBehaviour {
                 return (currentCooldown < attackCooldown);
             }
         }
+
+        public GameObject Owner
+        {
+            get
+            {
+                return owner;
+            }
+        }
     }
 }

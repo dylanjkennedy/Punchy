@@ -15,7 +15,7 @@ public class TetherController : MonoBehaviour {
 
     [SerializeField] float seenRatio = 0f;
 
-    float ratioDiff;
+    //float ratioDiff;
 
     LayerMask mask;
 
@@ -32,7 +32,7 @@ public class TetherController : MonoBehaviour {
 
         traces = this.gameObject.GetComponentsInChildren<Transform>();
         traceCanSeePlayer = new bool[traces.Length];
-        ratioDiff = 1 / traces.Length;
+        //ratioDiff = 1 / traces.Length;
 
         mask = LayerMask.GetMask("Default", "Player");
 	}
@@ -72,7 +72,7 @@ public class TetherController : MonoBehaviour {
 
     public float updateTrace(int traceNum)
     {
-        bool previousStatus = traceCanSeePlayer[traceNum];
+        //bool previousStatus = traceCanSeePlayer[traceNum];
         traceCanSeePlayer[traceNum] = CheckLineOfSight(traceNum);
 
         /*

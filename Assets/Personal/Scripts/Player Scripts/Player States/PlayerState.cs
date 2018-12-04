@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class PlayerState
+public abstract class PlayerState
 {
     private PlayerMover playerMover;
     private MouseLook mouseLook;

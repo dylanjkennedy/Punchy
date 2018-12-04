@@ -27,8 +27,6 @@ public class CylinderEnemyController : EnemyController
     private bool firing;
     private float nextFire;
     Vector3 destination;
-    //private Projectile bulletScript;
-    private Vector3 direction;
     private float stateTimer;
     private float fireTimer;
     private GameObject tether;
@@ -37,7 +35,6 @@ public class CylinderEnemyController : EnemyController
     float maxDeadTime = 3;
     private TetherManager tetherManager;
     EnemyAttacksManager.Token token;
-    [SerializeField] bool runningAway;
     float defaultSpeed;
 
     private enum enemyState { movingState, tetheredState };
@@ -50,7 +47,6 @@ public class CylinderEnemyController : EnemyController
         material = cachedRenderer.material;
         defaultColor = material.color;
         enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
-        direction = player.transform.position - this.transform.position;
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
         type = SpawnManager.EnemyType.Cylinder;
         stateTimer = 0;
@@ -58,7 +54,6 @@ public class CylinderEnemyController : EnemyController
         nav = GetComponent<NavMeshAgent>();
         defaultSpeed = nav.speed;
         dead = false;
-        runningAway = false;
         firing = false;
         fireTimer = 0;
 
@@ -143,7 +138,7 @@ public class CylinderEnemyController : EnemyController
         //PROBLEM: tether = this.findBestTether();
         // check if position is in radius of tether
 
-        tetherRadius = tether.GetComponent<TetherController>().Radius;
+        
         if (Vector3.Distance(tether.transform.position, this.transform.position) <= tetherRadius)
         {
             stateTimer = 0;
@@ -170,6 +165,7 @@ public class CylinderEnemyController : EnemyController
             else
             {
                 tether = newTether;
+                tetherRadius = tether.GetComponent<TetherController>().Radius;
                 destination = findNewPositionInTether();
                 return enemyState.movingState;
             }
@@ -261,7 +257,7 @@ public class CylinderEnemyController : EnemyController
             {
                 enemyAttacksManager.ReturnToken(type, token);
             }
-            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position);
+            playerCamera.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
             Instantiate(fractures, transform.position, transform.rotation);

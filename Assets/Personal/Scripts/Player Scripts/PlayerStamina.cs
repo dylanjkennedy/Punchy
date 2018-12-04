@@ -11,7 +11,6 @@ public class PlayerStamina : MonoBehaviour {
     float stamina;
     float regenDelayTimer;
     bool regenerating;
-    PlayerMover playerMover;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +18,6 @@ public class PlayerStamina : MonoBehaviour {
         staminaBar.type = Image.Type.Filled;
         staminaBar.fillMethod = Image.FillMethod.Horizontal;
         staminaBar.fillAmount = 1f;
-        playerMover = gameObject.GetComponent<PlayerMover>();
     }
 	
 	// Update is called once per frame

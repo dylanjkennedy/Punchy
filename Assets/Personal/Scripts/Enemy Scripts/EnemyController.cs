@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityScript.Steps;
 
-public class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour
 {
     [SerializeField] protected EnemyAttacksManager enemyAttacksManager;
     [SerializeField] protected GameObject player;

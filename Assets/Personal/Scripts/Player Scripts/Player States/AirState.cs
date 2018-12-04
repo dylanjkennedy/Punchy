@@ -16,7 +16,6 @@ public class AirState : PlayerState {
     float groundPoundCost = 25f;
 	private ChargeController chargeController;
     private PlayerStamina stamina;
-    public bool vulnerable = true;
     RaycastHit hit;
 
 	public AirState(PlayerMover pm) : base(pm)
@@ -26,7 +25,8 @@ public class AirState : PlayerState {
         chargeController = playerMover.ChargeController;
         stamina = playerMover.PlayerStamina;
         groundPound = false;
-	}
+        vulnerable = true;
+    }
 
 	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
 	{
@@ -35,7 +35,8 @@ public class AirState : PlayerState {
         chargeController = playerMover.ChargeController;
         stamina = playerMover.PlayerStamina;
         groundPound = false;
-	}
+        vulnerable = true;
+    }
 
 	public override PlayerState FixedUpdate()
 	{

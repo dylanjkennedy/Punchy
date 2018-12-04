@@ -103,7 +103,7 @@ public class HumanoidEnemyController : EnemyController {
 	public override void takeDamage(Vector3 point){
         if (!dead)
         {
-            Camera.main.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position + new Vector3(0,1,0));
+            playerCamera.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position + new Vector3(0,1,0));
             Explode();
         }
 	}
@@ -150,7 +150,7 @@ public class HumanoidEnemyController : EnemyController {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explodeRadius, LayerMask.GetMask("Debris"));
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            Rigidbody rb = hit.attachedRigidbody;
 
             if (rb != null)
             {

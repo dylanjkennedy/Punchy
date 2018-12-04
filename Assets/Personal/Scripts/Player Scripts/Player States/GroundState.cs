@@ -11,7 +11,6 @@ public class GroundState : PlayerState {
 	bool charging;
 	bool grounded;
     bool dashing;
-    public bool vulnerable = true;
     float dashCost = 20;
 
     private ChargeController chargeController;
@@ -23,7 +22,8 @@ public class GroundState : PlayerState {
 		playerMover = pm;
 		chargeController = playerMover.ChargeController;
         stamina = playerMover.PlayerStamina;
-	}
+        vulnerable = true;
+    }
 
 	public override PlayerState FixedUpdate()
 	{

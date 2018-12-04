@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class ChargeController : MonoBehaviour {
 	private float currentCharge;
 	private float chargedTime;
-	//private float currentCooldown;
-	//private bool charging;
 	private bool chargeCooling;
 	private bool charged;
 	[SerializeField] private float chargeTimeout;
@@ -17,14 +15,11 @@ public class ChargeController : MonoBehaviour {
 	[SerializeField] private Image chargeWheel;
     [SerializeField] private Image slowmoWheel;
 	[SerializeField] private float attackRange;
-	private float fullspeedTimescale = 1f;
 	private LayerMask enemyMask;
     private LayerMask emptyMask;
     private LayerMask enemyAndDefaultMask;
-
-    private PlayerMover playerMover;
     TimeScaleManager timeScaleManager;
-	Camera camera;
+	Camera mainCamera;
 
 #if UNITY_EDITOR
     //For gizmos/debugging purposes
@@ -45,7 +40,6 @@ public class ChargeController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		currentCharge = 0;
-		//charging = false;
 		chargedTime = 0;
 		chargeWheel.type = Image.Type.Filled;
 		chargeWheel.fillMethod = Image.FillMethod.Radial360;
@@ -56,9 +50,8 @@ public class ChargeController : MonoBehaviour {
         enemyMask = LayerMask.GetMask("Enemy");
         enemyAndDefaultMask = LayerMask.GetMask("Enemy", "Default");
         emptyMask = LayerMask.GetMask();
-		playerMover = gameObject.GetComponent<PlayerMover> ();
-		camera = Camera.main;
-        timeScaleManager = camera.GetComponent<TimeScaleManager>();
+		mainCamera = Camera.main;
+        timeScaleManager = mainCamera.GetComponent<TimeScaleManager>();
 	}
 
     private void UpdateSlowmoWheel()
@@ -190,7 +183,7 @@ public class ChargeController : MonoBehaviour {
         Ray attackRay;
         RaycastHit attackHit;
         RaycastHit nullHit = getNullHit();
-        attackRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        attackRay = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 #if UNITY_EDITOR
         //For gizmos/debugging targeting;
         playerRay = attackRay;
@@ -213,11 +206,11 @@ public class ChargeController : MonoBehaviour {
         if (hits.Length > 0)
         {
             RaycastHit closestHit = nullHit;
-            float distance = Mathf.Infinity;float tempDistance = 0;
+            float distance = Mathf.Infinity;
             foreach (RaycastHit hit in hits)
             {
                 //if hit is closest to attackRay and tagged as enemy
-                checkRay = new Ray(camera.transform.position, (RayFromNearestPointOnLine(attackRay, hit).point - camera.transform.position).normalized);
+                checkRay = new Ray(mainCamera.transform.position, (RayFromNearestPointOnLine(attackRay, hit).point - mainCamera.transform.position).normalized);
 #if UNITY_EDITOR
                 //for debug
                 debugCheckRay = checkRay;
@@ -244,9 +237,9 @@ public class ChargeController : MonoBehaviour {
     private RaycastHit RayFromNearestPointOnLine(Ray line, RaycastHit hit)
     {
         Vector3 targetPosition = hit.collider.gameObject.transform.position;
-        Vector3 positionDifference = targetPosition - camera.transform.position;
+        Vector3 positionDifference = targetPosition - mainCamera.transform.position;
         float magnitude = Vector3.Dot(positionDifference, line.direction);
-        Vector3 origin = camera.transform.position + line.direction * magnitude;
+        Vector3 origin = mainCamera.transform.position + line.direction * magnitude;
         RaycastHit rayHit;
         Ray ray = new Ray(origin, (targetPosition - origin).normalized);
         Physics.Raycast(ray, out rayHit, enemyAndDefaultMask);
@@ -257,18 +250,4 @@ public class ChargeController : MonoBehaviour {
 #endif
         return rayHit;
     }
-    /*
-    private float DistanceToNearestPointOnLine(Ray line, RaycastHit hit)
-    {
-        Vector3 direction = hit.point - camera.transform.position;
-        float angle = Vector3.Angle(direction, line.direction);
-        return hit.distance * Mathf.Sin(angle);
-        
-        //Vector3 lineDir = line.direction;
-        //Vector3 linePoint = li
-        //lineDir.Normalize();//this needs to be a unit vector
-        //var v = point - linePoint;
-        //var d = Vector3.Dot(v, lineDir);
-        //return d;
-    }*/
 }
