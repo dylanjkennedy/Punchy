@@ -25,10 +25,10 @@ public class TetherManager : MonoBehaviour {
         }
 		while (traceUpdatesPerFrame > tracesThisFrame)
         {
-            tethers[currentTether].updateTrace(currentTrace);
+            tethers[currentTether].UpdateTrace(currentTrace);
             currentTrace++;
 
-            if (currentTrace >= tethers[currentTether].numTraces)
+            if (currentTrace >= tethers[currentTether].NumberOfTraces)
             {
                 currentTrace = 0;
                 currentTether++;
@@ -71,7 +71,7 @@ public class TetherManager : MonoBehaviour {
     }
     */
 
-    public void addTether(TetherController tether)
+    public void AddTether(TetherController tether)
     {
         tethers.Add(tether);
         tetherTraceRatios.Add(tether.TraceRatio);

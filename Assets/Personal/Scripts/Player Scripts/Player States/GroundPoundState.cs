@@ -23,7 +23,7 @@ public class GroundPoundState : PlayerState
         vulnerable = false;
         chargeController = playerMover.ChargeController;
         vulnerable = true;
-    //enemyMask = LayerMask.GetMask("Enemy");
+        enemyMask = LayerMask.GetMask("Enemy");
     }
 
 
@@ -70,13 +70,13 @@ public class GroundPoundState : PlayerState
         {
             float damageRange = (speed - 20)/3;
             float physicsRange = (speed - 20)/2;
-            dealPoundDamage(damageRange);
-            dealPoundImpacts(physicsRange);
-            dealPoundPhysics(physicsRange);
+            DealPoundDamage(damageRange);
+            DealPoundImpacts(physicsRange);
+            DealPoundPhysics(physicsRange);
         }
     }
 
-    private void dealPoundPhysics(float range)
+    private void DealPoundPhysics(float range)
     {
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Debris"));
         foreach (Collider hit in colliders)
@@ -91,9 +91,9 @@ public class GroundPoundState : PlayerState
         }
     }
 
-    private void dealPoundDamage(float range)
+    private void DealPoundDamage(float range)
     { 
-        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
+        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, enemyMask);
         foreach (Collider hit in colliders)
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -103,9 +103,9 @@ public class GroundPoundState : PlayerState
         }
     }
 
-    private void dealPoundImpacts(float range)
+    private void DealPoundImpacts(float range)
     {
-        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, LayerMask.GetMask("Enemy"));
+        Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, enemyMask);
         foreach (Collider hit in colliders)
         {
             float forceMultiplier = physicsMaxForce / range;

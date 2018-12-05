@@ -5,7 +5,7 @@ public static class RendererExtensions
 {
     //checks if a renderer is visible from a specific camera. Note that this does NOT take into account obstacles, so if an object is obscured
     //by another object, it is still "visible" from the camera
-    public static bool IsVisibleFrom(this Renderer renderer, Camera camera)
+    public static bool isVisibleFrom(this Renderer renderer, Camera camera)
     {
         //calculates view box 
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);

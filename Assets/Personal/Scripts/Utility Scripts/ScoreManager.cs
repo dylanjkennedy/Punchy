@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour {
         }
 	}
 
-    public void changeScore(int change, Vector3 position)
+    public void ChangeScore(int change, Vector3 position)
     {
         combo++;
         timer = 0;
@@ -36,10 +36,10 @@ public class ScoreManager : MonoBehaviour {
         score += scoreChange;
         scoreText.text = score.ToString();
         comboText.text = combo.ToString();
-        createScoreInWorld(scoreChange, position);
+        CreateScoreInWorld(scoreChange, position);
     }
 
-    public void createScoreInWorld(int score, Vector3 position)
+    public void CreateScoreInWorld(int score, Vector3 position)
     {
         GameObject newScoreCanvas = Instantiate(scoreCanvas);
         Text newScoreText = newScoreCanvas.GetComponentInChildren<Text>();

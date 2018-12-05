@@ -20,7 +20,7 @@ public class ChargeAttackState : PlayerState
     bool dashing;
     bool attacked;
     TimeScaleManager timeScaleManager;
-    PlayerStamina stamina;
+    PlayerStamina playerStamina;
     
 
     float explodeRadius = 1;
@@ -36,7 +36,7 @@ public class ChargeAttackState : PlayerState
         attacked = false;
         vulnerable = false;
         timeScaleManager = Camera.main.GetComponent<TimeScaleManager>();
-        stamina = playerMover.PlayerStamina;
+        playerStamina = playerMover.PlayerStamina;
     }
 
     public override void Enter()
@@ -67,7 +67,7 @@ public class ChargeAttackState : PlayerState
         {
             playerMover.Move(moveTarget - playerMover.transform.position);
             dashing = false;
-            timeScaleManager.changeTimeScale(slowestTimeScale, postHitTime, slowmoLerpFactor);
+            timeScaleManager.ChangeTimeScale(slowestTimeScale, postHitTime, slowmoLerpFactor);
             timer += Time.fixedUnscaledDeltaTime;
         }
         else if (!attacked)
@@ -80,7 +80,7 @@ public class ChargeAttackState : PlayerState
             
             attacked = true;
             AddExplosion(attackTarget.point);
-            stamina.RegainStamina(staminaRegain);
+            playerStamina.RegainStamina(staminaRegain);
             timer += Time.fixedDeltaTime;
         }
         else

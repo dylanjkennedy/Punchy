@@ -26,7 +26,7 @@ public class TetherController : MonoBehaviour {
     void Awake() {
         //subject to change
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
-        tetherManager.addTether(this);
+        tetherManager.AddTether(this);
 
         player = GameObject.Find("Player");
 
@@ -70,7 +70,7 @@ public class TetherController : MonoBehaviour {
         }
     }
 
-    public float updateTrace(int traceNum)
+    public float UpdateTrace(int traceNum)
     {
         //bool previousStatus = traceCanSeePlayer[traceNum];
         traceCanSeePlayer[traceNum] = CheckLineOfSight(traceNum);
@@ -110,7 +110,7 @@ public class TetherController : MonoBehaviour {
         return false;
     }
 
-    public int numTraces
+    public int NumberOfTraces
     {
         get
         {

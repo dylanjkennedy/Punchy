@@ -36,11 +36,11 @@ public class TimeScaleManager : MonoBehaviour {
             {
                 currentTimeScale = Mathf.Lerp(currentTimeScale, normalTimeScale, lerpFactor);
             }
-            updateTimeScale();
+            UpdateTimeScale();
         }
     }
 
-    public void changeTimeScale(float newTimeScale, float time, float lerpAmount)
+    public void ChangeTimeScale(float newTimeScale, float time, float lerpAmount)
     {
         currentTimeScale = newTimeScale;
         if (lerpAmount == float.NegativeInfinity)
@@ -64,13 +64,13 @@ public class TimeScaleManager : MonoBehaviour {
         timer = 0;
     }
 
-    public void fullspeedTimeScale()
+    public void FullspeedTimeScale()
     {
         currentTimeScale = normalTimeScale;
-        updateTimeScale();
+        UpdateTimeScale();
     }
 
-    void updateTimeScale()
+    void UpdateTimeScale()
     {
         Time.timeScale = currentTimeScale;
         Time.fixedDeltaTime = 0.01666667f * Time.timeScale;

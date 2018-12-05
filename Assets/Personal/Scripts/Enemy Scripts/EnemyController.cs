@@ -62,6 +62,6 @@ public abstract class EnemyController : MonoBehaviour
 
     protected virtual bool isVisible()
     {
-        return this.GetComponent<MeshRenderer>().IsVisibleFrom(Camera.main);
+        return this.GetComponent<MeshRenderer>().isVisibleFrom(Camera.main);
     }
 }

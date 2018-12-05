@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class DestroyOverTime : MonoBehaviour {
-	[SerializeField] float disappearTime;
+	[SerializeField] float timeToDestroy;
 	float timeAlive;
 	[SerializeField] float fadeTime;
 	Material material;
@@ -26,12 +26,12 @@ public class DestroyOverTime : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		timeAlive += Time.fixedDeltaTime;
-		if (timeAlive >= disappearTime)
+		if (timeAlive >= timeToDestroy)
 		{
 			Destroy (this.gameObject);
 		}
 
-		if (disappearTime - timeAlive <= fadeTime && fadeTime > 0)
+		if (timeToDestroy - timeAlive <= fadeTime && fadeTime > 0)
 		{
 			timeFading += Time.deltaTime;
 			currentAlpha = 1 - (timeFading / fadeTime);

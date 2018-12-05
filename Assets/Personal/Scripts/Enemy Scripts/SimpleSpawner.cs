@@ -20,11 +20,11 @@ public class SimpleSpawner : MonoBehaviour {
         timeSinceSpawn += Time.deltaTime;
         if (timeToSpawn <= timeSinceSpawn)
         {
-            spawn();
+            Spawn();
         }
 	}
 
-    void spawn()
+    void Spawn()
     {
         GameObject spawnedEnemy = Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
         spawnedEnemy.SetActive(true);

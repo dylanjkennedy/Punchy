@@ -13,9 +13,9 @@ public class AirState : PlayerState {
     float gravityMultiplier = 2;
 	float airSpeedMultiplier = 1;
 	float initialVerticalSpeed;
-    float groundPoundCost = 25f;
+    float groundPoundStaminaCost = 25f;
 	private ChargeController chargeController;
-    private PlayerStamina stamina;
+    private PlayerStamina playerStamina;
     RaycastHit hit;
 
 	public AirState(PlayerMover pm) : base(pm)
@@ -23,7 +23,7 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = 0;
         chargeController = playerMover.ChargeController;
-        stamina = playerMover.PlayerStamina;
+        playerStamina = playerMover.PlayerStamina;
         groundPound = false;
         vulnerable = true;
     }
@@ -33,7 +33,7 @@ public class AirState : PlayerState {
 		playerMover = pm;
 		initialVerticalSpeed = verticalSpeed;
         chargeController = playerMover.ChargeController;
-        stamina = playerMover.PlayerStamina;
+        playerStamina = playerMover.PlayerStamina;
         groundPound = false;
         vulnerable = true;
     }
@@ -46,13 +46,13 @@ public class AirState : PlayerState {
 		}
         else if (groundPound)
 		{
-            if (stamina.UseStamina(groundPoundCost))
+            if (playerStamina.UseStamina(groundPoundStaminaCost))
             {
                 return new GroundPoundState(playerMover);
             }
 		}
 
-		Vector3 desiredMove = getStandardDesiredMove (playerMover.speed * airSpeedMultiplier);
+		Vector3 desiredMove = GetStandardDesiredMove (playerMover.speed * airSpeedMultiplier);
 
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
 		move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
@@ -82,7 +82,7 @@ public class AirState : PlayerState {
 
 	public override void Enter ()
 	{
-		Vector3 desiredMove = getStandardDesiredMove (playerMover.speed);
+		Vector3 desiredMove = GetStandardDesiredMove (playerMover.speed);
 		move = new Vector3 (desiredMove.x, move.y+ initialVerticalSpeed, desiredMove.z);
 		playerMover.Move (move);
         charging = Input.GetButton("Fire1");

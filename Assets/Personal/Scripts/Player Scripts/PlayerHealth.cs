@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour {
             healthBar.fillAmount = health / maxHealth;
             if (health <= 0)
             {
-                gameOver();
+                GameOver();
             }
             impactReceiver.AddImpact(direction.normalized, force);
 
@@ -52,14 +52,14 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    private void gameOver()
+    private void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
-        playerMover.death();
+        playerMover.Die();
     }
 
     //to be implemented
-    private void moveDamageIndicator(Vector3 direction)
+    private void MoveDamageIndicator(Vector3 direction)
     {
 
     }

@@ -8,8 +8,8 @@ public class CylinderEnemyController : EnemyController
 {
 
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] float frequency;
-    [SerializeField] float frequencyRange;
+    [SerializeField] float firingFrequency;
+    [SerializeField] float firingFrequencyRange;
     [SerializeField] float bulletSpeed;
     [SerializeField] int bulletDamage;
     [SerializeField] float runAwayDistance;
@@ -17,7 +17,7 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] int scoreValue;
     [SerializeField] float bulletForce;
     [SerializeField] ParticleSystem explosion;
-    [SerializeField] float fireTime;
+    [SerializeField] float fireWindupTime;
     [SerializeField] float reevaluateTetherTime;
 
     Color defaultColor;
@@ -25,7 +25,7 @@ public class CylinderEnemyController : EnemyController
     Material material;
     MeshRenderer cachedRenderer;
     private bool firing;
-    private float nextFire;
+    private float timeToNextFire;
     Vector3 destination;
     private float stateTimer;
     private float fireTimer;
@@ -50,7 +50,7 @@ public class CylinderEnemyController : EnemyController
         tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
         type = SpawnManager.EnemyType.Cylinder;
         stateTimer = 0;
-        nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
+        timeToNextFire = firingFrequency + Random.Range(-firingFrequencyRange, firingFrequencyRange);
         nav = GetComponent<NavMeshAgent>();
         defaultSpeed = nav.speed;
         dead = false;
@@ -58,7 +58,7 @@ public class CylinderEnemyController : EnemyController
         fireTimer = 0;
 
         tether = this.findBestTether();
-        destination = findNewPositionInTether();
+        destination = FindNewPositionInTether();
         state = enemyState.movingState;
     }
 
@@ -105,14 +105,14 @@ public class CylinderEnemyController : EnemyController
                     state = MoveToTether();
                     break;
                 case enemyState.tetheredState:
-                    state = tetheredBehavior();
+                    state = TetheredBehavior();
                     break;
                 //case enemyState.attackingState:
                 //    state = attackBehavior();
                 //    break;
             }
             fireTimer += Time.fixedDeltaTime;
-            if (!firing && fireTimer >= nextFire && CheckLineOfSight())
+            if (!firing && fireTimer >= timeToNextFire && CheckLineOfSight())
             {
                 //only called with 0 for now, since only one attack type exists
                 if (tryAttack(0))
@@ -124,8 +124,8 @@ public class CylinderEnemyController : EnemyController
 
             if (firing)
             {
-                material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireTime);
-                if(fireTimer >= fireTime)
+                material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
+                if(fireTimer >= fireWindupTime)
                 {
                     Fire();
                 }
@@ -151,7 +151,7 @@ public class CylinderEnemyController : EnemyController
         }      
     }
 
-    private enemyState tetheredBehavior()
+    private enemyState TetheredBehavior()
     {
         // if player gets too close re-evaluate or wait the appropriate amount of time to evaluate next tether
         if (playerTooClose || stateTimer >= reevaluateTetherTime)
@@ -159,14 +159,14 @@ public class CylinderEnemyController : EnemyController
             GameObject newTether = this.findBestTether();
             if (newTether == tether)
             {
-                nav.SetDestination(this.findNewPositionInTether());
+                nav.SetDestination(this.FindNewPositionInTether());
                 return enemyState.tetheredState;
             }
             else
             {
                 tether = newTether;
                 tetherRadius = tether.GetComponent<TetherController>().Radius;
-                destination = findNewPositionInTether();
+                destination = FindNewPositionInTether();
                 return enemyState.movingState;
             }
         }
@@ -197,7 +197,7 @@ public class CylinderEnemyController : EnemyController
     }
     */
 
-    private Vector3 findNewPositionInTether()
+    private Vector3 FindNewPositionInTether()
     {
         return tether.transform.position + (Vector3)Random.insideUnitCircle * tetherRadius;
 
@@ -215,13 +215,13 @@ public class CylinderEnemyController : EnemyController
         return (token != null);
     }
 
-    private void endAttack()
+    private void EndAttack()
     {
         enemyAttacksManager.ReturnToken(this.type, token);
         token = null;
         firing = false;
         material.color = defaultColor;
-        nextFire = frequency + Random.Range(-frequencyRange, frequencyRange);
+        timeToNextFire = firingFrequency + Random.Range(-firingFrequencyRange, firingFrequencyRange);
         fireTimer = 0;
     }
 
@@ -231,7 +231,7 @@ public class CylinderEnemyController : EnemyController
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
         bullet.GetComponent<Projectile>().Fire(this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
 
-        endAttack();
+        EndAttack();
     }
 
     protected override bool CheckLineOfSight()
@@ -257,7 +257,7 @@ public class CylinderEnemyController : EnemyController
             {
                 enemyAttacksManager.ReturnToken(type, token);
             }
-            playerCamera.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position);
+            playerCamera.gameObject.GetComponent<ScoreManager>().ChangeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
             Instantiate(fractures, transform.position, transform.rotation);
@@ -325,6 +325,6 @@ public class CylinderEnemyController : EnemyController
 
     protected override bool isVisible()
     {
-        return cachedRenderer.IsVisibleFrom(playerCamera);
+        return cachedRenderer.isVisibleFrom(playerCamera);
     }
 }

@@ -30,14 +30,14 @@ public class SpawnManager : MonoBehaviour {
         for (int i = 0; i < spawnTimers.Length; i++)
         {
             spawnTimers[i] += Time.deltaTime;
-            if (checkSpawn((EnemyType)i))
+            if (CheckSpawn((EnemyType)i))
             {
-                GameObject spawner = findSpawner();
+                GameObject spawner = FindSpawner();
             }
         }
     }
 
-    bool checkSpawn(EnemyType type)
+    bool CheckSpawn(EnemyType type)
     {
         if (enemies[(int)type].Count < spawnLimits[(int)type] && (spawnTimers[(int)type] >= timesOfNextSpawn[(int)type]))
         {
@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour {
         return false;
     }
 
-    GameObject findSpawner()
+    GameObject FindSpawner()
     {
         return null;
     }

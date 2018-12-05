@@ -23,21 +23,21 @@ public class PlayerMover : MonoBehaviour
 	private CollisionFlags collisionFlags;
     public PlayerState currentState;
 	[SerializeField] public float jumpSpeed;
-    [SerializeField] private MouseLook _mouseLook;
-    public MouseLook mouseLook
+    [SerializeField] private MouseLook mouseLook;
+    public MouseLook MouseLook
     {
-        get { return _mouseLook; }
+        get { return mouseLook; }
     }
-    private Camera m_Camera;
+    private Camera playerCamera;
     bool dead;
 
 
 
     // Use this for initialization
     void Start () {
-        m_Camera = Camera.main;
+        playerCamera = GetComponentInChildren<Camera>();
 		characterController = GetComponent<CharacterController>();
-        mouseLook.Init(transform, m_Camera.transform);
+        MouseLook.Init(transform, playerCamera.transform);
         currentState = new GroundState(this);
         dead = false;
         chargeController = GetComponent<ChargeController>();
@@ -125,7 +125,7 @@ public class PlayerMover : MonoBehaviour
 		return characterController.isGrounded;
     }
 
-    public void death()
+    public void Die()
     {
         dead = true;
     }

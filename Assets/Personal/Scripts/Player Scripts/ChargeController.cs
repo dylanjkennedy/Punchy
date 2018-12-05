@@ -82,7 +82,7 @@ public class ChargeController : MonoBehaviour {
 	//returns true if we should attack
 	public RaycastHit Charge(bool charging)
 	{
-        RaycastHit hit = getNullHit();
+        RaycastHit hit = GetNullHit();
 		if (!charging && !charged && !chargeCooling && currentCharge > 0) {
 			currentCharge -= Time.fixedDeltaTime * 2;
 			UpdateChargeWheel ();
@@ -105,7 +105,7 @@ public class ChargeController : MonoBehaviour {
 			if (currentCharge >= timeToCharge)
 			{
 				charged = true;
-                timeScaleManager.changeTimeScale(slowmoTimescale, chargeTimeout, 0f);
+                timeScaleManager.ChangeTimeScale(slowmoTimescale, chargeTimeout, 0f);
 				currentCharge = 0;
 			} 
 			else
@@ -122,7 +122,7 @@ public class ChargeController : MonoBehaviour {
 			//if we're charge and fire button released, check if we can successfully attack
 			if (!charging)
 			{
-                hit = checkAttack();
+                hit = CheckAttack();
 				if (hit.collider != null)
 				{
 					chargeWheel.color = Color.white;
@@ -131,9 +131,9 @@ public class ChargeController : MonoBehaviour {
 				{
 					chargeCooling = true;
 					chargeWheel.color = Color.red;
-                    hit = getNullHit();
+                    hit = GetNullHit();
 				}
-				timeScaleManager.fullspeedTimeScale();
+				timeScaleManager.FullspeedTimeScale();
 				chargedTime = 0;
 				charged = false;
 				UpdateChargeWheel ();
@@ -154,7 +154,7 @@ public class ChargeController : MonoBehaviour {
 			}
 
 			//while charged, reticle is green while enemy in range and in sights
-			if (checkAttack().collider != null)
+			if (CheckAttack().collider != null)
 			{
 				chargeWheel.color = Color.green;
 				return hit;
@@ -167,7 +167,7 @@ public class ChargeController : MonoBehaviour {
 		return hit;
 	}
 
-    private RaycastHit getNullHit()
+    private RaycastHit GetNullHit()
     {
         Ray attackRay = new Ray();
         RaycastHit attackHit;
@@ -177,20 +177,18 @@ public class ChargeController : MonoBehaviour {
     }
 
 
-    private RaycastHit checkAttack()
+    private RaycastHit CheckAttack()
     {
 
         Ray attackRay;
         RaycastHit attackHit;
-        RaycastHit nullHit = getNullHit();
+        RaycastHit nullHit = GetNullHit();
         attackRay = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 #if UNITY_EDITOR
         //For gizmos/debugging targeting;
         playerRay = attackRay;
 #endif
         Ray checkRay;
-        //Vector3 startSpherePoint = camera.transform.position;
-        //Vector3 endSpherePoint = camera.ViewportToWorldPoint(new Vector3(1f, 1f, 2f));
         float radius = 1f;
 
         if (Physics.Raycast(attackRay, out attackHit, attackRange, enemyAndDefaultMask))
@@ -231,7 +229,7 @@ public class ChargeController : MonoBehaviour {
             }
             return closestHit;
         }
-        return getNullHit();
+        return GetNullHit();
     }
     
     private RaycastHit RayFromNearestPointOnLine(Ray line, RaycastHit hit)

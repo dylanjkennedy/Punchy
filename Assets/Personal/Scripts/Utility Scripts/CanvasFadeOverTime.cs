@@ -6,7 +6,7 @@ using System;
 
 public class CanvasFadeOverTime : MonoBehaviour
 {
-    [SerializeField] float disappearTime;
+    [SerializeField] float timeToDestroy;
     float timeAlive;
     [SerializeField] float fadeTime;
     Text text;
@@ -32,12 +32,12 @@ public class CanvasFadeOverTime : MonoBehaviour
     {
         timeAlive += Time.fixedDeltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y - sinkRate, transform.position.z);
-        if (timeAlive >= disappearTime)
+        if (timeAlive >= timeToDestroy)
         {
             Destroy(this.gameObject);
         }
 
-        if (disappearTime - timeAlive <= fadeTime && fadeTime > 0)
+        if (timeToDestroy - timeAlive <= fadeTime && fadeTime > 0)
         {
             timeFading += Time.deltaTime;
             currentAlpha = 1 - (timeFading / fadeTime);

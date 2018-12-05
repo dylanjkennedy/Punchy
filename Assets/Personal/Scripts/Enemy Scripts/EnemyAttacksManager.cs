@@ -28,9 +28,9 @@ public class EnemyAttacksManager : MonoBehaviour {
     public Token RequestToken(GameObject enemy, int attackType)
     {
         int enemyType = (int)enemy.GetComponent<EnemyController>().Type;
-        if (enemyTypes[enemyType].attackAvailable(attackType))
+        if (enemyTypes[enemyType].isAttackAvailable(attackType))
         {
-            return enemyTypes[enemyType].removeToken(enemy, attackType);
+            return enemyTypes[enemyType].RemoveToken(enemy, attackType);
         }
         return null;
     }
@@ -38,7 +38,7 @@ public class EnemyAttacksManager : MonoBehaviour {
     //Return a token for a specific attack type for a specific enemy type to the pool
     public void ReturnToken(SpawnManager.EnemyType type, Token token)
     {
-        enemyTypes[(int)type].returnToken(token);
+        enemyTypes[(int)type].ReturnToken(token);
     }
 
 
@@ -100,7 +100,7 @@ public class EnemyAttacksManager : MonoBehaviour {
                 cooledTokens[i] = new List<Token>();
                 foreach(Token token in coolingTokens[i])
                 {
-                    if (token.updateCooldown(deltaTime))
+                    if (token.UpdateCooldown(deltaTime))
                     {
                         cooledTokens[i].Add(token);
                     }
@@ -117,23 +117,23 @@ public class EnemyAttacksManager : MonoBehaviour {
             }
         }
 
-        public bool attackAvailable(int attackType)
+        public bool isAttackAvailable(int attackType)
         {
             return (availableTokens[attackType].Count > 0);
         }
 
-        public void returnToken(Token token)
+        public void ReturnToken(Token token)
         {
             takenTokens[token.Type].Remove(token);
             coolingTokens[token.Type].Add(token);
-            token.returnToken();
+            token.ReturnToken();
         }
 
-        public Token removeToken(GameObject taker, int attackType)
+        public Token RemoveToken(GameObject taker, int attackType)
         {
             Token token = availableTokens[attackType][0];
             availableTokens[attackType].Remove(token);
-            token.takeToken(taker);
+            token.TakeToken(taker);
             return token;
         }
     }
@@ -153,7 +153,7 @@ public class EnemyAttacksManager : MonoBehaviour {
             available = true;
         }
 
-        public bool updateCooldown(float time)
+        public bool UpdateCooldown(float time)
         {
             currentCooldown += time;
             if (currentCooldown >= attackCooldown)
@@ -164,13 +164,13 @@ public class EnemyAttacksManager : MonoBehaviour {
             return false;
         }
 
-        public void takeToken(GameObject taker)
+        public void TakeToken(GameObject taker)
         {
             owner = taker;
             available = false;
         }
 
-        public void returnToken()
+        public void ReturnToken()
         {
             owner = null;
             currentCooldown = 0;

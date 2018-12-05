@@ -27,7 +27,7 @@ public class GroundState : PlayerState {
 
 	public override PlayerState FixedUpdate()
 	{
-		move = getStandardDesiredMove (playerMover.speed);
+		move = GetStandardDesiredMove (playerMover.speed);
 		move.y = -playerMover.stickToGroundForce;
 
 

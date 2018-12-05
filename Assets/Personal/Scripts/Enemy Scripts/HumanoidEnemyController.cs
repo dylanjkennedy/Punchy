@@ -103,7 +103,7 @@ public class HumanoidEnemyController : EnemyController {
 	public override void takeDamage(Vector3 point){
         if (!dead)
         {
-            playerCamera.gameObject.GetComponent<ScoreManager>().changeScore(scoreValue, transform.position + new Vector3(0,1,0));
+            playerCamera.gameObject.GetComponent<ScoreManager>().ChangeScore(scoreValue, transform.position + new Vector3(0,1,0));
             Explode();
         }
 	}
@@ -161,6 +161,6 @@ public class HumanoidEnemyController : EnemyController {
 
     protected override bool isVisible()
     {
-        return cachedRenderer.IsVisibleFrom(playerCamera);
+        return cachedRenderer.isVisibleFrom(playerCamera);
     }
 }

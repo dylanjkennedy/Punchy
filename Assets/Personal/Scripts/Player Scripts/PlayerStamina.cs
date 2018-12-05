@@ -7,14 +7,14 @@ public class PlayerStamina : MonoBehaviour {
     [SerializeField] Image staminaBar;
     [SerializeField] float maxStamina;
     [SerializeField] float staminaRegen;
-    [SerializeField] float regenDelay;
-    float stamina;
+    [SerializeField] float staminaRegenDelay;
+    float currentStamina;
     float regenDelayTimer;
     bool regenerating;
 
     // Use this for initialization
     void Start () {
-        stamina = maxStamina;
+        currentStamina = maxStamina;
         staminaBar.type = Image.Type.Filled;
         staminaBar.fillMethod = Image.FillMethod.Horizontal;
         staminaBar.fillAmount = 1f;
@@ -22,19 +22,19 @@ public class PlayerStamina : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (stamina < maxStamina && regenerating)
+		if (currentStamina < maxStamina && regenerating)
         {
-            stamina += staminaRegen * Time.deltaTime;
-            staminaBar.fillAmount = stamina / maxStamina;
-            if (stamina > maxStamina)
+            currentStamina += staminaRegen * Time.deltaTime;
+            staminaBar.fillAmount = currentStamina / maxStamina;
+            if (currentStamina > maxStamina)
             {
-                stamina = maxStamina;
+                currentStamina = maxStamina;
             }
         }
         else if (!regenerating)
         {
             regenDelayTimer += Time.deltaTime;
-            if (regenDelayTimer >= regenDelay)
+            if (regenDelayTimer >= staminaRegenDelay)
             {
                 regenerating = true;
             }
@@ -43,33 +43,31 @@ public class PlayerStamina : MonoBehaviour {
 
     public bool UseStamina(float staminaUsed)
     {
-        if (staminaUsed > stamina)
+        if (staminaUsed > currentStamina)
         {
             return false;
         }
         else
         {
-            stamina -= staminaUsed;
+            currentStamina -= staminaUsed;
             regenerating = false;
             regenDelayTimer = 0;
-            staminaBar.fillAmount = stamina / maxStamina;
+            staminaBar.fillAmount = currentStamina / maxStamina;
             return true;
         }
     }
 
     public void RegainStamina(float staminaGained)
     {
-        stamina += staminaGained;
-        if (stamina >= maxStamina)
+        currentStamina += staminaGained;
+        if (currentStamina >= maxStamina)
         {
-            stamina = maxStamina;
+            currentStamina = maxStamina;
             regenerating = false;
         }
         else
         {
             regenerating = true;
         }
-
-
     }
 }

@@ -14,7 +14,7 @@ public abstract class PlayerState
     public PlayerState(PlayerMover pm)
     {
         playerMover = pm;
-        mouseLook = playerMover.mouseLook;
+        mouseLook = playerMover.MouseLook;
         cam = Camera.main;
     }
 
@@ -67,7 +67,7 @@ public abstract class PlayerState
 		return input;
 	}
 
-	public virtual Vector3 getStandardDesiredMove(float speed)
+	public virtual Vector3 GetStandardDesiredMove(float speed)
 	{
 		Vector3 move = GetInput ();
 
