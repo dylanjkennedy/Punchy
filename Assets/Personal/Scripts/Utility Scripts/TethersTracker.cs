@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TetherManager : MonoBehaviour {
+public class TethersTracker : MonoBehaviour {
     [SerializeField] int traceUpdatesPerFrame;
 
     List<TetherController> tethers = new List<TetherController>();
@@ -57,19 +57,6 @@ public class TetherManager : MonoBehaviour {
             return tethers.ToArray();
         }
     }
-
-    /*
-    public GameObject FindBestTether(GameObject Enemy)
-    {
-        float[] weights = new float[tethers.Count];
-        int max = 0;
-        for (int i = 0; i < tethers.Count; i++)
-        {
-
-        }
-        return tethers[max].gameObject;
-    }
-    */
 
     public void AddTether(TetherController tether)
     {

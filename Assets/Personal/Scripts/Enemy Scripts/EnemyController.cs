@@ -6,7 +6,7 @@ using UnityScript.Steps;
 
 public abstract class EnemyController : MonoBehaviour
 {
-    [SerializeField] protected EnemyAttacksManager enemyAttacksManager;
+    [SerializeField] protected EnemyAttackTokenPool enemyAttackTokenPool;
     [SerializeField] protected GameObject player;
     [SerializeField] protected NavMeshAgent nav;
     protected SpawnManager.EnemyType type;

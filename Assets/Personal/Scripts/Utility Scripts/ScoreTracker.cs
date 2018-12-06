@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour {
+public class ScoreTracker : MonoBehaviour {
     private int score;
     [SerializeField] float comboTimeout;
     [SerializeField] Text scoreText;

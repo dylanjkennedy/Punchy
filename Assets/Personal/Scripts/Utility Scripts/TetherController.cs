@@ -19,13 +19,13 @@ public class TetherController : MonoBehaviour {
 
     LayerMask mask;
 
-    TetherManager tetherManager;
+    TethersTracker tetherManager;
     GameObject player;
 
     // Use this for initialization
     void Awake() {
         //subject to change
-        tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
+        tetherManager = Camera.main.gameObject.GetComponent<TethersTracker>();
         tetherManager.AddTether(this);
 
         player = GameObject.Find("Player");

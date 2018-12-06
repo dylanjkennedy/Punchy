@@ -33,8 +33,8 @@ public class CylinderEnemyController : EnemyController
     private float tetherRadius;
     bool dead;
     float maxDeadTime = 3;
-    private TetherManager tetherManager;
-    EnemyAttacksManager.Token token;
+    private TethersTracker tetherTracker;
+    EnemyAttackTokenPool.Token token;
     float defaultSpeed;
 
     private enum enemyState { movingState, tetheredState };
@@ -46,8 +46,8 @@ public class CylinderEnemyController : EnemyController
         cachedRenderer = gameObject.GetComponent<MeshRenderer>();
         material = cachedRenderer.material;
         defaultColor = material.color;
-        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
-        tetherManager = Camera.main.gameObject.GetComponent<TetherManager>();
+        enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
+        tetherTracker = player.gameObject.GetComponent<TethersTracker>();
         type = SpawnManager.EnemyType.Cylinder;
         stateTimer = 0;
         timeToNextFire = firingFrequency + Random.Range(-firingFrequencyRange, firingFrequencyRange);
@@ -211,13 +211,13 @@ public class CylinderEnemyController : EnemyController
     private bool tryAttack(int attackType)
     {
         //since there's only one attack type for now, this can only really be called with attackType = 0
-        token = enemyAttacksManager.RequestToken(this.gameObject, attackType);
+        token = enemyAttackTokenPool.RequestToken(this.gameObject, attackType);
         return (token != null);
     }
 
     private void EndAttack()
     {
-        enemyAttacksManager.ReturnToken(this.type, token);
+        enemyAttackTokenPool.ReturnToken(this.type, token);
         token = null;
         firing = false;
         material.color = defaultColor;
@@ -255,9 +255,9 @@ public class CylinderEnemyController : EnemyController
         {
             if (token != null)
             {
-                enemyAttacksManager.ReturnToken(type, token);
+                enemyAttackTokenPool.ReturnToken(type, token);
             }
-            playerCamera.gameObject.GetComponent<ScoreManager>().ChangeScore(scoreValue, transform.position);
+            playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
             Instantiate(fractures, transform.position, transform.rotation);
@@ -289,7 +289,7 @@ public class CylinderEnemyController : EnemyController
         //Distance from tether
         //Current occupants of tether
 
-        TetherController[] tethers = tetherManager.Tethers;
+        TetherController[] tethers = tetherTracker.Tethers;
         int[] weights = new int[tethers.Length];
         int minWeightIndex = -1;
         int minWeight = int.MaxValue;

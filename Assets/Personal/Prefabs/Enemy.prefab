@@ -104,8 +104,8 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   bulletPrefab: {fileID: 1260433506269500, guid: 94c31c315b8315b4a8259ddf55b6ad2e,
     type: 2}
-  frequency: 2
-  frequencyRange: 1
+  firingFrequency: 2
+  firingFrequencyRange: 1
   bulletSpeed: 30
   bulletDamage: 5
   runAwayDistance: 6
@@ -114,9 +114,8 @@ MonoBehaviour:
   bulletForce: 5
   explosion: {fileID: 198411194026252318, guid: 73fff5a3acbe2c44e8ff90616f0bdc9f,
     type: 2}
-  fireTime: 1
+  fireWindupTime: 1
   reevaluateTetherTime: 1.5
-  runningAway: 0
 --- !u!114 &114980296366610330
 MonoBehaviour:
   m_ObjectHideFlags: 1

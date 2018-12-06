@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttacksManager : MonoBehaviour {
+public class EnemyAttackTokenPool : MonoBehaviour {
     SpawnManager spawnManager;
     [SerializeField] EnemyTypeTokens[] enemyTypes;
 

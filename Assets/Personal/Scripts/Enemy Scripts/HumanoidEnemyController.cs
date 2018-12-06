@@ -37,7 +37,7 @@ public class HumanoidEnemyController : EnemyController {
 	// Use this for initialization
 	protected override void Start () {
         character = gameObject.GetComponent<ThirdPersonCharacter>();
-        enemyAttacksManager = player.GetComponentInChildren<EnemyAttacksManager>();
+        enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
         cachedRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         material = cachedRenderer.material;
         type = SpawnManager.EnemyType.Humanoid;
@@ -103,7 +103,7 @@ public class HumanoidEnemyController : EnemyController {
 	public override void takeDamage(Vector3 point){
         if (!dead)
         {
-            playerCamera.gameObject.GetComponent<ScoreManager>().ChangeScore(scoreValue, transform.position + new Vector3(0,1,0));
+            playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position + new Vector3(0,1,0));
             Explode();
         }
 	}
