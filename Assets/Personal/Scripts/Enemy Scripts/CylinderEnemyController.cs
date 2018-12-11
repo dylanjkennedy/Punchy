@@ -47,7 +47,7 @@ public class CylinderEnemyController : EnemyController
         material = cachedRenderer.material;
         defaultColor = material.color;
         enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
-        tetherTracker = player.gameObject.GetComponent<TethersTracker>();
+        tetherTracker = player.gameObject.GetComponentInChildren<TethersTracker>();
         type = SpawnManager.EnemyType.Cylinder;
         stateTimer = 0;
         timeToNextFire = firingFrequency + Random.Range(-firingFrequencyRange, firingFrequencyRange);
@@ -58,6 +58,7 @@ public class CylinderEnemyController : EnemyController
         fireTimer = 0;
 
         tether = this.findBestTether();
+        tetherRadius = tether.GetComponent<TetherController>().Radius;
         destination = FindNewPositionInTether();
         state = enemyState.movingState;
     }
