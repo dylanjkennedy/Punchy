@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f4cb3266b70a249851564fcc623954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttacksManager: {fileID: 0}
+  enemyAttackTokenPool: {fileID: 0}
   player: {fileID: 0}
   nav: {fileID: 195734965169488068}
   playerCamera: {fileID: 0}
@@ -1060,7 +1060,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1890200285836438}
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
   m_Height: 2.2
   m_Direction: 1
