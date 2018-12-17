@@ -6,7 +6,6 @@ public class SimpleSpawner : MonoBehaviour {
     [SerializeField] float spawnTime;
     [SerializeField] float spawnTimeRange;
     [SerializeField] GameObject enemy;
-    [SerializeField] float activationTime;
     float timeToSpawn;
     float timeSinceSpawn;
 	// Use this for initialization
