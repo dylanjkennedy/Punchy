@@ -10,10 +10,10 @@ public class AirState : PlayerState {
 	bool charging;
 	bool grounded;
     bool groundPound;
-    float gravityMultiplier = 2;
-	float airSpeedMultiplier = 1;
+    float gravityMultiplier;
+	float airSpeedMultiplier;
 	float initialVerticalSpeed;
-    float groundPoundStaminaCost = 25f;
+    float groundPoundStaminaCost;
 	private ChargeController chargeController;
     private PlayerStamina playerStamina;
     RaycastHit hit;
@@ -21,6 +21,9 @@ public class AirState : PlayerState {
 	public AirState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
+        gravityMultiplier = playerMover.playerValues.airStateValues.AirGravityMultiplier;
+        airSpeedMultiplier = playerMover.playerValues.airStateValues.AirSpeedMultiplier;
+        groundPoundStaminaCost = playerMover.playerValues.airStateValues.GroundPoundStaminaCost;
 		initialVerticalSpeed = 0;
         chargeController = playerMover.ChargeController;
         playerStamina = playerMover.PlayerStamina;
@@ -31,7 +34,10 @@ public class AirState : PlayerState {
 	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
 	{
 		playerMover = pm;
-		initialVerticalSpeed = verticalSpeed;
+        gravityMultiplier = playerMover.playerValues.airStateValues.AirGravityMultiplier;
+        airSpeedMultiplier = playerMover.playerValues.airStateValues.AirSpeedMultiplier;
+        groundPoundStaminaCost = playerMover.playerValues.airStateValues.GroundPoundStaminaCost;
+        initialVerticalSpeed = verticalSpeed;
         chargeController = playerMover.ChargeController;
         playerStamina = playerMover.PlayerStamina;
         groundPound = false;

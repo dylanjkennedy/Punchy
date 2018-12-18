@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ImpactReceiver : MonoBehaviour {
 
-    [SerializeField] float mass;
+    float mass;
     Vector3 impact = Vector3.zero;
     private CharacterController character;
     //PlayerMover playerMover;
  
     void Start()
     {
+        mass = GetComponent<ActorValues>().impactValues.Mass;
         character = GetComponent<CharacterController>();
         //playerMover = gameObject.GetComponent<PlayerMover>();
     }

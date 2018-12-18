@@ -9,28 +9,37 @@ public class ChargeAttackState : PlayerState
     private PlayerMover playerMover;
     RaycastHit attackTarget;
     Vector3 moveTarget;
-    float endingDistance = 2f;
-    private float dashTime = 0.16666667f;
+    float endingDistance;
+    private float dashTime;
     private float timer;
-    private float postHitTime = 30f/60;
+    private float postHitTime;
     //private float currentTimeScale;
-    private float slowestTimeScale = 0.05f;
-    private float slowmoLerpFactor = 0.01f;
-    float staminaRegain = 5f;
+    private float slowestTimeScale;
+    private float slowmoLerpFactor;
+    float staminaRegain;
     bool dashing;
     bool attacked;
     TimeScaleManager timeScaleManager;
     PlayerStamina playerStamina;
     
 
-    float explodeRadius = 1;
-    float explodePower = 50;
+    float explodeRadius;
+    float explodePower;
 
     Vector3 initialPosition;
 
     public ChargeAttackState(PlayerMover pm, RaycastHit target) : base(pm)
     {
         playerMover = pm;
+        endingDistance = playerMover.playerValues.chargeAttackStateValues.EndingDistance;
+        dashTime = playerMover.playerValues.chargeAttackStateValues.DashTime;
+        postHitTime = playerMover.playerValues.chargeAttackStateValues.PostHitTime;
+        slowestTimeScale = playerMover.playerValues.chargeAttackStateValues.SlowestTimeScale;
+        slowmoLerpFactor = playerMover.playerValues.chargeAttackStateValues.SlowmoLerpFactor;
+        staminaRegain = playerMover.playerValues.chargeAttackStateValues.StaminaRegain;
+        explodePower = playerMover.playerValues.chargeAttackStateValues.ExplodePower;
+        explodeRadius = playerMover.playerValues.chargeAttackStateValues.ExplodeRadius;
+
         attackTarget = target;
         timer = 0;
         attacked = false;

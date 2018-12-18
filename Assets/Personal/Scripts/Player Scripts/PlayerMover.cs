@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMover : MonoBehaviour
 {
-	[SerializeField] public float speed;
-	[SerializeField] public float stickToGroundForce;
+	public float speed;
+	public float stickToGroundForce;
+    public PlayerValues playerValues;
 	private CharacterController characterController;
     private ChargeController chargeController;
     public ChargeController ChargeController
@@ -22,7 +23,7 @@ public class PlayerMover : MonoBehaviour
     }
 	private CollisionFlags collisionFlags;
     public PlayerState currentState;
-	[SerializeField] public float jumpSpeed;
+	public float jumpSpeed;
     [SerializeField] private MouseLook mouseLook;
     public MouseLook MouseLook
     {
@@ -35,6 +36,10 @@ public class PlayerMover : MonoBehaviour
 
     // Use this for initialization
     void Start () {
+        playerValues = GetComponent<PlayerValues>();
+        speed = playerValues.movementValues.Speed;
+        jumpSpeed = playerValues.movementValues.JumpSpeed;
+        stickToGroundForce = playerValues.movementValues.StickToGroundForce;
         playerCamera = GetComponentInChildren<Camera>();
 		characterController = GetComponent<CharacterController>();
         MouseLook.Init(transform, playerCamera.transform);

@@ -4,26 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-	[SerializeField] Image healthBar;
-	[SerializeField] Image damageImage;
-    [SerializeField] Text gameOverText;
-	[SerializeField] float flashSpeed = 5f;
-	[SerializeField] Color flashColor = new Color (1f, 0f, 0f, 0.1f);
-	[SerializeField] private int maxHealth;
+	Image healthBar;
+	Image damageImage;
+    Text gameOverText;
+	float flashSpeed = 5f;
+	Color flashColor = new Color (1f, 0f, 0f, 0.1f);
+	private int maxHealth;
 	private float health;
 	private bool damaged;
     private ImpactReceiver impactReceiver;
-    PlayerMover playerMover; 
+    PlayerMover playerMover;
+    PlayerValues playerValues;
 
 	// Use this for initialization
 	void Start () {
-		health = maxHealth;
+        impactReceiver = gameObject.GetComponent<ImpactReceiver>();
+        playerMover = gameObject.GetComponent<PlayerMover>();
+        playerValues = playerMover.playerValues;
+
+        healthBar = playerValues.healthValues.HealthBar;
+        damageImage = playerValues.healthValues.DamageImage;
+        gameOverText = playerValues.healthValues.GameOverText;
+        flashSpeed = playerValues.healthValues.FlashSpeed;
+        flashColor = playerValues.healthValues.FlashColor;
+        maxHealth = playerValues.healthValues.MaxHealth;
+
+        health = maxHealth;
         healthBar.type = Image.Type.Filled;
         healthBar.fillMethod = Image.FillMethod.Horizontal;
         healthBar.fillAmount = 1f;
-        impactReceiver = gameObject.GetComponent<ImpactReceiver>();
-        playerMover = gameObject.GetComponent<PlayerMover>();
-
     }
 	
 	// Update is called once per frame

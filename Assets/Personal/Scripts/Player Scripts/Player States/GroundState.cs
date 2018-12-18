@@ -11,7 +11,7 @@ public class GroundState : PlayerState {
 	bool charging;
 	bool grounded;
     bool dashing;
-    float dashCost = 20;
+    float dashCost;
 
     private ChargeController chargeController;
     private PlayerStamina stamina;
@@ -20,6 +20,7 @@ public class GroundState : PlayerState {
     public GroundState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
+        dashCost = playerMover.playerValues.groundStateValues.DashCost;
 		chargeController = playerMover.ChargeController;
         stamina = playerMover.PlayerStamina;
         vulnerable = true;

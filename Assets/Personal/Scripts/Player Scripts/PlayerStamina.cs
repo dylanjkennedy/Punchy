@@ -4,16 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStamina : MonoBehaviour {
-    [SerializeField] Image staminaBar;
-    [SerializeField] float maxStamina;
-    [SerializeField] float staminaRegen;
-    [SerializeField] float staminaRegenDelay;
+    Image staminaBar;
+    float maxStamina;
+    float staminaRegen;
+    float staminaRegenDelay;
+    [SerializeField] PlayerValues playerValues;
     float currentStamina;
     float regenDelayTimer;
     bool regenerating;
 
     // Use this for initialization
     void Start () {
+        staminaBar = playerValues.staminaValues.StaminaBar;
+        maxStamina = playerValues.staminaValues.MaxStamina;
+        staminaRegen = playerValues.staminaValues.StaminaRegen;
+        staminaRegenDelay = playerValues.staminaValues.StaminaRegenDelay;
         currentStamina = maxStamina;
         staminaBar.type = Image.Type.Filled;
         staminaBar.fillMethod = Image.FillMethod.Horizontal;

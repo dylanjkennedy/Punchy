@@ -6,9 +6,9 @@ public class DashState : PlayerState
 {
     private Vector3 movement;
     float timer;
-    float dashTime = 10f/60;
+    float dashTime;
     PlayerMover playerMover;
-    float dashSpeed = 50f;
+    float dashSpeed;
     bool charging;
     RaycastHit hit;
 
@@ -18,6 +18,8 @@ public class DashState : PlayerState
     public DashState(PlayerMover pm) : base(pm)
     {
         playerMover = pm;
+        dashTime = playerMover.playerValues.dashStateValues.DashTime;
+        dashSpeed = playerMover.playerValues.dashStateValues.DashSpeed;
         chargeController = playerMover.ChargeController;
         timer = 0;
         vulnerable = false;

@@ -6,11 +6,11 @@ public class GroundPoundState : PlayerState
 {
     PlayerMover playerMover;
     Vector3 move;
-    private float groundPoundHopSpeed = 20f;
+    private float groundPoundHopSpeed;
     bool grounded = false;
-    float gravityMultiplier = 10;
-    float speedMaximum = 35f;
-    float physicsMaxForce = 40f;
+    float gravityMultiplier;
+    float speedMaximum;
+    float physicsMaxForce;
     //float airSpeedMultiplier = 1;
     bool charging;
     RaycastHit hit;
@@ -20,6 +20,11 @@ public class GroundPoundState : PlayerState
     public GroundPoundState(PlayerMover pm) : base(pm)
     {
         playerMover = pm;
+        groundPoundHopSpeed = playerMover.playerValues.groundPoundStateValues.GroundPoundHopSpeed;
+        gravityMultiplier = playerMover.playerValues.groundPoundStateValues.GravityMultiplier;
+        speedMaximum = playerMover.playerValues.groundPoundStateValues.SpeedMaximum;
+        physicsMaxForce = playerMover.playerValues.groundPoundStateValues.PhysicsMaxForce;
+
         vulnerable = false;
         chargeController = playerMover.ChargeController;
         vulnerable = true;

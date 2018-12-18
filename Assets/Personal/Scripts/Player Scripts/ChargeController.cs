@@ -8,13 +8,15 @@ public class ChargeController : MonoBehaviour {
 	private float chargedTime;
 	private bool chargeCooling;
 	private bool charged;
-	[SerializeField] private float chargeTimeout;
-	[SerializeField] private float timeToCharge;
-	[SerializeField] private float chargeCooldownTime;
-	[SerializeField] private float slowmoTimescale;
-	[SerializeField] private Image chargeWheel;
-    [SerializeField] private Image slowmoWheel;
-	[SerializeField] private float attackRange;
+    private PlayerMover playerMover;
+    private PlayerValues playerValues;
+	private float chargeTimeout;
+	private float timeToCharge;
+	private float chargeCooldownTime;
+	private float slowmoTimescale;
+	private Image chargeWheel;
+    private Image slowmoWheel;
+	private float attackRange;
 	private LayerMask enemyMask;
     private LayerMask emptyMask;
     private LayerMask enemyAndDefaultMask;
@@ -39,6 +41,16 @@ public class ChargeController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        playerMover = gameObject.GetComponent<PlayerMover>();
+        playerValues = playerMover.playerValues;
+        chargeTimeout = playerValues.chargeValues.ChargeTimeout;
+        timeToCharge = playerValues.chargeValues.TimeToCharge;
+        chargeCooldownTime = playerValues.chargeValues.ChargeCooldownTime;
+        slowmoTimescale = playerValues.chargeValues.SlowmoTimescale;
+        chargeWheel = playerValues.chargeValues.ChargeWheel;
+        slowmoWheel = playerValues.chargeValues.SlowmoWheel;
+        attackRange = playerValues.chargeValues.AttackRange;
+
 		currentCharge = 0;
 		chargedTime = 0;
 		chargeWheel.type = Image.Type.Filled;

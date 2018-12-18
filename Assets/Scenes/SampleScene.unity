@@ -313,6 +313,36 @@ PrefabInstance:
       propertyPath: comboText
       value: 
       objectReference: {fileID: 1311505360}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: staminaValues.staminaBar
+      value: 
+      objectReference: {fileID: 1295941575}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: chargeValues.chargeWheel
+      value: 
+      objectReference: {fileID: 382839813}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: chargeValues.slowmoWheel
+      value: 
+      objectReference: {fileID: 359136097}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: healthValues.healthBar
+      value: 
+      objectReference: {fileID: 426149652}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: healthValues.damageImage
+      value: 
+      objectReference: {fileID: 1356593578}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: healthValues.gameOverText
+      value: 
+      objectReference: {fileID: 873323771}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!4 &105534986 stripped
@@ -1038,7 +1068,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!1001 &209220356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1377,7 +1406,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!1 &294805719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 584a8ef4749c89745b7ae07f3ba7617f,
@@ -2277,7 +2305,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &400737058
 Transform:
   m_ObjectHideFlags: 0
@@ -2392,7 +2419,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!1001 &441149095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6557,7 +6583,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &1377258780
 Transform:
   m_ObjectHideFlags: 0
@@ -6896,7 +6921,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!4 &1437005043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4809465267089172, guid: b560005a623bea04b866f56a522278a0,
@@ -7234,7 +7258,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &1454697392
 Transform:
   m_ObjectHideFlags: 0
@@ -8855,7 +8878,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &1798827514
 Transform:
   m_ObjectHideFlags: 0
@@ -9069,7 +9091,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &1817310779
 Transform:
   m_ObjectHideFlags: 0
@@ -9812,7 +9833,6 @@ MonoBehaviour:
   spawnTime: 15
   spawnTimeRange: 10
   enemy: {fileID: 1866571762}
-  activationTime: 0
 --- !u!4 &1950316604
 Transform:
   m_ObjectHideFlags: 0
@@ -10373,7 +10393,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!1001 &2020532635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10790,7 +10809,6 @@ MonoBehaviour:
   spawnTime: 30
   spawnTimeRange: 20
   enemy: {fileID: 972126833}
-  activationTime: 0
 --- !u!1 &2092215768
 GameObject:
   m_ObjectHideFlags: 0
