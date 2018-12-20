@@ -36,6 +36,8 @@ public class HumanoidEnemyController : EnemyController {
 
 	// Use this for initialization
 	protected override void Start () {
+        type = SpawnManager.EnemyType.Humanoid;
+        spawnManager = player.GetComponent<SpawnManager>();
         character = gameObject.GetComponent<ThirdPersonCharacter>();
         enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
         cachedRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -117,7 +119,7 @@ public class HumanoidEnemyController : EnemyController {
 
         Instantiate(explosion, transform.position, transform.rotation);
         explosion.Play();
-        Destroy(this.gameObject);
+        DestroyThis();
     }
 
     private void DealExplosionDamage()

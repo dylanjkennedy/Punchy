@@ -43,6 +43,8 @@ public class CylinderEnemyController : EnemyController
     // Use this for initialization
     protected override void Start()
     {
+        type = SpawnManager.EnemyType.Cylinder;
+        spawnManager = player.GetComponent<SpawnManager>();
         cachedRenderer = gameObject.GetComponent<MeshRenderer>();
         material = cachedRenderer.material;
         defaultColor = material.color;
@@ -265,7 +267,7 @@ public class CylinderEnemyController : EnemyController
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
 
-            Destroy(this.gameObject);
+            DestroyThis();
         }
     }
 
@@ -317,9 +319,9 @@ public class CylinderEnemyController : EnemyController
 
         if (tether != null)
         {
-            tether.GetComponent<TetherController>().changeOccupants(-1);
+            tether.GetComponent<TetherController>().incrementOccupantsBy(-1);
         }
-        tethers[minWeightIndex].changeOccupants(1);
+        tethers[minWeightIndex].incrementOccupantsBy(1);
 
         return tethers[minWeightIndex].gameObject;
     }

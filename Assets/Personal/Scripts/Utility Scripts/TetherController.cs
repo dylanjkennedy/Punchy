@@ -134,7 +134,7 @@ public class TetherController : MonoBehaviour {
         }
     }
 
-    public void changeOccupants(int Count)
+    public void incrementOccupantsBy(int Count)
     {
         occupants += Count;
     }

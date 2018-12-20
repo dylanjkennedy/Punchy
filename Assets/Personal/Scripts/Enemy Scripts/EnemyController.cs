@@ -9,6 +9,7 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected EnemyAttackTokenPool enemyAttackTokenPool;
     [SerializeField] protected GameObject player;
     [SerializeField] protected NavMeshAgent nav;
+    [SerializeField] protected SpawnManager spawnManager;
     protected SpawnManager.EnemyType type;
     [SerializeField] protected Camera playerCamera;
 
@@ -63,5 +64,10 @@ public abstract class EnemyController : MonoBehaviour
     protected virtual bool isVisible()
     {
         return this.GetComponent<MeshRenderer>().isVisibleFrom(Camera.main);
+    }
+
+    protected virtual void DestroyThis()
+    {
+        spawnManager.DestroyEnemy(this.gameObject);
     }
 }
