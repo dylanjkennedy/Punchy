@@ -66,7 +66,7 @@ public class GroundState : PlayerState {
 
 		if (!jumping) 
 		{
-			jumping = Input.GetButtonDown ("Jump");
+			jumping = Input.GetButton ("Jump");
 		}
         if (!dashing)
         {
