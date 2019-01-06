@@ -57,4 +57,12 @@ public class ScoreTracker : MonoBehaviour {
         newScoreCanvas.transform.LookAt(Camera.main.transform.position);
         newScoreCanvas.transform.rotation = new Quaternion(0, newScoreCanvas.transform.rotation.y, 0, newScoreCanvas.transform.rotation.w);
     }
+
+    public int Score
+    {
+        get
+        {
+            return score;
+        }
+    }
 }

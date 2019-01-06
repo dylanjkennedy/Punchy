@@ -6,17 +6,27 @@ public class SpawnManager : MonoBehaviour {
 
     public enum EnemyType : int { Cylinder = 0, Humanoid };
     [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] DifficultyManager difficultyManager;
     List<GameObject>[] enemies = new List<GameObject>[System.Enum.GetValues(typeof(EnemyType)).Length];
-    int[] spawnLimits = { 15, 5 };
+    [SerializeField] int[] baseSpawnLimits;
+    [SerializeField] float[] spawnLimitsGrowth;
+    [SerializeField] int[] spawnLimits; // = { 15, 5 };
+    [SerializeField] GameObject enemiesParent;
     float[] spawnTimers = { 0, 0 };
-    float[] baseTimesToNextSpawn = {3, 8 };
-    float[] spawnTimeRanges = {2, 3};
+    float[] baseTimesToNextSpawn = {1, 3 };
+    float[] spawnTimeRanges = {0.5f, 2};
     float[] timesOfNextSpawn = {0, 0};
     GameObject player;
     TethersTracker tethersTracker;
 
     // Use this for initialization
     void Start () {
+        spawnLimits = new int[baseSpawnLimits.Length];
+        for (int i = 0; i < spawnLimits.Length; i++)
+        {
+            spawnLimits[i] = baseSpawnLimits[i];
+        }
+
         //subject to change where this is relative to other things?
         player = gameObject;
         tethersTracker = player.GetComponentInChildren<TethersTracker>();
@@ -24,10 +34,10 @@ public class SpawnManager : MonoBehaviour {
         {
             enemies[i] = new List<GameObject>();
         }
-        //heirarchy organization makes this MUCH faster
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+
+        foreach (EnemyController enemy in enemiesParent.GetComponentsInChildren<EnemyController>())
         {
-            enemies[(int)enemy.GetComponent<EnemyController>().Type].Add(enemy);
+            enemies[(int)enemy.Type].Add(enemy.gameObject);
         }
 
         for (int i = 0; i < spawnTimers.Length; i++)
@@ -47,6 +57,7 @@ public class SpawnManager : MonoBehaviour {
                 SpawnEnemy((EnemyType)i, spawner);
             }
         }
+        updateMaxSpawns();
     }
 
     bool CheckSpawn(EnemyType type)
@@ -89,17 +100,26 @@ public class SpawnManager : MonoBehaviour {
 
     void SpawnEnemy(EnemyType type, GameObject tether)
     {
-        GameObject enemy = Instantiate(enemyPrefabs[(int)type], tether.transform.position, tether.transform.rotation);
+        GameObject enemy = Instantiate(enemyPrefabs[(int)type], tether.transform.position, tether.transform.rotation, enemiesParent.transform);
         enemy.SetActive(true);
         enemy.layer = 9;
         spawnTimers[(int)type] = 0;
         timesOfNextSpawn[(int)type] = baseTimesToNextSpawn[(int)type] + Random.Range(-spawnTimeRanges[(int)type], spawnTimeRanges[(int)type]);
-        enemies[(int)enemy.GetComponent<EnemyController>().Type].Add(enemy);
+        enemies[(int)type].Add(enemy);
     }
 
     public void DestroyEnemy(GameObject enemy)
     {
         enemies[(int)enemy.GetComponent<EnemyController>().Type].Remove(enemy);
         Destroy(enemy);
+    }
+
+    public void updateMaxSpawns()
+    {
+        float difficulty = difficultyManager.Difficulty;
+        for (int i = 0; i < spawnLimits.Length; i++)
+        {
+            spawnLimits[i] = baseSpawnLimits[i] + Mathf.FloorToInt(spawnLimitsGrowth[i] * difficulty);
+        }
     }
 }

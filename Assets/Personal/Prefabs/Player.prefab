@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: 114997014630704868}
   - component: {fileID: 114189614645218814}
   - component: {fileID: 114812462051641692}
+  - component: {fileID: 744898441}
+  - component: {fileID: 744898450}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -353,6 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fefdd8370aea2f4c9ff18767795e4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactValues:
+    mass: 1
   chargeValues:
     chargeTimeout: 1.5
     timeToCharge: 0.5
@@ -361,8 +365,6 @@ MonoBehaviour:
     chargeWheel: {fileID: 0}
     slowmoWheel: {fileID: 0}
     attackRange: 10
-  impactValues:
-    mass: 1
   healthValues:
     healthBar: {fileID: 0}
     damageImage: {fileID: 0}
@@ -476,3 +478,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerValues: {fileID: 3606967138850372387}
+--- !u!114 &744898441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355902032486888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715c95c7832cc5542b7d0a1b0bf2b5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManager: {fileID: 744898450}
+  tokenPool: {fileID: 114207197334668020}
+  scoreTracker: {fileID: 114800909922622860}
+--- !u!114 &744898450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355902032486888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c9b7e7a6b5b7a46ba0eb7253527b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  difficultyManager: {fileID: 744898441}
+  baseSpawnLimits: 0500000001000000
+  spawnLimitsGrowth:
+  - 0.8
+  - 0.2
+  spawnLimits: 
+  enemiesParent: {fileID: 0}
