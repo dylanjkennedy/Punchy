@@ -19,11 +19,13 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] ParticleSystem explosion;
     [SerializeField] float fireWindupTime;
     [SerializeField] float reevaluateTetherTime;
+    [SerializeField] AudioClip firingSound;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
     Material material;
     MeshRenderer cachedRenderer;
+    AudioSource audioSource;
     private bool firing;
     private float timeToNextFire;
     Vector3 destination;
@@ -43,6 +45,7 @@ public class CylinderEnemyController : EnemyController
     // Use this for initialization
     protected override void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
         type = SpawnManager.EnemyType.Cylinder;
         spawnManager = player.GetComponent<SpawnManager>();
         cachedRenderer = gameObject.GetComponent<MeshRenderer>();
@@ -130,6 +133,7 @@ public class CylinderEnemyController : EnemyController
                 material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
                 if(fireTimer >= fireWindupTime)
                 {
+                    audioSource.PlayOneShot(firingSound);
                     Fire();
                 }
             }
