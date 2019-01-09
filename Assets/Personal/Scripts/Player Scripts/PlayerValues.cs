@@ -174,6 +174,7 @@ public class PlayerValues : ActorValues
         [SerializeField] private float flashSpeed;
         [SerializeField] private Color flashColor;
         [SerializeField] private int maxHealth;
+        [SerializeField] private AudioClip hitSound;
 
         public float FlashSpeed
         {
@@ -230,6 +231,14 @@ public class PlayerValues : ActorValues
             get
             {
                 return flashColor;
+            }
+        }
+
+        public AudioClip HitSound
+        {
+            get
+            {
+                return hitSound;
             }
         }
     }
@@ -401,6 +410,7 @@ public class PlayerValues : ActorValues
         [SerializeField] private float dashTime;
         [SerializeField] private float dashSpeed;
         [SerializeField] private float dashJumpImpulse;
+        [SerializeField] private AudioClip dashSound;
 
         public float DashTime
         {
@@ -438,6 +448,14 @@ public class PlayerValues : ActorValues
             set
             {
                 dashJumpImpulse = value;
+            }
+        }
+
+        public AudioClip DashSound
+        {
+            get
+            {
+                return dashSound;
             }
         }
     }

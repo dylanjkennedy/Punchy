@@ -11,7 +11,6 @@ public class GroundPoundState : PlayerState
     float gravityMultiplier;
     float speedMaximum;
     float physicsMaxForce;
-    //float airSpeedMultiplier = 1;
     bool charging;
     RaycastHit hit;
     private LayerMask enemyMask;
@@ -41,8 +40,7 @@ public class GroundPoundState : PlayerState
             Pound();
             return new GroundState(playerMover);
         }
-
-        //move = new Vector3(desiredMove.x, move.y * -groundPoundSpeed, desiredMove.z);
+        
         move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
         if (-move.y > speedMaximum)
         {
@@ -122,6 +120,8 @@ public class GroundPoundState : PlayerState
         }
     }
 
+    //Secondary isGrounded is necessary since the CharacterController's isGrounded is occasionally slow to update for some reason
+    //this second isGrounded makes ground pound land more consistently snappy on flat surfaces
     private bool isGrounded()
     {
         return Physics.Raycast(playerMover.gameObject.transform.position, new Vector3(0, -1, 0), 1.15f, LayerMask.GetMask("Enemy", "Default"));

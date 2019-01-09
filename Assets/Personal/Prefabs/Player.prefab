@@ -372,6 +372,7 @@ MonoBehaviour:
     flashSpeed: 5
     flashColor: {r: 0, g: 0, b: 0, a: 0}
     maxHealth: 100
+    hitSound: {fileID: 8300000, guid: 561f895606b5cff4085fe1a7e5586ad3, type: 3}
   movementValues:
     speed: 10
     stickToGroundForce: 10
@@ -393,6 +394,7 @@ MonoBehaviour:
     dashTime: 0.16666667
     dashSpeed: 50
     dashJumpImpulse: 50
+    dashSound: {fileID: 8300000, guid: 37b4952c31ec8e7409ab394df88084e9, type: 3}
   groundPoundStateValues:
     groundPoundHopSpeed: 20
     gravityMultiplier: 10

@@ -15,11 +15,14 @@ public class PlayerHealth : MonoBehaviour {
     private ImpactReceiver impactReceiver;
     PlayerMover playerMover;
     PlayerValues playerValues;
+    AudioSource audioSource;
+    AudioClip hitSound;
 
 	// Use this for initialization
 	void Start () {
         impactReceiver = gameObject.GetComponent<ImpactReceiver>();
         playerMover = gameObject.GetComponent<PlayerMover>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         playerValues = playerMover.playerValues;
 
         healthBar = playerValues.healthValues.HealthBar;
@@ -28,6 +31,7 @@ public class PlayerHealth : MonoBehaviour {
         flashSpeed = playerValues.healthValues.FlashSpeed;
         flashColor = playerValues.healthValues.FlashColor;
         maxHealth = playerValues.healthValues.MaxHealth;
+        hitSound = playerValues.healthValues.HitSound;
 
         health = maxHealth;
         healthBar.type = Image.Type.Filled;
@@ -51,6 +55,7 @@ public class PlayerHealth : MonoBehaviour {
             health -= damage;
             damaged = true;
             healthBar.fillAmount = health / maxHealth;
+            audioSource.PlayOneShot(hitSound);
             if (health <= 0)
             {
                 GameOver();

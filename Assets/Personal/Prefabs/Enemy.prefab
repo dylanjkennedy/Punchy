@@ -119,6 +119,7 @@ MonoBehaviour:
   enemyAttackTokenPool: {fileID: 0}
   player: {fileID: 0}
   nav: {fileID: 195437385035327378}
+  spawnManager: {fileID: 0}
   playerCamera: {fileID: 0}
   bulletPrefab: {fileID: 1260433506269500, guid: 94c31c315b8315b4a8259ddf55b6ad2e,
     type: 3}
