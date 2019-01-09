@@ -56,7 +56,7 @@ public class GroundPoundState : PlayerState
 
     public override void Update()
     {
-        grounded = playerMover.isGrounded();
+        grounded = playerMover.isGrounded() || isGrounded();
         charging = Input.GetButton("Fire1");
         MouseLookUpdate();
     }
@@ -122,4 +122,8 @@ public class GroundPoundState : PlayerState
         }
     }
 
+    private bool isGrounded()
+    {
+        return Physics.Raycast(playerMover.gameObject.transform.position, new Vector3(0, -1, 0), 1.15f, LayerMask.GetMask("Enemy", "Default"));
+    }
 }

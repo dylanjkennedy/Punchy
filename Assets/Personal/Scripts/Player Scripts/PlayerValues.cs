@@ -400,6 +400,7 @@ public class PlayerValues : ActorValues
     {
         [SerializeField] private float dashTime;
         [SerializeField] private float dashSpeed;
+        [SerializeField] private float dashJumpImpulse;
 
         public float DashTime
         {
@@ -424,6 +425,19 @@ public class PlayerValues : ActorValues
             set
             {
                 dashSpeed = value;
+            }
+        }
+
+        public float DashJumpImpulse
+        {
+            get
+            {
+                return dashJumpImpulse;
+            }
+
+            set
+            {
+                dashJumpImpulse = value;
             }
         }
     }

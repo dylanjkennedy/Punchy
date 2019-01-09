@@ -392,6 +392,7 @@ MonoBehaviour:
   dashStateValues:
     dashTime: 0.16666667
     dashSpeed: 50
+    dashJumpImpulse: 50
   groundPoundStateValues:
     groundPoundHopSpeed: 20
     gravityMultiplier: 10

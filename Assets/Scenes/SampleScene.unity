@@ -329,6 +329,11 @@ PrefabInstance:
       propertyPath: staminaValues.staminaBar
       value: 
       objectReference: {fileID: 1295941575}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: dashStateValues.dashJumpImpulse
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
