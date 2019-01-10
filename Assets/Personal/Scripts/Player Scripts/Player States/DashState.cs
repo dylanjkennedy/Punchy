@@ -9,8 +9,12 @@ public class DashState : PlayerState
     float dashTime;
     PlayerMover playerMover;
     float dashSpeed;
+    float dashJumpImpulse;
     bool charging;
+    bool jumping;
     RaycastHit hit;
+    AudioClip dashSound;
+    AudioSource audioSource;
 
     private ChargeController chargeController;
 
@@ -18,8 +22,11 @@ public class DashState : PlayerState
     public DashState(PlayerMover pm) : base(pm)
     {
         playerMover = pm;
+        audioSource = playerMover.gameObject.GetComponent<AudioSource>();
         dashTime = playerMover.playerValues.dashStateValues.DashTime;
         dashSpeed = playerMover.playerValues.dashStateValues.DashSpeed;
+        dashJumpImpulse = playerMover.playerValues.dashStateValues.DashJumpImpulse;
+        dashSound = playerMover.playerValues.dashStateValues.DashSound;
         chargeController = playerMover.ChargeController;
         timer = 0;
         vulnerable = false;
@@ -32,6 +39,13 @@ public class DashState : PlayerState
         {
             return new ChargeAttackState(playerMover, hit);
         }
+
+        if (jumping)
+        {
+            playerMover.gameObject.GetComponent<ImpactReceiver>().AddImpact(movement, dashJumpImpulse);
+            return new AirState(playerMover, playerMover.jumpSpeed);
+        }
+
         timer += Time.fixedDeltaTime;
         if (timer >= dashTime)
         {
@@ -52,12 +66,18 @@ public class DashState : PlayerState
     {
         MouseLookUpdate();
         charging = Input.GetButton("Fire1");
+        if (!jumping)
+        {
+            jumping = Input.GetButton("Jump");
+        }
     }
 
     public override void Enter()
     {
+        audioSource.PlayOneShot(dashSound);
         charging = Input.GetButton("Fire1");
         movement = GetStandardDesiredMove(dashSpeed);
+        jumping = false;
         if (movement == new Vector3(0,0,0))
         {
             movement = playerMover.transform.forward;
