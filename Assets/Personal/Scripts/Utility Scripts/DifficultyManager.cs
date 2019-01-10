@@ -7,7 +7,7 @@ public class DifficultyManager : MonoBehaviour
     [SerializeField] SpawnManager spawnManager;
     [SerializeField] EnemyAttackTokenPool tokenPool;
     [SerializeField] ScoreTracker scoreTracker;
-    float difficulty;
+    [SerializeField] float difficulty;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class DifficultyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        difficulty = (scoreTracker.Score + Time.timeSinceLevelLoad)/100;
+        difficulty = (2 * Mathf.Sqrt(scoreTracker.Score) + Time.timeSinceLevelLoad) / 10;
     }
 
     public float Difficulty
