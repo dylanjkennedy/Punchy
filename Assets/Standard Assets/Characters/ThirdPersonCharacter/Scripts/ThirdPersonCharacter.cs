@@ -162,7 +162,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //m_Rigidbody.AddForce(extraGravityForce);
             characterController.Move(extraGravityForce);
 
-			m_GroundCheckDistance = characterController.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+			m_GroundCheckDistance = characterController.velocity.y <= 0 ? m_OrigGroundCheckDistance : 0.2f;
 		}
 
 

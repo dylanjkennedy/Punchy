@@ -164,7 +164,7 @@ public class CylinderEnemyController : EnemyController
             material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
             if (fireTimer >= fireWindupTime)
             {
-                audioSource.PlayOneShot(firingSound);
+                audioSource.PlayOneShot(firingSound, 0.8f);
                 FireProjectile();
             }
         }
