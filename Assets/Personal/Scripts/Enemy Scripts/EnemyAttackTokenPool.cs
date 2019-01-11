@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyAttackTokenPool : MonoBehaviour {
     SpawnManager spawnManager;
     [SerializeField] EnemyTypeTokens[] enemyTypes;
+    DifficultyManager difficultyManager;
 
     // Use this for initialization
     void Start()
     {
+        difficultyManager = gameObject.GetComponent<DifficultyManager>();
         spawnManager = gameObject.GetComponent<SpawnManager>();
         foreach (EnemyTypeTokens EnemyType in enemyTypes)
         {
@@ -20,7 +22,7 @@ public class EnemyAttackTokenPool : MonoBehaviour {
     {
         foreach (EnemyTypeTokens EnemyType in enemyTypes)
         {
-            EnemyType.Update();
+            EnemyType.Update(difficultyManager.Difficulty);
         }
     }
 
@@ -51,7 +53,8 @@ public class EnemyAttackTokenPool : MonoBehaviour {
     class EnemyTypeTokens : object
     {
         [SerializeField] SpawnManager.EnemyType enemyType;
-        [SerializeField] int[] maxTokensPerAttackType;
+        [SerializeField] int[] initialTokensPerAttackType;
+        [SerializeField] float[] tokenGrowthPerAttackType;
         [SerializeField] float[] attackTypeCooldowns;
 
         //Token[][] tokens;
@@ -62,15 +65,15 @@ public class EnemyAttackTokenPool : MonoBehaviour {
 
         public void Start()
         {
-            availableTokens = new List<Token>[maxTokensPerAttackType.Length];
-            coolingTokens = new List<Token>[maxTokensPerAttackType.Length];
-            takenTokens = new List<Token>[maxTokensPerAttackType.Length];
-            for (int i = 0; i < maxTokensPerAttackType.Length; i++)
+            availableTokens = new List<Token>[initialTokensPerAttackType.Length];
+            coolingTokens = new List<Token>[initialTokensPerAttackType.Length];
+            takenTokens = new List<Token>[initialTokensPerAttackType.Length];
+            for (int i = 0; i < initialTokensPerAttackType.Length; i++)
             {
                 availableTokens[i] = new List<Token>();
                 coolingTokens[i] = new List<Token>();
                 takenTokens[i] = new List<Token>();
-                while (availableTokens[i].Count < maxTokensPerAttackType[i])
+                while (availableTokens[i].Count < initialTokensPerAttackType[i])
                 {
                     availableTokens[i].Add(new Token(attackTypeCooldowns[i], i));
                 }
@@ -91,9 +94,9 @@ public class EnemyAttackTokenPool : MonoBehaviour {
             */
         }
 
-        public void Update()
+        public void Update(float difficulty)
         {
-            List<Token>[] cooledTokens = new List<Token>[maxTokensPerAttackType.Length];
+            List<Token>[] cooledTokens = new List<Token>[initialTokensPerAttackType.Length];
             float deltaTime = Time.deltaTime;
             for (int i = 0; i < coolingTokens.Length; i++)
             {
@@ -113,6 +116,18 @@ public class EnemyAttackTokenPool : MonoBehaviour {
                 {
                     coolingTokens[i].Remove(token);
                     availableTokens[i].Add(token);
+                }
+            }
+            UpdateMaxTokens(difficulty);
+        }
+
+        void UpdateMaxTokens(float difficulty)
+        {
+            for (int i = 0; i < initialTokensPerAttackType.Length; i++)
+            {
+                if (totalTokens < totalTokens + Mathf.FloorToInt(tokenGrowthPerAttackType[i] * difficulty))
+                {
+                    availableTokens[i].Add(new Token(attackTypeCooldowns[i], i));
                 }
             }
         }
@@ -135,6 +150,11 @@ public class EnemyAttackTokenPool : MonoBehaviour {
             availableTokens[attackType].Remove(token);
             token.TakeToken(taker);
             return token;
+        }
+
+        public int totalTokens
+        {
+            get { return availableTokens.Length + coolingTokens.Length + takenTokens.Length; }
         }
     }
 

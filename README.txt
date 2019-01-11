@@ -13,7 +13,7 @@ Avoid using Camera.main
 Warnings are errors - unless they are specifically due to not yet implemented code, they should be fixed immediately
 
 Project-specific:
-Objects in scenes should always be placed in positions of multiples of 1. Objects should never be placed at smaller increments
+Objects in scenes should always be placed in positions of multiples of 0.5. Objects should never be placed at smaller increments
 Always use Time.deltaTime/Time.fixedDeltaTime for checking how much time has passed in Update/FixedUpdate
 If something should rely on real time, and not in-game time, used Time.unscaledDeltaTime
 Nothing should directly touch timeScale except for the TimeScaleManager
