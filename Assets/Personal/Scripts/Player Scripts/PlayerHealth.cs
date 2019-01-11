@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour {
             health -= damage;
             damaged = true;
             healthBar.fillAmount = health / maxHealth;
-            audioSource.PlayOneShot(hitSound);
+            audioSource.PlayOneShot(hitSound, Mathf.Clamp(damage/4f, 0f, 1f));
             if (health <= 0)
             {
                 GameOver();

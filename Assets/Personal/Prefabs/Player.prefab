@@ -609,11 +609,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - enemyType: 0
-    initialTokensPerAttackType: 03000000
+    initialTokensPerAttackType: 0300000001000000
     tokenGrowthPerAttackType:
     - 0.2
+    - 0.05
     attackTypeCooldowns:
     - 0.5
+    - 5
   - enemyType: 1
     initialTokensPerAttackType: 00000000
     tokenGrowthPerAttackType:

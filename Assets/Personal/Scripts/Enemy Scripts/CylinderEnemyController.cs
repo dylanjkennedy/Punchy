@@ -20,6 +20,17 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float fireWindupTime;
     [SerializeField] float reevaluateTetherTime;
     [SerializeField] AudioClip firingSound;
+    [SerializeField] AudioClip laserSound;
+    [SerializeField] float laserRotationLerp;
+    [SerializeField] LineRenderer targetLine;
+    [SerializeField] LineRenderer laserLine;
+    [SerializeField] float laserMaxLength;
+    [SerializeField] float laserForce;
+    [SerializeField] int laserDamagePerFrame;
+
+    [SerializeField] float laserWindupTime;
+    [SerializeField] float laserFiringTime;
+    [SerializeField] float laserTargetingTime;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
@@ -38,8 +49,10 @@ public class CylinderEnemyController : EnemyController
     private TethersTracker tetherTracker;
     EnemyAttackTokenPool.Token token;
     float defaultSpeed;
+    LineRenderer activeLaser;
+    bool laserSoundPlayed;
 
-    private enum enemyState { movingState, tetheredState };
+    private enum enemyState { movingState, tetheredState, laserState };
     private enemyState state;
 
     // Use this for initialization
@@ -91,7 +104,7 @@ public class CylinderEnemyController : EnemyController
         // escape! ?
 
         // move to the best tether you can
-        // attack the player while your in a tether
+        // attack the player while you're in a tether
         // reevaluate your tether (every once in a while and when player too close)
 
         if (dead)
@@ -109,33 +122,50 @@ public class CylinderEnemyController : EnemyController
             {
                 case enemyState.movingState:
                     state = MoveToTether();
+                    CheckIfFiring();
                     break;
                 case enemyState.tetheredState:
                     state = TetheredBehavior();
+                    CheckIfFiring();
                     break;
-                //case enemyState.attackingState:
-                //    state = attackBehavior();
-                //    break;
+                case enemyState.laserState:
+                    state = LaserBehavior();
+                    break;
             }
-            fireTimer += Time.fixedDeltaTime;
-            if (!firing && fireTimer >= timeToNextFire && CheckLineOfSight())
+        }
+    }
+
+    private void CheckIfFiring()
+    {
+        fireTimer += Time.fixedDeltaTime;
+        if (!firing && fireTimer >= timeToNextFire && CheckLineOfSight())
+        {
+            //only called with 0 for now, since only one attack type exists
+            if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 20 && Mathf.Abs(player.transform.position.y - transform.position.y) < 0.5f)
             {
-                //only called with 0 for now, since only one attack type exists
-                if (tryAttack(0))
+                if (TryAttack(1))
+                {
+                    state = enemyState.laserState;
+                    LaserSetup();
+                }
+            }
+            if (state != enemyState.laserState)
+            {
+                if (TryAttack(0))
                 {
                     firing = true;
                     fireTimer = 0;
                 }
             }
+        }
 
-            if (firing)
+        if (firing)
+        {
+            material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
+            if (fireTimer >= fireWindupTime)
             {
-                material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
-                if(fireTimer >= fireWindupTime)
-                {
-                    audioSource.PlayOneShot(firingSound);
-                    Fire();
-                }
+                audioSource.PlayOneShot(firingSound);
+                FireProjectile();
             }
         }
     }
@@ -144,7 +174,6 @@ public class CylinderEnemyController : EnemyController
     {
         //PROBLEM: tether = this.findBestTether();
         // check if position is in radius of tether
-
         
         if (Vector3.Distance(tether.transform.position, this.transform.position) <= tetherRadius)
         {
@@ -156,6 +185,16 @@ public class CylinderEnemyController : EnemyController
             nav.SetDestination(destination);
             return enemyState.movingState;        
         }      
+    }
+
+    private void LaserSetup()
+    {
+        nav.isStopped = true;
+        fireTimer = 0;
+        targetLine.transform.LookAt(player.gameObject.transform.position);
+        targetLine.gameObject.SetActive(true);
+        activeLaser = targetLine;
+        laserSoundPlayed = false;
     }
 
     private enemyState TetheredBehavior()
@@ -180,44 +219,80 @@ public class CylinderEnemyController : EnemyController
         return enemyState.tetheredState;
     }
 
-    /*
-    private enemyState attackBehavior()
+    private enemyState LaserBehavior()
     {
-        //temporary
-        transform.LookAt(player.transform);
-        this.Fire();
-        // JIGGLE
-        //nav.SetDestination(this.findNewPositionInTether());
-        // reconsider current tether
-        GameObject newTether = this.findBestTether();
-        if (newTether == tether)
+        fireTimer += Time.fixedDeltaTime;
+
+        if (!firing && fireTimer <= laserTargetingTime)
         {
-            nav.SetDestination(this.findNewPositionInTether());
-            return enemyState.tetheredState;
+            activeLaser.transform.LookAt(player.gameObject.transform.position);
+        }
+        else if (!laserSoundPlayed)
+        {
+            audioSource.PlayOneShot(laserSound);
+            laserSoundPlayed = true;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(activeLaser.transform.position, activeLaser.transform.forward, out hit, laserMaxLength, LayerMask.GetMask("Default", "Enemy", "Player")))
+        {
+            activeLaser.SetPosition(1, new Vector3(0, 0, Vector3.Distance(hit.point, transform.position)));
+            if (firing)
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") && hit.collider.gameObject != this.gameObject)
+                {
+                    hit.collider.gameObject.GetComponent<EnemyController>().takeDamage(hit.collider.gameObject.transform.position);
+                }
+
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    hit.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(laserDamagePerFrame, player.transform.position - transform.position, laserForce);
+                }
+            }
         }
         else
         {
-            tether = newTether;
-            return enemyState.movingState;
+            activeLaser.SetPosition(1, new Vector3(0, 0, laserMaxLength));
         }
-        
+
+        if (!firing && fireTimer >= laserTargetingTime + laserWindupTime)
+        {
+            firing = true;
+            laserLine.gameObject.SetActive(true);
+            laserLine.transform.SetPositionAndRotation(targetLine.transform.position, targetLine.transform.rotation);
+            laserLine.SetPosition(1, targetLine.GetPosition(1));
+            targetLine.gameObject.SetActive(false);
+
+            activeLaser = laserLine;
+            fireTimer = 0;
+        }
+
+        //Below code to be used to lerp laser towards player - this is unnecessary for laser type being currently implemented
+        /*
+        Vector3 relativePos = player.gameObject.transform.position - transform.position;
+        Quaternion desiredRotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, laserRotationLerp);
+        */
+
+        if (firing && fireTimer >= laserFiringTime)
+        {
+            EndAttack();
+            nav.isStopped = false;
+            laserLine.gameObject.SetActive(false);
+            activeLaser = null;
+            return enemyState.tetheredState;
+        }
+        return enemyState.laserState;
     }
-    */
+    
 
     private Vector3 FindNewPositionInTether()
     {
         return tether.transform.position + (Vector3)Random.insideUnitCircle * tetherRadius;
-
-        /*
-        float x = Random.Range(tether.transform.position.x - tetherRadius, tether.transform.position.x + tetherRadius);
-        float z = Random.Range(tether.transform.position.z - tetherRadius, tether.transform.position.z + tetherRadius);
-        return new Vector3(x, tether.transform.position.y, z);
-        */
     }
 
-    private bool tryAttack(int attackType)
+    private bool TryAttack(int attackType)
     {
-        //since there's only one attack type for now, this can only really be called with attackType = 0
         token = enemyAttackTokenPool.RequestToken(this.gameObject, attackType);
         return (token != null);
     }
@@ -232,7 +307,7 @@ public class CylinderEnemyController : EnemyController
         fireTimer = 0;
     }
 
-    private void Fire()
+    private void FireProjectile()
     {
         transform.LookAt(player.gameObject.transform.position);
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);

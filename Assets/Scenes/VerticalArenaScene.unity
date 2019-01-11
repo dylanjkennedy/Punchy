@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -548,13 +548,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76710007}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.3558954, y: 0.04167071, z: 0.22791368, w: 0.9053493}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 38.713, y: 17.735, z: 34.534}
 --- !u!1001 &87899556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2410,11 +2410,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114713262047289118, guid: 02cda2056326e704cbb694a193919a19,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 297547911}
     - target: {fileID: 114248733243452112, guid: 02cda2056326e704cbb694a193919a19,
         type: 3}
       propertyPath: player
@@ -2425,6 +2420,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 297547910}
+    - target: {fileID: 114713262047289118, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 297547911}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02cda2056326e704cbb694a193919a19, type: 3}
 --- !u!1 &264235243 stripped
@@ -2886,36 +2886,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1414270663}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: damageImage
-      value: 
-      objectReference: {fileID: 1414270664}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: gameOverText
-      value: 
-      objectReference: {fileID: 1414270665}
-    - target: {fileID: 114812462051641692, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: staminaBar
-      value: 
-      objectReference: {fileID: 1414270662}
-    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: chargeWheel
-      value: 
-      objectReference: {fileID: 1414270666}
-    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: slowmoWheel
-      value: 
-      objectReference: {fileID: 1414270661}
     - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: scoreText
@@ -2968,6 +2938,36 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 264235243}
+    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1414270663}
+    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: damageImage
+      value: 
+      objectReference: {fileID: 1414270664}
+    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 1414270665}
+    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: chargeWheel
+      value: 
+      objectReference: {fileID: 1414270666}
+    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: slowmoWheel
+      value: 
+      objectReference: {fileID: 1414270661}
+    - target: {fileID: 114812462051641692, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 1414270662}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!1 &297547909 stripped
