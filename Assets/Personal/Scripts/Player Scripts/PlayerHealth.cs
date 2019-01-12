@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour {
 	Image healthBar;
 	Image damageImage;
     Text gameOverText;
+    [SerializeField] Canvas gameOverCanvas;
 	float flashSpeed = 5f;
 	Color flashColor = new Color (1f, 0f, 0f, 0.1f);
 	private int maxHealth;
@@ -27,7 +28,7 @@ public class PlayerHealth : MonoBehaviour {
 
         healthBar = playerValues.healthValues.HealthBar;
         damageImage = playerValues.healthValues.DamageImage;
-        gameOverText = playerValues.healthValues.GameOverText;
+        gameOverCanvas = playerValues.healthValues.GameOverCanvas;
         flashSpeed = playerValues.healthValues.FlashSpeed;
         flashColor = playerValues.healthValues.FlashColor;
         maxHealth = playerValues.healthValues.MaxHealth;
@@ -68,8 +69,10 @@ public class PlayerHealth : MonoBehaviour {
 
     private void GameOver()
     {
-        gameOverText.gameObject.SetActive(true);
+        //gameOverText.gameObject.SetActive(true);
+        gameOverCanvas.gameObject.SetActive(true);
         playerMover.Die();
+        playerMover.MouseLook.SetCursorLock(false);
     }
 
     //to be implemented

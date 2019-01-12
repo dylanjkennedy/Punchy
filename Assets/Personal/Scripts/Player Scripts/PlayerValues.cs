@@ -170,7 +170,7 @@ public class PlayerValues : ActorValues
     {
         [SerializeField] private Image healthBar;
         [SerializeField] private Image damageImage;
-        [SerializeField] private Text gameOverText;
+        [SerializeField] private Canvas gameOverCanvas;
         [SerializeField] private float flashSpeed;
         [SerializeField] private Color flashColor;
         [SerializeField] private int maxHealth;
@@ -218,11 +218,11 @@ public class PlayerValues : ActorValues
             }
         }
 
-        public Text GameOverText
+        public Canvas GameOverCanvas
         {
             get
             {
-                return gameOverText;
+                return gameOverCanvas;
             }
         }
 
