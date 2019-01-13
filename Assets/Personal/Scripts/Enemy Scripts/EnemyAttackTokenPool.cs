@@ -125,7 +125,7 @@ public class EnemyAttackTokenPool : MonoBehaviour {
         {
             for (int i = 0; i < initialTokensPerAttackType.Length; i++)
             {
-                if (totalTokens < totalTokens + Mathf.FloorToInt(tokenGrowthPerAttackType[i] * difficulty))
+                if (totalTokens(i) < initialTokensPerAttackType[i] + Mathf.FloorToInt(tokenGrowthPerAttackType[i] * difficulty))
                 {
                     availableTokens[i].Add(new Token(attackTypeCooldowns[i], i));
                 }
@@ -148,13 +148,14 @@ public class EnemyAttackTokenPool : MonoBehaviour {
         {
             Token token = availableTokens[attackType][0];
             availableTokens[attackType].Remove(token);
+            takenTokens[attackType].Add(token);
             token.TakeToken(taker);
             return token;
         }
 
-        public int totalTokens
+        public int totalTokens(int type)
         {
-            get { return availableTokens.Length + coolingTokens.Length + takenTokens.Length; }
+            return availableTokens[type].Count + coolingTokens[type].Count + takenTokens[type].Count;
         }
     }
 
