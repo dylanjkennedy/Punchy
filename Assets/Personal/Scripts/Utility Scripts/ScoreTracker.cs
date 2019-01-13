@@ -11,11 +11,13 @@ public class ScoreTracker : MonoBehaviour {
     [SerializeField] GameObject scoreCanvas;
     float timer;
     int combo;
+    bool dead;
 	// Use this for initialization
 	void Start () {
         score = 0;
         timer = 0;
         combo = 0;
+        dead = false;
 	}
 	
 	// Update is called once per frame
@@ -30,13 +32,16 @@ public class ScoreTracker : MonoBehaviour {
 
     public void ChangeScore(int change, Vector3 position)
     {
-        combo++;
-        timer = 0;
-        int scoreChange = change * combo;
-        score += scoreChange;
-        scoreText.text = score.ToString();
-        comboText.text = combo.ToString();
-        CreateScoreInWorld(scoreChange, position);
+        if (!dead)
+        {
+            combo++;
+            timer = 0;
+            int scoreChange = change * combo;
+            score += scoreChange;
+            scoreText.text = score.ToString();
+            comboText.text = combo.ToString();
+            CreateScoreInWorld(scoreChange, position);
+        }
     }
 
     public void CreateScoreInWorld(int score, Vector3 position)
@@ -64,5 +69,10 @@ public class ScoreTracker : MonoBehaviour {
         {
             return score;
         }
+    }
+
+    public void PlayerDied()
+    {
+        dead = true;
     }
 }

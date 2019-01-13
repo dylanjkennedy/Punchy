@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: db0c784ad4720cf4fa57e696490edc30, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 779a63396be43874f8ab37e99a8bf1d8, type: 2}
 --- !u!1 &4296811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +3016,22 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 264235243}
+    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: baseSpawnLimits.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: baseSpawnLimits.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: spawnLimitsGrowth.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: spawnLimitsGrowth.Array.data[1]
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: healthBar
@@ -3051,6 +3067,18 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1414270662}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[0].initialTokensPerAttackType.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[0].tokenGrowthPerAttackType.Array.data[0]
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[0].initialTokensPerAttackType.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!1 &297547909 stripped
@@ -8832,18 +8860,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 852620487}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &855993077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114601830658752590, guid: 24702d2c502ac224ca4a638da8a5acdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 297547908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd07c203514dd6d4bb0cf75030ba111e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &856268485
 GameObject:
   m_ObjectHideFlags: 0
@@ -14431,11 +14447,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 117101708}
     m_Modifications:
-    - target: {fileID: 5071186735562750649, guid: c8fdea685493baf4eb6547fc19d330ca,
-        type: 3}
-      propertyPath: timeScaleManager
-      value: 
-      objectReference: {fileID: 855993077}
     - target: {fileID: 0}
       propertyPath: player
       value: 
@@ -19563,6 +19574,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textAlignment
       value: 514
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235335728677958204, guid: 84875f2e0e272b74eb170a78b15d7ff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235335728677958204, guid: 84875f2e0e272b74eb170a78b15d7ff0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84875f2e0e272b74eb170a78b15d7ff0, type: 3}

@@ -132,6 +132,7 @@ public class PlayerMover : MonoBehaviour
 
     public void Die()
     {
+        gameObject.GetComponentInChildren<ScoreTracker>().PlayerDied();
         dead = true;
     }
 

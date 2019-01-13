@@ -75,4 +75,12 @@ public class TimeScaleManager : MonoBehaviour {
         Time.timeScale = currentTimeScale;
         Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
     }
+
+    public float Timescale
+    {
+        get
+        {
+            return currentTimeScale;
+        }
+    }
 }

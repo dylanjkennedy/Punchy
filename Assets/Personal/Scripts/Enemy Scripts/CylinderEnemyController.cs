@@ -342,7 +342,8 @@ public class CylinderEnemyController : EnemyController
             playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
             dead = true;
             stateTimer = 0;
-            Instantiate(fractures, transform.position, transform.rotation);
+            GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
+            fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
             Instantiate(explosion, point, transform.rotation);
             explosion.Play();
 

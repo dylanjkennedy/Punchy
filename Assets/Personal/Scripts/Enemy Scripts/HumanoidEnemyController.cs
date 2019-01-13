@@ -117,7 +117,8 @@ public class HumanoidEnemyController : EnemyController {
         DealExplosionDamage();
         DealExplosionPhysics();
 
-        Instantiate(explosion, transform.position, transform.rotation);
+        ParticleSystem explosionInstance = Instantiate(explosion, transform.position, transform.rotation);
+        explosionInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
         explosion.Play();
         DestroyThis();
     }
