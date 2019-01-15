@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ChargeController : MonoBehaviour {
 	private float currentCharge;
-	private float chargedTime;
+	private float chargedTimer;
+    private float cooldownTimer;
 	private bool chargeCooling;
 	private bool charged;
     private PlayerMover playerMover;
@@ -52,7 +53,7 @@ public class ChargeController : MonoBehaviour {
         attackRange = playerValues.chargeValues.AttackRange;
 
 		currentCharge = 0;
-		chargedTime = 0;
+		chargedTimer = 0;
 		chargeWheel.type = Image.Type.Filled;
 		chargeWheel.fillMethod = Image.FillMethod.Radial360;
 		chargeWheel.fillAmount = 0f;
@@ -66,32 +67,9 @@ public class ChargeController : MonoBehaviour {
         timeScaleManager = mainCamera.GetComponent<TimeScaleManager>();
 	}
 
-    private void UpdateSlowmoWheel()
-    {
-       if (charged)
-        {
-            slowmoWheel.fillAmount = 1 - (chargedTime / chargeTimeout);
-        }
-       else
-        {
-            slowmoWheel.fillAmount = 0;
-        }
-    }
 
-    private void UpdateChargeWheel()
-	{
-		if (chargeCooling)
-		{
-			chargeWheel.fillAmount = 1 - (chargedTime / chargeCooldownTime);
-		} 
-		else
-		{
-			chargeWheel.fillAmount = currentCharge / timeToCharge;
-		}
-	}
-
-
-	//returns true if we should attack
+    
+	//returns a Raycasthit with non-null collider if we should attack
 	public RaycastHit Charge(bool charging)
 	{
         RaycastHit hit = GetNullHit();
@@ -102,10 +80,10 @@ public class ChargeController : MonoBehaviour {
 		}
 
 		if (chargeCooling) {
-			chargedTime += Time.deltaTime;
-			if (chargedTime >= chargeCooldownTime) {
+			cooldownTimer += Time.deltaTime;
+			if (cooldownTimer >= chargeCooldownTime) {
 				chargeCooling = false;
-				chargedTime = 0;
+				chargedTimer = 0;
 				chargeWheel.color = Color.white;
 			}
 			UpdateChargeWheel ();
@@ -128,10 +106,17 @@ public class ChargeController : MonoBehaviour {
 		}
 			
 		if (charged) {
-			chargedTime += Time.fixedUnscaledDeltaTime;
+			chargedTimer += Time.fixedUnscaledDeltaTime;
 			chargeWheel.fillAmount = 1;
             UpdateSlowmoWheel();
-			//if we're charge and fire button released, check if we can successfully attack
+
+            //if we're charged too long, attempt an attack by default
+            if (chargedTimer >= chargeTimeout)
+            {
+                charging = false;
+            }
+
+			//if we're charged and the fire button is released, check if we can successfully attack
 			if (!charging)
 			{
                 hit = CheckAttack();
@@ -142,24 +127,13 @@ public class ChargeController : MonoBehaviour {
 				else
 				{
 					chargeCooling = true;
+                    cooldownTimer = 0;
 					chargeWheel.color = Color.red;
                     hit = GetNullHit();
 				}
 				timeScaleManager.FullspeedTimeScale();
-				chargedTime = 0;
+				chargedTimer = 0;
 				charged = false;
-				UpdateChargeWheel ();
-                UpdateSlowmoWheel();
-				return hit;
-			}
-
-			//if we're charged too long, initiate cooldown
-			if (chargedTime >= chargeTimeout)
-			{
-				chargedTime = 0;
-				charged = false;
-				chargeCooling = true;
-				chargeWheel.color = Color.red;
 				UpdateChargeWheel ();
                 UpdateSlowmoWheel();
 				return hit;
@@ -186,6 +160,30 @@ public class ChargeController : MonoBehaviour {
 
         Physics.Raycast(attackRay, out attackHit, attackRange, emptyMask);
         return attackHit;
+    }
+
+    private void UpdateSlowmoWheel()
+    {
+        if (charged)
+        {
+            slowmoWheel.fillAmount = 1 - (chargedTimer / chargeTimeout);
+        }
+        else
+        {
+            slowmoWheel.fillAmount = 0;
+        }
+    }
+
+    private void UpdateChargeWheel()
+    {
+        if (chargeCooling)
+        {
+            chargeWheel.fillAmount = 1 - (cooldownTimer / chargeCooldownTime);
+        }
+        else
+        {
+            chargeWheel.fillAmount = currentCharge / timeToCharge;
+        }
     }
 
 
