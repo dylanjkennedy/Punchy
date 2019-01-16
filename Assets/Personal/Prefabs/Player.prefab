@@ -444,9 +444,9 @@ MonoBehaviour:
   healthValues:
     healthBar: {fileID: 0}
     damageImage: {fileID: 0}
-    gameOverText: {fileID: 0}
+    gameOverCanvas: {fileID: 0}
     flashSpeed: 5
-    flashColor: {r: 0, g: 0, b: 0, a: 0}
+    flashColor: {r: 1, g: 0, b: 0, a: 0.50980395}
     maxHealth: 100
     hitSound: {fileID: 8300000, guid: 561f895606b5cff4085fe1a7e5586ad3, type: 3}
   movementValues:
@@ -495,6 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a709f90a3d1a10a4589668e06c3db72e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverCanvas: {fileID: 0}
 --- !u!114 &114772176358725348
 MonoBehaviour:
   m_ObjectHideFlags: 0
