@@ -162,7 +162,8 @@ public class CylinderEnemyController : EnemyController
         if (firing)
         {
             material.color = Color.Lerp(defaultColor, fireColor, fireTimer / fireWindupTime);
-            if (fireTimer >= fireWindupTime)
+            //stopgap to prevent firing into walls - cylinder will hold token indefinitely if it can never see player
+            if (fireTimer >= fireWindupTime && CheckLineOfSight())
             {
                 audioSource.PlayOneShot(firingSound, 0.8f);
                 FireProjectile();
