@@ -18,9 +18,17 @@ public class SpawnManager : MonoBehaviour {
     float[] timesOfNextSpawn = {0, 0};
     GameObject player;
     TethersTracker tethersTracker;
+    DifficultyValues difficultyValues;
+
 
     // Use this for initialization
     void Start () {
+        //might need to be done differently? 
+        difficultyValues = difficultyManager.DifficultyValues;
+        baseSpawnLimits = difficultyValues.SpawnDifficultyValues.BaseSpawnLimits;
+        spawnLimitsGrowth = difficultyValues.SpawnDifficultyValues.SpawnLimitsGrowth;
+
+
         spawnLimits = new int[baseSpawnLimits.Length];
         for (int i = 0; i < spawnLimits.Length; i++)
         {

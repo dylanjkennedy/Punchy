@@ -6,15 +6,20 @@ public class EnemyAttackTokenPool : MonoBehaviour {
     SpawnManager spawnManager;
     [SerializeField] EnemyTypeTokens[] enemyTypes;
     DifficultyManager difficultyManager;
+    DifficultyValues difficultyValues;
 
     // Use this for initialization
     void Start()
     {
         difficultyManager = gameObject.GetComponent<DifficultyManager>();
         spawnManager = gameObject.GetComponent<SpawnManager>();
+
+        //might need to be done differently? 
+        difficultyValues = difficultyManager.DifficultyValues;
+
         foreach (EnemyTypeTokens EnemyType in enemyTypes)
         {
-            EnemyType.Start();
+            EnemyType.Start(difficultyValues);
         }
     }
 
@@ -44,6 +49,7 @@ public class EnemyAttackTokenPool : MonoBehaviour {
     }
 
 
+
     //Structured this way since you need to have a serializable class and an array of the serializable class to have
     //nested arrays in Unity that are editor-visible. This allows us to have a top-level array of enemy types which 
     //internally have an array of attack types which are all tracked individually.
@@ -63,8 +69,12 @@ public class EnemyAttackTokenPool : MonoBehaviour {
         List<Token>[] coolingTokens;
         List<Token>[] takenTokens;
 
-        public void Start()
+        public void Start(DifficultyValues values)
         {
+            initialTokensPerAttackType = values.TokenPoolsEnemyTypes[(int)enemyType].InitialTokensPerAttackType;
+            tokenGrowthPerAttackType = values.TokenPoolsEnemyTypes[(int)enemyType].TokenGrowthPerAttackType;
+            attackTypeCooldowns = values.TokenPoolsEnemyTypes[(int)enemyType].AttackTypeCooldowns;
+
             availableTokens = new List<Token>[initialTokensPerAttackType.Length];
             coolingTokens = new List<Token>[initialTokensPerAttackType.Length];
             takenTokens = new List<Token>[initialTokensPerAttackType.Length];

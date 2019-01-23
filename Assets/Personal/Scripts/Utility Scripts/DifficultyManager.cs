@@ -8,10 +8,12 @@ public class DifficultyManager : MonoBehaviour
     [SerializeField] EnemyAttackTokenPool tokenPool;
     [SerializeField] ScoreTracker scoreTracker;
     [SerializeField] float difficulty;
+    DifficultyValues difficultyValues;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        difficultyValues = FindObjectOfType<DifficultyValues>();
+        difficultyValues = difficultyValues.DestroyOnLoad();
     }
 
     // Update is called once per frame
@@ -25,6 +27,14 @@ public class DifficultyManager : MonoBehaviour
         get
         {
             return difficulty;
+        }
+    }
+
+    public DifficultyValues DifficultyValues
+    {
+        get
+        {
+            return difficultyValues;
         }
     }
 }
