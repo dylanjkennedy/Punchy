@@ -7,11 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMover : MonoBehaviour
 {
+    bool paused;
 	public float speed;
 	public float stickToGroundForce;
     public PlayerValues playerValues;
 	private CharacterController characterController;
+    private TimeScaleManager timeScaleManager;
     private ChargeController chargeController;
+    GameObject PauseMenu;
     public ChargeController ChargeController
     {
         get { return chargeController; }
@@ -41,12 +44,16 @@ public class PlayerMover : MonoBehaviour
         jumpSpeed = playerValues.movementValues.JumpSpeed;
         stickToGroundForce = playerValues.movementValues.StickToGroundForce;
         playerCamera = GetComponentInChildren<Camera>();
+        timeScaleManager = GetComponentInChildren<TimeScaleManager>();
 		characterController = GetComponent<CharacterController>();
         MouseLook.Init(transform, playerCamera.transform);
         currentState = new GroundState(this);
         dead = false;
         chargeController = GetComponent<ChargeController>();
         playerStamina = GetComponent<PlayerStamina>();
+        PauseMenu = playerValues.generalValues.PauseMenu;
+
+        paused = false;
     }
 
 
@@ -54,7 +61,7 @@ public class PlayerMover : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-        if (!dead)
+        if (!dead && !paused)
         {
             PlayerState newState = currentState.FixedUpdate();
             if (newState != null)
@@ -70,20 +77,38 @@ public class PlayerMover : MonoBehaviour
 
     void Update()
     {
-        if (!dead)
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (TogglePause())
+            {
+                return;
+            }
+        }
+        if (!dead && !paused)
         {
             currentState.Update();
         }
-        else
-        {
-            if (Input.GetButtonDown("Submit"))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
-            }
-        }
     }
 
-
+    private bool TogglePause()
+    {
+        if (!paused)
+        {
+            paused = true;
+            timeScaleManager.Pause(true);
+            PauseMenu.SetActive(true);
+            MouseLook.SetCursorLock(false);
+            return paused;
+        }
+        else
+        {
+            paused = false;
+            timeScaleManager.Pause(false);
+            PauseMenu.SetActive(false);
+            MouseLook.SetCursorLock(true);
+            return paused;
+        }
+    }
 
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -139,6 +164,14 @@ public class PlayerMover : MonoBehaviour
     public bool isVulnerable()
     {
         return currentState.vulnerable;
+    }
+
+    public bool isPaused
+    {
+        get
+        {
+            return paused;
+        }
     }
 
 }

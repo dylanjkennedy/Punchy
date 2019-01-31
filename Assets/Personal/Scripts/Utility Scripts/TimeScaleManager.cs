@@ -12,6 +12,8 @@ public class TimeScaleManager : MonoBehaviour {
     float currentTimeScale;
     bool lerping;
     bool normal;
+    bool paused;
+    float unpausedTimeScale;
     float lerpFactor;
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,7 @@ public class TimeScaleManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!normal)
+        if (!normal && !paused)
         {
             timer += Time.unscaledDeltaTime;
             if (timer >= timerEnd)
@@ -74,6 +76,22 @@ public class TimeScaleManager : MonoBehaviour {
     {
         Time.timeScale = currentTimeScale;
         Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
+    }
+
+    public void Pause (bool pause)
+    {
+        if (pause)
+        {
+            unpausedTimeScale = currentTimeScale;
+            paused = true;
+            currentTimeScale = 0f;
+        }
+        if (!pause)
+        {
+            paused = false;
+            currentTimeScale = unpausedTimeScale;
+        }
+        UpdateTimeScale();
     }
 
     public float Timescale

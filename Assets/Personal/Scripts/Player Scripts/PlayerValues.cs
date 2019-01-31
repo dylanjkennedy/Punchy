@@ -15,6 +15,21 @@ public class PlayerValues : ActorValues
     public GroundPoundStateValues groundPoundStateValues;
     public GroundStateValues groundStateValues;
     public StaminaValues staminaValues;
+    public GeneralValues generalValues;
+
+    [System.Serializable]
+    public class GeneralValues : System.Object
+    {
+        [SerializeField] private GameObject pauseMenu;
+
+        public GameObject PauseMenu
+        {
+            get
+            {
+                return pauseMenu;
+            }
+        }
+    }
 
     [System.Serializable]
     public class ChargeValues : System.Object

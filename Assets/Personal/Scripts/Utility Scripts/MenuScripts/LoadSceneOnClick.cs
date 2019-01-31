@@ -23,6 +23,12 @@ public class LoadSceneOnClick : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ExitLevel(string sceneName)
+    {
+        FindObjectOfType<TimeScaleManager>().FullspeedTimeScale();
+        LoadScene(sceneName);
+    }
+
     public void RestartLevel()
     {
         DifficultyValues values = FindObjectOfType<DifficultyValues>();
@@ -30,6 +36,7 @@ public class LoadSceneOnClick : MonoBehaviour
         {
             DontDestroyOnLoad(values.gameObject);
         }
+        FindObjectOfType<TimeScaleManager>().FullspeedTimeScale();
         ReloadScene();
     }
 }

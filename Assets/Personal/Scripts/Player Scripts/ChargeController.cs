@@ -106,7 +106,12 @@ public class ChargeController : MonoBehaviour {
 		}
 			
 		if (charged) {
-			chargedTimer += Time.fixedUnscaledDeltaTime;
+            //Hopefully just a stopgap - if this is not done, then pausing the game causes fixedUnscaledDeltaTime to return the length of the pause, so if you pause
+            //with a charge, it's guaranteed to try to execute right away when you unpause. 
+            if (Time.fixedUnscaledDeltaTime < 1f)
+            {
+                chargedTimer += Time.fixedUnscaledDeltaTime;
+            }
 			chargeWheel.fillAmount = 1;
             UpdateSlowmoWheel();
 
