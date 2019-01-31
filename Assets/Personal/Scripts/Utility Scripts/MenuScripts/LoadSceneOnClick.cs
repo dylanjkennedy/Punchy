@@ -22,4 +22,14 @@ public class LoadSceneOnClick : MonoBehaviour
         DontDestroyOnLoad(difficultyValuesObject);
         SceneManager.LoadScene(sceneName);
     }
+
+    public void RestartLevel()
+    {
+        DifficultyValues values = FindObjectOfType<DifficultyValues>();
+        if (!values.isDefault)
+        {
+            DontDestroyOnLoad(values.gameObject);
+        }
+        ReloadScene();
+    }
 }

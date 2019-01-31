@@ -7,6 +7,12 @@ public class DifficultyValues : MonoBehaviour
 {
     [SerializeField] TokenPoolsValues[] tokenPoolsEnemyTypes;
     [SerializeField] SpawnValues spawnDifficultyValues;
+    [SerializeField] bool isDefaultValues;
+
+    private void Awake()
+    {
+        
+    }
 
     public DifficultyValues DestroyOnLoad()
     {
@@ -27,6 +33,14 @@ public class DifficultyValues : MonoBehaviour
         get
         {
             return spawnDifficultyValues;
+        }
+    }
+
+    public bool isDefault
+    {
+        get
+        {
+            return isDefaultValues;
         }
     }
 

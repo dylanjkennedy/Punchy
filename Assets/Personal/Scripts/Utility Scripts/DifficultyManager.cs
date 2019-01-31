@@ -12,7 +12,23 @@ public class DifficultyManager : MonoBehaviour
 
     void Awake()
     {
-        difficultyValues = FindObjectOfType<DifficultyValues>();
+        DifficultyValues[] difficulties = FindObjectsOfType<DifficultyValues>();
+        for (int i = 0; i < difficulties.Length; i++)
+        {
+            if (difficulties.Length == 1)
+            {
+                difficultyValues = difficulties[i];
+            }
+            else if (difficulties[i].isDefault && difficulties.Length > 1)
+            {
+                Destroy(difficulties[i].gameObject);
+            }
+            else if (difficulties.Length > 1 && !difficulties[i].isDefault)
+            {
+                difficultyValues = difficulties[i];
+            }
+        }
+
         difficultyValues = difficultyValues.DestroyOnLoad();
     }
 
