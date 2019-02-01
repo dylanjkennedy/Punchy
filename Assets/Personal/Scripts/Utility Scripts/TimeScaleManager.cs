@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimeScaleManager : MonoBehaviour {
 
@@ -15,8 +16,26 @@ public class TimeScaleManager : MonoBehaviour {
     bool paused;
     float unpausedTimeScale;
     float lerpFactor;
-	// Use this for initialization
-	void Start () {
+
+    private UnityAction<string> pauseListener;
+
+    private void Awake()
+    {
+        pauseListener = new UnityAction<string>(TogglePause);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("pause", pauseListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("pause", pauseListener);
+    }
+
+    // Use this for initialization
+    void Start () {
         lerping = false;
         lerpFactor = 0f;
         normal = true;
@@ -78,15 +97,15 @@ public class TimeScaleManager : MonoBehaviour {
         Time.fixedDeltaTime = 0.01666667f * Time.timeScale;
     }
 
-    public void Pause (bool pause)
+    public void TogglePause (string data)
     {
-        if (pause)
+        if (!paused)
         {
             unpausedTimeScale = currentTimeScale;
             paused = true;
             currentTimeScale = 0f;
         }
-        if (!pause)
+        else
         {
             paused = false;
             currentTimeScale = unpausedTimeScale;

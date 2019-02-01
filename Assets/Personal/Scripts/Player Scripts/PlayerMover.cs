@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson; //FirstPersonController made this the namespace
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerMover : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class PlayerMover : MonoBehaviour
 	private CharacterController characterController;
     private TimeScaleManager timeScaleManager;
     private ChargeController chargeController;
-    GameObject PauseMenu;
     public ChargeController ChargeController
     {
         get { return chargeController; }
@@ -36,6 +36,22 @@ public class PlayerMover : MonoBehaviour
     bool dead;
 
 
+    private UnityAction<string> pauseListener;
+
+    private void Awake()
+    {
+        pauseListener = new UnityAction<string>(TogglePause);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("pause", pauseListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("pause", pauseListener);
+    }
 
     // Use this for initialization
     void Start () {
@@ -51,7 +67,6 @@ public class PlayerMover : MonoBehaviour
         dead = false;
         chargeController = GetComponent<ChargeController>();
         playerStamina = GetComponent<PlayerStamina>();
-        PauseMenu = playerValues.generalValues.PauseMenu;
 
         paused = false;
     }
@@ -77,36 +92,25 @@ public class PlayerMover : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            if (TogglePause())
-            {
-                return;
-            }
-        }
         if (!dead && !paused)
         {
             currentState.Update();
         }
     }
 
-    private bool TogglePause()
+    private void TogglePause(string data)
     {
         if (!paused)
         {
             paused = true;
-            timeScaleManager.Pause(true);
-            PauseMenu.SetActive(true);
             MouseLook.SetCursorLock(false);
-            return paused;
+            return;
         }
         else
         {
             paused = false;
-            timeScaleManager.Pause(false);
-            PauseMenu.SetActive(false);
             MouseLook.SetCursorLock(true);
-            return paused;
+            return;
         }
     }
 
