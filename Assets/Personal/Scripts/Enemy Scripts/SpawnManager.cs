@@ -15,11 +15,12 @@ public class SpawnManager : MonoBehaviour {
     float[] spawnTimers = { 0, 0 };
     float[] baseTimesToNextSpawn = {1, 3 };
     float[] spawnTimeRanges = {0.5f, 2};
-    float[] timesOfNextSpawn = {0, 0};
+    float[] timesOfNextSpawn = {0, 0}; 
     GameObject player;
     TethersTracker tethersTracker;
     DifficultyValues difficultyValues;
 
+    int totalEnemiesSpawned = 0;
 
     // Use this for initialization
     void Start () {
@@ -56,6 +57,7 @@ public class SpawnManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        /*
         for (int i = 0; i < spawnTimers.Length; i++)
         {
             spawnTimers[i] += Time.deltaTime;
@@ -66,8 +68,23 @@ public class SpawnManager : MonoBehaviour {
             }
         }
         updateMaxSpawns();
+        */
     }
 
+    public void continuouslySpawn()
+    {
+        for (int i = 0; i < spawnTimers.Length; i++)
+        {
+            spawnTimers[i] += Time.deltaTime;
+            if (CheckSpawn((EnemyType)i))
+            {
+                GameObject spawner = FindSpawner();
+                SpawnEnemy((EnemyType)i, spawner);
+            }
+        }
+    }
+    
+    // USEFUL
     bool CheckSpawn(EnemyType type)
     {
         if (enemies[(int)type].Count < spawnLimits[(int)type] && (spawnTimers[(int)type] >= timesOfNextSpawn[(int)type]))
@@ -77,6 +94,7 @@ public class SpawnManager : MonoBehaviour {
         return false;
     }
 
+    // USEFUL
     GameObject FindSpawner()
     {
         TetherController[] tethers = tethersTracker.Tethers;
@@ -106,6 +124,7 @@ public class SpawnManager : MonoBehaviour {
         return tethers[minWeightIndex].gameObject;
     }
 
+    // USEFUL 
     void SpawnEnemy(EnemyType type, GameObject tether)
     {
         GameObject enemy = Instantiate(enemyPrefabs[(int)type], tether.transform.position, tether.transform.rotation, enemiesParent.transform);
@@ -114,20 +133,45 @@ public class SpawnManager : MonoBehaviour {
         spawnTimers[(int)type] = 0;
         timesOfNextSpawn[(int)type] = baseTimesToNextSpawn[(int)type] + Random.Range(-spawnTimeRanges[(int)type], spawnTimeRanges[(int)type]);
         enemies[(int)type].Add(enemy);
+        totalEnemiesSpawned++;
     }
-
+    // USEFUL 
     public void DestroyEnemy(GameObject enemy)
     {
         enemies[(int)enemy.GetComponent<EnemyController>().Type].Remove(enemy);
         Destroy(enemy);
     }
 
+    // USEFUL but needs to be called at beginning of wave instead of constantly
     public void updateMaxSpawns()
     {
         float difficulty = difficultyManager.Difficulty;
         for (int i = 0; i < spawnLimits.Length; i++)
         {
             spawnLimits[i] = baseSpawnLimits[i] + Mathf.FloorToInt(spawnLimitsGrowth[i] * difficulty);
+        }
+    }
+
+    public int CurrNumOfEnemiesAlive()
+    {
+        int currNumOfEnemiesAlive = 0;
+        foreach (List<GameObject> enemyType in enemies)
+        {
+            currNumOfEnemiesAlive += enemyType.Count;
+        }
+        return currNumOfEnemiesAlive;
+    }
+
+    public int TotalEnemiesSpawned
+    {
+        get
+        {
+            return totalEnemiesSpawned;
+        }
+
+        set
+        {
+            totalEnemiesSpawned = value;
         }
     }
 }
