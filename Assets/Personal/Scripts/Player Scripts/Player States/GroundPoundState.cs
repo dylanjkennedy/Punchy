@@ -15,6 +15,9 @@ public class GroundPoundState : PlayerState
     RaycastHit hit;
     private LayerMask enemyMask;
     ChargeController chargeController;
+    AudioSource audioSource;
+    AudioClip groundPoundSound;
+    ParticleSystem groundPoundParticles;
 
     public GroundPoundState(PlayerMover pm) : base(pm)
     {
@@ -23,6 +26,9 @@ public class GroundPoundState : PlayerState
         gravityMultiplier = playerMover.playerValues.groundPoundStateValues.GravityMultiplier;
         speedMaximum = playerMover.playerValues.groundPoundStateValues.SpeedMaximum;
         physicsMaxForce = playerMover.playerValues.groundPoundStateValues.PhysicsMaxForce;
+        groundPoundParticles = playerMover.playerValues.groundPoundStateValues.GroundPoundParticles;
+        groundPoundSound = playerMover.playerValues.groundPoundStateValues.GroundPoundSound;
+        audioSource = playerMover.GetComponent<AudioSource>();
 
         vulnerable = false;
         chargeController = playerMover.ChargeController;
@@ -76,6 +82,8 @@ public class GroundPoundState : PlayerState
             DealPoundDamage(damageRange);
             DealPoundImpacts(physicsRange);
             DealPoundPhysics(physicsRange);
+            groundPoundParticles.Play();
+            audioSource.PlayOneShot(groundPoundSound);
         }
     }
 
