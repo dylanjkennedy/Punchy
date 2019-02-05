@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
-	Image healthBar;
-	Image damageImage;
+public class PlayerHealth : MonoBehaviour
+{
+    Image healthBar;
+    Image damageImage;
     Text gameOverText;
     [SerializeField] Canvas gameOverCanvas;
-	float flashSpeed = 5f;
-	Color flashColor = new Color (1f, 0f, 0f, 0.1f);
-	private int maxHealth;
-	private float health;
-	private bool damaged;
+    float flashSpeed = 5f;
+    Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    private int maxHealth;
+    private float health;
+    private bool damaged;
     private ImpactReceiver impactReceiver;
     PlayerMover playerMover;
     PlayerValues playerValues;
     AudioSource audioSource;
     AudioClip hitSound;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         impactReceiver = gameObject.GetComponent<ImpactReceiver>();
         playerMover = gameObject.GetComponent<PlayerMover>();
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -37,26 +39,34 @@ public class PlayerHealth : MonoBehaviour {
         health = maxHealth;
         healthBar.type = Image.Type.Filled;
         healthBar.fillMethod = Image.FillMethod.Horizontal;
-        healthBar.fillAmount = 1f;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		if (damaged) {
-			damageImage.color = flashColor;
-		} else {
-			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-		}
-		damaged = false;
-	}
+        //healthBar.fillAmount = 1f;
 
-	public void TakeDamage(int damage, Vector3 direction, float force){
+        //added for testing purposes
+        healthBar.fillAmount = health / maxHealth;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (damaged)
+        {
+            damageImage.color = flashColor;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        damaged = false;
+    }
+
+    public void TakeDamage(int damage, Vector3 direction, float force)
+    {
         if (playerMover.isVulnerable())
         {
             health -= damage;
             damaged = true;
             healthBar.fillAmount = health / maxHealth;
-            audioSource.PlayOneShot(hitSound, Mathf.Clamp(damage/4f, 0f, 1f));
+            audioSource.PlayOneShot(hitSound, Mathf.Clamp(damage / 4f, 0f, 1f));
             if (health <= 0)
             {
                 GameOver();
@@ -65,6 +75,20 @@ public class PlayerHealth : MonoBehaviour {
 
             //moveDamageIndicator(direction);
         }
+    }
+
+    //added by CALEB
+    public void GainHealth(int healthgain)
+    {
+        if ((healthgain + health) <= maxHealth && health > 0)
+        {
+            health += healthgain;
+        }
+        else if ((health + healthgain) > maxHealth)
+        {
+            health = maxHealth;
+        }
+        healthBar.fillAmount = health / maxHealth;
     }
 
     private void GameOver()
