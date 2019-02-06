@@ -16,9 +16,9 @@ public class StaminaPickup : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<PlayerStamina>().GainStamina(StaminaAmount);
-            Destroy(gameObject);
+            col.gameObject.GetComponent<PlayerStamina>().RegainStaminaWithoutRegen(StaminaAmount);
             col.gameObject.GetComponent<PickupSpawner>().PickedUp();
+            Destroy(gameObject);
         }
        
        if (col.gameObject.tag == "Enemy")
