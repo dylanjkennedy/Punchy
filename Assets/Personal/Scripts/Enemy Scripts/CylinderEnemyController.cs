@@ -312,7 +312,7 @@ public class CylinderEnemyController : EnemyController
     {
         transform.LookAt(player.gameObject.transform.position);
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
-        bullet.GetComponent<Projectile>().Fire(this.transform.position, this.transform.forward, bulletSpeed, bulletDamage, bulletForce);
+        bullet.GetComponent<Projectile>().Fire(this.transform.position, player.transform.position, bulletSpeed, bulletDamage, bulletForce);
 
         EndAttack();
     }

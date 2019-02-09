@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour {
 	private int Duration = 6;
 	private float timer;
     private float force;
+    [SerializeField] private float gravity;
 	// Use this for initialization
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
@@ -25,11 +26,19 @@ public class Projectile : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 		timer+= Time.fixedDeltaTime;
+        Vector3 newVelocity = new Vector3(rb.velocity.x, rb.velocity.y - gravity * Time.fixedDeltaTime, rb.velocity.z);
+        rb.velocity = newVelocity;
 	}
 
-	public void Fire (Vector3 position, Vector3 direction, float speed, int damage, float force){
-		rb.velocity = direction * speed;
-		this.damage = damage;
+	public void Fire (Vector3 cylinderPosition, Vector3 playerPosition, float speed, int damage, float force){
+        Vector3 unitDirection = (playerPosition - cylinderPosition).normalized;
+        Vector3 velocityWithoutArc = unitDirection * speed;
+        float distance = Vector3.Distance(cylinderPosition, playerPosition);
+        float timeToPlayer = distance / speed;
+        float initialYVelocity = gravity * timeToPlayer/2f;
+        Vector3 desiredVelocity = new Vector3(velocityWithoutArc.x, velocityWithoutArc.y + initialYVelocity, velocityWithoutArc.z);
+        rb.velocity = desiredVelocity;
+        this.damage = damage;
         this.force = force;
         //bit of a stopgap cuz I don't really know how shaders work yet
         this.transform.Rotate(0,90,0);
