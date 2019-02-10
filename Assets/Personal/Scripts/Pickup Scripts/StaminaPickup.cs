@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StaminaPickup : MonoBehaviour
 {
-    private int StaminaAmount = 100;
+    [SerializeField] private int StaminaAmount;
 
     // Update is called once per frame
     void Update()

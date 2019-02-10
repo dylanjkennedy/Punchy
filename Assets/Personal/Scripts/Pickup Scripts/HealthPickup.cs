@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    private int HealthAmount = 50;
+    [SerializeField] private int HealthAmount;
 
     // called once per frame
 
