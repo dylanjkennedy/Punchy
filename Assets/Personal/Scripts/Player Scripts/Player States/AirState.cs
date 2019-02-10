@@ -72,26 +72,40 @@ public class AirState : PlayerState {
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
         if (isJumping)
         {
-            Vector3 head = playerMover.gameObject.transform.position;
-            head.y += .5f;
-            Vector3 toe = head;
-            toe.y += -1f;
+            Vector3 playerCenter = playerMover.gameObject.transform.position;
 
-            Collider[] closeWalls = Physics.OverlapCapsule(head, toe, 1f,LayerMask.GetMask("Default"));
+            Collider[] closeWalls = Physics.OverlapSphere(playerCenter, 1f,LayerMask.GetMask("Default"));
             if (closeWalls.Length > 0)
             {
-                Vector3 pointOfContact=closeWalls[0].ClosestPointOnBounds(toe);
-                float xDistance = toe.x - pointOfContact.x;
-                float zDistance = toe.z - pointOfContact.z;
+                Vector3 pointOfContact=closeWalls[0].ClosestPointOnBounds(playerCenter);
+                float xDistance = playerCenter.x - pointOfContact.x;
+                float zDistance = playerCenter.z - pointOfContact.z;
 
-                if (xDistance> zDistance)
+                Vector3 wallBounceDirection;
+
+                if (Math.Abs(xDistance)> Math.Abs(zDistance))
                 {
-                    move.z += playerMover.jumpSpeed;
+                    if (xDistance > 0)
+                    {
+                        wallBounceDirection=Vector3.right;
+                    }
+                    else
+                    {
+                        wallBounceDirection = Vector3.left;
+                    }
                 }
                 else
                 {
-                    move.x += playerMover.jumpSpeed;
+                    if (zDistance > 0)
+                    {
+                        wallBounceDirection = Vector3.forward;
+                    }
+                    else
+                    {
+                        wallBounceDirection = Vector3.back;
+                    }
                 }
+                playerMover.gameObject.GetComponent<ImpactReceiver>().AddImpact(wallBounceDirection, playerMover.jumpSpeed);
                 move.y += playerMover.jumpSpeed;
                 isJumping = false;
             }
