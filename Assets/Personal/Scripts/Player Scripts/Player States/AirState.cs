@@ -17,8 +17,12 @@ public class AirState : PlayerState {
 	private ChargeController chargeController;
     private PlayerStamina playerStamina;
     RaycastHit hit;
+    SpherecastCommand walljump;
+    bool initialJumpDone;
+    bool jumpRemaining;
+    bool isJumping;
 
-	public AirState(PlayerMover pm) : base(pm)
+    public AirState(PlayerMover pm) : base(pm)
 	{
 		playerMover = pm;
         gravityMultiplier = playerMover.playerValues.airStateValues.AirGravityMultiplier;
@@ -29,9 +33,12 @@ public class AirState : PlayerState {
         playerStamina = playerMover.PlayerStamina;
         groundPound = false;
         vulnerable = true;
+        jumpRemaining= true;
+        initialJumpDone = false;
+
     }
 
-	public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
+    public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
 	{
 		playerMover = pm;
         gravityMultiplier = playerMover.playerValues.airStateValues.AirGravityMultiplier;
@@ -42,6 +49,8 @@ public class AirState : PlayerState {
         playerStamina = playerMover.PlayerStamina;
         groundPound = false;
         vulnerable = true;
+        jumpRemaining = true;
+        initialJumpDone = false;
     }
 
 	public override PlayerState FixedUpdate()
@@ -61,14 +70,40 @@ public class AirState : PlayerState {
 		Vector3 desiredMove = GetStandardDesiredMove (playerMover.speed * airSpeedMultiplier);
 
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
-		move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
+        if (isJumping)
+        {
+            Vector3 head = playerMover.gameObject.transform.position;
+            head.y += .5f;
+            Vector3 toe = head;
+            toe.y += -1f;
 
-		hit = chargeController.Charge (charging);
+            Collider[] closeWalls = Physics.OverlapCapsule(head, toe, 1f,LayerMask.GetMask("Default"));
+            if (closeWalls.Length > 0)
+            {
+                Vector3 pointOfContact=closeWalls[0].ClosestPointOnBounds(toe);
+                float xDistance = toe.x - pointOfContact.x;
+                float zDistance = toe.z - pointOfContact.z;
+
+                if (xDistance> zDistance)
+                {
+                    move.z += playerMover.jumpSpeed;
+                }
+                else
+                {
+                    move.x += playerMover.jumpSpeed;
+                }
+                move.y += playerMover.jumpSpeed;
+                isJumping = false;
+            }
+        }
+        move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
+
+        hit = chargeController.Charge (charging);
         if (hit.collider != null)
         {
             return new ChargeAttackState(playerMover, hit);
         }
-		playerMover.Move (move);
+        playerMover.Move (move);
 
 		MouseLookFixedUpdate ();
 
@@ -84,7 +119,17 @@ public class AirState : PlayerState {
 	    {
 	        groundPound = true;
 	    }
-	}
+        if(!Input.GetButton("Jump"))
+        {
+            initialJumpDone=true;
+        }
+        if (initialJumpDone && jumpRemaining && Input.GetButton("Jump"))
+        {
+            isJumping = true;
+            jumpRemaining = false;
+        }
+
+    }
 
 	public override void Enter ()
 	{
