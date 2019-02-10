@@ -17,7 +17,6 @@ public class AirState : PlayerState {
 	private ChargeController chargeController;
     private PlayerStamina playerStamina;
     RaycastHit hit;
-    SpherecastCommand walljump;
     bool initialJumpDone;
     bool jumpRemaining;
     bool isJumping;
