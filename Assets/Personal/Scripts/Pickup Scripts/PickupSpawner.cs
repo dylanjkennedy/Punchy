@@ -7,10 +7,12 @@ public class PickupSpawner : MonoBehaviour
     [SerializeField] GameObject[] pickupPrefabs;
     TetherController[] tethersTracker;
     float spawnTimer;
-    [SerializeField] float nextSpawn;
+    float nextSpawn;
     int pickupCount;
     [SerializeField] int pickupLimit;
     //GameObject[] pickup;
+    [SerializeField] float upperBoundTime;
+    [SerializeField] float lowerBoundTime;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +35,15 @@ public class PickupSpawner : MonoBehaviour
 
     bool CheckSpawn()
     {
+        nextSpawn = Random.Range(lowerBoundTime, upperBoundTime);
         if (spawnTimer >= nextSpawn && pickupCount < pickupLimit)
         {
             return true;
+        }
+        else if (spawnTimer >= nextSpawn && pickupCount >= pickupLimit)
+        {
+            spawnTimer = 0;
+            return false;
         }
         else return false;
     }

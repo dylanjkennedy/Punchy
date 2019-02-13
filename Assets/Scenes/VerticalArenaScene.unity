@@ -3076,23 +3076,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 297547908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &297547912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297547909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4085562ee971b834e8d6d9267e81345c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupPrefabs:
-  - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
-  - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
-  nextSpawn: 5
-  pickupLimit: 10
 --- !u!1 &297591260
 GameObject:
   m_ObjectHideFlags: 0
