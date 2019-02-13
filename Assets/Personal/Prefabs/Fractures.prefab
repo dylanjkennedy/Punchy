@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23322233473670032}
   - component: {fileID: 64636775400315698}
   - component: {fileID: 54912820812827468}
-  - component: {fileID: 114293548278592674}
   m_Layer: 10
   m_Name: Cylinder_cell_044
   m_TagString: Untagged
@@ -110,20 +109,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114293548278592674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001718309216862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1013748631206880
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +122,6 @@ GameObject:
   - component: {fileID: 23628218583800198}
   - component: {fileID: 64752194662099008}
   - component: {fileID: 54625156186473412}
-  - component: {fileID: 114600611179204088}
   m_Layer: 10
   m_Name: Cylinder_cell_052
   m_TagString: Untagged
@@ -234,20 +218,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114600611179204088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013748631206880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1034669590900606
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +231,6 @@ GameObject:
   - component: {fileID: 23012074826148778}
   - component: {fileID: 64932618245733676}
   - component: {fileID: 54358707433164024}
-  - component: {fileID: 114637347952961540}
   m_Layer: 10
   m_Name: Cylinder_cell_024
   m_TagString: Untagged
@@ -358,20 +327,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114637347952961540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034669590900606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1034713579364194
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +340,6 @@ GameObject:
   - component: {fileID: 23174906504248946}
   - component: {fileID: 64737095569712340}
   - component: {fileID: 54434297403586080}
-  - component: {fileID: 114221222779348538}
   m_Layer: 10
   m_Name: Cylinder_cell_007
   m_TagString: Untagged
@@ -482,20 +436,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114221222779348538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034713579364194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1048319166900838
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +449,6 @@ GameObject:
   - component: {fileID: 23069460649840104}
   - component: {fileID: 64246776513298192}
   - component: {fileID: 54672178856155980}
-  - component: {fileID: 114562183040561160}
   m_Layer: 10
   m_Name: Cylinder_cell_022
   m_TagString: Untagged
@@ -606,20 +545,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114562183040561160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048319166900838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1063795518130282
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +558,6 @@ GameObject:
   - component: {fileID: 23489240010256124}
   - component: {fileID: 64218794597084506}
   - component: {fileID: 54939868648426202}
-  - component: {fileID: 114915237601370720}
   m_Layer: 10
   m_Name: Cylinder_cell_035
   m_TagString: Untagged
@@ -730,20 +654,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114915237601370720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063795518130282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1075916936010320
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +667,6 @@ GameObject:
   - component: {fileID: 23683893685206214}
   - component: {fileID: 64875091545554582}
   - component: {fileID: 54068170189672394}
-  - component: {fileID: 114590443489607016}
   m_Layer: 10
   m_Name: Cylinder_cell_041
   m_TagString: Untagged
@@ -854,20 +763,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114590443489607016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075916936010320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1078386339105420
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +776,6 @@ GameObject:
   - component: {fileID: 23396731007257886}
   - component: {fileID: 64405407578283256}
   - component: {fileID: 54143037819802852}
-  - component: {fileID: 114760409927820344}
   m_Layer: 10
   m_Name: Cylinder_cell_004
   m_TagString: Untagged
@@ -978,20 +872,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114760409927820344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078386339105420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1105315846161918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +885,6 @@ GameObject:
   - component: {fileID: 23899991431294536}
   - component: {fileID: 64103141014355532}
   - component: {fileID: 54187599439959058}
-  - component: {fileID: 114871028772620446}
   m_Layer: 10
   m_Name: Cylinder_cell_084
   m_TagString: Untagged
@@ -1102,20 +981,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114871028772620446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105315846161918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1107459560245834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +994,6 @@ GameObject:
   - component: {fileID: 23258991680379422}
   - component: {fileID: 64982298146661500}
   - component: {fileID: 54891717916815560}
-  - component: {fileID: 114590751855865718}
   m_Layer: 10
   m_Name: Cylinder_cell_019
   m_TagString: Untagged
@@ -1226,20 +1090,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114590751855865718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1107459560245834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1113950729769190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1103,6 @@ GameObject:
   - component: {fileID: 23662744304045900}
   - component: {fileID: 64556702039381700}
   - component: {fileID: 54943123108461390}
-  - component: {fileID: 114495856141292328}
   m_Layer: 10
   m_Name: Cylinder_cell_073
   m_TagString: Untagged
@@ -1350,20 +1199,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114495856141292328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113950729769190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1114593090065426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1212,6 @@ GameObject:
   - component: {fileID: 23147794218726966}
   - component: {fileID: 64655093231616198}
   - component: {fileID: 54863723827369864}
-  - component: {fileID: 114205748537998436}
   m_Layer: 10
   m_Name: Cylinder_cell_047
   m_TagString: Untagged
@@ -1474,20 +1308,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114205748537998436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114593090065426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1120257184063110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,7 +1321,6 @@ GameObject:
   - component: {fileID: 23598546795887686}
   - component: {fileID: 64022325611627078}
   - component: {fileID: 54315576605845824}
-  - component: {fileID: 114227999113849304}
   m_Layer: 10
   m_Name: Cylinder_cell_080
   m_TagString: Untagged
@@ -1598,20 +1417,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114227999113849304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120257184063110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1123902628165846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1430,6 @@ GameObject:
   - component: {fileID: 23526421571028166}
   - component: {fileID: 64702979462580380}
   - component: {fileID: 54352887092156510}
-  - component: {fileID: 114202175051165410}
   m_Layer: 10
   m_Name: Cylinder_cell_075
   m_TagString: Untagged
@@ -1722,20 +1526,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114202175051165410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123902628165846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1133507627612984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1539,6 @@ GameObject:
   - component: {fileID: 23209200210075374}
   - component: {fileID: 64112416643418784}
   - component: {fileID: 54312833097141268}
-  - component: {fileID: 114038488014866562}
   m_Layer: 10
   m_Name: Cylinder_cell_067
   m_TagString: Untagged
@@ -1846,20 +1635,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114038488014866562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133507627612984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1135849504092546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1648,6 @@ GameObject:
   - component: {fileID: 23316029706883836}
   - component: {fileID: 64979589643019062}
   - component: {fileID: 54838253421035950}
-  - component: {fileID: 114775829338014420}
   m_Layer: 10
   m_Name: Cylinder_cell_046
   m_TagString: Untagged
@@ -1970,20 +1744,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114775829338014420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135849504092546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1139564478912632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +1757,6 @@ GameObject:
   - component: {fileID: 23713977811087572}
   - component: {fileID: 64147850513363896}
   - component: {fileID: 54524629244251620}
-  - component: {fileID: 114988310423790570}
   m_Layer: 10
   m_Name: Cylinder_cell_029
   m_TagString: Untagged
@@ -2094,20 +1853,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114988310423790570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139564478912632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1154170794376924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +1866,6 @@ GameObject:
   - component: {fileID: 23230320385771568}
   - component: {fileID: 64393924786861172}
   - component: {fileID: 54533254016832698}
-  - component: {fileID: 114312316250417698}
   m_Layer: 10
   m_Name: Cylinder_cell_081
   m_TagString: Untagged
@@ -2218,20 +1962,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114312316250417698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154170794376924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1156681257508780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +1975,6 @@ GameObject:
   - component: {fileID: 23449162884373664}
   - component: {fileID: 64555309472059268}
   - component: {fileID: 54163724921222738}
-  - component: {fileID: 114094633532889084}
   m_Layer: 10
   m_Name: Cylinder_cell_060
   m_TagString: Untagged
@@ -2342,20 +2071,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114094633532889084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156681257508780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1166152640223658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,7 +2084,6 @@ GameObject:
   - component: {fileID: 23398173177634280}
   - component: {fileID: 64893555200562816}
   - component: {fileID: 54431978364726966}
-  - component: {fileID: 114731249631455490}
   m_Layer: 10
   m_Name: Cylinder_cell_027
   m_TagString: Untagged
@@ -2466,20 +2180,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114731249631455490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166152640223658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1173782708325762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2193,6 @@ GameObject:
   - component: {fileID: 23008337513480912}
   - component: {fileID: 64602999437507054}
   - component: {fileID: 54364689212242344}
-  - component: {fileID: 114367036637603090}
   m_Layer: 10
   m_Name: Cylinder_cell_082
   m_TagString: Untagged
@@ -2590,20 +2289,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114367036637603090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173782708325762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1209377142400788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,7 +2302,6 @@ GameObject:
   - component: {fileID: 23137136831421404}
   - component: {fileID: 64720702303433642}
   - component: {fileID: 54554380843158518}
-  - component: {fileID: 114375663806159234}
   m_Layer: 10
   m_Name: Cylinder_cell_011
   m_TagString: Untagged
@@ -2714,20 +2398,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114375663806159234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209377142400788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1251022461699430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2741,7 +2411,6 @@ GameObject:
   - component: {fileID: 23976983196150230}
   - component: {fileID: 64355458092755782}
   - component: {fileID: 54431480025121328}
-  - component: {fileID: 114564352511479578}
   m_Layer: 10
   m_Name: Cylinder_cell_005
   m_TagString: Untagged
@@ -2838,20 +2507,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114564352511479578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251022461699430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1256686238557452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,7 +2520,6 @@ GameObject:
   - component: {fileID: 23609818524954502}
   - component: {fileID: 64984888723688292}
   - component: {fileID: 54460304376488722}
-  - component: {fileID: 114266992102306144}
   m_Layer: 10
   m_Name: Cylinder_cell_037
   m_TagString: Untagged
@@ -2962,20 +2616,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114266992102306144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256686238557452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1259220588450826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2629,6 @@ GameObject:
   - component: {fileID: 23899254521975832}
   - component: {fileID: 64978894692641428}
   - component: {fileID: 54547343980517908}
-  - component: {fileID: 114965118237698678}
   m_Layer: 10
   m_Name: Cylinder_cell_023
   m_TagString: Untagged
@@ -3086,20 +2725,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114965118237698678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259220588450826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1267450237954100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,9 +2734,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4250160873219108}
-  - component: {fileID: 2124754369860347817}
   - component: {fileID: 4399733768439361628}
   - component: {fileID: 3912509784984952680}
+  - component: {fileID: 4100962616603326609}
   m_Layer: 0
   m_Name: Fractures
   m_TagString: Untagged
@@ -3218,20 +2843,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2124754369860347817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267450237954100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 0
 --- !u!82 &4399733768439361628
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3342,6 +2953,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScaleManager: {fileID: 0}
   audioSource: {fileID: 4399733768439361628}
+--- !u!114 &4100962616603326609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267450237954100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42a28b70a71c7048ba6b2dec1e3c853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 5
+  fadeTime: 2
 --- !u!1 &1299821767622374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +2980,6 @@ GameObject:
   - component: {fileID: 23827716848545436}
   - component: {fileID: 64178073621692528}
   - component: {fileID: 54001044306543610}
-  - component: {fileID: 114659712057446264}
   m_Layer: 10
   m_Name: Cylinder_cell_083
   m_TagString: Untagged
@@ -3452,20 +3076,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114659712057446264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299821767622374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1308003771173068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,7 +3089,6 @@ GameObject:
   - component: {fileID: 23975471407373834}
   - component: {fileID: 64375898459466748}
   - component: {fileID: 54606128141842840}
-  - component: {fileID: 114656300284836660}
   m_Layer: 10
   m_Name: Cylinder_cell_028
   m_TagString: Untagged
@@ -3576,20 +3185,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114656300284836660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308003771173068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1327542545545880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,7 +3198,6 @@ GameObject:
   - component: {fileID: 23906548876260612}
   - component: {fileID: 64201949375659600}
   - component: {fileID: 54721529754230130}
-  - component: {fileID: 114741880940766614}
   m_Layer: 10
   m_Name: Cylinder_cell_006
   m_TagString: Untagged
@@ -3700,20 +3294,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114741880940766614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327542545545880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1328744416398786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,7 +3307,6 @@ GameObject:
   - component: {fileID: 23074876910662490}
   - component: {fileID: 64278777505366888}
   - component: {fileID: 54364970655230400}
-  - component: {fileID: 114593655213952572}
   m_Layer: 10
   m_Name: Cylinder_cell_048
   m_TagString: Untagged
@@ -3824,20 +3403,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114593655213952572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328744416398786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1345831615236916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3851,7 +3416,6 @@ GameObject:
   - component: {fileID: 23320035377705494}
   - component: {fileID: 64017630600428906}
   - component: {fileID: 54781709572240536}
-  - component: {fileID: 114042932635683804}
   m_Layer: 10
   m_Name: Cylinder_cell
   m_TagString: Untagged
@@ -3948,20 +3512,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114042932635683804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345831615236916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1366858725559816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,7 +3525,6 @@ GameObject:
   - component: {fileID: 23633702198415758}
   - component: {fileID: 64580147571694648}
   - component: {fileID: 54803383965136832}
-  - component: {fileID: 114481138611083180}
   m_Layer: 10
   m_Name: Cylinder_cell_033
   m_TagString: Untagged
@@ -4072,20 +3621,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114481138611083180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366858725559816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1400713122599634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,7 +3634,6 @@ GameObject:
   - component: {fileID: 23308690523159662}
   - component: {fileID: 64857990440506800}
   - component: {fileID: 54969979079925496}
-  - component: {fileID: 114119241554789054}
   m_Layer: 10
   m_Name: Cylinder_cell_091
   m_TagString: Untagged
@@ -4196,20 +3730,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114119241554789054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400713122599634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1427852396099928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,7 +3743,6 @@ GameObject:
   - component: {fileID: 23803983211498614}
   - component: {fileID: 64702071598882100}
   - component: {fileID: 54090266918061958}
-  - component: {fileID: 114506596555021246}
   m_Layer: 10
   m_Name: Cylinder_cell_078
   m_TagString: Untagged
@@ -4320,20 +3839,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114506596555021246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427852396099928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1447215075721812
 GameObject:
   m_ObjectHideFlags: 0
@@ -4347,7 +3852,6 @@ GameObject:
   - component: {fileID: 23797962137708462}
   - component: {fileID: 64134780489714522}
   - component: {fileID: 54176240515901636}
-  - component: {fileID: 114759295730233706}
   m_Layer: 10
   m_Name: Cylinder_cell_053
   m_TagString: Untagged
@@ -4444,20 +3948,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114759295730233706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447215075721812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1457311700987082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4471,7 +3961,6 @@ GameObject:
   - component: {fileID: 23351390410467700}
   - component: {fileID: 64779715056463072}
   - component: {fileID: 54282777016246056}
-  - component: {fileID: 114956530088340742}
   m_Layer: 10
   m_Name: Cylinder_cell_061
   m_TagString: Untagged
@@ -4568,20 +4057,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114956530088340742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457311700987082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1466809248121662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4595,7 +4070,6 @@ GameObject:
   - component: {fileID: 23734537761573018}
   - component: {fileID: 64697201997459602}
   - component: {fileID: 54785005234569490}
-  - component: {fileID: 114224827623784092}
   m_Layer: 10
   m_Name: Cylinder_cell_057
   m_TagString: Untagged
@@ -4692,20 +4166,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114224827623784092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466809248121662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1477403775061034
 GameObject:
   m_ObjectHideFlags: 0
@@ -4719,7 +4179,6 @@ GameObject:
   - component: {fileID: 23355973475407402}
   - component: {fileID: 64034262359523078}
   - component: {fileID: 54996889768541676}
-  - component: {fileID: 114241316821608078}
   m_Layer: 10
   m_Name: Cylinder_cell_039
   m_TagString: Untagged
@@ -4816,20 +4275,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114241316821608078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477403775061034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1499232582956978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4843,7 +4288,6 @@ GameObject:
   - component: {fileID: 23951459533398130}
   - component: {fileID: 64774393687980942}
   - component: {fileID: 54994808479251704}
-  - component: {fileID: 114368094343096912}
   m_Layer: 10
   m_Name: Cylinder_cell_063
   m_TagString: Untagged
@@ -4940,20 +4384,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114368094343096912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499232582956978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1504351389963000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,7 +4397,6 @@ GameObject:
   - component: {fileID: 23966216231951452}
   - component: {fileID: 64175303867877236}
   - component: {fileID: 54216231960174224}
-  - component: {fileID: 114434095409262010}
   m_Layer: 10
   m_Name: Cylinder_cell_018
   m_TagString: Untagged
@@ -5064,20 +4493,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114434095409262010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504351389963000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1546103533892428
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,7 +4506,6 @@ GameObject:
   - component: {fileID: 23949108464223100}
   - component: {fileID: 64643331609582908}
   - component: {fileID: 54338877622002434}
-  - component: {fileID: 114800385730759094}
   m_Layer: 10
   m_Name: Cylinder_cell_003
   m_TagString: Untagged
@@ -5188,20 +4602,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114800385730759094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546103533892428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1552144272270164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5215,7 +4615,6 @@ GameObject:
   - component: {fileID: 23425418235662268}
   - component: {fileID: 64013790047368364}
   - component: {fileID: 54861191803812056}
-  - component: {fileID: 114107526786781222}
   m_Layer: 10
   m_Name: Cylinder_cell_043
   m_TagString: Untagged
@@ -5312,20 +4711,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114107526786781222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552144272270164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1555668140376546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5339,7 +4724,6 @@ GameObject:
   - component: {fileID: 23192837546077422}
   - component: {fileID: 64779561475830998}
   - component: {fileID: 54984092640294858}
-  - component: {fileID: 114932464653762588}
   m_Layer: 10
   m_Name: Cylinder_cell_016
   m_TagString: Untagged
@@ -5436,20 +4820,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114932464653762588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555668140376546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1561913110130388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5463,7 +4833,6 @@ GameObject:
   - component: {fileID: 23972694001488028}
   - component: {fileID: 64800600224711660}
   - component: {fileID: 54059117910469370}
-  - component: {fileID: 114955488409141370}
   m_Layer: 10
   m_Name: Cylinder_cell_001
   m_TagString: Untagged
@@ -5560,20 +4929,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114955488409141370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561913110130388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1562629051447018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5587,7 +4942,6 @@ GameObject:
   - component: {fileID: 23375684951991482}
   - component: {fileID: 64443143016432246}
   - component: {fileID: 54125664129863384}
-  - component: {fileID: 114389705542186330}
   m_Layer: 10
   m_Name: Cylinder_cell_088
   m_TagString: Untagged
@@ -5684,20 +5038,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114389705542186330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562629051447018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1586492714692770
 GameObject:
   m_ObjectHideFlags: 0
@@ -5711,7 +5051,6 @@ GameObject:
   - component: {fileID: 23845019823168484}
   - component: {fileID: 64513901127471600}
   - component: {fileID: 54485222832126904}
-  - component: {fileID: 114953820924804518}
   m_Layer: 10
   m_Name: Cylinder_cell_042
   m_TagString: Untagged
@@ -5808,20 +5147,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114953820924804518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586492714692770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1594900983101738
 GameObject:
   m_ObjectHideFlags: 0
@@ -5835,7 +5160,6 @@ GameObject:
   - component: {fileID: 23353085788342954}
   - component: {fileID: 64240692954861594}
   - component: {fileID: 54238705351637560}
-  - component: {fileID: 114625441647005732}
   m_Layer: 10
   m_Name: Cylinder_cell_079
   m_TagString: Untagged
@@ -5932,20 +5256,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114625441647005732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594900983101738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1604022514111510
 GameObject:
   m_ObjectHideFlags: 0
@@ -5959,7 +5269,6 @@ GameObject:
   - component: {fileID: 23638156494587012}
   - component: {fileID: 64097620396701178}
   - component: {fileID: 54105389708651218}
-  - component: {fileID: 114531141760039250}
   m_Layer: 10
   m_Name: Cylinder_cell_009
   m_TagString: Untagged
@@ -6056,20 +5365,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114531141760039250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604022514111510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1618637294332512
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,7 +5378,6 @@ GameObject:
   - component: {fileID: 23098967616848916}
   - component: {fileID: 64826195510631428}
   - component: {fileID: 54955389996619340}
-  - component: {fileID: 114284382220895358}
   m_Layer: 10
   m_Name: Cylinder_cell_090
   m_TagString: Untagged
@@ -6180,20 +5474,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114284382220895358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618637294332512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1623515193442970
 GameObject:
   m_ObjectHideFlags: 0
@@ -6207,7 +5487,6 @@ GameObject:
   - component: {fileID: 23572376064812028}
   - component: {fileID: 64603524619727334}
   - component: {fileID: 54639731314014414}
-  - component: {fileID: 114981836940193670}
   m_Layer: 10
   m_Name: Cylinder_cell_031
   m_TagString: Untagged
@@ -6304,20 +5583,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114981836940193670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623515193442970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1640707556602380
 GameObject:
   m_ObjectHideFlags: 0
@@ -6331,7 +5596,6 @@ GameObject:
   - component: {fileID: 23550121452065716}
   - component: {fileID: 64035557121100002}
   - component: {fileID: 54216316638497488}
-  - component: {fileID: 114520693955176340}
   m_Layer: 10
   m_Name: Cylinder_cell_050
   m_TagString: Untagged
@@ -6428,20 +5692,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114520693955176340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640707556602380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1647188081374952
 GameObject:
   m_ObjectHideFlags: 0
@@ -6455,7 +5705,6 @@ GameObject:
   - component: {fileID: 23767630405029778}
   - component: {fileID: 64178765829922170}
   - component: {fileID: 54623404721454260}
-  - component: {fileID: 114831473239742112}
   m_Layer: 10
   m_Name: Cylinder_cell_085
   m_TagString: Untagged
@@ -6552,20 +5801,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114831473239742112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647188081374952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1652280174968142
 GameObject:
   m_ObjectHideFlags: 0
@@ -6579,7 +5814,6 @@ GameObject:
   - component: {fileID: 23677640016011088}
   - component: {fileID: 64428840988351364}
   - component: {fileID: 54238548206674910}
-  - component: {fileID: 114103993608504364}
   m_Layer: 10
   m_Name: Cylinder_cell_062
   m_TagString: Untagged
@@ -6676,20 +5910,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114103993608504364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652280174968142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1660289167770780
 GameObject:
   m_ObjectHideFlags: 0
@@ -6703,7 +5923,6 @@ GameObject:
   - component: {fileID: 23976517479629408}
   - component: {fileID: 64595223605399174}
   - component: {fileID: 54965012813379044}
-  - component: {fileID: 114081835343246156}
   m_Layer: 10
   m_Name: Cylinder_cell_038
   m_TagString: Untagged
@@ -6800,20 +6019,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114081835343246156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660289167770780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1663971461493916
 GameObject:
   m_ObjectHideFlags: 0
@@ -6827,7 +6032,6 @@ GameObject:
   - component: {fileID: 23870608106366112}
   - component: {fileID: 64859127458415032}
   - component: {fileID: 54486612576831202}
-  - component: {fileID: 114348424542001948}
   m_Layer: 10
   m_Name: Cylinder_cell_032
   m_TagString: Untagged
@@ -6924,20 +6128,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114348424542001948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663971461493916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1665488402067228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6951,7 +6141,6 @@ GameObject:
   - component: {fileID: 23173259131473544}
   - component: {fileID: 64129093453572872}
   - component: {fileID: 54956459116440534}
-  - component: {fileID: 114167275933278170}
   m_Layer: 10
   m_Name: Cylinder_cell_055
   m_TagString: Untagged
@@ -7048,20 +6237,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114167275933278170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665488402067228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1667591683766432
 GameObject:
   m_ObjectHideFlags: 0
@@ -7075,7 +6250,6 @@ GameObject:
   - component: {fileID: 23222682442918958}
   - component: {fileID: 64002368656363468}
   - component: {fileID: 54659768490597336}
-  - component: {fileID: 114600737632804522}
   m_Layer: 10
   m_Name: Cylinder_cell_066
   m_TagString: Untagged
@@ -7172,20 +6346,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114600737632804522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667591683766432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1669986575277958
 GameObject:
   m_ObjectHideFlags: 0
@@ -7199,7 +6359,6 @@ GameObject:
   - component: {fileID: 23560796613377030}
   - component: {fileID: 64586672127867804}
   - component: {fileID: 54652331444599182}
-  - component: {fileID: 114090906924213002}
   m_Layer: 10
   m_Name: Cylinder_cell_025
   m_TagString: Untagged
@@ -7296,20 +6455,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114090906924213002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669986575277958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1681042196963626
 GameObject:
   m_ObjectHideFlags: 0
@@ -7323,7 +6468,6 @@ GameObject:
   - component: {fileID: 23819597132222160}
   - component: {fileID: 64074873207149296}
   - component: {fileID: 54250231577580698}
-  - component: {fileID: 114778643840377204}
   m_Layer: 10
   m_Name: Cylinder_cell_065
   m_TagString: Untagged
@@ -7420,20 +6564,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114778643840377204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681042196963626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1694931154772632
 GameObject:
   m_ObjectHideFlags: 0
@@ -7447,7 +6577,6 @@ GameObject:
   - component: {fileID: 23104887462768462}
   - component: {fileID: 64515738875946320}
   - component: {fileID: 54465283278990970}
-  - component: {fileID: 114335494481984128}
   m_Layer: 10
   m_Name: Cylinder_cell_049
   m_TagString: Untagged
@@ -7544,20 +6673,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114335494481984128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694931154772632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1695791945020538
 GameObject:
   m_ObjectHideFlags: 0
@@ -7571,7 +6686,6 @@ GameObject:
   - component: {fileID: 23713560308976654}
   - component: {fileID: 64695715538229392}
   - component: {fileID: 54301758434604738}
-  - component: {fileID: 114280521013980950}
   m_Layer: 10
   m_Name: Cylinder_cell_012
   m_TagString: Untagged
@@ -7668,20 +6782,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114280521013980950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695791945020538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1736062851357500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7695,7 +6795,6 @@ GameObject:
   - component: {fileID: 23959379770736404}
   - component: {fileID: 64813110285178388}
   - component: {fileID: 54619978632039990}
-  - component: {fileID: 114455444029728850}
   m_Layer: 10
   m_Name: Cylinder_cell_076
   m_TagString: Untagged
@@ -7792,20 +6891,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114455444029728850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736062851357500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1737055978806118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,7 +6904,6 @@ GameObject:
   - component: {fileID: 23148759395938886}
   - component: {fileID: 64394528886725284}
   - component: {fileID: 54715851854487814}
-  - component: {fileID: 114652581914415348}
   m_Layer: 10
   m_Name: Cylinder_cell_015
   m_TagString: Untagged
@@ -7916,20 +7000,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114652581914415348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737055978806118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1744822939000036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7943,7 +7013,6 @@ GameObject:
   - component: {fileID: 23655810569980384}
   - component: {fileID: 64863686839520046}
   - component: {fileID: 54631619478323860}
-  - component: {fileID: 114706527355773226}
   m_Layer: 10
   m_Name: Cylinder_cell_072
   m_TagString: Untagged
@@ -8040,20 +7109,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114706527355773226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744822939000036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1745220319797720
 GameObject:
   m_ObjectHideFlags: 0
@@ -8067,7 +7122,6 @@ GameObject:
   - component: {fileID: 23602509865540260}
   - component: {fileID: 64783421270862448}
   - component: {fileID: 54083294133482226}
-  - component: {fileID: 114560521959740512}
   m_Layer: 10
   m_Name: Cylinder_cell_014
   m_TagString: Untagged
@@ -8164,20 +7218,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114560521959740512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745220319797720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1762794119285550
 GameObject:
   m_ObjectHideFlags: 0
@@ -8191,7 +7231,6 @@ GameObject:
   - component: {fileID: 23219365824751592}
   - component: {fileID: 64654396489183304}
   - component: {fileID: 54016795809929488}
-  - component: {fileID: 114117884710804298}
   m_Layer: 10
   m_Name: Cylinder_cell_089
   m_TagString: Untagged
@@ -8288,20 +7327,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114117884710804298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762794119285550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1765357071577178
 GameObject:
   m_ObjectHideFlags: 0
@@ -8315,7 +7340,6 @@ GameObject:
   - component: {fileID: 23543561189593848}
   - component: {fileID: 64984867029996738}
   - component: {fileID: 54639830080694806}
-  - component: {fileID: 114204915589897110}
   m_Layer: 10
   m_Name: Cylinder_cell_054
   m_TagString: Untagged
@@ -8412,20 +7436,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114204915589897110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765357071577178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1779637019633538
 GameObject:
   m_ObjectHideFlags: 0
@@ -8439,7 +7449,6 @@ GameObject:
   - component: {fileID: 23334122321695240}
   - component: {fileID: 64493443467772382}
   - component: {fileID: 54118181978588896}
-  - component: {fileID: 114367863764714778}
   m_Layer: 10
   m_Name: Cylinder_cell_051
   m_TagString: Untagged
@@ -8536,20 +7545,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114367863764714778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779637019633538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1791319171960048
 GameObject:
   m_ObjectHideFlags: 0
@@ -8563,7 +7558,6 @@ GameObject:
   - component: {fileID: 23469983861647746}
   - component: {fileID: 64395265937956074}
   - component: {fileID: 54089136004192176}
-  - component: {fileID: 114317467731830524}
   m_Layer: 10
   m_Name: Cylinder_cell_036
   m_TagString: Untagged
@@ -8660,20 +7654,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114317467731830524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791319171960048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1799550873169332
 GameObject:
   m_ObjectHideFlags: 0
@@ -8687,7 +7667,6 @@ GameObject:
   - component: {fileID: 23003386051339192}
   - component: {fileID: 64796123661913390}
   - component: {fileID: 54037064589618408}
-  - component: {fileID: 114447740131825458}
   m_Layer: 10
   m_Name: Cylinder_cell_064
   m_TagString: Untagged
@@ -8784,20 +7763,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114447740131825458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799550873169332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1813112445071386
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,7 +7776,6 @@ GameObject:
   - component: {fileID: 23194310760596816}
   - component: {fileID: 64100022835922696}
   - component: {fileID: 54821002776790808}
-  - component: {fileID: 114191460263302016}
   m_Layer: 10
   m_Name: Cylinder_cell_056
   m_TagString: Untagged
@@ -8908,20 +7872,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114191460263302016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813112445071386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1830788400519932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8935,7 +7885,6 @@ GameObject:
   - component: {fileID: 23086103066744354}
   - component: {fileID: 64057383902624504}
   - component: {fileID: 54503706720731370}
-  - component: {fileID: 114054834459719274}
   m_Layer: 10
   m_Name: Cylinder_cell_077
   m_TagString: Untagged
@@ -9032,20 +7981,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114054834459719274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830788400519932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1856173865025938
 GameObject:
   m_ObjectHideFlags: 0
@@ -9059,7 +7994,6 @@ GameObject:
   - component: {fileID: 23635144869255550}
   - component: {fileID: 64247563815663220}
   - component: {fileID: 54117468223535050}
-  - component: {fileID: 114538374516844302}
   m_Layer: 10
   m_Name: Cylinder_cell_068
   m_TagString: Untagged
@@ -9156,20 +8090,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114538374516844302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856173865025938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1861276166838374
 GameObject:
   m_ObjectHideFlags: 0
@@ -9183,7 +8103,6 @@ GameObject:
   - component: {fileID: 23419340845185702}
   - component: {fileID: 64450738399231816}
   - component: {fileID: 54141891383796874}
-  - component: {fileID: 114359995958524556}
   m_Layer: 10
   m_Name: Cylinder_cell_026
   m_TagString: Untagged
@@ -9280,20 +8199,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114359995958524556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861276166838374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1864963181610016
 GameObject:
   m_ObjectHideFlags: 0
@@ -9307,7 +8212,6 @@ GameObject:
   - component: {fileID: 23827732706216492}
   - component: {fileID: 64086626436829432}
   - component: {fileID: 54303563594284808}
-  - component: {fileID: 114334944295960092}
   m_Layer: 10
   m_Name: Cylinder_cell_030
   m_TagString: Untagged
@@ -9404,20 +8308,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114334944295960092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864963181610016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1872308565082804
 GameObject:
   m_ObjectHideFlags: 0
@@ -9431,7 +8321,6 @@ GameObject:
   - component: {fileID: 23966126028573510}
   - component: {fileID: 64117335505542550}
   - component: {fileID: 54036143071039814}
-  - component: {fileID: 114509074519530592}
   m_Layer: 10
   m_Name: Cylinder_cell_008
   m_TagString: Untagged
@@ -9528,20 +8417,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114509074519530592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872308565082804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1872768476515974
 GameObject:
   m_ObjectHideFlags: 0
@@ -9555,7 +8430,6 @@ GameObject:
   - component: {fileID: 23841666822521822}
   - component: {fileID: 64956132690718908}
   - component: {fileID: 54106957583908770}
-  - component: {fileID: 114545602588759148}
   m_Layer: 10
   m_Name: Cylinder_cell_058
   m_TagString: Untagged
@@ -9652,20 +8526,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114545602588759148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872768476515974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1887840079988428
 GameObject:
   m_ObjectHideFlags: 0
@@ -9679,7 +8539,6 @@ GameObject:
   - component: {fileID: 23720723905578438}
   - component: {fileID: 64406806651002570}
   - component: {fileID: 54789268685227886}
-  - component: {fileID: 114433707571531688}
   m_Layer: 10
   m_Name: Cylinder_cell_069
   m_TagString: Untagged
@@ -9776,20 +8635,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114433707571531688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887840079988428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1896338370403674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,7 +8648,6 @@ GameObject:
   - component: {fileID: 23704085613569704}
   - component: {fileID: 64706776705531736}
   - component: {fileID: 54904892777329306}
-  - component: {fileID: 114782651942158302}
   m_Layer: 10
   m_Name: Cylinder_cell_010
   m_TagString: Untagged
@@ -9900,20 +8744,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114782651942158302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896338370403674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1900295948240778
 GameObject:
   m_ObjectHideFlags: 0
@@ -9927,7 +8757,6 @@ GameObject:
   - component: {fileID: 23155749124868792}
   - component: {fileID: 64756856350085032}
   - component: {fileID: 54802312579874748}
-  - component: {fileID: 114102517273778300}
   m_Layer: 10
   m_Name: Cylinder_cell_021
   m_TagString: Untagged
@@ -10024,20 +8853,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114102517273778300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900295948240778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1942314247700220
 GameObject:
   m_ObjectHideFlags: 0
@@ -10051,7 +8866,6 @@ GameObject:
   - component: {fileID: 23536657437414590}
   - component: {fileID: 64420091729027522}
   - component: {fileID: 54834913766599018}
-  - component: {fileID: 114979236564546374}
   m_Layer: 10
   m_Name: Cylinder_cell_086
   m_TagString: Untagged
@@ -10148,20 +8962,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114979236564546374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1942314247700220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1953409831271036
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,7 +8975,6 @@ GameObject:
   - component: {fileID: 23362084843061866}
   - component: {fileID: 64679990595424974}
   - component: {fileID: 54654990729051914}
-  - component: {fileID: 114842362481919798}
   m_Layer: 10
   m_Name: Cylinder_cell_092
   m_TagString: Untagged
@@ -10272,20 +9071,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114842362481919798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953409831271036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1956807640628718
 GameObject:
   m_ObjectHideFlags: 0
@@ -10299,7 +9084,6 @@ GameObject:
   - component: {fileID: 23276138279894540}
   - component: {fileID: 64289602117041798}
   - component: {fileID: 54163805207734722}
-  - component: {fileID: 114218639920172972}
   m_Layer: 10
   m_Name: Cylinder_cell_002
   m_TagString: Untagged
@@ -10396,20 +9180,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114218639920172972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956807640628718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1962416719927238
 GameObject:
   m_ObjectHideFlags: 0
@@ -10423,7 +9193,6 @@ GameObject:
   - component: {fileID: 23918191201385580}
   - component: {fileID: 64801112323484862}
   - component: {fileID: 54755443724749224}
-  - component: {fileID: 114817869123828470}
   m_Layer: 10
   m_Name: Cylinder_cell_071
   m_TagString: Untagged
@@ -10520,20 +9289,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114817869123828470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962416719927238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1975767442102820
 GameObject:
   m_ObjectHideFlags: 0
@@ -10547,7 +9302,6 @@ GameObject:
   - component: {fileID: 23352643281835342}
   - component: {fileID: 64560813540799400}
   - component: {fileID: 54398457421805522}
-  - component: {fileID: 114685627055303626}
   m_Layer: 10
   m_Name: Cylinder_cell_040
   m_TagString: Untagged
@@ -10644,20 +9398,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114685627055303626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975767442102820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
 --- !u!1 &1994160816151186
 GameObject:
   m_ObjectHideFlags: 0
@@ -10671,7 +9411,6 @@ GameObject:
   - component: {fileID: 23608265826770902}
   - component: {fileID: 64900131096194218}
   - component: {fileID: 54736976304100592}
-  - component: {fileID: 114434421877802532}
   m_Layer: 10
   m_Name: Cylinder_cell_017
   m_TagString: Untagged
@@ -10768,17 +9507,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114434421877802532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994160816151186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda3c4cd1beb62143bce93b46be7f590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToDestroy: 5
-  fadeTime: 2
