@@ -644,8 +644,9 @@ MonoBehaviour:
   pickupPrefabs:
   - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
   - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
-  nextSpawn: 5
   pickupLimit: 10
+  upperBoundTime: 20
+  lowerBoundTime: 40
 --- !u!1001 &2368544253589646412
 PrefabInstance:
   m_ObjectHideFlags: 0
