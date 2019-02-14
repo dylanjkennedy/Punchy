@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45002985, g: 0.5000846, b: 0.5755015, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3056,6 +3056,16 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1414270662}
+    - target: {fileID: 1851651619850872098, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: totalEnemiesInWave
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851651619850872098, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: timeBetweenWaves
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!1 &297547909 stripped
