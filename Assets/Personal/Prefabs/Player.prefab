@@ -615,7 +615,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea3ba665c7e904488fcb091afe4333c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalEnemiesInWave: 20
+  timeBetweenWaves: 7
   spawnManager: {fileID: 744898450}
+  difficultyManager: {fileID: 744898441}
 --- !u!114 &744898452
 MonoBehaviour:
   m_ObjectHideFlags: 0

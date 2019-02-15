@@ -8,8 +8,8 @@ public class WaveManager : MonoBehaviour
     float timeSinceLastWaveEnd = 0f;
     int totalEnemiesSpawned = 0;
     int waveCount = 0;
-    [SerializeField] int totalEnemiesInWave = 20;
-    [SerializeField] int timeBetweenWaves = 7; // seconds
+    [SerializeField] int totalEnemiesInWave = 3;
+    [SerializeField] int timeBetweenWaves = 5; // seconds
     [SerializeField] SpawnManager spawnManager;
     [SerializeField] DifficultyManager difficultyManager;
     
@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            if (timeSinceLastWaveEnd >= timeBetweenWaves)
+            if (timeSinceLastWaveEnd >= timeBetweenWaves || waveCount == 0)
             {
                 StartWave(difficultyManager.Difficulty);
             }
@@ -55,6 +55,7 @@ public class WaveManager : MonoBehaviour
 
     void StartWave(float difficulty)
     {
+        
         if (difficulty < 5)
         {
             totalEnemiesInWave = 10;
@@ -63,9 +64,12 @@ public class WaveManager : MonoBehaviour
         {
             totalEnemiesInWave = 2 * (int)difficulty;
         }
+        
         spawnManager.updateMaxSpawns();
         inWave = true;
         waveCount++;
+        timeSinceLastWaveEnd = 0;
+        Debug.Log("Wave " + waveCount);
     }
     void InWave()
     {
