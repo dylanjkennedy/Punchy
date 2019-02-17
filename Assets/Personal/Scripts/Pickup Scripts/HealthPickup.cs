@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    [SerializeField] private int HealthAmount;
+    [SerializeField] private int HealthAmount = 50;
 
     // called once per frame
 
@@ -18,8 +18,8 @@ public class HealthPickup : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<PlayerHealth>().GainHealth(HealthAmount);
-            Destroy(gameObject);
             col.gameObject.GetComponent<PickupSpawner>().PickedUp();
+            Destroy(gameObject);
         }
         if (col.gameObject.tag == "Enemy")
         {

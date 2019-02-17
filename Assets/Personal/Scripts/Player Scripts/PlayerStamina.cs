@@ -65,13 +65,13 @@ public class PlayerStamina : MonoBehaviour
         }
     }
 
-    public void GainStamina(int staminagain)
+    public void RegainStaminaWithoutRegen(int staminaGain)
     {
-        if ((staminagain + currentStamina) <= maxStamina & currentStamina >= 0)
+        if ((staminaGain + currentStamina) <= maxStamina & currentStamina >= 0)
         {
-            currentStamina += staminagain;
+            currentStamina += staminaGain;
         }
-        else if ((currentStamina + staminagain) > maxStamina)
+        else if ((currentStamina + staminaGain) > maxStamina)
         {
             currentStamina = maxStamina;
         }
