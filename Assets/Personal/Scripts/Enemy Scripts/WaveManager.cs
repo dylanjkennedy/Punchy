@@ -69,7 +69,8 @@ public class WaveManager : MonoBehaviour
         inWave = true;
         waveCount++;
         timeSinceLastWaveEnd = 0;
-        Debug.Log("Wave " + waveCount);
+        
+        Debug.Log(difficulty);
     }
     void InWave()
     {
@@ -90,6 +91,7 @@ public class WaveManager : MonoBehaviour
     {
         spawnManager.TotalEnemiesSpawned = 0; // reset the spawn manager's count
         inWave = false;
+        EventManager.TriggerEvent("newWave", (waveCount+1).ToString());
     }
 
 }
