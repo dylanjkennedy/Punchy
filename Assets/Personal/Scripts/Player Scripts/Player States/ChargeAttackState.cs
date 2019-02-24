@@ -63,6 +63,7 @@ public class ChargeAttackState : PlayerState
 
     public override void Exit()
     {
+
     }
 
     public override PlayerState FixedUpdate()
@@ -100,12 +101,22 @@ public class ChargeAttackState : PlayerState
 
         if (timer >= dashTime + postHitTime)
         {
+            if (Input.GetButton("Dash"))
+            {
+                if (playerStamina.UseStamina(playerMover.playerValues.groundStateValues.DashCost))
+                {
+                    return new DashState(playerMover);
+                }
+            }
+
+            if (Input.GetButton("Jump"))
+            {
+                return new AirState(playerMover, playerMover.jumpSpeed);
+            }
+
+
             if (playerMover.isGrounded())
             {
-                if (Input.GetButton("Jump"))
-                {
-                    return new AirState(playerMover, playerMover.jumpSpeed);
-                }
                 return new GroundState(playerMover);
             }
             else

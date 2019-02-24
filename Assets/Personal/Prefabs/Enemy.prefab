@@ -410,7 +410,7 @@ MonoBehaviour:
   firingFrequency: 2
   firingFrequencyRange: 1
   bulletSpeed: 30
-  bulletDamage: 5
+  bulletDamage: 10
   runAwayDistance: 6
   fractures: {fileID: 1267450237954100, guid: e2c63e136a79c3a48aebb5041d7b4774, type: 3}
   scoreValue: 10
