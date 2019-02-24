@@ -69,8 +69,6 @@ public class WaveManager : MonoBehaviour
         inWave = true;
         waveCount++;
         timeSinceLastWaveEnd = 0;
-        
-        Debug.Log(difficulty);
     }
     void InWave()
     {

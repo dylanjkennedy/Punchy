@@ -32,7 +32,7 @@ public class GroundPoundState : PlayerState
 
         vulnerable = false;
         chargeController = playerMover.ChargeController;
-        vulnerable = true;
+        vulnerable = false;
         enemyMask = LayerMask.GetMask("Enemy");
     }
 

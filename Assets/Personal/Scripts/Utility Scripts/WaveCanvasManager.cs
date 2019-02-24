@@ -52,7 +52,6 @@ public class WaveCanvasManager : MonoBehaviour
 
         if (timer >= waveCompleteTime && !nextWaveDisplayed)
         {
-            Debug.Log("changing display");
             waveText.text = "Wave " + wave.ToString();
             nextWaveDisplayed = true;
         }
