@@ -8,6 +8,7 @@ public class ScoreTracker : MonoBehaviour {
     [SerializeField] float comboTimeout;
     [SerializeField] Text scoreText;
     [SerializeField] Text comboText;
+    [SerializeField] Image comboBar;
     [SerializeField] GameObject scoreCanvas;
     float timer;
     int combo;
@@ -15,9 +16,11 @@ public class ScoreTracker : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        timer = 0;
+        timer = comboTimeout;
         combo = 0;
         dead = false;
+        comboBar.fillMethod = Image.FillMethod.Horizontal;
+        comboBar.fillAmount = 0f;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +29,11 @@ public class ScoreTracker : MonoBehaviour {
         if (timer >= comboTimeout)
         {
             combo = 0;
-            comboText.text = combo.ToString();
+            comboText.text = "";
+        }
+        else
+        {
+            comboBar.fillAmount = 1 - timer / comboTimeout;
         }
 	}
 
@@ -39,7 +46,7 @@ public class ScoreTracker : MonoBehaviour {
             int scoreChange = change * combo;
             score += scoreChange;
             scoreText.text = score.ToString();
-            comboText.text = combo.ToString();
+            comboText.text = "X" + combo.ToString() + " combo";
             CreateScoreInWorld(scoreChange, position);
         }
     }

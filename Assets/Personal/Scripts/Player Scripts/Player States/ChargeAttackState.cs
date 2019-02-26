@@ -89,6 +89,12 @@ public class ChargeAttackState : PlayerState
             }
             
             attacked = true;
+
+            //HOTFIX
+            //teleports player to moveTarget in case the player did not reach the destination properly (repro: attack enemy that is on platform above while on a lower level)
+            playerMover.transform.position = moveTarget;
+
+
             AddExplosion(attackTarget.point);
             playerStamina.RegainStamina(staminaRegain);
             timer += Time.fixedDeltaTime;
@@ -103,10 +109,10 @@ public class ChargeAttackState : PlayerState
         {
             if (Input.GetButton("Dash"))
             {
-                if (playerStamina.UseStamina(playerMover.playerValues.groundStateValues.DashCost))
-                {
-                    return new DashState(playerMover);
-                }
+                    if (playerStamina.UseStamina(playerMover.playerValues.groundStateValues.DashCost))
+                    {
+                        return new DashState(playerMover);
+                    }
             }
 
             if (Input.GetButton("Jump"))
