@@ -16,10 +16,11 @@ public class ScoreTracker : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        timer = 0;
+        timer = comboTimeout;
         combo = 0;
         dead = false;
         comboBar.fillMethod = Image.FillMethod.Horizontal;
+        comboBar.fillAmount = 0f;
 	}
 	
 	// Update is called once per frame
