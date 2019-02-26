@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45002955, g: 0.5000841, b: 0.5755014, a: 1}
+  m_IndirectSpecularColor: {r: 0.4500302, g: 0.500085, b: 0.57550216, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -486,6 +486,18 @@ Transform:
   m_Father: {fileID: 245769497}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &68879494 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 68879494, guid: 48c615876cd04284fa34b061c89d7905,
+    type: 3}
+  m_PrefabInstance: {fileID: 1414270660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &76710007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,6 +2981,16 @@ PrefabInstance:
       propertyPath: comboText
       value: 
       objectReference: {fileID: 1414270667}
+    - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: comboBar
+      value: 
+      objectReference: {fileID: 68879494}
+    - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: comboTimeout
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: chargeValues.chargeWheel
@@ -14048,8 +14070,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1107812533566162, guid: 48c615876cd04284fa34b061c89d7905, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Name
+      value: HUDCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
         type: 3}
@@ -14090,6 +14112,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
         type: 3}
@@ -14139,10 +14176,6 @@ PrefabInstance:
     - target: {fileID: 224088362302136790, guid: 48c615876cd04284fa34b061c89d7905,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1433385464291214, guid: 48c615876cd04284fa34b061c89d7905, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
