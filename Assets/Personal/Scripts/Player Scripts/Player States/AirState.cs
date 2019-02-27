@@ -72,43 +72,14 @@ public class AirState : PlayerState {
         if (isJumping)
         {
             Vector3 playerCenter = playerMover.gameObject.transform.position;
-
             Collider[] closeWalls = Physics.OverlapSphere(playerCenter, 1f,LayerMask.GetMask("Default"));
             if (closeWalls.Length > 0)
             {
-                Vector3 pointOfContact=closeWalls[0].ClosestPointOnBounds(playerCenter);
-                float xDistance = playerCenter.x - pointOfContact.x;
-                float zDistance = playerCenter.z - pointOfContact.z;
-
-                Vector3 wallBounceDirection;
-
-                if (Math.Abs(xDistance)> Math.Abs(zDistance))
-                {
-                    if (xDistance > 0)
-                    {
-                        wallBounceDirection=Vector3.right;
-                    }
-                    else
-                    {
-                        wallBounceDirection = Vector3.left;
-                    }
-                }
-                else
-                {
-                    if (zDistance > 0)
-                    {
-                        wallBounceDirection = Vector3.forward;
-                    }
-                    else
-                    {
-                        wallBounceDirection = Vector3.back;
-                    }
-                }
-                playerMover.gameObject.GetComponent<ImpactReceiver>().AddImpact(wallBounceDirection, playerMover.jumpSpeed);
-                move.y += playerMover.jumpSpeed;
+                WallJump(closeWalls,playerCenter);
                 isJumping = false;
             }
         }
+
         move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
 
         hit = chargeController.Charge (charging);
@@ -150,5 +121,24 @@ public class AirState : PlayerState {
 		move = new Vector3 (desiredMove.x, move.y+ initialVerticalSpeed, desiredMove.z);
 		playerMover.Move (move);
         charging = Input.GetButton("Fire1");
+    }
+
+    private void WallJump(Collider[] closeWalls, Vector3 playerCenter)
+    {
+        RaycastHit hit;
+        Vector3 wallBounceDirection = Vector3.zero;
+        float minDistance = Mathf.Infinity;
+        foreach (Collider closeWall in closeWalls)
+        {
+            Vector3 pointOfContact = closeWalls[0].ClosestPoint(playerCenter);
+            Physics.Raycast(playerCenter, pointOfContact - playerCenter, out hit, 1f);
+            if (hit.distance < minDistance)
+            {
+                wallBounceDirection = hit.normal;
+                minDistance = hit.distance;
+            }
+        }
+        playerMover.gameObject.GetComponent<ImpactReceiver>().AddImpact(wallBounceDirection, playerMover.jumpSpeed);
+        move.y += playerMover.jumpSpeed;
     }
 }
