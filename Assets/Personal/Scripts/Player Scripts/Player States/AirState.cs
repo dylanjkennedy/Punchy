@@ -19,7 +19,7 @@ public class AirState : PlayerState {
     RaycastHit hit;
     bool initialJumpDone;
     bool jumpRemaining;
-    bool isJumping;
+    bool jumping;
 
     public AirState(PlayerMover pm) : base(pm)
 	{
@@ -68,14 +68,14 @@ public class AirState : PlayerState {
 		Vector3 desiredMove = GetStandardDesiredMove (playerMover.speed * airSpeedMultiplier);
 
 		move = new Vector3 (desiredMove.x, move.y, desiredMove.z);
-        if (isJumping)
+        if (jumping)
         {
             Vector3 playerCenter = playerMover.gameObject.transform.position;
             Collider[] closeWalls = Physics.OverlapSphere(playerCenter, 1f,LayerMask.GetMask("Default"));
             if (closeWalls.Length > 0)
             {
                 WallJump(closeWalls,playerCenter);
-                isJumping = false;
+                jumping = false;
             }
         }
 
@@ -108,7 +108,7 @@ public class AirState : PlayerState {
         }
         if (initialJumpDone && jumpRemaining && Input.GetButton("Jump"))
         {
-            isJumping = true;
+            jumping = true;
             jumpRemaining = false;
         }
     }
