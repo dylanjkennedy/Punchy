@@ -9,15 +9,7 @@ public class HealthPickup : PickupController
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.GetComponent<PlayerHealth>().GainHealth(HealthAmount);
-            col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);
-            //Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "Enemy")
-        {
-            Physics.IgnoreCollision(col, gameObject.GetComponent<Collider>());
-        }
+      col.gameObject.GetComponent<PlayerHealth>().GainHealth(HealthAmount);
+      col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);  
     }
 }

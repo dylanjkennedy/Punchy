@@ -8,7 +8,7 @@ public class PickupSpawner : MonoBehaviour
     [SerializeField] GameObject[] pickupPrefabs;
     TetherController[] tethersTracker;
     List<GameObject> pickups = new List<GameObject>(); //tracks pickups -- used for pickup despawning
-    List<Vector3> locations = new List<Vector3>(); //tracks locations of tethers to ensure no double spawning
+    //List<Vector3> locations = new List<Vector3>(); //tracks locations of tethers to ensure no double spawning
     float spawnTimer;
     float nextSpawn;
     int pickupCount;
@@ -38,13 +38,13 @@ public class PickupSpawner : MonoBehaviour
         {
             SpawnPickup(FindSpawner());
         }
-        print(pickupCount);
 
         for(int i = 0; i < pickups.Count; i++)
         {
             if (pickups[i].GetComponent<PickupController>().timer >= despawnTime)
             {
                 PickedUp(pickups[i]);
+                //spawnTimer = 0;
             }
         }
     }
@@ -67,9 +67,9 @@ public class PickupSpawner : MonoBehaviour
     GameObject FindSpawner()
     {
         int randomNumber = Random.Range(0, tethersTracker.Length);
-        for (int i = 0; i < locations.Count; i++)
+        for (int i = 0; i < pickups.Count; i++)
         {
-            if(locations[i] == tethersTracker[randomNumber].gameObject.transform.position)
+            if((pickups[i].transform.position + new Vector3(0, 5/4, 0)) == tethersTracker[randomNumber].gameObject.transform.position)
             {
                 FindSpawner();
             }
@@ -77,7 +77,7 @@ public class PickupSpawner : MonoBehaviour
         return tethersTracker[randomNumber].gameObject;
     }
 
-    GameObject GrabGameObject()
+    GameObject GrabPickupType()
     {
         float value = Random.Range(0.0f, 1.0f);
         GameObject obj = pickupPrefabs[0];
@@ -95,12 +95,12 @@ public class PickupSpawner : MonoBehaviour
     void SpawnPickup(GameObject tether)
     {
         Vector3 pos = tether.transform.position;
-        GameObject pickup = Instantiate(GrabGameObject(), pos - new Vector3(0, 5 / 4, 0), tether.transform.rotation, pickupsParent.transform);
+        GameObject pickup = Instantiate(GrabPickupType(), pos - new Vector3(0, 5 / 4, 0), tether.transform.rotation, pickupsParent.transform);
         spawnTimer = 0;
         pickups.Add(pickup); //
         pickupCount++;
 
-        locations.Add(pos);
+        //locations.Add(pos);
     }
     public void PickedUp(GameObject obj)
     {
@@ -108,7 +108,7 @@ public class PickupSpawner : MonoBehaviour
         pickups.Remove(obj);
         Destroy(obj);
 
-        locations.Remove(obj.transform.position + new Vector3(0, 5/4, 0));
+        //locations.Remove(obj.transform.position + new Vector3(0, 5/4, 0));
     }
 
 

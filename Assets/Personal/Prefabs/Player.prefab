@@ -663,10 +663,10 @@ MonoBehaviour:
   - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
   - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
   pickupLimit: 4
-  upperBoundTime: 10
-  lowerBoundTime: 20
+  upperBoundTime: 7
+  lowerBoundTime: 7
   pickupsParent: {fileID: 0}
-  despawnTime: 30
+  despawnTime: 45
 --- !u!1001 &2368544253589646412
 PrefabInstance:
   m_ObjectHideFlags: 0

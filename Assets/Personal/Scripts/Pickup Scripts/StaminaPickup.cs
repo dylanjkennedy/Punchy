@@ -9,17 +9,9 @@ public class StaminaPickup : PickupController
    
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.GetComponent<PlayerStamina>().RegainStaminaWithoutRegen(StaminaAmount);
-            col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);
-            //Destroy(gameObject);
-        }
-
-        if (col.gameObject.tag == "Enemy")
-        {
-            Physics.IgnoreCollision(col, gameObject.GetComponent<Collider>());
-        }
+        col.gameObject.GetComponent<PlayerStamina>().RegainStaminaWithoutRegen(StaminaAmount);
+        col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);
+            
 
     }
 
