@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4500302, g: 0.500085, b: 0.57550216, a: 1}
+  m_IndirectSpecularColor: {r: 0.45002955, g: 0.5000841, b: 0.5755014, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -300,6 +300,36 @@ OffMeshLink:
   m_BiDirectional: 0
   m_Activated: 1
   m_AutoUpdatePositions: 0
+--- !u!1 &30210514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30210515}
+  m_Layer: 0
+  m_Name: Pickups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30210515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30210514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &30491470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,6 +2965,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1355902032486888, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4032339763570446, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.4
@@ -2968,8 +3002,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4032339763570446, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032339763570446, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032339763570446, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
@@ -2986,11 +3028,6 @@ PrefabInstance:
       propertyPath: comboBar
       value: 
       objectReference: {fileID: 68879494}
-    - target: {fileID: 114800909922622860, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: comboTimeout
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: chargeValues.chargeWheel
@@ -3013,9 +3050,9 @@ PrefabInstance:
       objectReference: {fileID: 1414270664}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
-      propertyPath: healthValues.gameOverText
+      propertyPath: healthValues.gameOverCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 176282300}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: staminaValues.staminaBar
@@ -3023,18 +3060,9 @@ PrefabInstance:
       objectReference: {fileID: 1414270662}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
-      propertyPath: healthValues.gameOverCanvas
-      value: 
-      objectReference: {fileID: 176282300}
-    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
       propertyPath: generalValues.pauseMenu
       value: 
       objectReference: {fileID: 1872307368}
-    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
-      propertyPath: enemiesParent
-      value: 
-      objectReference: {fileID: 196495605}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
@@ -3043,55 +3071,19 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 264235243}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: healthBar
+    - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemiesParent
       value: 
-      objectReference: {fileID: 1414270663}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: damageImage
-      value: 
-      objectReference: {fileID: 1414270664}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: gameOverText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114143149742651824, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: gameOverCanvas
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: chargeWheel
-      value: 
-      objectReference: {fileID: 1414270666}
-    - target: {fileID: 114189614645218814, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: slowmoWheel
-      value: 
-      objectReference: {fileID: 1414270661}
-    - target: {fileID: 114812462051641692, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: staminaBar
-      value: 
-      objectReference: {fileID: 1414270662}
+      objectReference: {fileID: 196495605}
     - target: {fileID: 1439987890184473724, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
-      propertyPath: pickupPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: pickupsParent
+      value: 
+      objectReference: {fileID: 30210514}
     - target: {fileID: 1439987890184473724, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
-      propertyPath: nextSpawn
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439987890184473724, guid: 24702d2c502ac224ca4a638da8a5acdc,
-        type: 3}
-      propertyPath: pickupLimit
-      value: 2
+      propertyPath: despawnTime
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
