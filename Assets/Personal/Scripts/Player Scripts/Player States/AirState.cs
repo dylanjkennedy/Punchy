@@ -34,7 +34,6 @@ public class AirState : PlayerState {
         vulnerable = true;
         jumpRemaining= true;
         initialJumpDone = false;
-
     }
 
     public AirState(PlayerMover pm, float verticalSpeed) : base(pm)
@@ -112,7 +111,6 @@ public class AirState : PlayerState {
             isJumping = true;
             jumpRemaining = false;
         }
-
     }
 
 	public override void Enter ()
