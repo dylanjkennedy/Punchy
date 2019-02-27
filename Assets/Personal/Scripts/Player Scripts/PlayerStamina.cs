@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStamina : MonoBehaviour {
+public class PlayerStamina : MonoBehaviour
+{
     Image staminaBar;
     float maxStamina;
     float staminaRegen;
@@ -14,7 +15,8 @@ public class PlayerStamina : MonoBehaviour {
     bool regenerating;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         staminaBar = playerValues.staminaValues.StaminaBar;
         maxStamina = playerValues.staminaValues.MaxStamina;
         staminaRegen = playerValues.staminaValues.StaminaRegen;
@@ -24,10 +26,11 @@ public class PlayerStamina : MonoBehaviour {
         staminaBar.fillMethod = Image.FillMethod.Horizontal;
         staminaBar.fillAmount = 1f;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (currentStamina < maxStamina && regenerating)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (currentStamina < maxStamina && regenerating)
         {
             currentStamina += staminaRegen * Time.deltaTime;
             staminaBar.fillAmount = currentStamina / maxStamina;
@@ -44,7 +47,7 @@ public class PlayerStamina : MonoBehaviour {
                 regenerating = true;
             }
         }
-	}
+    }
 
     public bool UseStamina(float staminaUsed)
     {
@@ -60,6 +63,19 @@ public class PlayerStamina : MonoBehaviour {
             staminaBar.fillAmount = currentStamina / maxStamina;
             return true;
         }
+    }
+
+    public void RegainStaminaWithoutRegen(int staminaGain)
+    {
+        if ((staminaGain + currentStamina) <= maxStamina & currentStamina >= 0)
+        {
+            currentStamina += staminaGain;
+        }
+        else if ((currentStamina + staminaGain) > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+        staminaBar.fillAmount = currentStamina / maxStamina;
     }
 
     public void RegainStamina(float staminaGained)
