@@ -482,6 +482,24 @@ public class PlayerValues : ActorValues
         [SerializeField] private float gravityMultiplier;
         [SerializeField] private float speedMaximum;
         [SerializeField] private float physicsMaxForce;
+        [SerializeField] private ParticleSystem groundPoundParticles;
+        [SerializeField] private AudioClip groundPoundSound;
+
+        public ParticleSystem GroundPoundParticles
+        {
+            get
+            {
+                return groundPoundParticles;
+            }
+        }
+
+        public AudioClip GroundPoundSound
+        {
+            get
+            {
+                return groundPoundSound;
+            }
+        }
 
         public float GroundPoundHopSpeed
         {
