@@ -14,11 +14,12 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] GameObject enemiesParent;
     float[] spawnTimers = { 0, 0 };
     float[] baseTimesToNextSpawn = {1, 3 };
-    float[] spawnTimeRanges = {0.5f, 2};
+    float[] spawnTimeRanges = {0.5f/2, 2/2};
     float[] timesOfNextSpawn = {0, 0}; 
     GameObject player;
     TethersTracker tethersTracker;
     DifficultyValues difficultyValues;
+    bool[] hasTetherBeenSpawnedInto;
 
     int totalEnemiesSpawned = 0;
 
@@ -28,7 +29,6 @@ public class SpawnManager : MonoBehaviour {
         difficultyValues = difficultyManager.DifficultyValues;
         baseSpawnLimits = difficultyValues.SpawnDifficultyValues.BaseSpawnLimits;
         spawnLimitsGrowth = difficultyValues.SpawnDifficultyValues.SpawnLimitsGrowth;
-
 
         spawnLimits = new int[baseSpawnLimits.Length];
         for (int i = 0; i < spawnLimits.Length; i++)
@@ -53,7 +53,9 @@ public class SpawnManager : MonoBehaviour {
         {
             timesOfNextSpawn[i] = baseTimesToNextSpawn[i] + Random.Range(-spawnTimeRanges[i], spawnTimeRanges[i]);
         }
-	}
+
+        hasTetherBeenSpawnedInto = new bool[tethersTracker.Tethers.Length];
+    }
 
     // Update is called once per frame
     void Update() {
@@ -71,7 +73,7 @@ public class SpawnManager : MonoBehaviour {
         */
     }
 
-    public void continuouslySpawn()
+    public void ContinuouslySpawn()
     {
         for (int i = 0; i < spawnTimers.Length; i++)
         {
@@ -83,8 +85,25 @@ public class SpawnManager : MonoBehaviour {
             }
         }
     }
-    
-    // USEFUL
+
+    public void SpawnSubwave(int numToSpawn)
+    { 
+        for (int i = 0; i < numToSpawn; i++)
+        {
+            GameObject spawner = FindSpawner();
+            if (i != 0 && i%3 == 0)
+            {
+                // spawn humanoids 1/3 of time (temporary solution)
+                SpawnEnemy((EnemyType)1, spawner);
+            }
+            else
+            {
+                // spawn a cylinder
+                SpawnEnemy((EnemyType)0, spawner);
+            }
+        }
+    }
+
     bool CheckSpawn(EnemyType type)
     {
         if (enemies[(int)type].Count < spawnLimits[(int)type] && (spawnTimers[(int)type] >= timesOfNextSpawn[(int)type]))
@@ -94,7 +113,6 @@ public class SpawnManager : MonoBehaviour {
         return false;
     }
 
-    // USEFUL
     GameObject FindSpawner()
     {
         TetherController[] tethers = tethersTracker.Tethers;
@@ -114,17 +132,16 @@ public class SpawnManager : MonoBehaviour {
             weights[i] += (int)((tethers[i].TraceRatio) * 50);
             
 
-            if (weights[i] < minWeight)
+            if (weights[i] < minWeight && hasTetherBeenSpawnedInto[i] == false)
             {
                 minWeightIndex = i;
                 minWeight = weights[i];
             }
         }
-
+        hasTetherBeenSpawnedInto[minWeightIndex] = true;
         return tethers[minWeightIndex].gameObject;
     }
 
-    // USEFUL 
     void SpawnEnemy(EnemyType type, GameObject tether)
     {
         GameObject enemy = Instantiate(enemyPrefabs[(int)type], tether.transform.position, tether.transform.rotation, enemiesParent.transform);
@@ -135,20 +152,26 @@ public class SpawnManager : MonoBehaviour {
         enemies[(int)type].Add(enemy);
         totalEnemiesSpawned++;
     }
-    // USEFUL 
     public void DestroyEnemy(GameObject enemy)
     {
         enemies[(int)enemy.GetComponent<EnemyController>().Type].Remove(enemy);
         Destroy(enemy);
     }
 
-    // USEFUL but needs to be called at beginning of wave instead of constantly
-    public void updateMaxSpawns()
+    public void UpdateMaxSpawns(float difficulty)
     {
-        float difficulty = difficultyManager.Difficulty;
+        //float difficulty = difficultyManager.Difficulty;
         for (int i = 0; i < spawnLimits.Length; i++)
         {
             spawnLimits[i] = baseSpawnLimits[i] + Mathf.FloorToInt(spawnLimitsGrowth[i] * difficulty);
+        }
+    }
+
+    public void ClearHasTetherBeenSpawnedInto()
+    {
+        for (int i = 0; i < hasTetherBeenSpawnedInto.Length; i++)
+        {
+            hasTetherBeenSpawnedInto[i] = false;
         }
     }
 

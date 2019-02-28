@@ -6,19 +6,27 @@ public class WaveManager : MonoBehaviour
 {
     bool inWave = false;
     float timeSinceLastWaveEnd = 0f;
+    float timeSinceWaveStart = 0f;
+    float timeSinceSubWaveStart = 0f;
     int totalEnemiesSpawned = 0;
     int waveCount = 0;
     [SerializeField] int totalEnemiesInWave = 3;
     [SerializeField] int timeBetweenWaves = 5; // seconds
+    [SerializeField] float timeBetweenSubWaves = 10f;
     [SerializeField] SpawnManager spawnManager;
-    [SerializeField] DifficultyManager difficultyManager;
+    //[SerializeField] DifficultyManager difficultyManager;
+    float difficulty = 0;
+    int subWaveEnemyNumber;
+    bool spawning = false;
+    float spawnTime = 0f;
     
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -43,7 +51,7 @@ public class WaveManager : MonoBehaviour
         {
             if (timeSinceLastWaveEnd >= timeBetweenWaves || waveCount == 0)
             {
-                StartWave(difficultyManager.Difficulty);
+                StartWave();
             }
             else
             {
@@ -53,27 +61,62 @@ public class WaveManager : MonoBehaviour
     }
 
 
-    void StartWave(float difficulty)
-    {
-        
-        if (difficulty < 5)
+    void StartWave()
+    {    
+        if (waveCount == 0)
         {
-            totalEnemiesInWave = 10;
+            difficulty = 0.2f; // because Log(0) doesn't work
+        }
+        else if (waveCount == 1)
+        {
+            difficulty = 0.4f; // because Log(1) = 0
         }
         else
         {
-            totalEnemiesInWave = 2 * (int)difficulty;
+            difficulty = 2 * Mathf.Log10(waveCount);
         }
-        
-        spawnManager.updateMaxSpawns();
+
+        totalEnemiesInWave = (int)(20 * difficulty);
+
+        if (totalEnemiesInWave < 10) subWaveEnemyNumber = totalEnemiesInWave;
+        else subWaveEnemyNumber = (int)Mathf.Floor(totalEnemiesInWave / 3);
+
+        spawnManager.UpdateMaxSpawns(difficulty);
         inWave = true;
         waveCount++;
         timeSinceLastWaveEnd = 0;
+        timeSinceSubWaveStart = timeBetweenSubWaves / 2;
     }
     void InWave()
     {
-        spawnManager.continuouslySpawn();
-        
+        timeSinceWaveStart += Time.unscaledDeltaTime;
+        timeSinceSubWaveStart += Time.unscaledDeltaTime;
+
+        if (timeSinceSubWaveStart >= timeBetweenSubWaves || spawnManager.CurrNumOfEnemiesAlive() == 0)
+        {
+            spawnManager.SpawnSubwave(subWaveEnemyNumber);
+            spawnManager.ClearHasTetherBeenSpawnedInto();
+            timeSinceSubWaveStart = 0f;
+
+
+            /* delete this code later
+                spawning = true;
+                Debug.Log("spawning == true");
+                //spawnManager.continuouslySpawn();
+
+            }
+            if (spawning == true) 
+            {
+                Debug.Log("in second if");
+
+                if (spawnManager.CurrNumOfEnemiesAlive() >= subWaveEnemyNumber)
+                {
+                    // we have finished spawning this subwave
+                    spawning = false;
+                    spawnManager.ClearHasTetherBeenSpawnedInto();
+                }
+                */
+        }
     }
 
     // The enemies that have already been spawned are the last ones in the wave. No more spawning
