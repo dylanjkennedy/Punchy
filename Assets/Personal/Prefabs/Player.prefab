@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07921497f0af5694e812c92ad1c76eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboTimeout: 2
+  comboTimeout: 2.5
   scoreText: {fileID: 0}
   comboText: {fileID: 0}
   comboBar: {fileID: 0}
@@ -662,9 +662,11 @@ MonoBehaviour:
   pickupPrefabs:
   - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
   - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
-  pickupLimit: 10
-  upperBoundTime: 20
-  lowerBoundTime: 40
+  pickupLimit: 4
+  upperBoundTime: 7
+  lowerBoundTime: 7
+  pickupsParent: {fileID: 0}
+  despawnTime: 45
 --- !u!1001 &2368544253589646412
 PrefabInstance:
   m_ObjectHideFlags: 0
