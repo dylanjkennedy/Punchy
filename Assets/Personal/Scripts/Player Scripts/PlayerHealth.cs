@@ -7,12 +7,14 @@ public class PlayerHealth : MonoBehaviour
 {
     Image healthBar;
     Image damageImage;
+    Image overshieldBar;
     Text gameOverText;
     [SerializeField] Canvas gameOverCanvas;
     float flashSpeed = 5f;
     Color flashColor = new Color(1f, 0f, 0f, 0.1f);
     private int maxHealth;
     private float health;
+    private float overshield;
     private bool damaged;
     private ImpactReceiver impactReceiver;
     PlayerMover playerMover;
@@ -35,19 +37,29 @@ public class PlayerHealth : MonoBehaviour
         flashColor = playerValues.healthValues.FlashColor;
         maxHealth = playerValues.healthValues.MaxHealth;
         hitSound = playerValues.healthValues.HitSound;
+        overshieldBar = playerValues.healthValues.OvershieldBar;
 
         health = maxHealth;
         healthBar.type = Image.Type.Filled;
         healthBar.fillMethod = Image.FillMethod.Horizontal;
         //healthBar.fillAmount = 1f;
+        overshieldBar.type = Image.Type.Filled;
+        overshieldBar.fillMethod = Image.FillMethod.Horizontal;
 
         //added for testing purposes
         healthBar.fillAmount = health / maxHealth;
+
+        overshieldBar.fillAmount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(overshield > 0)
+        {
+            overshield -= 2*Time.deltaTime;
+            overshieldBar.fillAmount = overshield / 25;
+        }
         if (damaged)
         {
             damageImage.color = flashColor;
@@ -63,6 +75,18 @@ public class PlayerHealth : MonoBehaviour
     {
         if (playerMover.isVulnerable())
         {
+            if (overshield > damage)
+            {
+                overshield -= damage;
+                overshieldBar.fillAmount = overshield / 25;
+                return;
+            }
+            if (overshield > 0 && overshield < damage)
+            {
+                damage -= (int)overshield;
+                overshield = 0;
+                overshieldBar.fillAmount = 0f;
+            }
             health -= damage;
             damaged = true;
             healthBar.fillAmount = health / maxHealth;
@@ -77,7 +101,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    //added by CALEB
+    public void GainOvershield (float overshieldgain)
+    {
+        overshield = overshieldgain;
+        overshieldBar.fillAmount = 1f;
+    }
+
     public void GainHealth(int healthgain)
     {
         if ((healthgain + health) <= maxHealth && health > 0)
