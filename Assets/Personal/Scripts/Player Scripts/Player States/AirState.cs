@@ -116,7 +116,7 @@ public class AirState : PlayerState {
 	public override void Enter ()
 	{
 		Vector3 desiredMove = GetStandardDesiredMove (playerMover.speed);
-		move = new Vector3 (desiredMove.x, move.y+ initialVerticalSpeed, desiredMove.z);
+		move = new Vector3 (desiredMove.x, initialVerticalSpeed, desiredMove.z);
 		playerMover.Move (move);
         charging = Input.GetButton("Fire1");
     }
@@ -137,6 +137,6 @@ public class AirState : PlayerState {
             }
         }
         playerMover.gameObject.GetComponent<ImpactReceiver>().AddImpact(wallBounceDirection, playerMover.jumpSpeed);
-        move.y += playerMover.jumpSpeed;
+        move.y = playerMover.jumpSpeed;
     }
 }
