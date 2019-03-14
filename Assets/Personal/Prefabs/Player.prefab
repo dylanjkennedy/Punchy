@@ -601,7 +601,7 @@ MonoBehaviour:
   baseSpawnLimits: 0300000001000000
   spawnLimitsGrowth:
   - 0.8
-  - 0.2
+  - 1.2
   spawnLimits: 
   enemiesParent: {fileID: 0}
 --- !u!114 &1851651619850872098
@@ -618,8 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalEnemiesInWave: 20
   timeBetweenWaves: 7
+  timeBetweenSubWaves: 10
   spawnManager: {fileID: 744898450}
-  difficultyManager: {fileID: 744898441}
 --- !u!114 &744898452
 MonoBehaviour:
   m_ObjectHideFlags: 0
