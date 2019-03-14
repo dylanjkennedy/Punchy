@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07921497f0af5694e812c92ad1c76eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboTimeout: 2
+  comboTimeout: 2.5
   scoreText: {fileID: 0}
   comboText: {fileID: 0}
   comboBar: {fileID: 0}
@@ -601,7 +601,7 @@ MonoBehaviour:
   baseSpawnLimits: 0300000001000000
   spawnLimitsGrowth:
   - 0.8
-  - 0.2
+  - 1.2
   spawnLimits: 
   enemiesParent: {fileID: 0}
 --- !u!114 &1851651619850872098
@@ -618,8 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalEnemiesInWave: 20
   timeBetweenWaves: 7
+  timeBetweenSubWaves: 10
   spawnManager: {fileID: 744898450}
-  difficultyManager: {fileID: 744898441}
 --- !u!114 &744898452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,9 +662,11 @@ MonoBehaviour:
   pickupPrefabs:
   - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
   - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
-  pickupLimit: 10
-  upperBoundTime: 20
-  lowerBoundTime: 40
+  pickupLimit: 4
+  upperBoundTime: 7
+  lowerBoundTime: 7
+  pickupsParent: {fileID: 0}
+  despawnTime: 45
 --- !u!1001 &2368544253589646412
 PrefabInstance:
   m_ObjectHideFlags: 0

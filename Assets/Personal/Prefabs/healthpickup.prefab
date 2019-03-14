@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthAmount: 10
+  player: {fileID: 1355902032486888, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!82 &4059116046327750116
 AudioSource:
   m_ObjectHideFlags: 0
