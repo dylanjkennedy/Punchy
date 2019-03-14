@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerValues playerValues;
     AudioSource audioSource;
     AudioClip hitSound;
+    private float overshieldMax;
 
     // Use this for initialization
     void Start()
@@ -38,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = playerValues.healthValues.MaxHealth;
         hitSound = playerValues.healthValues.HitSound;
         overshieldBar = playerValues.healthValues.OvershieldBar;
+        overshieldMax = gameObject.GetComponent<OvershieldPickup>().OvershieldAmount;
 
         health = maxHealth;
         healthBar.type = Image.Type.Filled;
@@ -58,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
         if(overshield > 0)
         {
             overshield -= 2*Time.deltaTime;
-            overshieldBar.fillAmount = overshield / 25;
+            overshieldBar.fillAmount = overshield / overshieldMax;
         }
         if (damaged)
         {
@@ -78,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
             if (overshield > damage)
             {
                 overshield -= damage;
-                overshieldBar.fillAmount = overshield / 25;
+                overshieldBar.fillAmount = overshield / overshieldMax;
                 return;
             }
             if (overshield > 0 && overshield < damage)

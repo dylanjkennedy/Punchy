@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OvershieldPickup : PickupController
 {
-    [SerializeField] private float OvershieldAmount = 25;
+    [SerializeField] public float OvershieldAmount;
 
 
 private void OnTriggerEnter(Collider col)
