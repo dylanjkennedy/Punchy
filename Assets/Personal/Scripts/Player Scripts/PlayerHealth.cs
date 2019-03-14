@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = playerValues.healthValues.MaxHealth;
         hitSound = playerValues.healthValues.HitSound;
         overshieldBar = playerValues.healthValues.OvershieldBar;
-        overshieldMax = gameObject.GetComponent<OvershieldPickup>().OvershieldAmount;
+        overshieldMax = 0;
 
         health = maxHealth;
         healthBar.type = Image.Type.Filled;
@@ -105,6 +105,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void GainOvershield (float overshieldgain)
     {
+        overshieldMax = overshieldgain;
         overshield = overshieldgain;
         overshieldBar.fillAmount = 1f;
     }
