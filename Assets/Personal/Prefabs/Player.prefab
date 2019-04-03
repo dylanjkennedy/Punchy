@@ -602,7 +602,7 @@ MonoBehaviour:
   baseSpawnLimits: 0300000001000000
   spawnLimitsGrowth:
   - 0.8
-  - 0.2
+  - 1.2
   spawnLimits: 
   enemiesParent: {fileID: 0}
 --- !u!114 &1851651619850872098

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
@@ -8,9 +9,9 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] DifficultyManager difficultyManager;
     List<GameObject>[] enemies = new List<GameObject>[System.Enum.GetValues(typeof(EnemyType)).Length];
-    [SerializeField] int[] baseSpawnLimits;
-    [SerializeField] float[] spawnLimitsGrowth;
-    [SerializeField] int[] spawnLimits; // = { 15, 5 };
+    int[] baseSpawnLimits;
+    float[] spawnLimitsGrowth;
+    int[] spawnLimits; 
     [SerializeField] GameObject enemiesParent;
     float[] spawnTimers = { 0, 0 };
     float[] baseTimesToNextSpawn = {1, 3 };
@@ -87,19 +88,35 @@ public class SpawnManager : MonoBehaviour {
     }
 
     public void SpawnSubwave(int numToSpawn)
-    { 
-        for (int i = 0; i < numToSpawn; i++)
+    {
+        int totalSpawnLimit = spawnLimits.Sum();
+        float[] spawnPercent = new float[enemies.Length];
+        int[] spawnNumber = new int[enemies.Length];
+        for (int i = 0; i < enemies.Length; i++)
         {
-            GameObject spawner = FindSpawner();
-            if (i != 0 && i%3 == 0)
-            {
-                // spawn humanoids 1/3 of time (temporary solution)
-                SpawnEnemy((EnemyType)1, spawner);
+            spawnPercent[i] = (float)spawnLimits[i] / (float)totalSpawnLimit;
+            spawnNumber[i] = Mathf.FloorToInt(spawnPercent[i] * numToSpawn);
+        }
+        //Debug.Log("Percent of wave that is cylinders: " + spawnPercent[0]);
+
+        if (spawnNumber.Sum() != numToSpawn)
+        {
+            if (spawnNumber.Sum() > numToSpawn) {  
+                Debug.LogError("More enemies will spawn than intended in this subwave");
             }
-            else
+            else {
+                //  if total enemies that will spawn < numToSpawn, fill with cylinder enemies
+                spawnNumber[0] += (numToSpawn - spawnNumber.Sum());
+            }
+        }
+
+        // for each type of enemy, spawn the calculated number of that enemy
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            for (int j = 0; j < spawnNumber[i]; j++)
             {
-                // spawn a cylinder
-                SpawnEnemy((EnemyType)0, spawner);
+                GameObject spawner = FindSpawner();
+                SpawnEnemy((EnemyType)i, spawner);
             }
         }
     }

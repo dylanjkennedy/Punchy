@@ -97,25 +97,6 @@ public class WaveManager : MonoBehaviour
             spawnManager.SpawnSubwave(subWaveEnemyNumber);
             spawnManager.ClearHasTetherBeenSpawnedInto();
             timeSinceSubWaveStart = 0f;
-
-
-            /* delete this code later
-                spawning = true;
-                Debug.Log("spawning == true");
-                //spawnManager.continuouslySpawn();
-
-            }
-            if (spawning == true) 
-            {
-                Debug.Log("in second if");
-
-                if (spawnManager.CurrNumOfEnemiesAlive() >= subWaveEnemyNumber)
-                {
-                    // we have finished spawning this subwave
-                    spawning = false;
-                    spawnManager.ClearHasTetherBeenSpawnedInto();
-                }
-                */
         }
     }
 
