@@ -130,7 +130,7 @@ public class SpawnManager : MonoBehaviour {
         return false;
     }
 
-    GameObject FindSpawner()
+    public GameObject FindSpawner()
     {
         TetherController[] tethers = tethersTracker.Tethers;
         int[] weights = new int[tethers.Length];
@@ -159,7 +159,7 @@ public class SpawnManager : MonoBehaviour {
         return tethers[minWeightIndex].gameObject;
     }
 
-    void SpawnEnemy(EnemyType type, GameObject tether)
+    public void SpawnEnemy(EnemyType type, GameObject tether)
     {
         GameObject enemy = Instantiate(enemyPrefabs[(int)type], tether.transform.position, tether.transform.rotation, enemiesParent.transform);
         enemy.SetActive(true);
