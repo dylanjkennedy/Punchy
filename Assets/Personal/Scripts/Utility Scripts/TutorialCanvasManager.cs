@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class TutorialCanvasManager : MonoBehaviour
 {
@@ -11,29 +12,37 @@ public class TutorialCanvasManager : MonoBehaviour
 
     float timer;
     [SerializeField] TextMeshProUGUI tutText;
+    [SerializeField] TextMeshProUGUI UIText;
     bool displaying;
     float minDisplayTime = 1;
     bool tutorialConditionMet = false;
-    enum TutorialCondition : int { move, jump, dash, hit}
+    bool secondaryConditionMet = false;
+    enum TutorialCondition : int { move, jump, dash, hit, ui, groundPound, end}
     TutorialCondition currTutorialCondition;
     [SerializeField] SpawnManager spawnManager;
     GameObject tether;
+    [SerializeField] PlayerMover pm;
+
+    private UnityAction<string> pauseListener;
 
     private void Awake()
     {
-        //listener = new UnityAction<string>(ActivateCanvas);
+        pauseListener = new UnityAction<string>(ToggleTutorialText);
     }
 
     private void OnEnable()
     {
-        //EventManager.StartListening("newWave", listener);
+        EventManager.StartListening("pause", pauseListener);
     }
 
     private void OnDisable()
     {
-        //EventManager.StopListening("newWave", listener);
+        EventManager.StopListening("pause", pauseListener);
     }
     //EventManager.TriggerEvent("newWave", (waveCount+1).ToString());
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +75,7 @@ public class TutorialCanvasManager : MonoBehaviour
                 }
                 break;
             case TutorialCondition.dash:
-                if (Input.GetButton("Dash"))
+                if (pm.currentState.GetType() == typeof(DashState))
                 {
                     tutorialConditionMet = true;
                 }
@@ -77,10 +86,48 @@ public class TutorialCanvasManager : MonoBehaviour
                 {
                     tutorialConditionMet = true;
                 }
-                if (timer > 30)
+                else if (timer > 30)
                 {
-
+                    ActivateCanvas("To hit an enemy, hold down LEFT MOUSE to charge, aim at enemy, then release when wheel is full and green."
+                    + "\n Make sure you aren't too far away from the enemy"
+                    + "\n For practice, try walking directly in front of the enemy.");
                     // display help information
+                }
+                break;
+            case TutorialCondition.ui:
+                // after all other steps are completed
+                if (timer < 3) 
+                {
+                    ActivateCanvas("Good job!");
+                }
+                else if (timer < 10)  
+                {
+                    tutText.gameObject.SetActive(false);
+                    ActivateCanvasWithUIText("The green bar below represents your health.");
+                }
+                else if (timer < 17)
+                {
+                    ActivateCanvasWithUIText("The blue bar below represents your stamina");
+                }
+                else
+                {
+                    tutorialConditionMet = true;
+                }
+                break;
+            case TutorialCondition.groundPound:
+                if (pm.currentState.GetType() == typeof(GroundPoundState))
+                {
+                    secondaryConditionMet = true;
+                }
+                else if (spawnManager.CurrNumOfEnemiesAlive() == 0 && !secondaryConditionMet)
+                {
+                    Debug.Log("Should spawn a new enemy");
+                    spawnManager.SpawnEnemy(SpawnManager.EnemyType.Cylinder, tether); // use same tether as before
+                }
+
+                else if (spawnManager.CurrNumOfEnemiesAlive() == 0 && secondaryConditionMet)
+                {
+                    tutorialConditionMet = true;
                 }
                 break;
             default:
@@ -96,8 +143,10 @@ public class TutorialCanvasManager : MonoBehaviour
 
     void ProgressTutorial()
     {
+        timer = 0f;
         currTutorialCondition++;
         tutText.gameObject.SetActive(false);
+        UIText.gameObject.SetActive(false);
         displaying = false;
         tutorialConditionMet = false;
         switch (currTutorialCondition)
@@ -106,10 +155,10 @@ public class TutorialCanvasManager : MonoBehaviour
                 ActivateCanvas("Use WASD to move");
                 break;
             case TutorialCondition.jump:
-                ActivateCanvas("Use SPACEBAR to jump");
+                ActivateCanvas("Press SPACEBAR to jump");
                 break;
             case TutorialCondition.dash:
-                ActivateCanvas("Use SHIFT to dash");
+                ActivateCanvas("Press SHIFT while on the ground to dash");
                 break;
             case TutorialCondition.hit:
                 //spawn enemy 
@@ -117,6 +166,17 @@ public class TutorialCanvasManager : MonoBehaviour
                 spawnManager.SpawnEnemy(SpawnManager.EnemyType.Cylinder, tether);
                 ActivateCanvas("To hit an enemy, hold down LEFT MOUSE to charge, aim at enemy, then release when wheel is full and green."
                     + "\n Make sure you aren't too far away from the enemy");
+                break;
+            case TutorialCondition.ui:
+                break; // text is handled in switch in update()
+            case TutorialCondition.groundPound:
+                spawnManager.SpawnEnemy(SpawnManager.EnemyType.Cylinder, tether); // use same tether as before
+                ActivateCanvas("Stamina is used to DASH and GROUND POUND.\n"
+                        + "Use the GROUND POUND to kill that enemy by pressing LEFT CTRL while in the air close to it");
+                break;
+            case TutorialCondition.end:
+                ActivateCanvas("Great job! \n"
+                    + "This concludes the tutorial. To get back to the main menu, press ESC and then MAIN MENU");
                 break;
             default:
                 break;
@@ -128,6 +188,21 @@ public class TutorialCanvasManager : MonoBehaviour
         tutText.text = text;
         tutText.gameObject.SetActive(true);
         displaying = true;
-        timer = 0;
+    }
+
+    void ActivateCanvasWithUIText(string text)
+    {
+        UIText.text = text;
+        UIText.gameObject.SetActive(true);
+        displaying = true;
+        
+    }
+
+    void ToggleTutorialText(string none)
+    {
+        if (tutText.IsActive()) tutText.gameObject.SetActive(false);
+        else if (UIText.IsActive()) UIText.gameObject.SetActive(false);
+        else if (!tutText.IsActive()) tutText.gameObject.SetActive(true);
+        else if (!UIText.IsActive()) UIText.gameObject.SetActive(true);
     }
 }
