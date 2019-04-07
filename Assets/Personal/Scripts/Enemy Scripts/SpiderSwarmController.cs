@@ -9,21 +9,26 @@ public class SpiderSwarmController : MonoBehaviour
     public enum SwarmState : int { Chase = 0, Scatter, Regroup };
     List<SpiderController> swarm;
     Vector3 centerOfMass;
-    Vector3 CenterOfMass { get { return centerOfMass; } }
+    public Vector3 CenterOfMass { get { return centerOfMass; } }
     Vector3 averageHeading;
-    Vector3 AverageHeading { get { return averageHeading; } }
+    public Vector3 AverageHeading { get { return averageHeading; } }
     NavMeshPath path;
     Vector3 goalPoint;
     [SerializeField] float lengthOfScatter;
     [SerializeField] float scatterLengthVariance;
     [SerializeField] GameObject player;
+    [SerializeField] NavMeshAgent navAgent;
     float scatterTimer;
     float scatterTimeout;
 
-    [SerializeField] public readonly float cohesionWeight;
-    [SerializeField] public readonly float separationWeight;
-    [SerializeField] public readonly float goalWeight;
-    [SerializeField] public readonly float neighborRadius;
+    [SerializeField] float cohesionWeight;
+    public float CohesionWeight { get { return cohesionWeight; } }
+    [SerializeField] float separationWeight;
+    public float SeparationWeight { get { return separationWeight; } }
+    [SerializeField] float goalWeight;
+    public float GoalWeight { get { return goalWeight; } }
+    [SerializeField] float neighborRadius;
+    public float NeighborRadius { get { return neighborRadius; } }
 
     SwarmState currentState;
     public SwarmState CurrentState { get { return currentState; } }
@@ -32,6 +37,11 @@ public class SpiderSwarmController : MonoBehaviour
     void Start()
     {
         swarm = this.GetComponentsInChildren<SpiderController>().ToList();
+        currentState = SwarmState.Chase;
+        foreach(SpiderController spider in swarm)
+        {
+            spider.SetController(this);
+        }
     }
 
     // Update is called once per frame
@@ -42,10 +52,18 @@ public class SpiderSwarmController : MonoBehaviour
             case (SwarmState.Chase):
                 {
                     centerOfMass = CalculateCenterOfMass();
-                    NavMesh.CalculatePath(centerOfMass, player.transform.position, NavMesh.AllAreas, path);
+                    navAgent.gameObject.transform.position = centerOfMass;
+                    //navAgent.CalculatePath(player.transform.position, path);
+
+
+                    //NavMesh.CalculatePath(navAgent.transform.position, player.transform.position, NavMesh.AllAreas, navAgent.path);
+                    navAgent.SetDestination(player.transform.position);
                     foreach (SpiderController spider in swarm)
                     {
-                        spider.SetHeading(path.corners[1], centerOfMass);
+                        if (navAgent.path.corners.Length > 1)
+                        {
+                            spider.SetHeading(navAgent.path.corners[1], centerOfMass);
+                        }
                     }
                     break;
                 }

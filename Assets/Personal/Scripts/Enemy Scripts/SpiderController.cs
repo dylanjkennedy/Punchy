@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SpiderController : EnemyController
 {
@@ -9,7 +10,9 @@ public class SpiderController : EnemyController
     float separationWeight;
     float goalWeight;
     bool frozen;
+    Vector3 velocity;
     Vector3 heading;
+    [SerializeField] CharacterController controller;
     [SerializeField] SpiderSwarmController swarmController;
     [SerializeField] float maxSpeed;
     [SerializeField] Rigidbody rb;
@@ -23,9 +26,13 @@ public class SpiderController : EnemyController
     // Update is called once per frame
     protected override void Update()
     {
-        if (!frozen)
+        if (!frozen && heading != Vector3.zero)
         {
-            rb.velocity = maxSpeed * heading;
+            velocity += heading;
+            velocity = velocity.normalized * maxSpeed;
+            controller.Move(velocity * Time.deltaTime);
+            //this.transform.position = this.transform.position + velocity*Time.deltaTime;
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(heading), 1f);
         }
     }
 
@@ -34,24 +41,32 @@ public class SpiderController : EnemyController
         Vector3 goalVector = (goal - transform.position).normalized;
         Collider[] neighbors = GetNeighbors();
         Vector3 separationVector = Vector3.zero;
+        Vector3 neighborCenter = Vector3.zero;
         foreach(Collider neighbor in neighbors)
         {
-            separationVector.x += transform.position.x - neighbor.transform.position.x;
-            separationVector.y += transform.position.y - neighbor.transform.position.y;
-            separationVector.z += transform.position.z - neighbor.transform.position.z;
+            separationVector.x += neighbor.transform.position.x - transform.position.x;
+            separationVector.z += neighbor.transform.position.z - transform.position.z;
+            neighborCenter.x += neighbor.transform.position.x;
+            neighborCenter.z += neighbor.transform.position.z;
         }
-        Vector3.Normalize(separationVector);
-        Vector3 cohesionVector = goal - transform.position;
-        heading = Vector3.Normalize(separationVector * separationWeight + cohesionVector * cohesionWeight + goalVector * goalWeight);
+        neighborCenter.x /= neighbors.Length;
+        neighborCenter.z /= neighbors.Length;
+        separationVector.x *= -1;
+        separationVector.z *= -1;
+        separationVector = Vector3.Normalize(separationVector);
+        Vector3 cohesionVector = neighborCenter - transform.position;
+        cohesionVector = Vector3.Normalize(cohesionVector);
+        heading = separationVector * separationWeight + cohesionVector * cohesionWeight + goalVector * goalWeight;
+        heading.y = 0f;
     }
 
     public void SetController(SpiderSwarmController controller)
     {
         swarmController = controller;
-        neighborRadius = swarmController.neighborRadius;
-        cohesionWeight = swarmController.cohesionWeight;
-        separationWeight = swarmController.separationWeight;
-        goalWeight = swarmController.goalWeight;
+        neighborRadius = swarmController.NeighborRadius;
+        cohesionWeight = swarmController.CohesionWeight;
+        separationWeight = swarmController.SeparationWeight;
+        goalWeight = swarmController.GoalWeight;
     }
 
     private Collider[] GetNeighbors()
