@@ -12,6 +12,7 @@ public class SpiderController : EnemyController
     bool frozen;
     Vector3 velocity;
     Vector3 heading;
+    Collider wall;
     [SerializeField] CharacterController controller;
     [SerializeField] SpiderSwarmController swarmController;
     [SerializeField] float maxSpeed;
@@ -28,11 +29,29 @@ public class SpiderController : EnemyController
     {
         if (!frozen && heading != Vector3.zero)
         {
-            velocity += heading;
-            velocity = velocity.normalized * maxSpeed;
-            controller.Move(velocity * Time.deltaTime);
-            //this.transform.position = this.transform.position + velocity*Time.deltaTime;
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(heading), 1f);
+            if (wall == null)
+            {
+                velocity += heading;
+                velocity = velocity.normalized * maxSpeed;
+                velocity.y -= 9.8f*Time.deltaTime;
+                controller.Move(velocity * Time.deltaTime);
+                //this.transform.position = this.transform.position + velocity*Time.deltaTime;
+                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(heading), 1f);
+            }
+            else
+            {
+                //move up wall
+                controller.Move(Vector3.up * maxSpeed * Time.deltaTime);
+                Collider[] environmentColliders = Physics.OverlapSphere(transform.position, neighborRadius, LayerMask.GetMask("Default"));
+                if (!environmentColliders.Contains(wall) && wall != null)
+                {
+                    {
+                        Debug.Log("no longer on wall");
+                        wall = null;
+                        transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+                    }
+                }
+            }
         }
     }
 
@@ -79,4 +98,28 @@ public class SpiderController : EnemyController
         rb.velocity = Vector3.zero;
         frozen = true;
     }
+
+    void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+        if (wall == null && collision.collider.gameObject.layer == LayerMask.NameToLayer("Default")) {
+            Vector3 surfaceNormal = collision.normal;
+            if (surfaceNormal != Vector3.up)
+            {
+                wall = collision.collider;
+                transform.rotation = Quaternion.LookRotation(Vector3.up, surfaceNormal);
+            }
+        }
+    }
+    /*
+    void OnCollisionExit(Collision collision)
+    {
+        Debug.Log(collision, collision.collider.gameObject);
+        if (collision.collider == wall)
+        {
+            Debug.Log("no longer on wall");
+            wall = null;
+            transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+        }
+    }
+    */
 }
