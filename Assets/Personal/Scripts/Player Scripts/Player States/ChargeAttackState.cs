@@ -85,7 +85,8 @@ public class ChargeAttackState : PlayerState
             playerMover.Move(Vector3.zero);
             if (attackTarget.collider != null)
             {
-                attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
+                //attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
+                attackTarget.collider.gameObject.GetComponent<EnemyController>().getPunched(attackTarget.point-playerMover.transform.position);
             }
             
             attacked = true;

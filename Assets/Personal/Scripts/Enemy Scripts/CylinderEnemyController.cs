@@ -52,7 +52,7 @@ public class CylinderEnemyController : EnemyController
     LineRenderer activeLaser;
     bool laserSoundPlayed;
 
-    private enum enemyState { movingState, tetheredState, laserState };
+    private enum enemyState { movingState, tetheredState, laserState, knockedState };
     private enemyState state;
 
     // Use this for initialization
@@ -131,8 +131,24 @@ public class CylinderEnemyController : EnemyController
                 case enemyState.laserState:
                     state = LaserBehavior();
                     break;
+                case enemyState.knockedState:
+                    state = KnockedBehavior();
+                    break;
             }
         }
+        if (!dead && !nav.enabled)
+        {
+            stateTimer += Time.unscaledDeltaTime;
+            switch (state)
+            {
+                
+                case enemyState.knockedState:
+                    Debug.Log("Knocked!");
+                    state = KnockedBehavior();
+                    break;
+            }
+        }
+
     }
 
     private void CheckIfFiring()
@@ -285,6 +301,19 @@ public class CylinderEnemyController : EnemyController
         }
         return enemyState.laserState;
     }
+
+    private enemyState KnockedBehavior()
+    {
+        Debug.Log(this.gameObject.GetComponent<CharacterController>().velocity.y);
+        if (this.gameObject.GetComponent<CharacterController>().velocity.y<0 && this.gameObject.GetComponent<CharacterController>().isGrounded)
+        {
+            nav.enabled = true;
+            this.takeDamage(this.gameObject.transform.position);
+            return enemyState.movingState;
+        }
+        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(Vector3.down, 1);
+        return enemyState.knockedState;
+    }
     
 
     private Vector3 FindNewPositionInTether()
@@ -350,6 +379,13 @@ public class CylinderEnemyController : EnemyController
 
             DestroyThis();
         }
+    }
+
+    public override void getPunched(Vector3 force)
+    {
+        Debug.Log(force);
+        state = enemyState.knockedState;
+        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(force, 100);
     }
 
     private bool playerTooClose

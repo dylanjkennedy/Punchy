@@ -48,6 +48,14 @@ public abstract class EnemyController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public virtual void getPunched(Vector3 force)
+    {
+        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(force, 10);
+        Debug.Log(force);
+        nav.enabled = true;
+
+    }
+
     public virtual void freeze()
     {
         nav.enabled = false;
