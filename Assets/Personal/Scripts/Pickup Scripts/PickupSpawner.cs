@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
-    public enum PickupType : int { HealthPickup, StaminaPickup };
+    public enum PickupType : int { HealthPickup, StaminaPickup, OvershieldPickup };
     [SerializeField] GameObject[] pickupPrefabs;
     TetherController[] tethersTracker;
     List<GameObject> pickups = new List<GameObject>(); //tracks pickups -- used for pickup despawning
@@ -18,7 +18,7 @@ public class PickupSpawner : MonoBehaviour
     [SerializeField] float lowerBoundTime;
     [SerializeField] GameObject pickupsParent;
     [SerializeField] float despawnTime;
-    float[] spawnChances = { 0.5f, 1.0f }; //Goes from 0 to 1 to control spawn rate chances.
+    float[] spawnChances = { 0.4f, 0.8f, 1.0f }; //Goes from 0 to 1 to control spawn rate chances.
 
     // Start is called before the first frame update
     void Start()
