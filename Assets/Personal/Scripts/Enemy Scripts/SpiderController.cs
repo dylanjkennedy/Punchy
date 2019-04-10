@@ -12,36 +12,71 @@ public class SpiderController : EnemyController
     bool frozen;
     Vector3 velocity;
     Vector3 heading;
+    Vector2 horizontalHeading;
+    Vector2 horizontalVelocity;
     Collider wall;
     [SerializeField] CharacterController controller;
     [SerializeField] SpiderSwarmController swarmController;
     [SerializeField] float maxSpeed;
-    [SerializeField] Rigidbody rb;
+    float maxSteering;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-
+        velocity = transform.forward * maxSpeed;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        if (!frozen && heading != Vector3.zero)
+        if (!frozen && horizontalHeading != Vector2.zero)
         {
             if (wall == null)
             {
-                velocity += heading;
-                velocity = velocity.normalized * maxSpeed;
-                velocity.y -= 9.8f*Time.deltaTime;
+                Vector2 horizontalDesiredVelocity = horizontalHeading * maxSpeed;
+                Debug.Log("desired velocity " + horizontalDesiredVelocity);
+                Vector2 steering = horizontalDesiredVelocity - horizontalVelocity;
+                steering = Vector2.ClampMagnitude(steering, maxSteering);
+
+                horizontalVelocity = Vector2.ClampMagnitude(horizontalVelocity + steering, maxSpeed);
+                //velocity += heading;
+                //velocity = velocity.normalized * maxSpeed;
+                Debug.Log("velocity " + velocity);
+                velocity.x = horizontalVelocity.x;
+                velocity.z = horizontalVelocity.y;
+                if (!controller.isGrounded)
+                {
+                    velocity.y -= 9.8f * Time.deltaTime;
+                }
+                else
+                {
+                    velocity.y = 0f;
+                }
                 controller.Move(velocity * Time.deltaTime);
                 //this.transform.position = this.transform.position + velocity*Time.deltaTime;
-                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(heading), 1f);
+                this.transform.rotation = Quaternion.LookRotation(new Vector3(horizontalVelocity.x, 0, horizontalVelocity.y));
             }
             else
             {
                 //move up wall
                 controller.Move(Vector3.up * maxSpeed * Time.deltaTime);
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, LayerMask.GetMask("Default")))
+                {
+                    if (hit.collider != wall)
+                    {
+                        Debug.Log("no longer on wall");
+                        wall = null;
+                        transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+                    }
+                }
+                else
+                {
+                    Debug.Log("no longer on wall");
+                    wall = null;
+                    transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+                }
+                /*
                 Collider[] environmentColliders = Physics.OverlapSphere(transform.position, neighborRadius, LayerMask.GetMask("Default"));
                 if (!environmentColliders.Contains(wall) && wall != null)
                 {
@@ -51,32 +86,33 @@ public class SpiderController : EnemyController
                         transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
                     }
                 }
+                */
             }
         }
     }
 
     public void SetHeading(Vector3 goal, Vector3 centerOfMass)
     {
-        Vector3 goalVector = (goal - transform.position).normalized;
+        Vector2 goalVector = (new Vector2(goal.x, goal.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
         Collider[] neighbors = GetNeighbors();
-        Vector3 separationVector = Vector3.zero;
-        Vector3 neighborCenter = Vector3.zero;
+        Vector2 separationVector = Vector2.zero;
+        Vector2 neighborCenter = Vector2.zero;
         foreach(Collider neighbor in neighbors)
         {
             separationVector.x += neighbor.transform.position.x - transform.position.x;
-            separationVector.z += neighbor.transform.position.z - transform.position.z;
+            separationVector.y += neighbor.transform.position.z - transform.position.z;
             neighborCenter.x += neighbor.transform.position.x;
-            neighborCenter.z += neighbor.transform.position.z;
+            neighborCenter.y += neighbor.transform.position.z;
         }
         neighborCenter.x /= neighbors.Length;
-        neighborCenter.z /= neighbors.Length;
+        neighborCenter.y /= neighbors.Length;
         separationVector.x *= -1;
-        separationVector.z *= -1;
-        separationVector = Vector3.Normalize(separationVector);
-        Vector3 cohesionVector = neighborCenter - transform.position;
-        cohesionVector = Vector3.Normalize(cohesionVector);
-        heading = separationVector * separationWeight + cohesionVector * cohesionWeight + goalVector * goalWeight;
-        heading.y = 0f;
+        separationVector.y *= -1;
+        separationVector = separationVector.normalized;
+        Vector2 cohesionVector = neighborCenter - new Vector2(transform.position.x, transform.position.z);
+        cohesionVector = cohesionVector.normalized;
+        horizontalHeading = separationVector * separationWeight + cohesionVector * cohesionWeight + goalVector * goalWeight;
+        horizontalHeading = horizontalHeading.normalized;
     }
 
     public void SetController(SpiderSwarmController controller)
@@ -86,6 +122,7 @@ public class SpiderController : EnemyController
         cohesionWeight = swarmController.CohesionWeight;
         separationWeight = swarmController.SeparationWeight;
         goalWeight = swarmController.GoalWeight;
+        maxSteering = swarmController.MaxSteering;
     }
 
     private Collider[] GetNeighbors()
@@ -95,7 +132,7 @@ public class SpiderController : EnemyController
 
     public override void freeze()
     {
-        rb.velocity = Vector3.zero;
+        controller.enabled = false;
         frozen = true;
     }
 
@@ -103,10 +140,11 @@ public class SpiderController : EnemyController
     {
         if (wall == null && collision.collider.gameObject.layer == LayerMask.NameToLayer("Default")) {
             Vector3 surfaceNormal = collision.normal;
-            if (surfaceNormal != Vector3.up)
+            if (!(new Vector3(Mathf.Round(surfaceNormal.x), Mathf.Round(surfaceNormal.y), Mathf.Round(surfaceNormal.z)) == Vector3.up))
             {
                 wall = collision.collider;
                 transform.rotation = Quaternion.LookRotation(Vector3.up, surfaceNormal);
+                Debug.Log("on wall " + wall + " with normal " + surfaceNormal);
             }
         }
     }

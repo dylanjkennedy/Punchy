@@ -25853,6 +25853,7 @@ MonoBehaviour:
   separationWeight: 1.33
   goalWeight: 0.23
   neighborRadius: 0.96
+  maxSteering: 0.1
 --- !u!4 &2136580206
 Transform:
   m_ObjectHideFlags: 0

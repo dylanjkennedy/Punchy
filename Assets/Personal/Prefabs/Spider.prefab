@@ -358,7 +358,7 @@ MonoBehaviour:
   controller: {fileID: 1646654075053533651}
   swarmController: {fileID: 0}
   maxSpeed: 5
-  rb: {fileID: 0}
+  maxSteering: 3
 --- !u!143 &1646654075053533651
 CharacterController:
   m_ObjectHideFlags: 0

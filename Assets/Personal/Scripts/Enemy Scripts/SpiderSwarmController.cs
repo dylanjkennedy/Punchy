@@ -29,6 +29,9 @@ public class SpiderSwarmController : MonoBehaviour
     public float GoalWeight { get { return goalWeight; } }
     [SerializeField] float neighborRadius;
     public float NeighborRadius { get { return neighborRadius; } }
+    [SerializeField] float maxSteering;
+    public float MaxSteering { get { return maxSteering; } }
+
 
     SwarmState currentState;
     public SwarmState CurrentState { get { return currentState; } }
