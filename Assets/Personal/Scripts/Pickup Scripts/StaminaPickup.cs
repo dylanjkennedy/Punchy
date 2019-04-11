@@ -6,14 +6,11 @@ public class StaminaPickup : PickupController
 {
     [SerializeField] int StaminaAmount = 100;
 
-   
+
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.GetComponent<PlayerStamina>().RegainStaminaWithoutRegen(StaminaAmount);
-            col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);
-        }
+        col.gameObject.GetComponent<PlayerStamina>().RegainStaminaWithoutRegen(StaminaAmount);
+        col.gameObject.GetComponent<PickupSpawner>().PickedUp(gameObject);
     }
 
 }

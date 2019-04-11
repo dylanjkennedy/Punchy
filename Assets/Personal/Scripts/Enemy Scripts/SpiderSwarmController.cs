@@ -47,6 +47,23 @@ public class SpiderSwarmController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying)
+        {
+            Vector3 lastPoint = Vector3.negativeInfinity;
+            foreach (Vector3 point in navAgent.path.corners)
+            {
+                Gizmos.DrawWireSphere(point, 0.2f);
+                if (lastPoint != Vector3.negativeInfinity)
+                {
+                    Gizmos.DrawLine(point, lastPoint);
+                }
+                lastPoint = point;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

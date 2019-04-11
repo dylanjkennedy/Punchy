@@ -34,14 +34,12 @@ public class SpiderController : EnemyController
             if (wall == null)
             {
                 Vector2 horizontalDesiredVelocity = horizontalHeading * maxSpeed;
-                Debug.Log("desired velocity " + horizontalDesiredVelocity);
                 Vector2 steering = horizontalDesiredVelocity - horizontalVelocity;
                 steering = Vector2.ClampMagnitude(steering, maxSteering);
 
                 horizontalVelocity = Vector2.ClampMagnitude(horizontalVelocity + steering, maxSpeed);
                 //velocity += heading;
                 //velocity = velocity.normalized * maxSpeed;
-                Debug.Log("velocity " + velocity);
                 velocity.x = horizontalVelocity.x;
                 velocity.z = horizontalVelocity.y;
                 if (!controller.isGrounded)
@@ -54,27 +52,30 @@ public class SpiderController : EnemyController
                 }
                 controller.Move(velocity * Time.deltaTime);
                 //this.transform.position = this.transform.position + velocity*Time.deltaTime;
-                this.transform.rotation = Quaternion.LookRotation(new Vector3(horizontalVelocity.x, 0, horizontalVelocity.y));
+                if (wall == null)
+                {
+                    this.transform.rotation = Quaternion.LookRotation(new Vector3(horizontalVelocity.x, 0, horizontalVelocity.y));
+                }
             }
             else
             {
                 //move up wall
                 controller.Move(Vector3.up * maxSpeed * Time.deltaTime);
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 0.5f, LayerMask.GetMask("Default")))
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, LayerMask.GetMask("Default")))
                 {
                     if (hit.collider != wall)
                     {
-                        Debug.Log("no longer on wall");
+                        Debug.Log("no longer on wall, but made collision");
                         wall = null;
-                        transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+                        transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
                     }
                 }
                 else
                 {
                     Debug.Log("no longer on wall");
                     wall = null;
-                    transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
+                    transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
                 }
                 /*
                 Collider[] environmentColliders = Physics.OverlapSphere(transform.position, neighborRadius, LayerMask.GetMask("Default"));
