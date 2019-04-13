@@ -31,6 +31,10 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float laserWindupTime;
     [SerializeField] float laserFiringTime;
     [SerializeField] float laserTargetingTime;
+    [SerializeField] float impactToKill;
+    [SerializeField] float knockBackModifier;
+    [SerializeField] float gravityModifier;
+    [SerializeField] float recoverySpeed;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
@@ -51,8 +55,13 @@ public class CylinderEnemyController : EnemyController
     float defaultSpeed;
     LineRenderer activeLaser;
     bool laserSoundPlayed;
+    CharacterController enemyMover;
+    Vector3 old_velocity;
+    KnockbackReceiver knockbacker;
+    private bool knockedBack;
+    private int health;
 
-    private enum enemyState { movingState, tetheredState, laserState, knockedState };
+    private enum enemyState { movingState, tetheredState, laserState};
     private enemyState state;
 
     // Use this for initialization
@@ -62,6 +71,7 @@ public class CylinderEnemyController : EnemyController
         type = SpawnManager.EnemyType.Cylinder;
         spawnManager = player.GetComponent<SpawnManager>();
         cachedRenderer = gameObject.GetComponent<MeshRenderer>();
+        enemyMover = gameObject.GetComponent<CharacterController>();
         material = cachedRenderer.material;
         defaultColor = material.color;
         enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
@@ -74,6 +84,7 @@ public class CylinderEnemyController : EnemyController
         dead = false;
         firing = false;
         fireTimer = 0;
+        health = 2;
 
         tether = this.findBestTether();
         tetherRadius = tether.GetComponent<TetherController>().Radius;
@@ -131,22 +142,11 @@ public class CylinderEnemyController : EnemyController
                 case enemyState.laserState:
                     state = LaserBehavior();
                     break;
-                case enemyState.knockedState:
-                    state = KnockedBehavior();
-                    break;
             }
         }
-        if (!dead && !nav.enabled)
+        else if (!dead && knockedBack)
         {
-            stateTimer += Time.unscaledDeltaTime;
-            switch (state)
-            {
-                
-                case enemyState.knockedState:
-                    Debug.Log("Knocked!");
-                    state = KnockedBehavior();
-                    break;
-            }
+            KnockedBehavior();
         }
 
     }
@@ -302,18 +302,44 @@ public class CylinderEnemyController : EnemyController
         return enemyState.laserState;
     }
 
-    private enemyState KnockedBehavior()
+    private void KnockedBehavior()
     {
-        Debug.Log(this.gameObject.GetComponent<CharacterController>().velocity.y);
-        if (this.gameObject.GetComponent<CharacterController>().velocity.y<0 && this.gameObject.GetComponent<CharacterController>().isGrounded)
+        if (enemyMover.collisionFlags != CollisionFlags.None)
+        {
+            Vector3 enemyCenter = enemyMover.gameObject.transform.position;
+            Collider[] closeThings = Physics.OverlapSphere(enemyCenter, 1.5f);
+            foreach (Collider closeThing in closeThings)
+            {
+                Vector3 pointOfContact = closeThing.ClosestPoint(enemyCenter);
+                Vector3 hitDirection = (pointOfContact - enemyCenter).normalized;
+                float impact = Vector3.Dot(hitDirection, old_velocity);
+                old_velocity = enemyMover.velocity;
+
+                Debug.Log("Impact is " + impact);
+                if (impact > impactToKill)
+                {
+                    this.takeDamage(impact * hitDirection);
+                }
+                else if (impact > 0 
+                    || (enemyMover.isGrounded && old_velocity.y<0)) 
+                {
+                    enemyMover.gameObject.GetComponent<KnockbackReceiver>().skidding = true;
+                }
+                else
+                {
+                    enemyMover.gameObject.GetComponent<KnockbackReceiver>().impact -= impact * hitDirection;
+                }
+            }
+        }
+        if (enemyMover.velocity.magnitude < recoverySpeed
+            && enemyMover.velocity.y < 0
+            && this.gameObject.GetComponent<CharacterController>().isGrounded)
         {
             nav.enabled = true;
-            this.takeDamage(this.gameObject.transform.position);
-            return enemyState.movingState;
+            knockedBack = false;
         }
-        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(Vector3.down, 1);
-        return enemyState.knockedState;
     }
+    
     
 
     private Vector3 FindNewPositionInTether()
@@ -361,7 +387,7 @@ public class CylinderEnemyController : EnemyController
         return false;
     }
 
-    public override void takeDamage(Vector3 point)
+    public override void takeDamage(Vector3 force)
     {
         if (!dead)
         {
@@ -369,23 +395,25 @@ public class CylinderEnemyController : EnemyController
             {
                 enemyAttackTokenPool.ReturnToken(type, token);
             }
-            playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
-            dead = true;
-            stateTimer = 0;
-            GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
-            fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
-            Instantiate(explosion, point, transform.rotation);
-            explosion.Play();
+            health--;
+            if (health<=0)
+            {
+                playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
+                dead = true;
+                stateTimer = 0;
+                GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
+                fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
+                Instantiate(explosion, transform.position, transform.rotation);
+                explosion.Play();
 
-            DestroyThis();
+                DestroyThis();
+            }
+            else
+            {
+                this.gameObject.GetComponent<KnockbackReceiver>().AddKnock(force, knockBackModifier);
+                knockedBack = true;
+            }
         }
-    }
-
-    public override void getPunched(Vector3 force)
-    {
-        Debug.Log(force);
-        state = enemyState.knockedState;
-        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(force, 100);
     }
 
     private bool playerTooClose

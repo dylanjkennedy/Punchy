@@ -80,7 +80,6 @@ public class AirState : PlayerState {
         }
 
         move += Physics.gravity * gravityMultiplier * Time.fixedDeltaTime;
-
         hit = chargeController.Charge (charging);
         if (hit.collider != null)
         {
@@ -128,7 +127,7 @@ public class AirState : PlayerState {
         float minDistance = Mathf.Infinity;
         foreach (Collider closeWall in closeWalls)
         {
-            Vector3 pointOfContact = closeWalls[0].ClosestPoint(playerCenter);
+            Vector3 pointOfContact = closeWall.ClosestPoint(playerCenter);
             Physics.Raycast(playerCenter, pointOfContact - playerCenter, out hit, 1f);
             if (hit.distance < minDistance)
             {

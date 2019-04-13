@@ -88,7 +88,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 128cd3d4fd2ca7e49a2439968b0a74df,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -14768,6 +14769,26 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 297547910}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactToKill
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: knockBackModifier
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: recoverySpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
 --- !u!1 &1470570780 stripped
@@ -14782,6 +14803,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1470570779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470570791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470570780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea7503481505204d9af26c1ba8ce56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impact: {x: 0, y: 0, z: 0}
+  skidding: 0
 --- !u!1 &1473966198
 GameObject:
   m_ObjectHideFlags: 0
