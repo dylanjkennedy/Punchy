@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
-    public enum EnemyType : int { Cylinder = 0, Humanoid };
+    public enum EnemyType : int { Cylinder = 0, Humanoid = 1, SpiderSwarm = 2 };
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] DifficultyManager difficultyManager;
     List<GameObject>[] enemies = new List<GameObject>[System.Enum.GetValues(typeof(EnemyType)).Length];
@@ -13,10 +13,10 @@ public class SpawnManager : MonoBehaviour {
     float[] spawnLimitsGrowth;
     int[] spawnLimits; 
     [SerializeField] GameObject enemiesParent;
-    float[] spawnTimers = { 0, 0 };
-    float[] baseTimesToNextSpawn = {1, 3 };
-    float[] spawnTimeRanges = {0.5f/2, 2/2};
-    float[] timesOfNextSpawn = {0, 0}; 
+    float[] spawnTimers = { 0, 0, 0 };
+    float[] baseTimesToNextSpawn = {1, 3, 4 };
+    float[] spawnTimeRanges = {0.5f/2, 2/2, 2/2};
+    float[] timesOfNextSpawn = {0, 0, 0}; 
     GameObject player;
     TethersTracker tethersTracker;
     DifficultyValues difficultyValues;

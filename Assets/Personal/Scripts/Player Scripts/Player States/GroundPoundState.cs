@@ -117,6 +117,7 @@ public class GroundPoundState : PlayerState
         {
             float forceMultiplier = physicsMaxForce / range;
             //adds an impulse relative to how close they are to the center of the impact
+            Debug.Log(hit.gameObject, hit.gameObject);
             hit.gameObject.GetComponent<ImpactReceiver>().AddImpact(hit.gameObject.transform.position - playerMover.transform.position,
                 forceMultiplier * (Vector3.Distance(hit.gameObject.transform.position, playerMover.transform.position)));
         }

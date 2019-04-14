@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 
-public class SpiderSwarmController : MonoBehaviour
+public class SpiderSwarmController : EnemyController
 {
     public enum SwarmState : int { Chase = 0, Scatter, Regroup };
     List<SpiderController> swarm;
@@ -16,7 +16,6 @@ public class SpiderSwarmController : MonoBehaviour
     Vector3 goalPoint;
     [SerializeField] float lengthOfScatter;
     [SerializeField] float scatterLengthVariance;
-    [SerializeField] GameObject player;
     [SerializeField] NavMeshAgent navAgent;
     float scatterTimer;
     float scatterTimeout;
@@ -37,8 +36,9 @@ public class SpiderSwarmController : MonoBehaviour
     public SwarmState CurrentState { get { return currentState; } }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        type = SpawnManager.EnemyType.SpiderSwarm;
         swarm = this.GetComponentsInChildren<SpiderController>().ToList();
         currentState = SwarmState.Chase;
         foreach(SpiderController spider in swarm)
@@ -65,7 +65,7 @@ public class SpiderSwarmController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         switch (currentState)
         {
@@ -123,5 +123,14 @@ public class SpiderSwarmController : MonoBehaviour
             z += spider.gameObject.transform.position.z;
         }
         return new Vector3(x / swarm.Count, y / swarm.Count, z / swarm.Count);
+    }
+
+    public void SpiderDestroyed(SpiderController spider)
+    {
+        swarm.Remove(spider);
+        if (swarm.Count == 0)
+        {
+            spawnManager.DestroyEnemy(this.gameObject);
+        }
     }
 }

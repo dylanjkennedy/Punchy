@@ -66,14 +66,12 @@ public class SpiderController : EnemyController
                 {
                     if (hit.collider != wall)
                     {
-                        Debug.Log("no longer on wall, but made collision");
                         wall = null;
                         transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
                     }
                 }
                 else
                 {
-                    Debug.Log("no longer on wall");
                     wall = null;
                     transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
                 }
@@ -148,6 +146,12 @@ public class SpiderController : EnemyController
                 Debug.Log("on wall " + wall + " with normal " + surfaceNormal);
             }
         }
+    }
+
+    public override void takeDamage(Vector3 point)
+    {
+        swarmController.SpiderDestroyed(this);
+        Destroy(this.gameObject);
     }
     /*
     void OnCollisionExit(Collision collision)

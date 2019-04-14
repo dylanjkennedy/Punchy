@@ -296,6 +296,8 @@ GameObject:
   - component: {fileID: 632982335}
   - component: {fileID: 632982334}
   - component: {fileID: 1646654075053533651}
+  - component: {fileID: 8297428194240498360}
+  - component: {fileID: 2990809188573923028}
   m_Layer: 14
   m_Name: Spider
   m_TagString: Enemy
@@ -358,7 +360,6 @@ MonoBehaviour:
   controller: {fileID: 1646654075053533651}
   swarmController: {fileID: 0}
   maxSpeed: 5
-  maxSteering: 3
 --- !u!143 &1646654075053533651
 CharacterController:
   m_ObjectHideFlags: 0
@@ -377,6 +378,32 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 3.5, z: 0}
+--- !u!114 &8297428194240498360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632982333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71c9a605b5e1a94c9074326c3c3a830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2990809188573923028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632982333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22856cb0cf389a247a26e175618278ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactValues:
+    mass: 0.1
 --- !u!1 &669246090
 GameObject:
   m_ObjectHideFlags: 0
