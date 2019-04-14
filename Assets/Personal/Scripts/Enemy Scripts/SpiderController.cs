@@ -143,7 +143,6 @@ public class SpiderController : EnemyController
             {
                 wall = collision.collider;
                 transform.rotation = Quaternion.LookRotation(Vector3.up, surfaceNormal);
-                Debug.Log("on wall " + wall + " with normal " + surfaceNormal);
             }
         }
     }
