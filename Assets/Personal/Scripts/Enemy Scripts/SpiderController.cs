@@ -12,6 +12,7 @@ public class SpiderController : EnemyController
     bool frozen;
     Vector3 velocity;
     Vector3 heading;
+    Vector3 wallNormal;
     Vector2 horizontalHeading;
     Vector2 horizontalVelocity;
     Collider wall;
@@ -59,10 +60,15 @@ public class SpiderController : EnemyController
             }
             else
             {
-                //move up wall
                 controller.Move(Vector3.up * maxSpeed * Time.deltaTime);
+                float angle = Vector2.Angle(horizontalHeading, new Vector2(wallNormal.x, wallNormal.z));
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, LayerMask.GetMask("Default")))
+                if (!Physics.Raycast(transform.position, -transform.up, out hit, 1f, LayerMask.GetMask("Default")) || angle < 90f)
+                {
+                    wall = null;
+                    transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
+                }
+                else
                 {
                     if (hit.collider != wall)
                     {
@@ -70,22 +76,6 @@ public class SpiderController : EnemyController
                         transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
                     }
                 }
-                else
-                {
-                    wall = null;
-                    transform.rotation = Quaternion.LookRotation(new Vector3(horizontalHeading.x, 0, horizontalHeading.y), Vector3.up);
-                }
-                /*
-                Collider[] environmentColliders = Physics.OverlapSphere(transform.position, neighborRadius, LayerMask.GetMask("Default"));
-                if (!environmentColliders.Contains(wall) && wall != null)
-                {
-                    {
-                        Debug.Log("no longer on wall");
-                        wall = null;
-                        transform.rotation = Quaternion.LookRotation(heading, Vector3.up);
-                    }
-                }
-                */
             }
         }
     }
@@ -142,6 +132,7 @@ public class SpiderController : EnemyController
             if (!(new Vector3(Mathf.Round(surfaceNormal.x), Mathf.Round(surfaceNormal.y), Mathf.Round(surfaceNormal.z)) == Vector3.up))
             {
                 wall = collision.collider;
+                wallNormal = collision.normal;
                 transform.rotation = Quaternion.LookRotation(Vector3.up, surfaceNormal);
             }
         }
