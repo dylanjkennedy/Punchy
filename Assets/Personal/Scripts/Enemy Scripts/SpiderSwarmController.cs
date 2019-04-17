@@ -19,6 +19,7 @@ public class SpiderSwarmController : EnemyController
     [SerializeField] NavMeshAgent navAgent;
     float scatterTimer;
     float scatterTimeout;
+    int scoreValue = 10;
 
     [SerializeField] float cohesionWeight;
     public float CohesionWeight { get { return cohesionWeight; } }
@@ -130,6 +131,7 @@ public class SpiderSwarmController : EnemyController
         swarm.Remove(spider);
         if (swarm.Count == 0)
         {
+            playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, centerOfMass);
             spawnManager.DestroyEnemy(this.gameObject);
         }
     }

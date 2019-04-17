@@ -3108,6 +3108,34 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].initialTokensPerAttackType.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].tokenGrowthPerAttackType.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].attackTypeCooldowns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].enemyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].initialTokensPerAttackType.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
+      propertyPath: enemyTypes.Array.data[2].attackTypeCooldowns.Array.data[0]
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
 --- !u!1 &297547909 stripped
@@ -6670,6 +6698,396 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 297547915}
     - target: {fileID: 2666751988642136538, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751986649358773, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751986649358773, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751986649358773, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751986768039282, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751986768039282, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751986768039282, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751986775844380, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751986775844380, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751986775844380, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987066910365, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987066910365, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987066910365, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987068824414, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987068824414, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987068824414, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987099925926, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987099925926, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987099925926, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987157330961, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987157330961, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987157330961, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987201101517, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987201101517, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987201101517, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987210267990, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987210267990, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987210267990, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987237130186, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987237130186, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987237130186, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987241878559, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987241878559, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987241878559, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987285014014, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987285014014, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987285014014, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987343801266, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987343801266, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987343801266, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987425960049, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987425960049, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987425960049, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987502544420, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987502544420, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987502544420, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987517632411, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987517632411, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987517632411, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987558837624, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987558837624, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987558837624, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987573593296, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987573593296, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987573593296, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987603310384, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987603310384, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987603310384, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987727966548, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987727966548, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987727966548, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987922588787, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987922588787, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987922588787, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751987951864831, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751987951864831, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751987951864831, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751988251383595, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751988251383595, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751988251383595, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751988263447618, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751988263447618, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751988263447618, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751988335769889, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751988335769889, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751988335769889, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 297547910}
+    - target: {fileID: 2666751988429647977, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: enemyAttackTokenPool
+      value: 
+      objectReference: {fileID: 297547913}
+    - target: {fileID: 2666751988429647977, guid: 8291fd7f9c09a154f924fc4f3d33caec,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 297547909}
+    - target: {fileID: 2666751988429647977, guid: 8291fd7f9c09a154f924fc4f3d33caec,
         type: 3}
       propertyPath: playerCamera
       value: 

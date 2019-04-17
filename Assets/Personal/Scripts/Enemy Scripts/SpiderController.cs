@@ -15,6 +15,7 @@ public class SpiderController : EnemyController
     Vector3 wallNormal;
     Vector2 horizontalHeading;
     Vector2 horizontalVelocity;
+    EnemyAttackTokenPool.Token token;
     Collider wall;
     [SerializeField] CharacterController controller;
     [SerializeField] SpiderSwarmController swarmController;
@@ -129,17 +130,40 @@ public class SpiderController : EnemyController
     {
         if (wall == null && collision.collider.gameObject.layer == LayerMask.NameToLayer("Default")) {
             Vector3 surfaceNormal = collision.normal;
-            if (!(new Vector3(Mathf.Round(surfaceNormal.x), Mathf.Round(surfaceNormal.y), Mathf.Round(surfaceNormal.z)) == Vector3.up))
+            if (!surfaceNormal.EqualToWithinRange(Vector3.up, 0.1f))
             {
                 wall = collision.collider;
                 wallNormal = collision.normal;
                 transform.rotation = Quaternion.LookRotation(Vector3.up, surfaceNormal);
             }
         }
+
+        if (collision.collider.gameObject.tag == "Player")
+        {
+            if (TryAttack())
+            {
+                player.GetComponent<PlayerHealth>().TakeDamage(1, player.transform.position - transform.position, 0.1f);
+                EndAttack();
+            }
+        }
+    }
+
+    private bool TryAttack()
+    {
+        token = enemyAttackTokenPool.RequestToken(this.gameObject, 0);
+        return (token != null);
+    }
+
+    private void EndAttack()
+    {
+        enemyAttackTokenPool.ReturnToken(this.type, token);
+        token = null;
     }
 
     public override void takeDamage(Vector3 point)
     {
+        playerCamera.gameObject.GetComponent<ScoreTracker>().RegisterHit();
+
         swarmController.SpiderDestroyed(this);
         Destroy(this.gameObject);
     }
