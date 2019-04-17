@@ -453,6 +453,7 @@ MonoBehaviour:
     flashColor: {r: 1, g: 0, b: 0, a: 0.50980395}
     maxHealth: 100
     hitSound: {fileID: 8300000, guid: 561f895606b5cff4085fe1a7e5586ad3, type: 3}
+    overshieldBar: {fileID: 0}
   movementValues:
     speed: 10
     stickToGroundForce: 10
@@ -662,11 +663,12 @@ MonoBehaviour:
   pickupPrefabs:
   - {fileID: 1474425910296937359, guid: cdbd996c91ee4fb43b146ecf6b0e0639, type: 3}
   - {fileID: 9062464723520462773, guid: 39a0ba106127d264f87db8bf5dd0a99f, type: 3}
-  pickupLimit: 4
-  upperBoundTime: 7
-  lowerBoundTime: 7
+  - {fileID: 8681397256562117913, guid: 124b23de537ba5f4aa21cce0451207d0, type: 3}
+  pickupLimit: 3
+  upperBoundTime: 20
+  lowerBoundTime: 30
   pickupsParent: {fileID: 0}
-  despawnTime: 45
+  despawnTime: 50
 --- !u!1001 &2368544253589646412
 PrefabInstance:
   m_ObjectHideFlags: 0
