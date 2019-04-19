@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4500302, g: 0.500085, b: 0.57550216, a: 1}
+  m_IndirectSpecularColor: {r: 0.4500295, g: 0.50008404, b: 0.5755013, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3068,7 +3068,7 @@ PrefabInstance:
         type: 3}
       propertyPath: healthValues.overshieldBar
       value: 
-      objectReference: {fileID: 457279336}
+      objectReference: {fileID: 1969765886}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: enemyPrefabs.Array.size
       value: 3
@@ -3166,6 +3166,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 297547908}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &297547912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1851651619850872098, guid: 24702d2c502ac224ca4a638da8a5acdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 297547908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297547909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea3ba665c7e904488fcb091afe4333c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &297547913 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 744898452, guid: 24702d2c502ac224ca4a638da8a5acdc,
@@ -4530,80 +4542,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 455543864}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &457279334
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 457279335}
-  - component: {fileID: 457279337}
-  - component: {fileID: 457279336}
-  m_Layer: 5
-  m_Name: OvershieldBar
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &457279335
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457279334}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1302236825}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 95, y: 25}
-  m_SizeDelta: {x: 160, y: 10}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &457279336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457279334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 71617b3d063e7924d908ef9b5eb99f74, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0626b924325d1c34cafa6b22297f4e4f, type: 3}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 0
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &457279337
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457279334}
-  m_CullTransparentMesh: 0
 --- !u!1 &459574258
 GameObject:
   m_ObjectHideFlags: 0
@@ -13363,12 +13301,6 @@ OffMeshLink:
   m_BiDirectional: 0
   m_Activated: 1
   m_AutoUpdatePositions: 0
---- !u!224 &1302236825 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224613261759428000, guid: 48c615876cd04284fa34b061c89d7905,
-    type: 3}
-  m_PrefabInstance: {fileID: 1414270660}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1309747690
 GameObject:
   m_ObjectHideFlags: 0
@@ -14845,6 +14777,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440635546983424084, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 440635546983424084, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 440635546983424084, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 440635546983424084, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006241179491234039, guid: 48c615876cd04284fa34b061c89d7905,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48c615876cd04284fa34b061c89d7905, type: 3}
@@ -18921,6 +18878,18 @@ Transform:
   m_Father: {fileID: 131651887}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969765886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 20648692494702979, guid: 48c615876cd04284fa34b061c89d7905,
+    type: 3}
+  m_PrefabInstance: {fileID: 1414270660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1979022348
 GameObject:
   m_ObjectHideFlags: 0
@@ -20650,6 +20619,7 @@ MonoBehaviour:
   nextWaveTime: 5
   waveCompleteTime: 2
   waveText: {fileID: 1220200816119254240}
+  waveManager: {fileID: 297547912}
 --- !u!223 &3821844365604976478
 Canvas:
   m_ObjectHideFlags: 0
