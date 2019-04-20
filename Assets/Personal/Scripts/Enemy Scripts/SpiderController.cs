@@ -163,7 +163,10 @@ public class SpiderController : EnemyController
     public override void takeDamage(Vector3 point)
     {
         playerCamera.gameObject.GetComponent<ScoreTracker>().RegisterHit();
-
+        if(token != null)
+        {
+            EndAttack();
+        }
         swarmController.SpiderDestroyed(this);
         Destroy(this.gameObject);
     }
