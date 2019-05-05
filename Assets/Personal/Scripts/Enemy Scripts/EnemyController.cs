@@ -10,12 +10,26 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected GameObject player;
     [SerializeField] protected NavMeshAgent nav;
     [SerializeField] protected SpawnManager spawnManager;
-    protected SpawnManager.EnemyType type;
     [SerializeField] protected Camera playerCamera;
+
+    protected SpawnManager.EnemyType type;
+    CharacterController enemyMover;
+    Vector3 old_velocity;
+    ImpactReceiver impacter;
+    EnemyValues enemyValues;
+    float impactToKill;
+    float health;
+    float knockbackModifier;
 
     // Use this for initialization
     protected virtual void Start()
     {
+        enemyMover = gameObject.GetComponent<CharacterController>();
+        impacter = gameObject.GetComponent<ImpactReceiver>();
+        enemyValues = gameObject.GetComponent<EnemyValues>();
+        impactToKill = enemyValues.generalValues.ImpactToKill;
+        health = enemyValues.generalValues.HealthValue;
+        knockbackModifier = enemyValues.generalValues.KnockbackModifier;
     }
 
     // Update is called once per frame
@@ -25,6 +39,7 @@ public abstract class EnemyController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        old_velocity = enemyMover.velocity;
         
     }
 
@@ -43,17 +58,22 @@ public abstract class EnemyController : MonoBehaviour
         return false;
     }
 
-    public virtual void takeDamage(Vector3 point)
+    public virtual void takeDamage(Vector3 direction)
     {
-        Destroy(this.gameObject);
+        health--;
+        if (health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            impacter.AddImpact(direction, knockbackModifier);
+        }
     }
 
-    public virtual void getPunched(Vector3 force)
+    public virtual void Die()
     {
-        this.gameObject.GetComponent<ImpactReceiver>().AddImpact(force, 10);
-        Debug.Log(force);
-        nav.enabled = true;
-
+        Destroy(this.gameObject);
     }
 
     public virtual void freeze()
@@ -77,5 +97,28 @@ public abstract class EnemyController : MonoBehaviour
     protected virtual void DestroyThis()
     {
         spawnManager.DestroyEnemy(this.gameObject);
+    }
+
+    protected virtual void KnockbackUpdate()
+    {
+        if (enemyMover.velocity.magnitude <= 1
+            && enemyMover.velocity.y <= 0
+            && enemyMover.isGrounded)
+        {
+            nav.enabled = true;
+        }
+    }
+
+    protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        float impact = -Vector3.Dot(hit.normal, old_velocity);
+        if (impact > impactToKill)
+        {
+            takeDamage(impact * hit.normal);
+        }
+        else
+        {
+            //impacter.Reflect(hit.normal);
+        }
     }
 }

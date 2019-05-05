@@ -2541,6 +2541,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 297547911}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02cda2056326e704cbb694a193919a19, type: 3}
 --- !u!1 &264235243 stripped
@@ -2555,6 +2570,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 264235242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &264235254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264235243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf847642cc16a4bb3c53850f5569dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactValues:
+    mass: 1
+    groundFriction: 5
+    airFriction: 1
+    recoveryImpact: 1
+  generalValues:
+    healthValue: 1
+    impactToKill: 30
+    knockbackModifier: 10
 --- !u!1 &268906073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,6 +3100,21 @@ PrefabInstance:
       propertyPath: generalValues.pauseMenu
       value: 
       objectReference: {fileID: 1872307368}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
@@ -14772,7 +14823,7 @@ PrefabInstance:
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 3}
       propertyPath: impactToKill
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
         type: 3}
@@ -14789,7 +14840,23 @@ PrefabInstance:
       propertyPath: recoverySpeed
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
 --- !u!1 &1470570780 stripped
 GameObject:
@@ -14803,6 +14870,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1470570779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470570782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470570780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf847642cc16a4bb3c53850f5569dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactValues:
+    mass: 1
+    groundFriction: 5
+    airFriction: 0.1
+    recoveryImpact: 0.2
+  generalValues:
+    healthValue: 2
+    impactToKill: 20
+    knockbackModifier: 20
 --- !u!114 &1470570791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14812,11 +14900,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470570780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea7503481505204d9af26c1ba8ce56b, type: 3}
+  m_Script: {fileID: 11500000, guid: c71c9a605b5e1a94c9074326c3c3a830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impact: {x: 0, y: 0, z: 0}
-  skidding: 0
 --- !u!1 &1473966198
 GameObject:
   m_ObjectHideFlags: 0

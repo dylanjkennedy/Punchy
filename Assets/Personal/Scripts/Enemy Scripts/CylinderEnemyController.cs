@@ -31,10 +31,7 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float laserWindupTime;
     [SerializeField] float laserFiringTime;
     [SerializeField] float laserTargetingTime;
-    [SerializeField] float impactToKill;
-    [SerializeField] float knockBackModifier;
     [SerializeField] float gravityModifier;
-    [SerializeField] float recoverySpeed;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
@@ -57,11 +54,14 @@ public class CylinderEnemyController : EnemyController
     bool laserSoundPlayed;
     CharacterController enemyMover;
     Vector3 old_velocity;
-    KnockbackReceiver knockbacker;
     private bool knockedBack;
-    private int health;
+    ImpactReceiver impacter;
+    EnemyValues enemyValues;
+    float impactToKill;
+    float health;
+    float knockbackModifier;
 
-    private enum enemyState { movingState, tetheredState, laserState};
+    private enum enemyState { movingState, tetheredState, laserState };
     private enemyState state;
 
     // Use this for initialization
@@ -84,12 +84,17 @@ public class CylinderEnemyController : EnemyController
         dead = false;
         firing = false;
         fireTimer = 0;
-        health = 2;
 
         tether = this.findBestTether();
         tetherRadius = tether.GetComponent<TetherController>().Radius;
         destination = FindNewPositionInTether();
         state = enemyState.movingState;
+
+        impacter = gameObject.GetComponent<ImpactReceiver>();
+        enemyValues = gameObject.GetComponent<EnemyValues>();
+        impactToKill = enemyValues.generalValues.ImpactToKill;
+        health = enemyValues.generalValues.HealthValue;
+        knockbackModifier = enemyValues.generalValues.KnockbackModifier;
     }
 
     // Update is called once per frame
@@ -101,7 +106,7 @@ public class CylinderEnemyController : EnemyController
         }
         else
         {
-            nav.speed = defaultSpeed*2;
+            nav.speed = defaultSpeed * 2;
         }
     }
 
@@ -144,10 +149,12 @@ public class CylinderEnemyController : EnemyController
                     break;
             }
         }
-        else if (!dead && knockedBack)
+        else if (!dead && !nav.enabled)
         {
-            KnockedBehavior();
+            KnockbackUpdate();
         }
+
+        old_velocity = enemyMover.velocity;
 
     }
 
@@ -191,7 +198,7 @@ public class CylinderEnemyController : EnemyController
     {
         //PROBLEM: tether = this.findBestTether();
         // check if position is in radius of tether
-        
+
         if (Vector3.Distance(tether.transform.position, this.transform.position) <= tetherRadius)
         {
             stateTimer = 0;
@@ -200,8 +207,8 @@ public class CylinderEnemyController : EnemyController
         else
         {
             nav.SetDestination(destination);
-            return enemyState.movingState;        
-        }      
+            return enemyState.movingState;
+        }
     }
 
     private void LaserSetup()
@@ -302,46 +309,6 @@ public class CylinderEnemyController : EnemyController
         return enemyState.laserState;
     }
 
-    private void KnockedBehavior()
-    {
-        if (enemyMover.collisionFlags != CollisionFlags.None)
-        {
-            Vector3 enemyCenter = enemyMover.gameObject.transform.position;
-            Collider[] closeThings = Physics.OverlapSphere(enemyCenter, 1.5f);
-            foreach (Collider closeThing in closeThings)
-            {
-                Vector3 pointOfContact = closeThing.ClosestPoint(enemyCenter);
-                Vector3 hitDirection = (pointOfContact - enemyCenter).normalized;
-                float impact = Vector3.Dot(hitDirection, old_velocity);
-                old_velocity = enemyMover.velocity;
-
-                Debug.Log("Impact is " + impact);
-                if (impact > impactToKill)
-                {
-                    this.takeDamage(impact * hitDirection);
-                }
-                else if (impact > 0 
-                    || (enemyMover.isGrounded && old_velocity.y<0)) 
-                {
-                    enemyMover.gameObject.GetComponent<KnockbackReceiver>().skidding = true;
-                }
-                else
-                {
-                    enemyMover.gameObject.GetComponent<KnockbackReceiver>().impact -= impact * hitDirection;
-                }
-            }
-        }
-        if (enemyMover.velocity.magnitude < recoverySpeed
-            && enemyMover.velocity.y < 0
-            && this.gameObject.GetComponent<CharacterController>().isGrounded)
-        {
-            nav.enabled = true;
-            knockedBack = false;
-        }
-    }
-    
-    
-
     private Vector3 FindNewPositionInTether()
     {
         return tether.transform.position + (Vector3)Random.insideUnitCircle * tetherRadius;
@@ -386,8 +353,19 @@ public class CylinderEnemyController : EnemyController
         }
         return false;
     }
-
-    public override void takeDamage(Vector3 force)
+    public override void takeDamage(Vector3 direction)
+    {
+        health--;
+        if (health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            impacter.AddImpact(direction, knockbackModifier);
+        }
+    }
+    public override void Die()
     {
         if (!dead)
         {
@@ -395,24 +373,15 @@ public class CylinderEnemyController : EnemyController
             {
                 enemyAttackTokenPool.ReturnToken(type, token);
             }
-            health--;
-            if (health<=0)
-            {
-                playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
-                dead = true;
-                stateTimer = 0;
-                GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
-                fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
-                Instantiate(explosion, transform.position, transform.rotation);
-                explosion.Play();
+            playerCamera.gameObject.GetComponent<ScoreTracker>().ChangeScore(scoreValue, transform.position);
+            dead = true;
+            stateTimer = 0;
+            GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
+            fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
+            Instantiate(explosion, transform.position, transform.rotation);
+            explosion.Play();
 
-                DestroyThis();
-            }
-            else
-            {
-                this.gameObject.GetComponent<KnockbackReceiver>().AddKnock(force, knockBackModifier);
-                knockedBack = true;
-            }
+            DestroyThis();
         }
     }
 
@@ -444,13 +413,13 @@ public class CylinderEnemyController : EnemyController
 
         for (int i = 0; i < tethers.Length; i++)
         {
-            weights[i] += 10*tethers[i].Occupants^2;
+            weights[i] += 10 * tethers[i].Occupants ^ 2;
             //weight distance from tether to AI as distance/4
-            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position)/4);
+            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position) / 4);
 
             //We want distance from tether to player to be 20, so weight the difference of actual distance from that by difference*2
             weights[i] += (int)(Mathf.Abs(
-                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20))*2;
+                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20)) * 2;
 
             //Weight inverse of trace ratio at inverseRatio*50. Perfect visibility weights 0, no visibility weights 50;
             weights[i] += (int)((1 - tethers[i].TraceRatio) * 50);
@@ -475,4 +444,29 @@ public class CylinderEnemyController : EnemyController
     {
         return cachedRenderer.isVisibleFrom(playerCamera);
     }
+
+    protected override void KnockbackUpdate()
+    {
+        Debug.Log(enemyMover.velocity);
+        if (enemyMover.velocity.magnitude <= 2
+            && enemyMover.velocity.y <= 0
+            && enemyMover.isGrounded)
+        {
+            nav.enabled = true;
+        }
+    }
+
+    protected override void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        float impact = -Vector3.Dot(hit.normal, old_velocity);
+        if (impact > impactToKill)
+        {
+            takeDamage(impact * hit.normal);
+        }
+        else
+        {
+            //impacter.Reflect(hit.normal);
+        }
+    }
 }
+

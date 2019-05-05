@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KnockbackReceiver : MonoBehaviour
 {
+    /*
 
     float mass;
     public Vector3 impact;
@@ -33,7 +34,7 @@ public class KnockbackReceiver : MonoBehaviour
     {
         if (!enemy.isGrounded)
         {
-            impact += Physics.gravity * 2 * Time.fixedDeltaTime;
+            impact += Physics.gravity * Time.fixedDeltaTime;
         }
         // apply the impact force:
         if (impact.magnitude > 0.2)
@@ -46,4 +47,5 @@ public class KnockbackReceiver : MonoBehaviour
             enemy.Move(impact * Time.fixedDeltaTime);
         }
     }
+    */
 }
