@@ -2877,6 +2877,11 @@ PrefabInstance:
       propertyPath: generalValues.pauseMenu
       value: 
       objectReference: {fileID: 1872307368}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: healthValues.overshieldBar
+      value: 
+      objectReference: {fileID: 1917686479}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
@@ -15716,6 +15721,18 @@ Transform:
   m_Father: {fileID: 245769497}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1917686479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 20648692494702979, guid: 48c615876cd04284fa34b061c89d7905,
+    type: 3}
+  m_PrefabInstance: {fileID: 1414270660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1918052754
 GameObject:
   m_ObjectHideFlags: 0
@@ -17240,6 +17257,7 @@ MonoBehaviour:
   nextWaveTime: 5
   waveCompleteTime: 2
   waveText: {fileID: 1220200816119254240}
+  waveManager: {fileID: 0}
 --- !u!223 &3821844365604976478
 Canvas:
   m_ObjectHideFlags: 0
