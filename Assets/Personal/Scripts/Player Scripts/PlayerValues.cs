@@ -348,6 +348,7 @@ public class PlayerValues : ActorValues
         [SerializeField] private float staminaRegain;
         [SerializeField] private float explodeRadius;
         [SerializeField] private float explodePower;
+        [SerializeField] private float punchPower;
 
         public float StaminaRegain
         {
@@ -415,6 +416,13 @@ public class PlayerValues : ActorValues
             get
             {
                 return explodePower;
+            }
+        }
+        public float PunchPower
+        {
+            get
+            {
+                return punchPower;
             }
         }
     }

@@ -2589,7 +2589,7 @@ MonoBehaviour:
     recoveryImpact: 1
   generalValues:
     healthValue: 1
-    impactToKill: 30
+    impactToKill: 1000
     knockbackModifier: 10
 --- !u!1 &268906073
 GameObject:
@@ -3108,11 +3108,16 @@ PrefabInstance:
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: impactValues.airFriction
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
       propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: chargeAttackStateValues.punchPower
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 744898450, guid: 24702d2c502ac224ca4a638da8a5acdc, type: 3}
@@ -14855,6 +14860,26 @@ PrefabInstance:
       propertyPath: impactValues.recoveryImpact
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23708129213229988, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195437385035327378, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143794598952234358, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143794598952234358, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
@@ -14885,11 +14910,11 @@ MonoBehaviour:
   impactValues:
     mass: 1
     groundFriction: 5
-    airFriction: 0.1
-    recoveryImpact: 0.2
+    airFriction: 0.25
+    recoveryImpact: 1
   generalValues:
     healthValue: 2
-    impactToKill: 20
+    impactToKill: 10
     knockbackModifier: 20
 --- !u!114 &1470570791
 MonoBehaviour:
