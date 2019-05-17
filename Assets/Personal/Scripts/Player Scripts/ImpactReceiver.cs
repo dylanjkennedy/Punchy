@@ -40,11 +40,16 @@ public class ImpactReceiver : MonoBehaviour {
     void FixedUpdate()
     {
         // apply the impact force:
-        Debug.Log("Impact is: "+impact.magnitude);
+        if ((impact.magnitude > recoveryImpact) || character.isGrounded)
+        {
+            character.Move(impact * Time.fixedDeltaTime);
+        }
+        else
+        {
+            impact = Vector3.zero;
+        }
 
-        if (impact.magnitude > recoveryImpact) character.Move(impact * Time.fixedDeltaTime);
-        else impact = Vector3.zero;
-                
+        impact += Physics.gravity * Time.deltaTime;
 
         if (character.isGrounded)
         {
@@ -53,8 +58,7 @@ public class ImpactReceiver : MonoBehaviour {
         }
         else
         {
-            //Apply gravity and air friction
-            impact += Physics.gravity * Time.deltaTime;
+            //Apply air friction
             impact = Vector3.Lerp(impact, Vector3.zero, Time.fixedDeltaTime * airFriction);
         }
     }
