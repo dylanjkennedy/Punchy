@@ -52,14 +52,7 @@ public class CylinderEnemyController : EnemyController
     float defaultSpeed;
     LineRenderer activeLaser;
     bool laserSoundPlayed;
-    CharacterController enemyMover;
-    Vector3 old_velocity;
     private bool knockedBack;
-    ImpactReceiver impacter;
-    EnemyValues enemyValues;
-    float impactToKill;
-    float health;
-    float knockbackModifier;
 
     private enum enemyState { movingState, tetheredState, laserState };
     private enemyState state;
@@ -71,7 +64,6 @@ public class CylinderEnemyController : EnemyController
         type = SpawnManager.EnemyType.Cylinder;
         spawnManager = player.GetComponent<SpawnManager>();
         cachedRenderer = gameObject.GetComponent<MeshRenderer>();
-        enemyMover = gameObject.GetComponent<CharacterController>();
         material = cachedRenderer.material;
         defaultColor = material.color;
         enemyAttackTokenPool = player.GetComponentInChildren<EnemyAttackTokenPool>();
@@ -90,11 +82,7 @@ public class CylinderEnemyController : EnemyController
         destination = FindNewPositionInTether();
         state = enemyState.movingState;
 
-        impacter = gameObject.GetComponent<ImpactReceiver>();
-        enemyValues = gameObject.GetComponent<EnemyValues>();
-        impactToKill = enemyValues.generalValues.ImpactToKill;
-        health = enemyValues.generalValues.HealthValue;
-        knockbackModifier = enemyValues.generalValues.KnockbackModifier;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -154,8 +142,8 @@ public class CylinderEnemyController : EnemyController
             KnockbackUpdate();
         }
 
-        old_velocity = enemyMover.velocity;
-
+        //Get old velocity
+        base.FixedUpdate();
     }
 
     private void CheckIfFiring()
@@ -355,15 +343,9 @@ public class CylinderEnemyController : EnemyController
     }
     public override void takeDamage(Vector3 direction)
     {
-        health--;
-        if (health <= 0)
-        {
-            Die();
-        }
-        else
-        {
-            impacter.AddImpact(direction, knockbackModifier);
-        }
+        base.takeDamage(direction);
+        defaultColor = Color.gray;
+        material.color = defaultColor;
     }
     public override void Die()
     {
@@ -391,11 +373,6 @@ public class CylinderEnemyController : EnemyController
         {
             return (Vector3.Distance(player.transform.position, this.transform.position) < runAwayDistance);
         }
-    }
-
-    public override void freeze()
-    {
-        nav.enabled = false;
     }
 
     private GameObject findBestTether()
@@ -445,28 +422,5 @@ public class CylinderEnemyController : EnemyController
         return cachedRenderer.isVisibleFrom(playerCamera);
     }
 
-    protected override void KnockbackUpdate()
-    {
-        Debug.Log(enemyMover.velocity);
-        if (enemyMover.velocity.magnitude <= 2
-            && enemyMover.velocity.y <= 0
-            && enemyMover.isGrounded)
-        {
-            nav.enabled = true;
-        }
-    }
-
-    protected override void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        float impact = -Vector3.Dot(hit.normal, old_velocity);
-        if (impact > impactToKill)
-        {
-            takeDamage(impact * hit.normal);
-        }
-        else
-        {
-            //impacter.Reflect(hit.normal);
-        }
-    }
 }
 

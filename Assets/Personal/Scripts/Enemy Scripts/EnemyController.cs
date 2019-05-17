@@ -13,13 +13,13 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected Camera playerCamera;
 
     protected SpawnManager.EnemyType type;
-    CharacterController enemyMover;
-    Vector3 old_velocity;
-    ImpactReceiver impacter;
-    EnemyValues enemyValues;
-    float impactToKill;
-    float health;
-    float knockbackModifier;
+    protected CharacterController enemyMover;
+    protected Vector3 old_velocity;
+    protected ImpactReceiver impacter;
+    protected EnemyValues enemyValues;
+    protected float impactToKill;
+    protected float health;
+    protected float knockbackModifier;
 
     // Use this for initialization
     protected virtual void Start()
@@ -40,7 +40,6 @@ public abstract class EnemyController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         old_velocity = enemyMover.velocity;
-        
     }
 
     protected virtual bool CheckLineOfSight()
@@ -60,6 +59,7 @@ public abstract class EnemyController : MonoBehaviour
 
     public virtual void takeDamage(Vector3 direction)
     {
+        Debug.Log(direction);
         health--;
         if (health <= 0)
         {
@@ -114,11 +114,16 @@ public abstract class EnemyController : MonoBehaviour
         float impact = -Vector3.Dot(hit.normal, old_velocity);
         if (impact > impactToKill)
         {
+            Debug.Log(hit.gameObject.layer);
+            if (hit.gameObject.layer == 9)
+            {
+                hit.gameObject.GetComponent<EnemyController>().takeDamage(impact * hit.moveDirection);
+            }
             takeDamage(impact * hit.normal);
         }
         else
         {
-            //impacter.Reflect(hit.normal);
+            impacter.Reflect(hit.normal);
         }
     }
 }
