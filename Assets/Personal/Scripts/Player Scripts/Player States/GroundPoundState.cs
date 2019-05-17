@@ -11,6 +11,7 @@ public class GroundPoundState : PlayerState
     float gravityMultiplier;
     float speedMaximum;
     float physicsMaxForce;
+    float height;
     bool charging;
     RaycastHit hit;
     private LayerMask enemyMask;
@@ -29,6 +30,7 @@ public class GroundPoundState : PlayerState
         groundPoundParticles = playerMover.playerValues.groundPoundStateValues.GroundPoundParticles;
         groundPoundSound = playerMover.playerValues.groundPoundStateValues.GroundPoundSound;
         audioSource = playerMover.GetComponent<AudioSource>();
+        height = playerMover.GetComponent<CharacterController>().height;
 
         vulnerable = false;
         chargeController = playerMover.ChargeController;
@@ -106,7 +108,12 @@ public class GroundPoundState : PlayerState
         Collider[] colliders = Physics.OverlapSphere(playerMover.transform.position, range, enemyMask);
         foreach (Collider hit in colliders)
         {
-            hit.gameObject.GetComponent<EnemyController>().takeDamage(hit.gameObject.transform.position);
+            if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Vector3 direction = playerMover.transform.position - (hit.gameObject.transform.position + Vector3.down * height / 2);
+                //Dividing the direction once gives the unit vector, again reduces the force inversely with distance
+                hit.gameObject.GetComponent<EnemyController>().takeDamage(direction/direction.magnitude/direction.magnitude);
+            }
         }
     }
 

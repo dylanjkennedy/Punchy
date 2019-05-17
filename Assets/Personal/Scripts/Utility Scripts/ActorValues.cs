@@ -9,14 +9,15 @@ public class ActorValues : MonoBehaviour
     [System.Serializable]
     public class ImpactValues : System.Object
     {
-        [SerializeField] private float mass;
+        [SerializeField] float mass;
+        [SerializeField] float groundFriction;
+        [SerializeField] float airFriction;
+        [SerializeField] float recoveryImpact;
 
-        public float Mass
-        {
-            get
-            {
-                return mass;
-            }
-        }
+        public float Mass { get { return mass; } }
+        public float GroundFriction { get { return groundFriction; } }
+        public float AirFriction { get { return airFriction; } }
+        public float RecoveryImpact { get { return recoveryImpact; } }
+
     }
 }

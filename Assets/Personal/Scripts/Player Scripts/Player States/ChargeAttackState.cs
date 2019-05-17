@@ -17,6 +17,7 @@ public class ChargeAttackState : PlayerState
     private float slowestTimeScale;
     private float slowmoLerpFactor;
     float staminaRegain;
+    float punchPower;
     bool dashing;
     bool attacked;
     TimeScaleManager timeScaleManager;
@@ -39,6 +40,7 @@ public class ChargeAttackState : PlayerState
         staminaRegain = playerMover.playerValues.chargeAttackStateValues.StaminaRegain;
         explodePower = playerMover.playerValues.chargeAttackStateValues.ExplodePower;
         explodeRadius = playerMover.playerValues.chargeAttackStateValues.ExplodeRadius;
+        punchPower = playerMover.playerValues.chargeAttackStateValues.PunchPower;
 
         attackTarget = target;
         timer = 0;
@@ -85,7 +87,8 @@ public class ChargeAttackState : PlayerState
             playerMover.Move(Vector3.zero);
             if (attackTarget.collider != null)
             {
-                attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(attackTarget.point);
+                Vector3 direction = (attackTarget.point - playerMover.transform.position).normalized;
+                attackTarget.collider.gameObject.GetComponent<EnemyController>().takeDamage(direction*punchPower);
             }
             
             attacked = true;

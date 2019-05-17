@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -88,7 +88,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 128cd3d4fd2ca7e49a2439968b0a74df,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -2541,6 +2542,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 297547911}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703520417812528612, guid: 02cda2056326e704cbb694a193919a19,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02cda2056326e704cbb694a193919a19, type: 3}
 --- !u!1 &264235243 stripped
@@ -2555,6 +2571,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 264235242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &264235254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264235243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf847642cc16a4bb3c53850f5569dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactValues:
+    mass: 1
+    groundFriction: 5
+    airFriction: 1
+    recoveryImpact: 1
+  generalValues:
+    healthValue: 1
+    impactToKill: 1000
+    knockbackModifier: 10
 --- !u!1 &268906073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,6 +3111,24 @@ PrefabInstance:
       objectReference: {fileID: 1872307368}
     - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
         type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606967138850372387, guid: 24702d2c502ac224ca4a638da8a5acdc,
+        type: 3}
+      propertyPath: chargeAttackStateValues.punchPower
+      value: 1
+      objectReference: {fileID: 0}
       propertyPath: healthValues.overshieldBar
       value: 
       objectReference: {fileID: 1969765886}
@@ -15353,7 +15408,63 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 297547910}
-    m_RemovedComponents: []
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactToKill
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: knockBackModifier
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114540523667167472, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: recoverySpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.groundFriction
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.airFriction
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: impactValues.recoveryImpact
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23708129213229988, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195437385035327378, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143794598952234358, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143794598952234358, guid: c8fdea685493baf4eb6547fc19d330ca,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7630118236517780822, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c8fdea685493baf4eb6547fc19d330ca, type: 3}
 --- !u!1 &1470570780 stripped
 GameObject:
@@ -15367,6 +15478,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1470570779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470570782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470570780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf847642cc16a4bb3c53850f5569dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactValues:
+    mass: 1
+    groundFriction: 5
+    airFriction: 0.25
+    recoveryImpact: 1
+  generalValues:
+    healthValue: 2
+    impactToKill: 10
+    knockbackModifier: 20
+--- !u!114 &1470570791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470570780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71c9a605b5e1a94c9074326c3c3a830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1473966198
 GameObject:
   m_ObjectHideFlags: 0

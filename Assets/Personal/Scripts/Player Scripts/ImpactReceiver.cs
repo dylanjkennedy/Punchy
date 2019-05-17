@@ -5,15 +5,20 @@ using UnityEngine;
 public class ImpactReceiver : MonoBehaviour {
 
     float mass;
+    float groundFriction;
+    float airFriction;
+    float recoveryImpact;
     Vector3 impact = Vector3.zero;
-    private CharacterController character;
-    //PlayerMover playerMover;
+    CharacterController character;
  
     void Start()
     {
-        mass = GetComponent<ActorValues>().impactValues.Mass;
+        ActorValues actorValues = GetComponent<ActorValues>();
+        mass = actorValues.impactValues.Mass;
+        groundFriction = actorValues.impactValues.GroundFriction;
+        airFriction = actorValues.impactValues.AirFriction;
+        recoveryImpact = actorValues.impactValues.RecoveryImpact;
         character = GetComponent<CharacterController>();
-        //playerMover = gameObject.GetComponent<PlayerMover>();
     }
 
     // call this function to add an impact force:
@@ -22,17 +27,39 @@ public class ImpactReceiver : MonoBehaviour {
         direction.Normalize();
         if (direction.y < 0 && character.isGrounded)
         {
-            //direction.y = -direction.y; // reflect down force on the ground
             direction.y = 0; //prevents player from being launched into the air and unable to jump?
         }
         impact += direction.normalized * force / mass;
     }
 
-    void Update()
+    public void Reflect(Vector3 normal)
+    {
+        impact = impact - 2 * (Vector3.Dot(impact, normal) * normal);
+    }
+
+    void FixedUpdate()
     {
         // apply the impact force:
-        if (impact.magnitude > 0.2) character.Move(impact * Time.deltaTime);
-        // consumes the impact energy each cycle:
-        impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
+        if ((impact.magnitude > recoveryImpact) || character.isGrounded)
+        {
+            character.Move(impact * Time.fixedDeltaTime);
+        }
+        else
+        {
+            impact = Vector3.zero;
+        }
+
+        impact += Physics.gravity * Time.deltaTime;
+
+        if (character.isGrounded)
+        {
+            //Apply ground friction
+            impact = Vector3.Lerp(impact, Vector3.zero, Time.fixedDeltaTime * groundFriction);
+        }
+        else
+        {
+            //Apply air friction
+            impact = Vector3.Lerp(impact, Vector3.zero, Time.fixedDeltaTime * airFriction);
+        }
     }
 }

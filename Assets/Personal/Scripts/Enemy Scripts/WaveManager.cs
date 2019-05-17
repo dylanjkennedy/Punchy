@@ -13,7 +13,7 @@ public class WaveManager : MonoBehaviour
     float timeSinceSubWaveStart = 0f;
     int totalEnemiesSpawned = 0;
     int waveCount = 0;
-    [SerializeField] int totalEnemiesInWave = 3;
+    [SerializeField] int totalEnemiesInWave = 1;
     [SerializeField] int timeBetweenWaves = 5; // seconds
     [SerializeField] float timeBetweenSubWaves = 10f;
     [SerializeField] SpawnManager spawnManager;

@@ -31,6 +31,7 @@ public class CylinderEnemyController : EnemyController
     [SerializeField] float laserWindupTime;
     [SerializeField] float laserFiringTime;
     [SerializeField] float laserTargetingTime;
+    [SerializeField] float gravityModifier;
 
     Color defaultColor;
     Color fireColor = Color.magenta;
@@ -51,6 +52,7 @@ public class CylinderEnemyController : EnemyController
     float defaultSpeed;
     LineRenderer activeLaser;
     bool laserSoundPlayed;
+    private bool knockedBack;
 
     private enum enemyState { movingState, tetheredState, laserState };
     private enemyState state;
@@ -79,6 +81,8 @@ public class CylinderEnemyController : EnemyController
         tetherRadius = tether.GetComponent<TetherController>().Radius;
         destination = FindNewPositionInTether();
         state = enemyState.movingState;
+
+        base.Start();
     }
 
     // Update is called once per frame
@@ -90,7 +94,7 @@ public class CylinderEnemyController : EnemyController
         }
         else
         {
-            nav.speed = defaultSpeed*2;
+            nav.speed = defaultSpeed * 2;
         }
     }
 
@@ -133,6 +137,13 @@ public class CylinderEnemyController : EnemyController
                     break;
             }
         }
+        else if (!dead && !nav.enabled)
+        {
+            KnockbackUpdate();
+        }
+
+        //Get old velocity
+        base.FixedUpdate();
     }
 
     private void CheckIfFiring()
@@ -175,7 +186,7 @@ public class CylinderEnemyController : EnemyController
     {
         //PROBLEM: tether = this.findBestTether();
         // check if position is in radius of tether
-        
+
         if (Vector3.Distance(tether.transform.position, this.transform.position) <= tetherRadius)
         {
             stateTimer = 0;
@@ -184,8 +195,8 @@ public class CylinderEnemyController : EnemyController
         else
         {
             nav.SetDestination(destination);
-            return enemyState.movingState;        
-        }      
+            return enemyState.movingState;
+        }
     }
 
     private void LaserSetup()
@@ -286,7 +297,6 @@ public class CylinderEnemyController : EnemyController
         }
         return enemyState.laserState;
     }
-    
 
     private Vector3 FindNewPositionInTether()
     {
@@ -332,8 +342,13 @@ public class CylinderEnemyController : EnemyController
         }
         return false;
     }
-
-    public override void takeDamage(Vector3 point)
+    public override void takeDamage(Vector3 direction)
+    {
+        base.takeDamage(direction);
+        defaultColor = Color.gray;
+        material.color = defaultColor;
+    }
+    public override void Die()
     {
         if (!dead)
         {
@@ -346,7 +361,7 @@ public class CylinderEnemyController : EnemyController
             stateTimer = 0;
             GameObject fractureInstance = Instantiate(fractures, transform.position, transform.rotation);
             fractureInstance.GetComponent<AudioSpeedByTime>().AssignTimeScaleManager(player.GetComponentInChildren<TimeScaleManager>());
-            Instantiate(explosion, point, transform.rotation);
+            Instantiate(explosion, transform.position, transform.rotation);
             explosion.Play();
 
             DestroyThis();
@@ -359,11 +374,6 @@ public class CylinderEnemyController : EnemyController
         {
             return (Vector3.Distance(player.transform.position, this.transform.position) < runAwayDistance);
         }
-    }
-
-    public override void freeze()
-    {
-        nav.enabled = false;
     }
 
     private GameObject findBestTether()
@@ -381,13 +391,13 @@ public class CylinderEnemyController : EnemyController
 
         for (int i = 0; i < tethers.Length; i++)
         {
-            weights[i] += 10*tethers[i].Occupants^2;
+            weights[i] += 10 * tethers[i].Occupants ^ 2;
             //weight distance from tether to AI as distance/4
-            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position)/4);
+            weights[i] += (int)(Vector3.Distance(tethers[i].gameObject.transform.position, gameObject.transform.position) / 4);
 
             //We want distance from tether to player to be 20, so weight the difference of actual distance from that by difference*2
             weights[i] += (int)(Mathf.Abs(
-                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20))*2;
+                Vector3.Distance(tethers[i].gameObject.transform.position, player.transform.position) - 20)) * 2;
 
             //Weight inverse of trace ratio at inverseRatio*50. Perfect visibility weights 0, no visibility weights 50;
             weights[i] += (int)((1 - tethers[i].TraceRatio) * 50);
@@ -412,4 +422,6 @@ public class CylinderEnemyController : EnemyController
     {
         return cachedRenderer.isVisibleFrom(playerCamera);
     }
+
 }
+
