@@ -191,6 +191,8 @@ public class PlayerValues : ActorValues
         [SerializeField] private int maxHealth;
         [SerializeField] private AudioClip hitSound;
 
+        [SerializeField] private Image overshieldBar;
+
         public float FlashSpeed
         {
             get
@@ -201,6 +203,14 @@ public class PlayerValues : ActorValues
             set
             {
                 flashSpeed = value;
+            }
+        }
+
+        public Image OvershieldBar
+        {
+            get
+            {
+                return overshieldBar;
             }
         }
 
