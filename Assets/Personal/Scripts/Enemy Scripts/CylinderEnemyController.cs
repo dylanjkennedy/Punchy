@@ -140,6 +140,8 @@ public class CylinderEnemyController : EnemyController
         else if (!dead && !nav.enabled)
         {
             KnockbackUpdate();
+            if (state == enemyState.laserState) state = LaserBehavior();
+            if ((state != enemyState.laserState) && nav.enabled && nav.isStopped) nav.isStopped = false;
         }
 
         //Get old velocity
@@ -289,7 +291,7 @@ public class CylinderEnemyController : EnemyController
         if (firing && fireTimer >= laserFiringTime)
         {
             EndAttack();
-            nav.isStopped = false;
+            if (nav.enabled) nav.isStopped = false;
             laserLine.gameObject.SetActive(false);
             activeLaser = null;
             return enemyState.tetheredState;

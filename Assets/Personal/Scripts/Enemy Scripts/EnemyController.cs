@@ -59,7 +59,6 @@ public abstract class EnemyController : MonoBehaviour
 
     public virtual void takeDamage(Vector3 direction)
     {
-        Debug.Log(direction);
         health--;
         if (health <= 0)
         {
@@ -114,7 +113,6 @@ public abstract class EnemyController : MonoBehaviour
         float impact = -Vector3.Dot(hit.normal, old_velocity);
         if (impact > impactToKill)
         {
-            Debug.Log(hit.gameObject.layer);
             if (hit.gameObject.layer == 9)
             {
                 hit.gameObject.GetComponent<EnemyController>().takeDamage(impact * hit.moveDirection);
