@@ -144,8 +144,7 @@ public class CylinderEnemyController : EnemyController
             if ((state != enemyState.laserState) && nav.enabled && nav.isStopped) nav.isStopped = false;
         }
 
-        //Get old velocity
-        base.FixedUpdate();
+        old_velocity = enemyMover.velocity;
     }
 
     private void CheckIfFiring()

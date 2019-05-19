@@ -39,7 +39,6 @@ public abstract class EnemyController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        old_velocity = enemyMover.velocity;
     }
 
     protected virtual bool CheckLineOfSight()
@@ -59,6 +58,7 @@ public abstract class EnemyController : MonoBehaviour
 
     public virtual void takeDamage(Vector3 direction)
     {
+        playerCamera.gameObject.GetComponent<ScoreTracker>().RegisterHit();
         health--;
         if (health <= 0)
         {
@@ -110,6 +110,7 @@ public abstract class EnemyController : MonoBehaviour
 
     protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        Debug.Log("SMACK");
         float impact = -Vector3.Dot(hit.normal, old_velocity);
         if (impact > impactToKill)
         {

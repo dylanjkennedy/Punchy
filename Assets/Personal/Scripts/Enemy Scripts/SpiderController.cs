@@ -126,7 +126,7 @@ public class SpiderController : EnemyController
         frozen = true;
     }
 
-    void OnControllerColliderHit(ControllerColliderHit collision)
+    protected override void OnControllerColliderHit(ControllerColliderHit collision)
     {
         if (wall == null && collision.collider.gameObject.layer == LayerMask.NameToLayer("Default")) {
             Vector3 surfaceNormal = collision.normal;
